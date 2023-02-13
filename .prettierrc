@@ -6,7 +6,7 @@
   "singleQuote": true,
   "quoteProps": "as-needed",
   "arrowParens": "avoid",
-  "printWidth": 100,
+  "printWidth": 120,
   "proseWrap": "always",
   "bracketSameLine": true,
   "bracketSpacing": false,
