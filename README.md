@@ -6,13 +6,13 @@
 
 # Icon :
 
-* (22 000 icon)
+_(22 000 icon)_
 
 > https://fontawesome.com/search
 
 # Bootstrap :
 
-* (doc officiel + theme sandstone)
+_(doc officiel + theme sandstone)_
 
 > https://getbootstrap.com/docs/5.2/getting-started/introduction/
 
