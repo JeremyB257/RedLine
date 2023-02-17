@@ -298,6 +298,57 @@
       "water_resistance": "100m",
       "features": ["Date"],
       "description": "La Rolex Datejust pour homme est une montre élégante et intemporelle. Le boîtier en acier inoxydable et or jaune mesure 41 mm de diamètre et offre un design classique. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 100 mètres. Le bracelet en acier inoxydable et or jaune ajoute une touche de sophistication à l'ensemble."
+    },
+    {
+      "id": 24,
+      "marque": "Rolex",
+      "modèle": "Daytona",
+      "img_url": "img",
+      "prix": 13000,
+      "matière": "Or jaune 18 carats",
+      "mouvement": "Automatique",
+      "diamètre_boîtier": "40mm",
+      "étanchéité": "100m",
+      "fonctionnalités": ["Chronographe"],
+      "description": "La Rolex Daytona est une montre de sport de luxe pour homme. Le boîtier en or jaune 18 carats mesure 40 mm de diamètre et offre un design élégant et classique. La montre dispose d'un chronographe et est étanche jusqu'à 100 mètres. Le bracelet en or jaune 18 carats complète parfaitement l'ensemble."
+    },
+    {
+      "id": 25,
+      "brand": "Rolex",
+      "model": "Explorer",
+      "img_url": "img",
+      "price": 6600,
+      "material": "Acier inoxydable",
+      "movement": "Automatique",
+      "case_diameter": "39mm",
+      "water_resistance": "100m",
+      "features": ["Affichage de la date", "Aiguilles luminescentes"],
+      "description": "La Rolex Explorer est une montre de sport pour homme. Le boîtier en acier inoxydable mesure 39 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un affichage de la date à 3 heures et d'aiguilles luminescentes pour une visibilité accrue dans l'obscurité. Le bracelet en acier inoxydable est à la fois robuste et élégant."
+    },
+    {
+      "id": 26,
+      "brand": "Rolex",
+      "model": "Day-Date",
+      "img_url": "img",
+      "price": 33500,
+      "material": "Or jaune 18 carats",
+      "movement": "Automatique",
+      "case_diameter": "36mm",
+      "water_resistance": "100m",
+      "features": ["Affichage de la date", "Affichage du jour de la semaine en toutes lettres"],
+      "description": "La Rolex Day-Date est une montre de luxe pour homme en or jaune 18 carats. Le boîtier mesure 36 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un affichage de la date à 3 heures et d'un affichage du jour de la semaine en toutes lettres à 12 heures. Le bracelet en or jaune 18 carats est à la fois élégant et confortable."
+    },
+    {
+      "id": 27,
+      "marque": "Rolex",
+      "modèle": "Air-King",
+      "prix": 6100,
+      "matière": "Acier Oystersteel",
+      "mouvement": "Automatique",
+      "diamètre_boîtier": "40mm",
+      "étanchéité": "100m",
+      "fonctionnalités": [],
+      "description": "La Rolex Air-King est une montre pour homme inspirée par les pionniers de l'aviation. Le boîtier en acier Oystersteel mesure 40 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un design épuré et élégant, sans fonctionnalités spécifiques. Le mouvement automatique offre une grande précision et une autonomie longue durée."
     }
   ]
 }
