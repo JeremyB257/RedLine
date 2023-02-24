@@ -7,33 +7,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/sandstone/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/style.css" />
-    <title>Document</title>
+    <title>Laxar - Ventes de Montres</title>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
-    <header class="d-flex size">
-      <div class="header d-flex">
-        <div class="d-flex nav-size">
-          <nav class="d-flex liste-size">
-            <p>Homme</p>
-            <p>Femme</p>
-            <p>Accessoires</p>
-          </nav>
-        </div>
+    <header class="d-flex">
+      <div class="container-lg d-flex justify-content-between">
+        <nav class="d-flex">
+          <p>Homme</p>
+          <p>Femme</p>
+          <p>Accessoires</p>
+        </nav>
         <div class="title d-flex">
           <h1 class="title-size d-flex">LA <span class="x-size">X</span> AR</h1>
         </div>
-        <div class="d-flex logo-size">
+        <nav class="d-flex icon">
+          <input class="search" type="text" name="search" id="search" placeholder="Recherche..." />
+          <i class="fa-regular fa-magnifying-glass" onclick="showSearch(event)"></i>
           <i class="fa-regular fa-user"></i>
-          <input class="recherche" type="text" name="search" id="seachr" placeholder="Search..." />
-          <i class="fa-solid fa-magnifying-glass" onclick="showSearch(event)"></i>
-          <i class="fa-solid fa-cart-shopping"></i>
-        </div>
+          <i class="fa-regular fa-cart-shopping"></i>
+        </nav>
       </div>
     </header>
     <script>
       function showSearch(e) {
-        console.log(e.target.previousElementSibling);
         e.target.previousElementSibling.classList.toggle('show');
       }
     </script>
