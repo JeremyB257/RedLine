@@ -1,18 +1,1 @@
-/* Error: Undefined variable.
- *   ,
- * 2 |   background-color: $color-dark;
- *   |                     ^^^^^^^^^^^
- *   '
- *   scss\components\_header.scss 2:21  @import
- *   scss\index.scss 2:9                root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a   \2577 \a 2 \2502    background-color: $color-dark;\d\a   \2502                      ^^^^^^^^^^^\a   \2575 \a   scss\\components\\_header.scss 2:21  @import\a   scss\\index.scss 2:9                root stylesheet";
-}
+.navbar{background-color:#2f2f2f;color:#c3a07c}.navbar a:hover{color:#b38759}.navbar .nav-link,.navbar i{cursor:pointer;color:#c3a07c}.navbar .nav-link.active,.navbar .nav-link:hover,.navbar i.active,.navbar i:hover{color:#b38759}.navbar .navbar-toggler{border-color:#c3a07c;color:#c3a07c}.navbar .title{text-decoration:none;font-weight:bold;font-size:30px}.navbar .title span{font-size:45px;height:50px;margin-bottom:20px}.navbar .form-search{position:relative}.navbar .form-search .search{width:0px;opacity:0;transition:width .8s,opacity .5s;position:absolute;right:20px}@media(max-width: 992px){.navbar .form-search .search{left:30px}}.navbar .form-search .search.show{width:150px;opacity:1}/*# sourceMappingURL=style.css.map */
