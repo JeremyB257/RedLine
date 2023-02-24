@@ -11,24 +11,65 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
-    <header class="d-flex">
-      <div class="container-lg d-flex justify-content-between">
-        <nav class="d-flex align-items-center">
-          <p>Homme</p>
-          <p>Femme</p>
-          <p>Accessoires</p>
-        </nav>
-        <div class="title d-flex align-items-center justify-content-center">
-          <h1 class="title-size d-flex align-items-baseline">LA <span class="x-size">X</span> AR</h1>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-lg">
+        <a class="title d-lg-none" href="/public/index.html">LA<span>X</span>AR</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="fa-regular fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Homme</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Femme</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Accessoires
+              </a>
+              <ul class="dropdown-menu mb-3">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a class="title d-none d-lg-flex align-items-baseline justify-content-center" href="/public/index.html"
+            >LA<span>X</span>AR</a
+          >
+          <div class="navbar-nav d-flex gap-4 justify-content-end">
+            <form class="form-search d-flex align-items-center" role="search">
+              <input
+                class="form-control me-2 search"
+                type="search"
+                name="search"
+                placeholder="Recherche..."
+                aria-label="Search" />
+
+              <i type="submit" class="fa-regular fa-magnifying-glass" onclick="showSearch(event)"></i>
+            </form>
+            <i class="fa-regular fa-user"></i>
+            <i class="fa-regular fa-cart-shopping"></i>
+          </div>
         </div>
-        <nav class="d-flex align-items-center justify-content-end">
-          <input class="search" type="text" name="search" id="search" placeholder="Recherche..." />
-          <i class="fa-regular fa-magnifying-glass" onclick="showSearch(event)"></i>
-          <i class="fa-regular fa-user"></i>
-          <i class="fa-regular fa-cart-shopping"></i>
-        </nav>
       </div>
-    </header>
+    </nav>
     <script>
       function showSearch(e) {
         e.target.previousElementSibling.classList.toggle('show');

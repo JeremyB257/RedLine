@@ -1,40 +1,47 @@
-header {
-  background-color: #2f2f2f;
-  color: #c3a07c;
-
-  p,
-  h1 {
-    margin: 0px;
+.navbar {
+  background-color: $color-dark;
+  color: $color-primary;
+  a:hover {
+    color: darken($color-primary, 10%);
   }
-
-  nav {
-    gap: 30px;
-    width: 33%;
-  }
-
-  .title {
-    width: 33%;
-    height: 100%;
-
-    .title-size {
-      font-weight: bold;
-      .x-size {
-        font-size: 50px;
-        height: 50px;
-        margin-bottom: 20px;
-      }
-    }
-  }
+  .nav-link,
   i {
     cursor: pointer;
+    color: $color-primary;
+    &.active,
+    &:hover {
+      color: darken($color-primary, 10%);
+    }
   }
-  .search {
-    width: 0px;
-    opacity: 0;
-    transition: width 0.8s, opacity 0.5s;
-    &.show {
-      width: 150px;
-      opacity: 1;
+  .navbar-toggler {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+  .title {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 30px;
+    span {
+      font-size: 45px;
+      height: 50px;
+      margin-bottom: 20px;
+    }
+  }
+  .form-search {
+    position: relative;
+    .search {
+      width: 0px;
+      opacity: 0;
+      transition: width 0.8s, opacity 0.5s;
+      position: absolute;
+      right: 20px;
+      @media (max-width: 992px) {
+        left: 30px;
+      }
+      &.show {
+        width: 150px;
+        opacity: 1;
+      }
     }
   }
 }
