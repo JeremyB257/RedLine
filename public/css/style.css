@@ -1,1 +1,18 @@
-header{background-color:#2f2f2f;color:#c3a07c}header p,header h1{margin:0px}header nav{gap:30px;width:33%}header .title{width:33%;height:100%}header .title .title-size{font-weight:bold}header .title .title-size .x-size{font-size:50px;height:50px;margin-bottom:20px}header i{cursor:pointer}header .search{width:0px;opacity:0;transition:width .8s,opacity .5s}header .search.show{width:150px;opacity:1}/*# sourceMappingURL=style.css.map */
+/* Error: Undefined variable.
+ *   ,
+ * 2 |   background-color: $color-dark;
+ *   |                     ^^^^^^^^^^^
+ *   '
+ *   scss\components\_header.scss 2:21  @import
+ *   scss\index.scss 2:9                root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined variable.\a   \2577 \a 2 \2502    background-color: $color-dark;\d\a   \2502                      ^^^^^^^^^^^\a   \2575 \a   scss\\components\\_header.scss 2:21  @import\a   scss\\index.scss 2:9                root stylesheet";
+}
