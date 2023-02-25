@@ -1,7 +1,7 @@
 .adminNav {
   background-color: $color-dark;
   color: $color-primary;
-  > button {
+  > .container-lg > button {
     font-size: 30px;
     color: $color-primary;
   }
