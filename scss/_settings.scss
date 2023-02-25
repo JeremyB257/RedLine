@@ -1,54 +1,10 @@
 $color-primary: #c3a07c;
+$primary: $color-primary;
 $color-dark: #2f2f2f;
 $color-success: #198754;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style-type: none;
-  outline: none;
-  border: none;
-  text-decoration: none;
-}
 a {
   color: inherit;
-}
-
-ol,
-ul {
-  padding-left: 0;
-}
-
-main {
-  margin-left: 16rem;
-  transition: margin 0.15s;
-  min-height: 88vh;
-  padding: 0.75rem;
-  background: rgb(235, 237, 239);
-  transition: background 0.35s, color 0.35s, margin-left 0.15s;
-  .dark & {
-    background: #181924;
-    color: white;
-  }
-  .hideSB & {
-    margin-left: 0;
-  }
-  .header {
-    display: flex;
-    justify-content: space-between;
-  }
-  @media (max-width: 768px) {
-    margin-left: 0rem;
-  }
-}
-
-.hidden {
-  display: none;
-}
-
-.overflowX {
-  overflow-x: auto;
 }
 
 .loader-page {
@@ -80,4 +36,21 @@ main {
   to {
     transform: rotate(360deg);
   }
+}
+
+.btn-outline-primary {
+  --bs-btn-color: $color-primary;
+  --bs-btn-border-color: $color-primary;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: $color-primary;
+  --bs-btn-hover-border-color: $color-primary;
+  --bs-btn-focus-shadow-rgb: 50, 93, 136;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: $color-primary;
+  --bs-btn-active-border-color: $color-primary;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: $color-primary;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: $color-primary;
+  --bs-gradient: none;
 }
