@@ -1,0 +1,27 @@
+.adminList {
+  .card-header {
+    > .form-select {
+      margin-left: 10px;
+      max-width: 150px;
+    }
+  }
+  .card-body {
+    a:hover {
+      color: $color-primary;
+    }
+    th,
+    td {
+      text-align: center;
+      white-space: nowrap;
+    }
+  }
+  .statut {
+    background-color: #e4e5e7;
+    border-radius: 1.25rem;
+    padding: 0.125rem 0.5rem;
+    &[data-statut='Non traitée'],
+    &[data-statut='Annulée'] {
+      background-color: #ffea8a;
+    }
+  }
+}
