@@ -1,0 +1,30 @@
+.adminNav {
+  background-color: $color-dark;
+  color: $color-primary;
+  > button {
+    font-size: 30px;
+    color: $color-primary;
+  }
+  .title {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 30px;
+    span {
+      font-size: 45px;
+      height: 50px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .nav-link,
+  a {
+    cursor: pointer;
+    color: $color-primary;
+    &:hover {
+      color: fff;
+    }
+  }
+  .offcanvas {
+    background-color: $color-dark;
+  }
+}
