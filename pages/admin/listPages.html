@@ -78,6 +78,47 @@
     <main class="adminList container-lg">
       <div class="d-flex justify-content-between my-3">
         <h1 class="fw-bold">Pages</h1>
+        <a href="./addPage.html">
+          <button class="btn btn-outline-success" type="button">
+            <i class="fa-solid fa-plus"></i> Ajouter une page
+          </button>
+        </a>
+      </div>
+      <div class="card">
+        <div class="card-header d-flex align-items-center">
+          <strong>Liste des pages</strong>
+        </div>
+        <div class="card-body">
+          <div class="tab-content overflow-auto p-3">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th width="40px" scope="col">#</th>
+                  <th width="300px" scope="col">Titre</th>
+                  <th scope="col">Contenu</th>
+                  <th scope="col">Modifier</th>
+                  <th scope="col">Supprimer</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>FAQ</td>
+                  <td>Lorem ipsum dolor sit amet consectetur...</td>
+                  <td><i class="fa-solid fa-pen-to-square"></i></td>
+                  <td><i class="fa-solid fa-trash"></i></td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Comment changer la pile de sa montre</td>
+                  <td>Lorem amet consectetur adipisicing elit...</td>
+                  <td><i class="fa-solid fa-pen-to-square"></i></td>
+                  <td><i class="fa-solid fa-trash"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </main>
   </body>
