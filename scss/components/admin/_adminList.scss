@@ -26,13 +26,15 @@
     border-radius: 1.25rem;
     padding: 0.125rem 0.5rem;
     &[data-statut='Non traitée'],
-    &[data-statut='Annulée'] {
+    &[data-statut='Annulée'],
+    &[data-statut='NonAbonne'] {
       background-color: #ffea8a;
     }
     &[data-statut='Inactif'] {
       background-color: #ffb6b6;
     }
-    &[data-statut='Actif'] {
+    &[data-statut='Actif'],
+    &[data-statut='Abonne'] {
       background-color: #aee9d1;
     }
   }

@@ -76,8 +76,49 @@
     </nav>
 
     <main class="adminList container-lg">
-      <div class="d-flex justify-content-between my-3">
-        <h1 class="fw-bold">Clients</h1>
+      <h1 class="my-3 fw-bold">Clients</h1>
+      <div class="card">
+        <div class="card-header d-flex align-items-center">
+          <strong>Liste des clients</strong>
+        </div>
+        <div class="card-body">
+          <div class="tab-content overflow-auto p-3">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Abonnement</th>
+                  <th scope="col">Comandes</th>
+                  <th scope="col">Total depensé</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td><a href="#">Jean Dupont</a></td>
+                  <td><span data-statut="Abonne" class="statut">Abonné</span></td>
+                  <td>0</td>
+                  <td>0 €</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td><a href="#">Mickael Tiag</a></td>
+                  <td><span data-statut="NonAbonne" class="statut">Non Abonné</span></td>
+                  <td>5</td>
+                  <td>35.90 €</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td><a href="#">Jordan Balou</a></td>
+                  <td><span data-statut="Abonne" class="statut">Abonné</span></td>
+                  <td>4</td>
+                  <td>28.80 €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </main>
   </body>
