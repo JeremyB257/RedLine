@@ -1,6 +1,60 @@
 $color-primary: #c3a07c;
+
+$primary: $color-primary;
 $color-dark: #2f2f2f;
+$color-success: #198754;
+
 
 a {
   color: inherit;
 }
+
+
+.loader-page {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.loader {
+  padding: 15px;
+  border: 10px solid $color-primary;
+  border-bottom-color: transparent;
+  border-radius: 50px;
+  animation: rotate 1s infinite linear;
+  height: 0;
+  width: 0;
+  margin: 0 auto;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-outline-primary {
+  --bs-btn-color: $color-primary;
+  --bs-btn-border-color: $color-primary;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: $color-primary;
+  --bs-btn-hover-border-color: $color-primary;
+  --bs-btn-focus-shadow-rgb: 50, 93, 136;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: $color-primary;
+  --bs-btn-active-border-color: $color-primary;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: $color-primary;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: $color-primary;
+  --bs-gradient: none;
+}
+
