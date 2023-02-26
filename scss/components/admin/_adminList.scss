@@ -18,6 +18,9 @@
       width: 30px;
     }
   }
+  i {
+    cursor: pointer;
+  }
   .statut {
     background-color: #e4e5e7;
     border-radius: 1.25rem;
@@ -25,6 +28,12 @@
     &[data-statut='Non traitée'],
     &[data-statut='Annulée'] {
       background-color: #ffea8a;
+    }
+    &[data-statut='Inactif'] {
+      background-color: #ffb6b6;
+    }
+    &[data-statut='Actif'] {
+      background-color: #aee9d1;
     }
   }
 }

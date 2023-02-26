@@ -74,5 +74,56 @@
         </div>
       </div>
     </nav>
+
+    <main class="adminList container-lg">
+      <div class="d-flex justify-content-between my-3">
+        <h1 class="fw-bold">Reductions</h1>
+        <a href="./addCollections.html">
+          <button class="btn btn-outline-success" type="button">
+            <i class="fa-solid fa-plus"></i> Ajouter une reduction
+          </button>
+        </a>
+      </div>
+      <div class="card">
+        <div class="card-header d-flex align-items-center">
+          <strong>Liste des reductions</strong>
+        </div>
+        <div class="card-body">
+          <div class="tab-content overflow-auto p-3">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th width="40px" scope="col">#</th>
+
+                  <th width="300px" scope="col">Titre</th>
+                  <th scope="col">desciption</th>
+                  <th scope="col">status</th>
+                  <th scope="col">cumulable</th>
+                  <th scope="col">utilisé</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>3 pour 2</td>
+                  <td>Pour l'achat de 2 produits le 3eme...</td>
+                  <td><span data-statut="Actif" class="statut">Actif</span></td>
+                  <td>non</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>AZA10</td>
+                  <td>10% de reduction avec le ode AZA10</td>
+                  <td><span data-statut="Inactif" class="statut">Inactif</span></td>
+                  <td>oui</td>
+                  <td>1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
