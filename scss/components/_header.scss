@@ -27,6 +27,14 @@
       margin-bottom: 20px;
     }
   }
+  .dropdown-menu {
+    background-color: darken($color-dark, 5%);
+    .list-group-item {
+      background-color: transparent;
+      color: $color-primary;
+      border: none;
+    }
+  }
   .form-search {
     position: relative;
     .search {
