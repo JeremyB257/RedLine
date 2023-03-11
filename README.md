@@ -6,9 +6,13 @@
 
 > npm i
 
-# Lancer Sass + reload-auto :
+# Lancer Sass :
 
-> npm run dev-server
+> npm run watch
+
+# Lancer Symfony :
+
+> symfony serve
 
 # Icon :
 
