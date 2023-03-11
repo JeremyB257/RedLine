@@ -10,3 +10,8 @@ import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+
+const searchBtn = document.querySelector('#searchBtn');
+searchBtn.addEventListener('click', e => {
+  e.target.previousElementSibling.classList.toggle('show');
+});
