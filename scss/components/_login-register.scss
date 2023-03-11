@@ -1,0 +1,23 @@
+.loginNav {
+    padding: 0;
+
+    .nav-pills {
+        --bs-nav-pills-border-radius: 5px 5px 5px 0;
+        .nav-item {
+            width: 50%;
+        }
+            
+        .nav-link {
+            padding: 9px;
+            text-align: center;
+        }
+
+        .nav-link.active {
+            text-align: center;
+            background-color: $primary;
+            color: #000000;
+            border: none;
+            padding: 10px;
+        }
+    }
+}
