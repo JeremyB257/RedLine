@@ -1,0 +1,55 @@
+.navbar {
+  background-color: $color-dark;
+  color: $color-primary;
+  a:hover {
+    color: darken($color-primary, 10%);
+  }
+  .nav-link,
+  i {
+    cursor: pointer;
+    color: $color-primary;
+    &.active,
+    &:hover {
+      color: darken($color-primary, 10%);
+    }
+  }
+  .navbar-toggler {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+  .title {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 30px;
+    span {
+      font-size: 45px;
+      height: 50px;
+      margin-bottom: 20px;
+    }
+  }
+  .dropdown-menu {
+    background-color: darken($color-dark, 5%);
+    .list-group-item {
+      background-color: transparent;
+      color: $color-primary;
+      border: none;
+    }
+  }
+  .form-search {
+    position: relative;
+    .search {
+      width: 0px;
+      opacity: 0;
+      transition: width 0.8s, opacity 0.5s;
+      position: absolute;
+      right: 20px;
+      @media (max-width: 992px) {
+        left: 30px;
+      }
+      &.show {
+        width: 150px;
+        opacity: 1;
+      }
+    }
+  }
+}
