@@ -12,47 +12,78 @@
   </head>
   <body>
     <main class="container-lg">
-      <div class="card w-50 mx-auto my-5">
+      <div class="card w-50 mx-auto mt-5">
         <div class="card-header loginNav">
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Se connecter</a>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="signin-tab" role="tab" data-bs-toggle="tab" data-bs-target="#signin" type="button" aria-controls="signin" aria-selected="true" href="#">Se connecter</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">S'inscrire</a>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" role="tab" aria-controls="signup" aria-selected="false" href="#">S'inscrire</a>
             </li>
           </ul>
         </div>
-
-        <form class="m-5 loginForm">
-          <div class="mb-3">
-            <label for="emailLogin" class="form-label">Adresse email*</label>
-            <input
-              type="email"
-              class="form-control border-0 border-bottom rounded-0"
-              id="emailLogin"
-              aria-describedby="emailHelp" />
+      
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+            <form class="m-5 loginForm">
+              <div class="mb-5">
+                <label for="emailLogin" class="form-label">Email*</label>
+                <input
+                  type="email"
+                  class="form-control border-0 border-bottom rounded-0"
+                  id="emailLogin"
+                  aria-describedby="emailHelp" />
+              </div>
+    
+              <div class="mb-5">
+                <label for="exampleInputPassword1" class="form-label">Mot de passe*</label>
+                <input type="password" class="form-control border-0 border-bottom rounded-0" id="exampleInputPassword1" />
+              </div>
+    
+              <div class="row mx-auto">
+                <div class="mb-5 form-check col-6">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                  <label class="form-check-label ps-1" for="exampleCheck1">Se souvenir de moi </label>
+                </div>
+                <div class="col-5">
+                  <p>mot de passe oublié ?</p>
+                </div>
+              </div>
+    
+              <button type="submit" class="btn btn-primary">Se connecter</button>
+              <p class="my-4">Pas de compte ? <span>Inscrivez-vous</span></p>
+            </form>
+          </div> 
+        
+          <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+            <form class="m-5 loginForm">
+              <div class="mb-5">
+                <label for="emailLogin" class="form-label">Email*</label>
+                <input
+                  type="email"
+                  class="form-control border-0 border-bottom rounded-0"
+                  id="emailLogin"
+                  aria-describedby="emailHelp" />
+              </div>
+    
+              <div class="mb-5">
+                <label for="exampleInputPassword1" class="form-label">Mot de passe*</label>
+                <input type="password" class="form-control border-0 border-bottom rounded-0 p-0" id="exampleInputPassword1" />
+              </div>
+    
+              <div class="mb-5">
+                <label for="exampleInputPassword1" class="form-label">Confirmer le mot de passe*</label>
+                <input type="password" class="form-control border-0 border-bottom rounded-0" id="exampleInputPassword1" />
+              </div>
+    
+              <button type="submit" class="btn btn-primary">Isncription</button>
+              
+            </form>
           </div>
-
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">mot de passe*</label>
-            <input type="password" class="form-control border-0 border-bottom rounded-0" id="exampleInputPassword1" />
-          </div>
-
-          <div class="row mx-auto">
-            <div class="mb-3 form-check col-6">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-              <label class="form-check-label ps-1" for="exampleCheck1">Se souvenir de moi </label>
-            </div>
-            <div class="col-5">
-              <p>mot de passe oublié ?</p>
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Se connecter</button>
-          <p class="my-3">Pas de compte ? <span>Inscrivez-vous</span></p>
-        </form>
+        </div>
       </div>
+
       <p class="w-50 mx-auto">* champs obligatoires</p>
     </main>
   </body>
