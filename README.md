@@ -1,8 +1,18 @@
 ![This is an image](https://www.golfdusart.com/wp-content/uploads/2021/04/logo-Fil-Rouge.png)
 
+# Telecharger les dependances :
+
+> composer i
+
+> npm i
+
 # Lancer Sass :
 
-> sass --watch ./scss/index.scss:./public/css/style.css --style compressed
+> npm run watch
+
+# Lancer Symfony :
+
+> symfony serve
 
 # Icon :
 
