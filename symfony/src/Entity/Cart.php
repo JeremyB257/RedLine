@@ -33,6 +33,7 @@ class Cart
 
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
         $this->cartItems = new ArrayCollection();
     }
 
