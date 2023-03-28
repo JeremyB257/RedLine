@@ -28,12 +28,13 @@ class Order
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'orderN', targetEntity: OrderItems::class)]
+    #[ORM\OneToMany(mappedBy: 'order', targetEntity: OrderItems::class)]
     private Collection $orderItems;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
 
     public function __construct()
     {
@@ -132,7 +133,6 @@ class Order
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
         return $this;
     }
 }
