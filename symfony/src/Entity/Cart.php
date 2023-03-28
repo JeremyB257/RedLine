@@ -26,7 +26,7 @@ class Cart
 
     #[ORM\ManyToOne(inversedBy: 'carts')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $userN = null;
+    private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'cart', targetEntity: CartItems::class, orphanRemoval: true)]
     private Collection $cartItems;
@@ -78,14 +78,14 @@ class Cart
         return $this;
     }
 
-    public function getUserN(): ?User
+    public function getUser(): ?User
     {
-        return $this->userN;
+        return $this->user;
     }
 
-    public function setUserN(?User $userN): self
+    public function setUser(?User $user): self
     {
-        $this->userN = $userN;
+        $this->user = $user;
 
         return $this;
     }

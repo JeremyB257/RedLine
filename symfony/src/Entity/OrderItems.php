@@ -24,7 +24,7 @@ class OrderItems
 
     #[ORM\ManyToOne(inversedBy: 'orderItems')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Order $orderN = null;
+    private ?Order $order = null;
 
     public function __construct()
     {
@@ -71,14 +71,14 @@ class OrderItems
         return $this;
     }
 
-    public function getOrderN(): ?Order
+    public function getOrder(): ?Order
     {
-        return $this->orderN;
+        return $this->order;
     }
 
-    public function setOrderN(?Order $orderN): self
+    public function setOrder(?Order $order): self
     {
-        $this->orderN = $orderN;
+        $this->order = $order;
 
         return $this;
     }
