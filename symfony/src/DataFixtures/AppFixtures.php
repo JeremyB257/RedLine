@@ -135,7 +135,116 @@ class AppFixtures extends Fixture
             ->setDescription("La montre Seiko Presage pour homme est une montre élégante et fonctionnelle. Son boîtier en acier inoxydable mesure 40,5 mm de diamètre et son cadran bleu soleillé est orné de sous-cadrans pour le chronographe. La montre dispose d'une fonction chronographe pour mesurer le temps écoulé et d'un affichage de la date à 4 heures. La montre est étanche jusqu'à 50 mètres et dispose d'un bracelet en cuir noir. La montre Seiko Presage est un choix parfait pour les hommes élégants qui ont besoin d'une montre polyvalente pour leur vie quotidienne.");
         $manager->persist($watch);
 
+        $watch = new Product();
+        $watch->setBrand('Tissot')
+            ->setModel('Le Locle')
+            ->setImgUrl('no-image.png')
+            ->setPriceHt(700)
+            ->setMaterial('Acier inoxydable')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(39)
+            ->setWaterResistance(0)
+            ->setDescription("Découvrez la montre Tissot Le Locle pour homme. Cette montre automatique est un hommage à la ville suisse du même nom, berceau de l'horlogerie Tissot. Le boîtier en acier inoxydable mesure 39 mm de diamètre et offre un design élégant et classique. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 30 mètres. Le bracelet en acier inoxydable complète parfaitement l'ensemble.");
+        $manager->persist($watch);
 
+
+        $watch = new Product();
+        $watch->setBrand('Tissot')
+            ->setModel('T-Touch Expert Solar')
+            ->setImgUrl('no-image.png')
+            ->setPriceHt(1200)
+            ->setMaterial('Titane')
+            ->setMovement('Quartz solaire')
+            ->setCaseDiameter(45)
+            ->setWaterResistance(100)
+            ->setDescription("La montre Tissot T-Touch Expert Solar est une montre de sport pour homme équipée de la dernière technologie. Le boîtier en titane résistant mesure 45 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose de fonctionnalités utiles pour les activités en plein air, notamment un altimètre, un baromètre, une boussole, un chronographe et un thermomètre. Le mouvement à quartz solaire assure une précision exceptionnelle et une autonomie longue durée.");
+        $manager->persist($watch);
+
+        $watch = new Product();
+        $watch->setBrand('Tissot')
+            ->setModel('Carson')
+            ->setImgUrl('no-image.png')
+            ->setPriceHt(350)
+            ->setMaterial('Acier inoxydable')
+            ->setMovement('Quartz')
+            ->setCaseDiameter(39)
+            ->setWaterResistance(0)
+            ->setDescription("La montre Tissot Carson pour homme est une montre élégante et intemporelle. Le boîtier en acier inoxydable mesure 40 mm de diamètre et offre un design simple et épuré. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 30 mètres. Le bracelet en acier inoxydable ajoute une touche de sophistication à l'ensemble.");
+        $manager->persist($watch);
+
+        $watch = new Product();
+        $watch->setBrand('Tissot')
+            ->setModel('V8')
+            ->setImgUrl('no-image.png')
+            ->setPriceHt(550)
+            ->setMaterial('Acier inoxydable')
+            ->setMovement('Quartz')
+            ->setCaseDiameter(42)
+            ->setWaterResistance(100)
+            ->setDescription("La montre Tissot V8 pour homme est une montre sportive et élégante. Le boîtier en acier inoxydable mesure 42,5 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un chronographe et d'un affichage de la date à 4 heures. Le bracelet en acier inoxydable ajoute une touche de sophistication à l'ensemble.");
+        $manager->persist($watch);
+
+
+        $watch = new Product();
+        $watch->setBrand('Tissot')
+            ->setModel('Heritage Visodate')
+            ->setImgUrl('no-image.png')
+            ->setPriceHt(580)
+            ->setMaterial('Acier inoxydable')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(41)
+            ->setWaterResistance(30)
+            ->setDescription("La montre Tissot Heritage Visodate pour homme est un hommage aux montres Tissot classiques du passé. Le boîtier en acier inoxydable mesure 40 mm de diamètre et offre un design élégant et intemporel. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 30 mètres. Le bracelet en acier inoxydable complète parfaitement l'ensemble.");
+        $manager->persist($watch);
+
+        $watch = new Product();
+        $watch->setBrand('Tissot')
+            ->setModel('Seastar 1000 Powermatic 80')
+            ->setImgUrl('no-image.png')
+            ->setPriceHt(990)
+            ->setMaterial('Acier inoxydable')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(43)
+            ->setWaterResistance(300)
+            ->setDescription("La montre Tissot Seastar 1000 Powermatic 80 pour homme est une montre de plongée professionnelle conçue pour les plongeurs les plus exigeants. Le boîtier en acier inoxydable mesure 43 mm de diamètre et est étanche jusqu'à 300 mètres. La montre dispose d'une lunette unidirectionnelle et d'un affichage de la date à 6 heures. Le mouvement automatique Powermatic 80 assure une réserve de marche exceptionnelle de 80 heures.");
+        $manager->persist($watch);
+
+
+        $watch = new Product();
+        $watch->setBrand('Tissot')
+            ->setModel('Everytime')
+            ->setImgUrl('no-image.png')
+            ->setPriceHt(250)
+            ->setMaterial('Cuir')
+            ->setMovement('Quartz')
+            ->setCaseDiameter(38)
+            ->setWaterResistance(0)
+            ->setDescription("La montre Tissot Everytime est une montre pour homme au design épuré et minimaliste. Le boîtier en acier inoxydable mesure 42 mm de diamètre et est associé à un bracelet en cuir élégant et confortable. La montre dispose d'un mouvement à quartz fiable et est étanche jusqu'à 30 mètres. Cette montre polyvalente convient à toutes les occasions.");
+        $manager->persist($watch);
+
+        $watch = new Product();
+        $watch->setBrand('Tissot')
+            ->setModel('Gentleman')
+            ->setImgUrl('no-image.png')
+            ->setPriceHt(800)
+            ->setMaterial('Acier inoxydable')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(44)
+            ->setWaterResistance(0)
+            ->setDescription("La montre Tissot Gentleman est une montre pour homme élégante et sophistiquée. Le boîtier en acier inoxydable mesure 40 mm de diamètre et offre un design classique et intemporel. La montre dispose d'un mouvement automatique fiable et est étanche jusqu'à 100 mètres. L'affichage de la date à 3 heures ajoute une touche de praticité à l'ensemble. Le bracelet en acier inoxydable complète parfaitement le design élégant de cette montre.");
+        $manager->persist($watch);
+
+        $watch = new Product();
+        $watch->setBrand('Tissot')
+            ->setModel('Seastar 1000 Powermatic 80')
+            ->setImgUrl('no-image.png')
+            ->setPriceHt(950)
+            ->setMaterial('Acier inoxydable')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(43)
+            ->setWaterResistance(200)
+            ->setDescription("La montre Tissot Seastar 1000 Powermatic 80 pour homme est une montre de plongée performante. Le boîtier en acier inoxydable mesure 43 mm de diamètre et est associé à une lunette unidirectionnelle et un bracelet en acier inoxydable robustes. La montre dispose d'un mouvement automatique fiable et d'un affichage de la date à 6 heures. L'étanchéité de 300 mètres et la lisibilité optimale en font une montre de plongée idéale.");
+        $manager->persist($watch);
 
 
         $manager->flush();
