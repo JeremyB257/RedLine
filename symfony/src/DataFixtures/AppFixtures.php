@@ -134,6 +134,10 @@ class AppFixtures extends Fixture
             ->setWaterResistance(50)
             ->setDescription("La montre Seiko Presage pour homme est une montre élégante et fonctionnelle. Son boîtier en acier inoxydable mesure 40,5 mm de diamètre et son cadran bleu soleillé est orné de sous-cadrans pour le chronographe. La montre dispose d'une fonction chronographe pour mesurer le temps écoulé et d'un affichage de la date à 4 heures. La montre est étanche jusqu'à 50 mètres et dispose d'un bracelet en cuir noir. La montre Seiko Presage est un choix parfait pour les hommes élégants qui ont besoin d'une montre polyvalente pour leur vie quotidienne.");
         $manager->persist($watch);
+
+
+
+
         $manager->flush();
     }
 }
