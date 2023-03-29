@@ -1,0 +1,45 @@
+.container-section {
+  padding: 30px 10px;
+  gap: 15px;
+}
+
+.card-watch {
+  width: 600px;
+  height: fit-content;
+  max-height: 250px;
+  border: solid 2px black;
+  padding: 10px;
+  gap: 0 20px;
+}
+
+.infos {
+  flex: 70%;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 20px;
+  color: $color-primary;
+}
+
+.brand-model {
+  font-size: 23px;
+  color: $color-dark;
+  font-weight: bold;
+}
+
+.desc {
+  color: gray;
+  font-size: 12px;
+}
+
+.show-more-button {
+  align-self: flex-end;
+}
+
+.img-product {
+  flex: 30%;
+  height: 200px;
+  background-color: brown;
+  align-self: center;
+}

@@ -1,20 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProductController!{% endblock %}
+{% block title %}Produits - OverTime{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/RedLine/symfony/src/Controller/ProductController.php'|file_link(0) }}">src/Controller/ProductController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/RedLine/symfony/templates/product/index.html.twig'|file_link(0) }}">templates/product/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="container-lg container-section d-flex flex-column align-items-center">
+        {% for product in products %}
+            <div class="card-watch d-flex justify-between">
+                <div class="img-product d-flex justify-content-center align-items-center">
+                    <span>image.png</span>
+                </div>
+                <div class="infos d-flex flex-column">
+                    <span class="brand-model">{{ product.brand }} - {{ product.model }}<span class="d-block price">{{ (product.priceHt * 1.20 - 0.01) | format_currency('EUR') }}</span></span>
+                    {% if product.description > 250 %}
+                        <p class="desc">{{ product.description | slice(0, 250) ~ '...' }}</p>
+                    {% else %}
+                        <p class="desc">{{ product.description }}</p>
+                    {% endif %}
+                    <a href="#" class="btn-primary show-more-button">Voir plus</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
