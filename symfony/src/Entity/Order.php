@@ -35,6 +35,9 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?reduce $reduce = null;
+
 
     public function __construct()
     {
@@ -133,6 +136,18 @@ class Order
     public function setUser(?User $user): self
     {
         $this->user = $user;
+        return $this;
+    }
+
+    public function getReduce(): ?reduce
+    {
+        return $this->reduce;
+    }
+
+    public function setReduce(?reduce $reduce): self
+    {
+        $this->reduce = $reduce;
+
         return $this;
     }
 }
