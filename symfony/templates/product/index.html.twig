@@ -10,9 +10,10 @@
                     <span>image.png</span>
                 </div>
                 <div class="infos d-flex flex-column">
-                    <span class="brand-model">{{ product.brand }} - {{ product.model }}<span class="d-block price">{{ (product.priceHt * 1.20 - 0.01) | format_currency('EUR') }}</span></span>
-                    {% if product.description > 250 %}
-                        <p class="desc">{{ product.description | slice(0, 250) ~ '...' }}</p>
+                    <span class="brand-model">{{ product.brand }} - {{ product.model }}</span>
+                    <span class="d-block price">{{ (product.priceHt * 1.20 - 0.01) | format_currency('EUR') }}</span>
+                    {% if product.description > 110 %}
+                        <p class="desc">{{ product.description | slice(0, 110) ~ '...' }}</p>
                     {% else %}
                         <p class="desc">{{ product.description }}</p>
                     {% endif %}

@@ -7,13 +7,14 @@
   width: 600px;
   height: fit-content;
   max-height: 250px;
-  border: solid 2px black;
-  padding: 10px;
+  border: solid 2px $color-dark;
+  padding: 10px 30px 10px 10px;
   gap: 0 20px;
 }
 
 .infos {
   flex: 70%;
+  gap: 10px;
 }
 
 .price {
@@ -31,6 +32,8 @@
 .desc {
   color: gray;
   font-size: 12px;
+  margin: 0;
+  padding: 0;
 }
 
 .show-more-button {
