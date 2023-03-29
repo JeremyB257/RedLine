@@ -12,7 +12,7 @@
 						<a class="nav-link active" id="signin-tab" role="tab" data-bs-toggle="tab" data-bs-target="#signin" type="button" aria-controls="signin" aria-selected="true" href=" {{ path('app_login') }}">Se connecter</a>
 					</li>
 					<li class="nav-item" role="presentation">
-						<a class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" role="tab" aria-controls="signup" aria-selected="false" href="{{ path('app_register') }}">S'inscrire</a>
+						<a class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" role="tab" aria-controls="signup" aria-selected="false" href="{{ path('app_login') }}">S'inscrire</a>
 					</li>
 				</ul>
 			</div>
@@ -21,7 +21,7 @@
                 {# LogIn #}
 				<div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
 					<form class="m-5 loginForm" method="post">
-						{# {% if error %}
+						{% if error %}
 							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 						{% endif %}
 
@@ -31,11 +31,11 @@
 								{{ app.user.userIdentifier }},
 								<a href="{{ path('app_logout') }}">Logout</a>
 							</div>
-						{% endif %} #}
+						{% endif %}
 
 						<div class="mb-5">
 							<label for="emailLogin" class="form-label">Email*</label>
-							<input type="email" {#value="{{ last_username }}"#} name="email" id="emailLogin" class="form-control border-0 border-bottom rounded-0" autocomplete="email" required autofocus aria-describedby="emailHelp"/>
+							<input type="email" value="{{ last_username }}" name="email" id="emailLogin" class="form-control border-0 border-bottom rounded-0" autocomplete="email" required autofocus aria-describedby="emailHelp"/>
 						</div>
 
 						<div class="mb-5">
@@ -57,7 +57,7 @@
 						</div>
 
 						<div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-lg px-5">Se connecter</button>
+                            <button formnovalidate class="btn btn-primary btn-lg px-5">Se connecter</button>
                         </div>
 						<p class="my-4 text-center">Pas de compte ?
 							<span>Inscrivez-vous</span>
@@ -80,7 +80,7 @@
 
                             {{ form_row(registrationForm.agreeTerms) }}
                         <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-lg px-5 mt-4">Inscription</button>
+                            <button formnovalidate class="btn btn-primary btn-lg px-5 mt-4">Inscription</button>
                         </div>
                         {{ form_end(registrationForm) }}
                     </section>
