@@ -17,7 +17,7 @@
                     {% else %}
                         <p class="desc">{{ product.description }}</p>
                     {% endif %}
-                    <a href="#" class="btn-primary show-more-button">Voir plus</a>
+                    <a href="{{ path('app_product_show', { id: product.id }) }}" class="btn-primary show-more-button">Voir plus</a>
                 </div>
             </div>
         {% endfor %}
