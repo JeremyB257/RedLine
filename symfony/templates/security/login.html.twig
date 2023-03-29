@@ -9,10 +9,10 @@
 			<div class="card-header loginNav">
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation">
-						<a class="nav-link active" id="signin-tab" role="tab" data-bs-toggle="tab" data-bs-target="#signin" type="button" aria-controls="signin" aria-selected="true" href=" {{ path('app_login') }}">Se connecter</a>
+						<a class="{{ registrationForm.vars.submitted ? "nav-link" : "nav-link active" }}" id="signin-tab" role="tab" data-bs-toggle="tab" data-bs-target="#signin" type="button" aria-controls="signin" aria-selected="true" href=" {{ path('app_login') }}" tabindex="{{ registrationForm.vars.submitted ? "-1" : null }}">Se connecter</a>
 					</li>
 					<li class="nav-item" role="presentation">
-						<a class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" role="tab" aria-controls="signup" aria-selected="false" href="{{ path('app_login') }}">S'inscrire</a>
+						<a class="{{ registrationForm.vars.submitted ? "nav-link active" : "nav-link" }}" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" role="tab" aria-controls="signup" aria-selected="false" href="{{ path('app_login') }}" tabindex="{{ registrationForm.vars.submitted ? null : "-1" }}">S'inscrire</a>
 					</li>
 				</ul>
 			</div>
@@ -60,15 +60,15 @@
                             <button formnovalidate class="btn btn-primary btn-lg px-5">Se connecter</button>
                         </div>
 						<p class="my-4 text-center">Pas de compte ?
-							<span>Inscrivez-vous</span>
+							<a href=" {{ path('app_login') }}">Inscrivez-vous</a>
 						</p>
 					</form>
 				</div>
 
 
                 {#Sign-up #}
-                <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
-                    <section class="m-5 loginForm">
+                <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab" >
+                    <section class="m-5 loginForm">                   
                         {{ form_start(registrationForm) }}
                         <div class="mb-5">
                             {{ form_row(registrationForm.email) }}
@@ -80,7 +80,8 @@
 
                             {{ form_row(registrationForm.agreeTerms) }}
                         <div class="d-flex justify-content-center">
-                            <button formnovalidate class="btn btn-primary btn-lg px-5 mt-4">Inscription</button>
+                            <button formnovalidate class="btn btn-primary btn-lg px-5 mt-4" >Inscription</button>
+                            {# {{ dump(registrationForm.vars.submitted)}} #}
                         </div>
                         {{ form_end(registrationForm) }}
                     </section>

@@ -62,4 +62,10 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
+
+    public function supports(Request $request) :bool
+    {
+        // do your work when we're POSTing to the login page
+        return $request->isMethod('POST') && $this->getLoginUrl($request) === $request->getBaseUrl().$request->getPathInfo() && !$request->get('registration_form');
+    } 
 }
