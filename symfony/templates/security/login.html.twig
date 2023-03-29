@@ -1,42 +1,90 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion - Inscription
+{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+	<div class="container-lg">
+		<div class="card w-50 mx-auto my-5">
+			<div class="card-header loginNav">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<a class="nav-link active" id="signin-tab" role="tab" data-bs-toggle="tab" data-bs-target="#signin" type="button" aria-controls="signin" aria-selected="true" href=" {{ path('app_login') }}">Se connecter</a>
+					</li>
+					<li class="nav-item" role="presentation">
+						<a class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" role="tab" aria-controls="signup" aria-selected="false" href="{{ path('app_register') }}">S'inscrire</a>
+					</li>
+				</ul>
+			</div>
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+			<div class="tab-content" id="myTabContent">
+                {# LogIn #}
+				<div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+					<form class="m-5 loginForm" method="post">
+						{# {% if error %}
+							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+						{% endif %}
+
+						{% if app.user %}
+							<div class="mb-3">
+								Bonjour
+								{{ app.user.userIdentifier }},
+								<a href="{{ path('app_logout') }}">Logout</a>
+							</div>
+						{% endif %} #}
+
+						<div class="mb-5">
+							<label for="emailLogin" class="form-label">Email*</label>
+							<input type="email" {#value="{{ last_username }}"#} name="email" id="emailLogin" class="form-control border-0 border-bottom rounded-0" autocomplete="email" required autofocus aria-describedby="emailHelp"/>
+						</div>
+
+						<div class="mb-5">
+							<label for="inputPassword" class="form-label">Mot de passe*</label>
+							<input type="password" name="password" id="inputPassword" class="form-control border-0 border-bottom rounded-0" autocomplete="current-password" required/>
+						</div>
+
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+						<div class="d-flex justify-content-between">
+							<div class="mb-5 form-check ps-0">
+                                <label>
+                                    <input type="checkbox" name="_remember_me" class="form-check-label ps-1"> Se souvenir de moi
+                                </label>
+			                </div>
+							<div>
+								<p>mot de passe oublié ?</p>
+							</div>
+						</div>
+
+						<div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">Se connecter</button>
+                        </div>
+						<p class="my-4 text-center">Pas de compte ?
+							<span>Inscrivez-vous</span>
+						</p>
+					</form>
+				</div>
+
+
+                {#Sign-up #}
+                <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+                    <section class="m-5 loginForm">
+                        {{ form_start(registrationForm) }}
+                        <div class="mb-5">
+                            {{ form_row(registrationForm.email) }}
+                        </div>
+
+                        <div class="mb-5">
+                            {{ form_row(registrationForm.plainPassword) }}
+                        </div>
+
+                            {{ form_row(registrationForm.agreeTerms) }}
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary mt-4">Inscription</button>
+                        </div>
+                        {{ form_end(registrationForm) }}
+                    </section>
+                </div>
+			</div>
         </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
-{% endblock %}
+    {% endblock %}

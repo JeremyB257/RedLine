@@ -36,7 +36,7 @@ class Order
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    private ?reduce $reduce = null;
+    private ?Reduce $reduce = null;
 
 
     public function __construct()

@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -17,14 +18,33 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', null, [
+                'label_attr' => [
+                    'class' => 'form-label',
+                    'label' => 'Email*',
+                ],
+                'attr' => [
+                    'class' => 'form-control border-0 border-bottom rounded-0 p-0',
+                ],
+            ])
 
             ->add('plainPassword', RepeatedType::class, [
                 'type'=> PasswordType::class,
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer le mot de passe'],
+                'first_options'  => [
+                    'label' => 'Mot de passe*',
+                    'label_attr' => ['class' => 'form-label'],
+                    'attr' => ['class' => 'form-control border-0 border-bottom rounded-0 p-0 mb-5'],
+                ],
+                'second_options' => [
+                    'label' => 'Confirmer le mot de passe*',
+                    'label_attr' => ['class' => 'form-label'],
+                    'attr' => ['class' => 'form-control border-0 border-bottom rounded-0 p-0'],
+                ],
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrez un mot de passe',
@@ -39,6 +59,7 @@ class RegistrationFormType extends AbstractType
                 ])
                 
             ->add('agreeTerms', CheckboxType::class, [
+                'label'=> 'conditions générales',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
