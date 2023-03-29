@@ -11,6 +11,8 @@
 .filter {
   flex: 30%;
   background-color: pink;
+  font-size: 15px;
+  color: $color-dark;
 }
 
 .card-watch {
@@ -56,3 +58,22 @@
   background-color: brown;
   align-self: center;
 }
+
+h3,
+.title-filter {
+  font-size: 15px;
+  padding-top: 20px;
+}
+
+.separate-line {
+  width: 90%;
+  background-color: $color-dark;
+  border-radius: 25px;
+  height: 1px;
+}
+
+// .checkbox {
+//   border-radius: none;
+//   width: 13px;
+//   height: 13px;
+// }
