@@ -26,6 +26,7 @@ class AppFixtures extends Fixture
         $user->setEmail('laxar@laxar.com');
         $user->setPassword($this->hasher->hashPassword($user, 'password'));
         $user->setRoles(['ROLE_ADMIN']);
+        $user->setNewsletter(true);
         $manager->persist($user);
 
         $faker = Factory::create('fr_FR');
@@ -35,7 +36,7 @@ class AppFixtures extends Fixture
             $user->setFirstname($faker->firstname());
             $user->setEmail($faker->safeEmail());
             $user->setPassword($this->hasher->hashPassword($user, $faker->password()));
-            $user->setRoles(['ROLE_ADMIN']);
+            $user->setNewsletter(true);
             $manager->persist($user);
         }
 
