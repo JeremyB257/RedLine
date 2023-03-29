@@ -1,6 +1,16 @@
-.container-section {
+.container-main {
   padding: 30px 10px;
+}
+
+.container-section {
   gap: 15px;
+  flex: 70%;
+  background-color: lightblue;
+}
+
+.filter {
+  flex: 30%;
+  background-color: pink;
 }
 
 .card-watch {

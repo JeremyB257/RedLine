@@ -3,7 +3,11 @@
 {% block title %}Produits - OverTime{% endblock %}
 
 {% block body %}
-    <div class="container-lg container-section d-flex flex-column align-items-center">
+<div class="d-flex container-lg container-main">
+    <aside class="filter">
+        
+    </aside>
+    <div class="container-section d-flex flex-column align-items-center">
         {% for product in products %}
             <div class="card-watch d-flex justify-between">
                 <div class="img-product d-flex justify-content-center align-items-center">
@@ -22,4 +26,5 @@
             </div>
         {% endfor %}
     </div>
+</div>
 {% endblock %}
