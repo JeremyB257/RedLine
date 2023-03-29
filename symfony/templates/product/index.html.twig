@@ -5,9 +5,11 @@
 {% block body %}
 <div class="d-flex container-lg container-main">
     <aside class="filter">
-        <form action="{{ path('app_product') }}" method="GET">
+        <form action="{{ path('app_product') }}" method="GET" class="d-flex flex-column">
+            <div class="separate-line"></div>
+            <h3 class="title-filter">Matériaux :</h3>
             <div>
-                <input type="checkbox" name="mat[]" id="acier" value="acier">
+                <input class="checkbox" type="checkbox" name="mat[]" id="acier" value="acier">
                 <label for="acier">Acier</label>
             </div>
             <div>
