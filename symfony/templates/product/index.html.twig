@@ -5,7 +5,25 @@
 {% block body %}
 <div class="d-flex container-lg container-main">
     <aside class="filter">
-        
+        <form action="{{ path('app_product') }}" method="GET">
+            <div>
+                <input type="checkbox" name="mat[]" id="acier" value="acier">
+                <label for="acier">Acier</label>
+            </div>
+            <div>
+                <input type="checkbox" name="mat[]" id="cuir" value="cuir">
+                <label for="cuir">Cuir</label>
+            </div>
+            <div>
+                <input type="checkbox" name="mat[]" id="or" value="or">
+                <label for="or">Or</label>
+            </div>
+            <div>
+                <input type="checkbox" name="mat[]" id="titane" value="titane">
+                <label for="titane">Titane</label>
+            </div>
+            <button class="btn-primary">Filtrer</button>
+        </form>
     </aside>
     <div class="container-section d-flex flex-column align-items-center">
         {% for product in products %}
