@@ -2,15 +2,19 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Contact;
 use App\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        
+
         $slugger = new AsciiSlugger();
 
         $watch = new Product();
@@ -439,6 +443,21 @@ class AppFixtures extends Fixture
             ->setDescription("La Rolex Air-King est une montre pour homme inspirée par les pionniers de l'aviation. Le boîtier en acier Oystersteel mesure 40 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un design épuré et élégant, sans fonctionnalités spécifiques. Le mouvement automatique offre une grande précision et une autonomie longue durée.");
         $manager->persist($watch);
 
+        $faker = Factory::create('fr_FR');
+
+        for($i = 0; $i < 10; $i++){
+
+        $contact = new Contact();
+        $contact->setName($faker->name());
+        $contact->setLastName($faker->lastName());
+        $contact->setEmail($faker->email());
+        $contact->setSubject($faker->text($faker->numberBetween(5, 15)));
+        $contact->setMessage($faker->text($faker->numberBetween(300, 620)));
+        $contact->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
+        $manager->persist($contact);
+
+        
+        }
         $manager->flush();
     }
 }
