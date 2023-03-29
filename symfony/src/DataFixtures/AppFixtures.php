@@ -18,6 +18,22 @@ class AppFixtures extends Fixture
         $slugger = new AsciiSlugger();
 
         $watch = new Product();
+        $watch->setBrand('Laxar')
+            ->setModel('Parlin Supernova')
+            ->setImgUrl('no-image.png')
+            ->setPriceHt(450)
+            ->setMaterial('cuir')
+            ->setMovement('quartz')
+            ->setCaseDiameter(44)
+            ->setCategory('homme')
+            ->setColor('black')
+            ->setStock(rand(0, 50))
+            ->setSlug($slugger->slug($watch->getModel()))
+            ->setWaterResistance(100)
+            ->setDescription('Découvrez la montre Parlin Supernova pour homme. Cette montre sportive automatique est conçue pour les plongeurs professionnels. Son boîtier en acier inoxydable résistant mesure 44 mm de diamètre et offre une étanchéité de 200 mètres. La lunette tournante unidirectionnelle permet de mesurer le temps de plongée avec précision. La montre dispose également d\'un affichage de la date et d\'un bracelet en acier inoxydable.');
+        $manager->persist($watch);
+
+        $watch = new Product();
         $watch->setBrand('Seiko')
             ->setModel('Prospex')
             ->setImgUrl('no-image.png')

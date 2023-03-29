@@ -4,11 +4,9 @@ $primary: $color-primary;
 $color-dark: #2f2f2f;
 $color-success: #198754;
 
-
 a {
   color: inherit;
 }
-
 
 .loader-page {
   height: 50vh;
@@ -42,19 +40,35 @@ a {
 }
 
 .btn-outline-primary {
-  --bs-btn-color: $color-primary;
-  --bs-btn-border-color: $color-primary;
+  --bs-btn-color: #{$color-primary};
+  --bs-btn-border-color: #{$color-primary};
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: $color-primary;
-  --bs-btn-hover-border-color: $color-primary;
+  --bs-btn-hover-bg: #{darken($color-primary, 10%)};
+  --bs-btn-hover-border-color: #{darken($color-primary, 15%)};
   --bs-btn-focus-shadow-rgb: 50, 93, 136;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: $color-primary;
-  --bs-btn-active-border-color: $color-primary;
+  --bs-btn-active-bg: #{darken($color-primary, 10%)};
+  --bs-btn-active-border-color: #{darken($color-primary, 15%)};
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: $color-primary;
+  --bs-btn-disabled-color: #{lighten($color-primary, 20%)};
   --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: $color-primary;
+  --bs-btn-disabled-border-color: lighten($color-primary, 20%);
   --bs-gradient: none;
 }
 
+.btn-primary {
+  --bs-btn-color: black;
+  --bs-btn-bg: #{$color-primary};
+  --bs-btn-border-color: #{$color-primary};
+  --bs-btn-hover-color: black;
+  --bs-btn-hover-bg: #{darken($color-primary, 10%)};
+  --bs-btn-hover-border-color: #{darken($color-primary, 15%)};
+  --bs-btn-focus-shadow-rgb: 81, 117, 154;
+  --bs-btn-active-color: black;
+  --bs-btn-active-bg: #{darken($color-primary, 10%)};
+  --bs-btn-active-border-color: #{darken($color-primary, 15%)};
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: black;
+  --bs-btn-disabled-bg: #{lighten($color-primary, 20%)};
+  --bs-btn-disabled-border-color: #{lighten($color-primary, 20%)};
+}

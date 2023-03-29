@@ -3,4 +3,24 @@
 {% block title %}Laxar - Ventes de montres
 {% endblock %}
 
-{% block body %}{% endblock %}
+{% block body %}
+	<div class="banner container-fluid py-3 shadow-sm">
+		<div class="container-lg py-5">
+			<div class="row">
+				<div class="col-6">
+					<h1 class="fw-bold">{{watch.brand}}
+						{{watch.model}}</h1>
+					<p class="text-white py-3">{{watch.description}}</p>
+					<button class="btn btn-lg btn-primary w-50 fs-5">Acheter</button>
+					<span class="fs-5 fw-bold ms-3">{{(watch.priceHT * 1.2) | format_currency('EUR')}}</span>
+				</div>
+				<div class="col-6">
+					<img class="banner-img" src="{{'img/' ~ watch.imgUrl}}" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-lg"></div>
+
+{% endblock %}
