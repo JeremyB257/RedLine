@@ -4,15 +4,23 @@ namespace App\Controller;
 
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
     #[Route('/product', name: 'app_product')]
-    public function index(ProductRepository $repository): Response
+    public function index(ProductRepository $repository, Request $request): Response
     {
-        $products = $repository->findAll();
+        if ($request->get('mat')) {
+            $products = $repository->findBy([
+                'material' => $request->get('mat')
+            ]);
+        } else {
+            $products = $repository->findAll();
+        };
+        
 
         return $this->render('product/index.html.twig', [
             'products' => $products,
