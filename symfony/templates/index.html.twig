@@ -74,40 +74,34 @@
 		</div>
 	</div>
 
-	<div class="container-lg d-flex">
-		<div class="d-flex justify-content-center align-items-center">
-			<div class=" widht-flex filter-watch">
 
-				{% for img in (watch.imgUrl | split(',')) %}
-					<img class="size-filter" src="{{'img/' ~ img}}" alt="{{ watch.model }}">
-				{% endfor %}
+	<div class="product container-lg d-flex justify-content-center align-items-center my-5 flex-wrap">
+		<div class="filter-watch">
+			{% for img in (watch.imgUrl | split(',')) %}
+				<img class="size-filter" src="{{'img/' ~ img}}" alt="{{ watch.model }}">
+			{% endfor %}
+		</div>
 
-			</div>
-			<div class="width-flex">
-				<div class="containe-watch">
-					<img class="w-100 main-img" src="{{'img/' ~ (watch.imgUrl | split(','))[0]}}" alt="laxar">
+		<div class="width-flex">
+			<img class="w-100 main-img" src="{{'img/' ~ (watch.imgUrl | split(','))[0]}}" alt="laxar">
+		</div>
+
+		<div class="contenu">
+			<h2>{{ watch.brand}}
+				{{ watch.model}}</h2>
+			<h4 class="price">{{ (watch.priceHT * 1.2) | format_currency('EUR') }}</h4>
+			<p class="text-justify">{{ watch.description }}</p>
+			<div class="d-flex flex-column">
+				<h4 ="fw-bold">Couleur</h4>
+				<div class="d-flex gap-4">
+					<div class="colors black"></div>
+					<div class="colors gray"></div>
+					<div class="colors red"></div>
 				</div>
 			</div>
-			<div class="contenu-flex">
-				<h2>{{ watch.brand}}
-					{{ watch.model}}</h2>
-				<h4 class="price">$
-					{{ watch.priceHT }}</h4>
-
-				<p class="text-justify">{{ watch.description }}</p>
-				<div class="d-flex flex-column">
-					<h4 ="fw-bold">Couleur</h4>
-					<div class="d-flex gap-4">
-						<div class="colors black"></div>
-						<div class="colors gray"></div>
-						<div class="colors red"></div>
-					</div>
-				</div>
-				<div>
-					<button class="btn btn-lg btn-primary mt-4">Acheter</button>
-				</div>
+			<div>
+				<button class="btn btn-lg btn-primary mt-4">Acheter</button>
 			</div>
-
 		</div>
 	</div>
 
