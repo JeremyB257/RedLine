@@ -5,23 +5,32 @@
 
 {% block body %}
 	<div class="banner container-fluid py-3 shadow-sm">
-		<div class="container-lg py-5">
+		<div class="container-lg text-center text-md-start py-5">
 			<div class="row">
-				<div class="col-6">
+				<div class="col-12 col-md-6 ">
 					<h1 class="fw-bold">{{watch.brand}}
 						{{watch.model}}</h1>
 					<p class="text-white py-3">{{watch.description}}</p>
-					<button class="btn btn-lg btn-primary w-50 fs-5">Acheter</button>
+					<button class="btn btn-xl btn-primary fs-5">Acheter</button>
 					<span class="fs-5 fw-bold ms-3">{{(watch.priceHT * 1.2) | format_currency('EUR')}}</span>
 				</div>
-				<div class="col-6">
-					<img class="banner-img" src="{{'img/' ~ watch.imgUrl}}" alt="">
+				<div class="col-12 col-md-6 position-relative banner-img-col">
+					<img class="banner-img position-absolute" src="{{'img/' ~ watch.imgUrl}}" alt="">
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="container-lg"></div>
+	<div class="about-watch container-lg position-relative">
+		<div class="container-lg">
+			<div class="row">
+				<div class="col-6"></div>
+				<div class="col-6">
+					<img class="about-watch-img" src="{{asset('img/edge.png')}}" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="container-lg">
 		<div class="d-felx">
