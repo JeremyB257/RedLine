@@ -3,5 +3,26 @@
 {% block title %}{{ product.model }} - OverTime{% endblock %}
 
 {% block body %}
-    
+    <div class="container-lg container-main d-flex py-10">
+        <div class="little-pictures-container d-flex flex-column align-items-center justify-content-center gap-4">
+            <div class="little-pictures"></div>
+            <div class="little-pictures"></div>
+            <div class="little-pictures"></div>
+        </div>
+        <div class="main-picture-container d-flex flex-column align-items-center justify-content-center">
+            <div class="main-picture">main_picture.png</div>
+        </div>
+        <div class="info">
+            <h1>{{ product.brand }} {{ product.model }}</h1>
+            <h2>{{ (product.priceHt * 1.20 - 0.01) | format_currency('EUR') }}</h2>
+            <p>Colors</p>
+            <div class="d-flex gap-3">
+                <div class="choice-color"></div>
+                <div class="choice-color"></div>
+                <div class="choice-color"></div>
+            </div>
+            <p class="description">{{ product.description }}</p>
+            <button class="btn-primary">Ajouter au panier</button>
+        </div>
+    </div>
 {% endblock %}

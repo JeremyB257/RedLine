@@ -1,0 +1,34 @@
+.container-main {
+  width: 50%;
+  .little-pictures-container {
+    flex: 10%;
+    background-color: aqua;
+    .little-pictures {
+      width: 50px;
+      height: 50px;
+      background-color: blueviolet;
+    }
+  }
+  .main-picture-container {
+    flex: 40%;
+    background-color: crimson;
+    .main-picture {
+      width: 80%;
+      height: 350px;
+      background-color: yellow;
+    }
+  }
+  .info {
+    flex: 50%;
+    background-color: pink;
+    .choice-color {
+      height: 50px;
+      width: 50px;
+      background-color: cornflowerblue;
+    }
+    .description {
+      font-size: 13px;
+      color: gray;
+    }
+  }
+}
