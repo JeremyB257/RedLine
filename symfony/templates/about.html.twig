@@ -3,12 +3,12 @@
 {% block title %} A propos - {{ parent() }} {% endblock %}
 
 {% block body %}
-    <div class="container-lg">
+    <div class="container-lg about-us">
 
         <div class="my-5">
-            <div class="card-body">
-                <h1 class="card-title">LA<span>X</span>AR</h1>
-                <h2 class="card-text">horlogerie en ligne vous proposant des produits de qualité</h2>
+            <div>
+                <h1 class="title">LA<span>X</span>AR</h1>
+                <h2 class="subtitle">horlogerie en ligne vous proposant des produits de qualité</h2>
             </div>
             <img src="{{ asset('img/watch-about.png') }}" class="card-img-bottom" alt="montre">
         </div>
@@ -16,25 +16,31 @@
 
         <div>
             <h3>Notre Histoire</h3>
-            <p>
+            <p class="story">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet optio nihil sed, consequatur officiis illo nam placeat ea quibusdam nobis ad itaque nulla id quae, repellat in! Numquam, sunt quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet optio nihil sed, consequatur officiis illo nam placeat ea quibusdam nobis ad itaque nulla id quae, repellat in! Numquam, sunt quamLorem ipsum dolor sit amet consectetur adipisicing elit. Amet optio nihil sed, consequatur officiis illo nam placeat ea quibusdam nobis ad itaque nulla id quae, repellat in! Numquam, sunt quam
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet optio nihil sed, consequatur officiis illo nam placeat ea quibusdam nobis ad itaque nulla id quae, repellat in! Numquam, sunt quam
+            </p>
+            <p class="story">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet optio nihil sed, consequatur officiis illo nam placeat ea quibusdam nobis ad itaque nulla id quae, repellat in! Numquam, sunt quam
             </p>
         </div>
 
         <div>
             <h3>Nos Valeurs</h3>
-            <div class="d-flex justify-content-between gap-4">
-                <div class="card-body">
+            <div class="d-flex flex-column flex-sm-row justify-content-between gap-5 my-5 values">
+                <div class="card">
                     <h5 class="card-title">Qualité</h5>
                     <p class="card-text">quibusdam nobis ad itaque nulla id quae, repellat in! Numquam, sunt quam.</p>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Services Adaptés</h5>
                     <p class="card-text">quibusdam nobis ad itaque nulla id quae, repellat in! Numquam, sunt quam.</p>
                 </div>
-                <div class="card-body">
+                <div class="card">
+                    <h5 class="card-title">Services Adaptés</h5>
+                    <p class="card-text">quibusdam nobis ad itaque nulla id quae, repellat in! Numquam, sunt quam.</p>
+                    <p class="card-text">quibusdam nobis ad itaque nulla id quae, repellat in! Numquam, sunt quam.</p>
+                </div>
+                <div class="card">
                     <h5 class="card-title">Engagement</h5>
+                    <p class="card-text">quibusdam nobis ad itaque nulla id quae, repellat in! Numquam, sunt quam.</p>
                     <p class="card-text">quibusdam nobis ad itaque nulla id quae, repellat in! Numquam, sunt quam.</p>
                 </div>
             </div>
