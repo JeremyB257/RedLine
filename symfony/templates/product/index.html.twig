@@ -7,44 +7,54 @@
     <aside class="filter">
         <form action="{{ path('app_product') }}" method="GET" class="d-flex flex-column">
             <div class="separate-line"></div>
-            <h3 class="title-filter">matériaux :</h3>
-            <div>
-                <input class="checkbox" type="checkbox" name="material[]" id="acier" value="acier">
-                <label for="acier">Acier</label>
+            <div class="category-filter">
+                <h3 class="title-filter pb-3">Matériaux :</h3>
+                <div class="d-flex flex-column gap-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="material[]" id="acier" value="acier">
+                        <label class="form-check-label" for="acier">Acier</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="material[]" id="cuir" value="cuir">
+                        <label class="form-check-label" for="cuir">Cuir</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="material[]" id="or" value="or">
+                        <label class="form-check-label" for="or">Or</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="material[]" id="titane" value="titane">
+                        <label class="form-check-label" for="titane">Titane</label>
+                    </div>
+                </div>
             </div>
-            <div>
-                <input type="checkbox" name="material[]" id="cuir" value="cuir">
-                <label for="cuir">Cuir</label>
+            <div class="separate-line"></div>
+            <div class="category-filter">
+                <h3 class="title-filter pb-3">Tailles du cadran :</h3>
+                <div class="d-flex flex-column gap-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_38" value=38>
+                        <label class="form-check-label" for="case_diameter_38">38 mm</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_40" value=40>
+                        <label class="form-check-label" for="case_diameter_40">40 mm</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_42" value=42>
+                        <label class="form-check-label" for="case_diameter_42">42 mm</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_44" value=44>
+                        <label class="form-check-label" for="case_diameter_44">44 mm</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_45" value=45>
+                        <label class="form-check-label" for="case_diameter_45">45 mm</label>
+                    </div>
+                </div>
             </div>
-            <div>
-                <input type="checkbox" name="material[]" id="or" value="or">
-                <label for="or">Or</label>
-            </div>
-            <div>
-                <input type="checkbox" name="material[]" id="titane" value="titane">
-                <label for="titane">Titane</label>
-            </div>
-            <div>
-                <input type="checkbox" name="case_diameter[]" id="case_diameter_38" value=38>
-                <label for="case_diameter_38">&#60; 38 mm</label>
-            </div>
-            <div>
-                <input type="checkbox" name="case_diameter[]" id="case_diameter_40" value=40>
-                <label for="case_diameter_40">&#60; 40 mm</label>
-            </div>
-            <div>
-                <input type="checkbox" name="case_diameter[]" id="case_diameter_42" value=42>
-                <label for="case_diameter_42">&#60; 42 mm</label>
-            </div>
-            <div>
-                <input type="checkbox" name="case_diameter[]" id="case_diameter_44" value=44>
-                <label for="case_diameter_44">&#60; 44 mm</label>
-            </div>
-            <div>
-                <input type="checkbox" name="case_diameter[]" id="case_diameter_45" value=45>
-                <label for="case_diameter_45">45 mm</label>
-            </div>
-            <button class="btn-primary">Filtrer</button>
+            <button class="btn-primary btn-filter">Filtrer</button>
         </form>
     </aside>
     <div class="container-section d-flex flex-column align-items-center">

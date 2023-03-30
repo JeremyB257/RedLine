@@ -5,14 +5,13 @@
 .container-section {
   gap: 15px;
   flex: 70%;
-  background-color: lightblue;
 }
 
 .filter {
   flex: 30%;
-  background-color: pink;
   font-size: 15px;
   color: $color-dark;
+  border-right: solid 3px lightgray;
 }
 
 .card-watch {
@@ -72,8 +71,11 @@ h3,
   height: 1px;
 }
 
-// .checkbox {
-//   border-radius: none;
-//   width: 13px;
-//   height: 13px;
-// }
+.btn-filter {
+  width: 50%;
+  margin: auto;
+}
+
+.category-filter {
+  padding-bottom: 40px;
+}
