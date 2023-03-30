@@ -1,21 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Envoi email mot de passe {% endblock %}
+{% block title %}Envoi email mot de passe
+{% endblock %}
 
 {% block body %}
 
-    <div class="container-lg">
-        <div class="card my-5 w-50 mx-auto">
-            <div class="card-header background-header">
-                Réinitialisation du mot de passe
-            </div>
-            <div class="card-body">
-                <p> Si un compte est lié à cet email, vous allez recevoir un mail contenant un lien permettant de réinitialiser votre mot de passe. </p>
-                <p> Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
-                    
-                <p> Si vous ne recevez pas d'email, controlez dans vos spam svp ou <a href="{{ path('app_forgot_password_request') }}">réessayez</a>.</p>
-            </div>
-        </div>
-    </div>
-    
+	<div class="container-lg py-5">
+		<div class="card my-5 w-50 mx-auto">
+			<div class="card-header background-header">
+				Réinitialisation du mot de passe
+			</div>
+			<div class="card-body">
+				<p>
+					Si un compte est lié à cet email, vous allez recevoir un mail contenant un lien permettant de réinitialiser votre mot de passe.
+				</p>
+				<p>
+					Ce lien expirera dans
+					{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+				<p>
+					Si vous ne recevez pas d'email, controlez dans vos spam svp ou
+					<a href="{{ path('app_forgot_password_request') }}">réessayez</a>.</p>
+			</div>
+		</div>
+	</div>
+
 {% endblock %}
