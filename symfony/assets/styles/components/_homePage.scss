@@ -28,15 +28,46 @@
   }
 }
 
+.about-watch-text {
+  margin: 180px auto 0 auto;
+}
 .about-watch {
-  margin: 100px auto;
   > div {
     background-color: $color-dark;
+    @media (max-width: 767px) {
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 11px;
+        right: 11px;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+  .about-watch-img1 {
+    position: absolute;
+    width: 28%;
+    left: 12.2%;
+    top: -68%;
+  }
+  .square {
+    background-color: $color-primary;
+    width: 72%;
+    height: 33%;
+    margin-left: 16%;
   }
   .about-watch-img {
     position: relative;
-    width: 30%;
-    left: 60%;
+    width: 70%;
+    left: 25%;
+  }
+  .text {
+    top: 50%;
+    z-index: 2;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
