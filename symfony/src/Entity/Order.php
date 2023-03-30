@@ -139,12 +139,12 @@ class Order
         return $this;
     }
 
-    public function getReduce(): ?reduce
+    public function getReduce(): ?Reduce
     {
         return $this->reduce;
     }
 
-    public function setReduce(?reduce $reduce): self
+    public function setReduce(?Reduce $reduce): self
     {
         $this->reduce = $reduce;
 

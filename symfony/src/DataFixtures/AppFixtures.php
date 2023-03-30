@@ -2,12 +2,15 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Contact;
 use App\Entity\Product;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class AppFixtures extends Fixture
@@ -21,6 +24,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+
         $user = new User();
         $user->setFirstname('Laxar');
         $user->setEmail('laxar@laxar.com');
@@ -40,7 +44,24 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
+
         $slugger = new AsciiSlugger();
+
+        $watch = new Product();
+        $watch->setBrand('Laxar')
+            ->setModel('Parlin Supernova')
+            ->setImgUrl('no-image.png')
+            ->setPriceHt(450)
+            ->setMaterial('cuir')
+            ->setMovement('quartz')
+            ->setCaseDiameter(44)
+            ->setCategory('homme')
+            ->setColor('black')
+            ->setStock(rand(0, 50))
+            ->setSlug($slugger->slug($watch->getModel()))
+            ->setWaterResistance(100)
+            ->setDescription('Découvrez la montre Parlin Supernova pour homme. Cette montre sportive automatique est conçue pour les plongeurs professionnels. Son boîtier en acier inoxydable résistant mesure 44 mm de diamètre et offre une étanchéité de 200 mètres. La lunette tournante unidirectionnelle permet de mesurer le temps de plongée avec précision. La montre dispose également d\'un affichage de la date et d\'un bracelet en acier inoxydable.');
+        $manager->persist($watch);
 
         $watch = new Product();
         $watch->setBrand('Seiko')
@@ -468,6 +489,21 @@ class AppFixtures extends Fixture
             ->setDescription("La Rolex Air-King est une montre pour homme inspirée par les pionniers de l'aviation. Le boîtier en acier Oystersteel mesure 40 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un design épuré et élégant, sans fonctionnalités spécifiques. Le mouvement automatique offre une grande précision et une autonomie longue durée.");
         $manager->persist($watch);
 
+        $faker = Factory::create('fr_FR');
+
+        for($i = 0; $i < 10; $i++){
+
+        $contact = new Contact();
+        $contact->setName($faker->name());
+        $contact->setLastName($faker->lastName());
+        $contact->setEmail($faker->email());
+        $contact->setSubject($faker->text($faker->numberBetween(5, 15)));
+        $contact->setMessage($faker->text($faker->numberBetween(300, 620)));
+        $contact->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
+        $manager->persist($contact);
+
+        
+        }
         $manager->flush();
     }
 }

@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
 	<div class="container-lg">
-		<a class="title d-lg-none" href="/public/index.html">LA<span>X</span>AR</a>
+		<a class="title d-lg-none" href="{{path('home.index')}}">LA<span>X</span>AR</a>
 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<i class="fa-regular fa-bars"></i>
 		</button>
 		<div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-			<ul class="navbar-nav mb-lg-0">
+			<ul class="w-25 navbar-nav mb-lg-0">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						Hommes
@@ -81,16 +81,18 @@
 					<a class="nav-link" href="#">Accessoires</a>
 				</li>
 			</ul>
-			<a class="title d-none d-lg-flex align-items-baseline justify-content-center" href="/public/index.html">LA<span>X</span>AR</a>
-			<div class="navbar-nav d-flex gap-4 justify-content-end">
+			<a class="w-25 title d-none d-lg-flex align-items-baseline justify-content-center" href="{{path('home.index')}}">LA<span>X</span>AR</a>
+			<div class="w-25 navbar-nav d-flex gap-4 justify-content-end align-items-lg-center">
 				<form class="form-search d-flex align-items-center" role="search">
 					<input class="form-control me-2 search" type="search" name="search" placeholder="Recherche..." aria-label="Search"/>
 
 					<i type="submit" class="fa-regular fa-magnifying-glass" id="searchBtn"></i>
 				</form>
 				<i class="fa-regular fa-user"></i>
-				<a href="{{path('app_cart')}}"><i class="fa-regular fa-cart-shopping"></i></a>
-				
+				<a href="{{path('app_cart')}}">
+					<i class="fa-regular fa-cart-shopping"></i>
+				</a>
+
 			</div>
 		</div>
 	</div>
