@@ -35,7 +35,7 @@ class AppFixtures extends Fixture
 
         $faker = Factory::create('fr_FR');
 
-        for ($i = 0; $i < 10; $i++){
+        for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setFirstname($faker->firstname());
             $user->setEmail($faker->safeEmail());
@@ -50,7 +50,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Laxar')
             ->setModel('Parlin Supernova')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('laxar.png,rolex.png,rolex2.png')
             ->setPriceHt(450)
             ->setMaterial('cuir')
             ->setMovement('quartz')
@@ -491,18 +491,16 @@ class AppFixtures extends Fixture
 
         $faker = Factory::create('fr_FR');
 
-        for($i = 0; $i < 10; $i++){
+        for ($i = 0; $i < 10; $i++) {
 
-        $contact = new Contact();
-        $contact->setName($faker->name());
-        $contact->setLastName($faker->lastName());
-        $contact->setEmail($faker->email());
-        $contact->setSubject($faker->text($faker->numberBetween(5, 15)));
-        $contact->setMessage($faker->text($faker->numberBetween(300, 620)));
-        $contact->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
-        $manager->persist($contact);
-
-        
+            $contact = new Contact();
+            $contact->setName($faker->name());
+            $contact->setLastName($faker->lastName());
+            $contact->setEmail($faker->email());
+            $contact->setSubject($faker->text($faker->numberBetween(5, 15)));
+            $contact->setMessage($faker->text($faker->numberBetween(300, 620)));
+            $contact->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
+            $manager->persist($contact);
         }
         $manager->flush();
     }

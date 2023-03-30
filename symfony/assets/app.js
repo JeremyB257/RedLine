@@ -15,3 +15,12 @@ const searchBtn = document.querySelector('#searchBtn');
 searchBtn.addEventListener('click', e => {
   e.target.previousElementSibling.classList.toggle('show');
 });
+
+const sizeFilter = document.querySelectorAll('.size-filter');
+const mainImg = document.querySelector('.main-img');
+
+for (const img of sizeFilter) {
+  img.addEventListener('click', e => {
+    mainImg.src = e.target.src;
+  });
+}

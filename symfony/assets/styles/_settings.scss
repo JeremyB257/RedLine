@@ -19,6 +19,10 @@ a {
   text-align: center;
 }
 
+.text-justify{
+  text-align: justify;
+}
+
 .loader {
   padding: 15px;
   border: 10px solid $color-primary;
@@ -78,4 +82,14 @@ a {
   --bs-btn-disabled-color: black;
   --bs-btn-disabled-bg: #{lighten($color-primary, 20%)};
   --bs-btn-disabled-border-color: #{lighten($color-primary, 20%)};
+}
+
+.w-sm-50 {
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+}
+
+.primary {
+  color: $color-primary;
 }

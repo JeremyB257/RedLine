@@ -28,14 +28,113 @@
   }
 }
 
+.about-watch-text {
+  margin: 180px auto 0 auto;
+}
 .about-watch {
-  margin: 100px auto;
   > div {
     background-color: $color-dark;
+    @media (max-width: 767px) {
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 11px;
+        right: 11px;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+  .about-watch-img1 {
+    position: absolute;
+    width: 28%;
+    left: 12.2%;
+    top: -68%;
+  }
+  .square {
+    background-color: $color-primary;
+    width: 72%;
+    height: 33%;
+    margin-left: 16%;
   }
   .about-watch-img {
     position: relative;
-    width: 30%;
-    left: 60%;
+    width: 70%;
+    left: 25%;
+  }
+  .text {
+    top: 50%;
+    z-index: 2;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
+
+.image-laxar{
+  width: 100%;
+}
+
+.price{
+  color: $color-primary;
+  font-size: xx-large;
+}
+
+.width-flex{
+    width: 33%;
+
+}
+.size-filter{
+  width: 100px;
+  height: 100px;
+  opacity: 0.8;
+  border: 3px solid rgb(117, 115, 115);
+  object-fit: cover;
+
+  &:hover{
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}
+
+
+.contenu-flex{
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+
+.colors{
+  width: 50px;
+  height: 50px;
+  border: 2px solid $color-primary;
+
+  &:hover{
+    opacity: 0.8;
+    cursor: pointer;
+  }
+}
+
+.red{
+  background-color: rgb(180, 68, 68);
+}
+
+.black{
+  background-color: rgb(32, 32, 32);
+}
+
+.filter-watch{
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+  gap: 20px;
+  
+}
+
+.containe-watch{
+  height: 650px;
+  display: flex;
+  align-items: center;
+}
+

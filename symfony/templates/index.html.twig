@@ -15,20 +15,99 @@
 					<span class="fs-5 fw-bold ms-3">{{(watch.priceHT * 1.2) | format_currency('EUR')}}</span>
 				</div>
 				<div class="col-12 col-md-6 position-relative banner-img-col">
-					<img class="banner-img position-absolute" src="{{'img/' ~ watch.imgUrl}}" alt="">
+					<img class="banner-img position-absolute" src="{{'img/' ~ (watch.imgUrl | split(',')[0])}}" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="about-watch-text container-lg d-flex flex-column align-items-center align-items-md-end text-center text-md-end">
+		<h2 class="fw-bold primary">About the Watch</h2>
+		<p class="w-sm-50 lh-lg">Watches progressed in the 17th century from spring-powered clocks, which appeared as early as the 14th century. During most of its history was a mechanical device, driven by clockwork, powered by winding a mainspring, and keeping time.</p>
+	</div>
+	<div class="about-watch container-lg position-relative mb-5">
+		<div class="container-lg">
+			<div class="row">
+				<div class="col-md-6 d-none d-md-block text-center">
+					<img class="about-watch-img1" src="{{asset('img/edge2.png')}}" alt="">
+					<div class="square"></div>
+					<div class="">
+						<p class="text-white mt-2">
+							<i class="fa-solid fa-star"></i>
+							Resistante au rayure
+						</p>
+						<p class="text-white mt-2">
+							<i class="fa-solid fa-star"></i>
+							Resistante a l'eau
+						</p>
+						<p class="text-white mt-2">
+							<i class="fa-solid fa-star"></i>
+							Bracelet en Acier
+						</p>
+						<p class="text-white mt-2">
+							<i class="fa-solid fa-star"></i>
+							Chronographe
+						</p>
+					</div>
+				</div>
+				<div class="col 12 col-md-6">
+					<img class="about-watch-img" src="{{asset('img/edge.png')}}" alt="">
+					<div class="text d-block d-md-none position-absolute">
+						<p class="text-white mt-2">
+							<i class="fa-solid fa-star"></i>
+							Resistante au rayure
+						</p>
+						<p class="text-white mt-2">
+							<i class="fa-solid fa-star"></i>
+							Resistante a l'eau
+						</p>
+						<p class="text-white mt-2">
+							<i class="fa-solid fa-star"></i>
+							Bracelet en Acier
+						</p>
+						<p class="text-white mt-2">
+							<i class="fa-solid fa-star"></i>
+							Chronographe
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="about-watch container-lg position-relative">
-		<div class="container-lg">
-			<div class="row">
-				<div class="col-6"></div>
-				<div class="col-6">
-					<img class="about-watch-img" src="{{asset('img/edge.png')}}" alt="">
+	<div class="container-lg d-flex">
+		<div class="d-flex justify-content-center align-items-center">
+			<div class=" widht-flex filter-watch">
+
+				{% for img in (watch.imgUrl | split(',')) %}
+					<img class="size-filter" src="{{'img/' ~ img}}" alt="{{ watch.model }}">
+				{% endfor %}
+
+			</div>
+			<div class="width-flex">
+			<div class="containe-watch">
+				<img class="w-100 main-img" src="{{'img/' ~ (watch.imgUrl | split(','))[0]}}" alt="laxar">
+			</div>
+			</div>
+			<div class="contenu-flex">
+				<h2>{{ watch.brand}}
+					{{ watch.model}}</h2>
+				<h4 class="price">$
+					{{ watch.priceHT }}</h4>
+
+				<p class="text-justify">{{ watch.description }}</p>
+				<div class="d-flex flex-column">
+					<h4 ="fw-bold">Colors</h4>
+					<div class="d-flex gap-4">
+						<div class="colors black"></div>
+						<div class="colors gray"></div>
+						<div class="colors red"></div>
+					</div>
+				</div>
+				<div>
+					<button class="btn btn-lg btn-primary mt-4">BUY-NOW</button>
 				</div>
 			</div>
+
 		</div>
 	</div>
 
