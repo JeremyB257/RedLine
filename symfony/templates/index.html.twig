@@ -37,12 +37,12 @@
 			<div class=" widht-flex filter-watch">
 
 				{% for img in (watch.imgUrl | split(',')) %}
-					<img class="size-filter" src="{{'img/' ~ img}}" alt="rolex">
+					<img class="size-filter" src="{{'img/' ~ img}}" alt="{{ watch.model }}">
 				{% endfor %}
 
 			</div>
 			<div class="width-flex">
-				<img class="image-laxar" src="{{'img/' ~ (watch.imgUrl | split(','))[0]}}" alt="laxar">
+				<img class="w-100 main-img" src="{{'img/' ~ (watch.imgUrl | split(','))[0]}}" alt="laxar">
 			</div>
 			<div class="contenu-flex">
 				<h2>{{ watch.brand}}
