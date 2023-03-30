@@ -1,10 +1,41 @@
 .banner {
   background-color: $color-dark;
   color: $color-primary;
+  .banner-img-col {
+    @media (max-width: 767px) {
+      height: 250px;
+    }
+  }
   .banner-img {
-    position: absolute;
-    top: 10%;
-    right: 20%;
-    width: 23%;
+    top: 0%;
+    right: 25%;
+    width: 280px;
+    @media (max-width: 1200px) {
+      top: 10%;
+    }
+    @media (max-width: 995px) {
+      top: 20%;
+    }
+    @media (max-width: 813px) {
+      top: 30%;
+    }
+    @media (max-width: 795px) {
+      top: 35%;
+    }
+    @media (max-width: 767px) {
+      top: 0%;
+    }
+  }
+}
+
+.about-watch {
+  margin: 100px auto;
+  > div {
+    background-color: $color-dark;
+  }
+  .about-watch-img {
+    position: relative;
+    width: 30%;
+    left: 60%;
   }
 }
