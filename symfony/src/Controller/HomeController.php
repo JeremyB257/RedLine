@@ -15,8 +15,7 @@ class HomeController extends AbstractController
 
 
         return $this->render('index.html.twig', [
-            
-            'watch' => $productRepo->findOneBy([])
+            'watches' => $productRepo->findBy([], null, 5)
         ]);
     }
 
