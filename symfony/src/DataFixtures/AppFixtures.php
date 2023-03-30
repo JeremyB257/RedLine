@@ -50,7 +50,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Laxar')
             ->setModel('Parlin Supernova')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('laxar.png,analog.jpg,rolex.jpg,wrist.jpg')
             ->setPriceHt(450)
             ->setMaterial('cuir')
             ->setMovement('quartz')
