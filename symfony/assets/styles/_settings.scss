@@ -84,6 +84,10 @@ a {
   --bs-btn-disabled-border-color: #{lighten($color-primary, 20%)};
 }
 
+.border-primary {
+  border-color: #{$color-primary} !important;
+}
+
 .w-sm-50 {
   @media (min-width: 768px) {
     width: 50%;

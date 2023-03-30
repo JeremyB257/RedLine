@@ -128,3 +128,51 @@
     width: 280px;
   }
 }
+
+.home-review {
+  height: 400px;
+  position: relative;
+  background-color: #fbfbfb;
+  .quote {
+    &::before {
+      content: '';
+      position: absolute;
+      background-color: #f0f0f0;
+      height: 70px;
+      width: 30px;
+      top: -10%;
+      left: 50px;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: #fbfbfb;
+      height: 25px;
+      width: 43px;
+      top: 3%;
+      left: 50px;
+      transform: rotateZ(-45deg);
+    }
+  }
+  .quote2 {
+    &::before {
+      content: '';
+      position: absolute;
+      background-color: #f0f0f0;
+      height: 70px;
+      width: 30px;
+      top: -10%;
+      left: 100px;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: #fbfbfb;
+      height: 25px;
+      width: 43px;
+      top: 3%;
+      left: 100px;
+      transform: rotateZ(-45deg);
+    }
+  }
+}
