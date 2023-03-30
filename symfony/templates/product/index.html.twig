@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits - OverTime{% endblock %}
+
+{% block body %}
+<div class="d-flex container-lg container-main">
+    <aside class="filter">
+        <form action="{{ path('app_product') }}" method="GET" class="d-flex flex-column">
+            <div class="in-progress">SYSTEME DE FILTRE NON FINI</div>
+            <div class="separate-line"></div>
+            <div class="category-filter">
+                <h3 class="title-filter pb-3">Matériaux :</h3>
+                <div class="d-flex flex-column gap-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="material[]" id="acier" value="acier">
+                        <label class="form-check-label" for="acier">Acier</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="material[]" id="cuir" value="cuir">
+                        <label class="form-check-label" for="cuir">Cuir</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="material[]" id="or" value="or">
+                        <label class="form-check-label" for="or">Or</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="material[]" id="titane" value="titane">
+                        <label class="form-check-label" for="titane">Titane</label>
+                    </div>
+                </div>
+            </div>
+            <div class="separate-line"></div>
+            <div class="category-filter">
+                <h3 class="title-filter pb-3">Tailles du cadran :</h3>
+                <div class="d-flex flex-column gap-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_38" value=38>
+                        <label class="form-check-label" for="case_diameter_38">38 mm</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_40" value=40>
+                        <label class="form-check-label" for="case_diameter_40">40 mm</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_42" value=42>
+                        <label class="form-check-label" for="case_diameter_42">42 mm</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_44" value=44>
+                        <label class="form-check-label" for="case_diameter_44">44 mm</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_45" value=45>
+                        <label class="form-check-label" for="case_diameter_45">45 mm</label>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-primary btn-filter">Filtrer</button>
+        </form>
+    </aside>
+    <div class="container-section d-flex flex-column align-items-center">
+        {% for product in products|sort((a, b) => a.priceHt <=> b.priceHt) %}
+            <div class="card-watch d-flex justify-between">
+                <div class="img-product d-flex justify-content-center align-items-center">
+                    <span>image.png</span>
+                </div>
+                <div class="infos d-flex flex-column">
+                    <span class="brand-model">{{ product.brand }} - {{ product.model }}</span>
+                    <span class="d-block price">{{ (product.priceHt * 1.20 - 0.01) | format_currency('EUR') }}</span>
+                    {% if product.description > 110 %}
+                        <p class="desc">{{ product.description | slice(0, 110) ~ '...' }}</p>
+                    {% else %}
+                        <p class="desc">{{ product.description }}</p>
+                    {% endif %}
+                    <a href="{{ path('app_product_show', { id: product.id }) }}" class="btn-primary show-more-button">Voir plus</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
