@@ -109,9 +109,9 @@
 		<div class="container-lg py-4">
 			<h2 class="primary fw-bold">Produits similaire</h2>
 
-			<div class="d-flex justify-content-between align-items-center">
+			<div class="d-flex justify-content-center align-items-center flex-wrap gap-5">
 				{% for i in 1..4 %}
-					<div>
+					<div class="watch">
 						<img class="w-75" src="{{'img/' ~ (watches[i].imgUrl | split(',')[0])}}" alt="">
 						<h4 class="fw-bold">{{watches[i].brand}}
 							{{watches[i].model}}</h4>
