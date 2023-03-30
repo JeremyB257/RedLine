@@ -32,22 +32,36 @@
 		</div>
 	</div>
 
-	<div class="container-lg">
-		<div class="d-felx">
-			<div class="d-flex widht-flex">
-				<img src="" alt="">
-				<img src="" alt="">
-				<img src="" alt="">
+	<div class="container-lg d-flex">
+		<div class="d-flex justify-content-center align-items-center">
+			<div class=" widht-flex filter-watch">
+				<img class="size-filter" src="{{'img/rolex.jpg'}}" alt="rolex">
+				<img class="size-filter" src="{{'img/wrist.jpg'}}" alt="">
+				<img class="size-filter" src="{{'img/analog.jpg'}}" alt="">
 			</div>
 			<div class="width-flex">
-				<img src="" alt="">
+				<img class="image-laxar" src="{{'img/laxar.png'}}" alt="laxar">
 			</div>
-			<div class="width-flex">
+			<div class="contenu-flex">
 				<h2>{{ watch.brand}}
 					{{ watch.model}}</h2>
+				<h4 class="price">$
+					{{ watch.priceHT }}</h4>
 
-				<p>{{watch.description}}</p>
+				<p>{{ watch.description }}</p>
+				<div class="d-flex flex-column">
+					<h6>Colors</h6>
+					<div class="d-flex gap-4">
+						<div class="colors black"></div>
+						<div class="colors gray"></div>
+						<div class="colors red"></div>
+					</div>
+				</div>
+				<div>
+					<button class="btn btn-lg btn-primary mt-4">BUY-NOW</button>
+				</div>
 			</div>
+
 		</div>
 	</div>
 
