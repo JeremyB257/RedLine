@@ -16,7 +16,7 @@
                 {{ form_start(requestForm) }}
                     <p class="my-4">Veuiller saisir votre email de connexion afin de recevoir un lien de réinitialisation du mot de passe</p>
 
-                    {{ form_widget(requestForm.email) }}
+                    {{ form_row(requestForm.email) }}
                     <button formnovalidate class="btn btn-primary btn-lg d-block w-75 mx-auto my-5">Recevoir le lien</button>
                     <a href="{{ path('app_login')}}" class="text-secondary d-block mb-5">Retour à la page de connexion </a>
                 {{ form_end(requestForm) }}
