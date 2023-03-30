@@ -72,3 +72,9 @@ a {
   --bs-btn-disabled-bg: #{lighten($color-primary, 20%)};
   --bs-btn-disabled-border-color: #{lighten($color-primary, 20%)};
 }
+
+@media (max-width: 767px) {
+  w-sm-50 {
+    width: 50%;
+  }
+}

@@ -28,8 +28,10 @@
   }
 }
 
+.about-watch-text {
+  margin: 320px auto 0 auto;
+}
 .about-watch {
-  margin: 400px auto;
   > div {
     background-color: $color-dark;
     @media (max-width: 767px) {
