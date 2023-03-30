@@ -71,70 +71,66 @@
   }
 }
 
-.image-laxar{
+.image-laxar {
   width: 100%;
 }
 
-.price{
+.price {
   color: $color-primary;
   font-size: xx-large;
 }
 
-.width-flex{
-    width: 33%;
-
+.width-flex {
+  width: 300px;
 }
-.size-filter{
+.size-filter {
   width: 100px;
   height: 100px;
   opacity: 0.8;
   border: 3px solid rgb(117, 115, 115);
   object-fit: cover;
 
-  &:hover{
+  &:hover {
     opacity: 0.5;
     cursor: pointer;
   }
 }
 
-
-.contenu-flex{
+.contenu-flex {
   display: flex;
   flex-direction: column;
   width: 33%;
 }
 
-.colors{
+.colors {
   width: 50px;
   height: 50px;
   border: 2px solid $color-primary;
 
-  &:hover{
+  &:hover {
     opacity: 0.8;
     cursor: pointer;
   }
 }
 
-.red{
+.red {
   background-color: rgb(180, 68, 68);
 }
 
-.black{
+.black {
   background-color: rgb(32, 32, 32);
 }
 
-.filter-watch{
+.filter-watch {
   display: flex;
   flex-direction: column;
-  
+
   align-items: center;
   gap: 20px;
-  
 }
 
-.containe-watch{
+.containe-watch {
   height: 650px;
   display: flex;
   align-items: center;
 }
-
