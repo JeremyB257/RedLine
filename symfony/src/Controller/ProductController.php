@@ -13,15 +13,19 @@ class ProductController extends AbstractController
     #[Route('/product', name: 'app_product')]
     public function index(ProductRepository $repository, Request $request): Response
     {
-        if ($request->get('mat')) {
-            $products = $repository->findBy([
-                'material' => $request->get('mat')
-            ]);
+
+        $filters = [];
+        $filters['material'] = ($request->get('material') ?  $request->get('material') : null);
+        $filters['case_diameter'] = ($request->get('case_diameter') ?  $request->get('case_diameter') : null);
+        
+        if ($filters['material'] || $filters['case_diameter']) {
+            $products = $repository->findByManyFilters($filters);
         } else {
             $products = $repository->findAll();
         };
-        
 
+
+        
         return $this->render('product/index.html.twig', [
             'products' => $products,
         ]);
