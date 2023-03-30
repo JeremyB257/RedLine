@@ -4,16 +4,46 @@ namespace App\DataFixtures;
 
 use App\Entity\Contact;
 use App\Entity\Product;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class AppFixtures extends Fixture
 {
+    private $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
-        
+
+        $user = new User();
+        $user->setFirstname('Laxar');
+        $user->setEmail('laxar@laxar.com');
+        $user->setPassword($this->hasher->hashPassword($user, 'password'));
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setNewsletter(true);
+        $manager->persist($user);
+
+        $faker = Factory::create('fr_FR');
+
+        for ($i = 0; $i < 10; $i++){
+            $user = new User();
+            $user->setFirstname($faker->firstname());
+            $user->setEmail($faker->safeEmail());
+            $user->setPassword($this->hasher->hashPassword($user, $faker->password()));
+            $user->setNewsletter(true);
+            $manager->persist($user);
+        }
+
 
         $slugger = new AsciiSlugger();
 
