@@ -1,0 +1,99 @@
+.about-us {
+    .title {
+        text-align: center;
+        font-size: 30px;
+        span {
+          font-size: 40px;
+          height: 50px;
+        }
+    }
+
+    .subtitle {
+        text-align: center;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    img {
+        height: 375px;
+        object-fit: cover;
+    }
+
+    h3 {
+        text-align: center;
+        position: relative;
+        color: $primary;
+        margin-bottom: 20px;
+    }
+
+    .story {
+        text-align: justify;
+        margin: 50px 0;
+    }
+
+    h3:before {
+        content: "";
+        display: block;
+        width: 36%;
+        height: 2px;
+        background-color: $primary;
+        position: absolute;
+        right:0;
+        top: 15px;
+
+        @media (max-width: 813px) {
+            width: 34%;
+        }
+
+        @media (max-width: 630px) {
+            width: 32%;
+        }
+
+        @media (max-width: 550px) {
+            width: 30%;
+        }
+
+        @media (max-width: 450px) {
+            height: 0;
+        }
+    }
+
+    h3:after {
+        content: "";
+        display: block;
+        width: 36%;
+        height: 2px;
+        background-color: $primary;
+        position: absolute;
+        bottom: 15px;
+        left: 0;
+
+        @media (max-width: 813px) {
+            width: 34%;
+        }
+
+        @media (max-width: 630px) {
+            width: 32%;
+        }
+
+        @media (max-width: 550px) {
+            width: 30%;
+        }
+
+        @media (max-width: 450px) {
+            height: 0;
+        }
+    }
+
+    .values {
+        h5 {
+            margin: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        p {
+            margin: 15px;
+        }
+    }
+}

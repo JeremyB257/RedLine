@@ -19,4 +19,10 @@ class HomeController extends AbstractController
             'watch' => $productRepo->findOneBy([])
         ]);
     }
+
+    #[Route('/a-propos', name: 'app_about')]
+    public function about(): Response
+    {
+        return $this->render('about.html.twig');
+    }
 }
