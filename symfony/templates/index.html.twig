@@ -35,12 +35,14 @@
 	<div class="container-lg d-flex">
 		<div class="d-flex justify-content-center align-items-center">
 			<div class=" widht-flex filter-watch">
-				<img class="size-filter" src="{{'img/rolex.jpg'}}" alt="rolex">
-				<img class="size-filter" src="{{'img/wrist.jpg'}}" alt="">
-				<img class="size-filter" src="{{'img/analog.jpg'}}" alt="">
+
+				{% for img in (watch.imgUrl | split(',')) %}
+					<img class="size-filter" src="{{'img/' ~ img}}" alt="rolex">
+				{% endfor %}
+
 			</div>
 			<div class="width-flex">
-				<img class="image-laxar" src="{{'img/laxar.png'}}" alt="laxar">
+				<img class="image-laxar" src="{{'img/' ~ (watch.imgUrl | split(','))[0]}}" alt="laxar">
 			</div>
 			<div class="contenu-flex">
 				<h2>{{ watch.brand}}
