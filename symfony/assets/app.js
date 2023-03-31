@@ -20,9 +20,9 @@ if (searchBtn) {
 }
 
 //pic & color picker on homepage
-const picFilter = document.querySelectorAll('.size-filter');
+const picFilter = document.querySelectorAll('.little-pictures');
 const colorFilter = document.querySelectorAll('.colors');
-const mainImg = document.querySelector('.main-img');
+const mainImg = document.querySelector('.main-picture');
 
 if (picFilter) {
   for (const img of picFilter) {
