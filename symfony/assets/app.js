@@ -11,11 +11,15 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
+//search navbar
 const searchBtn = document.querySelector('#searchBtn');
-searchBtn.addEventListener('click', e => {
-  e.target.previousElementSibling.classList.toggle('show');
-});
+if (searchBtn) {
+  searchBtn.addEventListener('click', e => {
+    e.target.previousElementSibling.classList.toggle('show');
+  });
+}
 
+//pic & color picker on homepage
 const picFilter = document.querySelectorAll('.size-filter');
 const colorFilter = document.querySelectorAll('.colors');
 const mainImg = document.querySelector('.main-img');
