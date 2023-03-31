@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Contact;
 use App\Entity\Product;
+use App\Entity\Review;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -43,7 +44,6 @@ class AppFixtures extends Fixture
             $user->setNewsletter(true);
             $manager->persist($user);
         }
-
 
         $slugger = new AsciiSlugger();
 
@@ -508,6 +508,18 @@ class AppFixtures extends Fixture
             $contact->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
             $manager->persist($contact);
         }
+
+        for ($i = 0; $i < 14; $i++) {
+            $review = new Review();
+            $review->setFirstname($faker->firstname());
+            $review->setContent($faker->sentence(13));
+            $review->setEvaluation($faker->numberBetween(1, 5));
+            $review->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
+            $review->setProduct($watch);
+            $review->setUser($user);
+            $manager->persist($review);
+        }
+
         $manager->flush();
     }
 }
