@@ -7,28 +7,29 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-lg container-show d-flex py-10">
-	<div class="little-pictures-container d-flex align-items-center">
-		{% for img in (product.imgUrl | split(',')) %}
-			{{ dump(img) }}
-			<img class="little-pictures" src="{{'/img/' ~ img }}" alt="{{ product.model }}">
-		{% endfor %}
-	</div>
-	<div class="main-picture-container d-flex flex-column align-items-center justify-content-center">
-		<div class="main-picture">main_picture.png</div>
-	</div>
-	<div class="info d-flex flex-column gap-3">
-		<h1 class="product-name">{{ product.brand }}
-			{{ product.model }}</h1>
-		<h2 class="price">{{ (product.priceHt * 1.20 - 0.01) | format_currency('EUR') }}</h2>
-		<div class="choice-color-container">
-			<p class="choice-title">Colors</p>
-			<div class="d-flex gap-3">
-				<div class="choice-color"></div>
-				<div class="choice-color"></div>
-				<div class="choice-color"></div>
-			</div>
+	<div class="container-lg container-show d-flex py-10">
+		<div class="little-pictures-container d-flex align-items-center">
+			{% for img in (product.imgUrl | split(',')) %}
+				<img class="little-pictures" src="{{'/img/' ~ img }}" alt="{{ product.model }}">
+			{% endfor %}
 		</div>
-		<button class="btn-primary btn-add-to-cart">Ajouter au panier</button>
+		<div class="main-picture-container d-flex flex-column align-items-center justify-content-center">
+			<img class="main-picture" src="{{ '/img/' ~ (product.imgUrl | split(',')[0]) }}" alt="{{( product.imgUrl | split(',')[0]) }}">
+		</div>
+		<div class="info d-flex flex-column gap-3">
+			<h1 class="product-name">{{ product.brand }}
+				{{ product.model }}</h1>
+			<h2 class="price">{{ (product.priceHt * 1.20 - 0.01) | format_currency('EUR') }}</h2>
+			<div class="choice-color-container">
+				<p class="choice-title">Colors</p>
+				<div class="d-flex gap-3">
+					<div class="choice-color"></div>
+					<div class="choice-color"></div>
+					<div class="choice-color"></div>
+				</div>
+			</div>
+			<button class="btn-primary btn-add-to-cart">Ajouter au panier</button>
+		</div>
 	</div>
-</div>
+
+{% endblock %}
