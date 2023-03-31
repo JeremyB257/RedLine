@@ -130,7 +130,6 @@
 }
 
 .home-review {
-  height: 400px;
   position: relative;
   background-color: #fbfbfb;
   .quote {
@@ -175,4 +174,32 @@
       transform: rotateZ(-45deg);
     }
   }
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  position: static;
+  display: inline-flex;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  border-radius: 100px;
+  background-color: $color-primary;
+  top: 80%;
+}
+
+.carousel-control-prev {
+  left: 80%;
+}
+.carousel-control-next {
+  right: 10%;
+}
+
+.carousel-btn {
+  position: absolute;
+  left: 80%;
+  top: 80%;
+  width: 85px;
+  display: flex;
+  justify-content: space-between;
 }
