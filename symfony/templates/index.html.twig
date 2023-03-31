@@ -94,9 +94,10 @@
 			<div class="d-flex flex-column">
 				<h4 ="fw-bold">Couleur</h4>
 				<div class="d-flex gap-4">
-					<div class="colors black"></div>
-					<div class="colors gray"></div>
-					<div class="colors red"></div>
+					{% for color in (watches[0].color | split(',')) %}
+						<div class="colors {{color}}" data-color="{{color}}"></div>
+					{% endfor %}
+
 				</div>
 			</div>
 			<div>
