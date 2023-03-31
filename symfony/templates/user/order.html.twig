@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{parent()}}
+	- Mes Commandes
+{% endblock %}
+
+{% block body %}
+	<div class="container-lg">
+		<h2 class="fs-4 my-4">Mon compte</h2>
+		<div class="d-flex gap-5">
+			<section class="my-5 account" style="width: 18rem;">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item py-3 bg-color">
+						<h2 class="fs-4 fw-bold">Bonjour
+							{{ user.firstname }}</h2>
+					</li>
+					<li class="list-group-item py-3 bg-color">
+						<a href="#">
+							<div class="d-flex justify-content-between align-items-center">
+								<i class="fa-solid fa-memo-circle-info fs-4" style="color: #000000;"></i>
+								<span>Informations</span>
+								<i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+							</div>
+						</a>
+					</li>
+					<li class="list-group-item py-3 bg-color">
+						<a href="{{ path('app_reset_password') }}">
+							<div class="d-flex justify-content-between align-items-center">
+								<i class="fa-solid fa-lock fs-4" style="color: #000000;"></i>
+								<span>Mot de passe</span>
+								<i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+							</div>
+						</a>
+					</li>
+					<li class="list-group-item py-3 bg-color-active">
+						<a href="#">
+							<div class="d-flex justify-content-between align-items-center">
+								<i class="fa-solid fa-bags-shopping fs-4" style="color: #000000;"></i>
+								<span>Mes commandes</span>
+								<i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+							</div>
+						</a>
+					</li>
+					<li class="list-group-item py-3 bg-color">
+						<a href="{{ path('app_logout') }}">
+							<div class="d-flex">
+								<i class="fa-solid fa-right-from-bracket fs-4" style="color: #000000;"></i>
+								<span class="ms-4 ps-4">Se déconnecter</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+{% endblock %}
