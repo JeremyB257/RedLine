@@ -164,13 +164,13 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Seiko')
             ->setModel('Prospex')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('SeikoProspex-black.png,SeikoProspex-blue.png,SeikoProspex-green.png')
             ->setPriceHt(400)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(44)
             ->setCategory('homme')
-            ->setColor('white')
+            ->setColor('black,blue,green')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(200)
@@ -180,13 +180,13 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Seiko')
             ->setModel('Presage')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('SeikoPresage-blue.png')
             ->setPriceHt(900)
             ->setMaterial('cuir')
             ->setMovement('Automatique')
             ->setCaseDiameter(40)
             ->setCategory('homme')
-            ->setColor('white')
+            ->setColor('blue')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(50)
@@ -198,13 +198,13 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Seiko')
             ->setModel('5 Sports')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('SeikoSport-black.png,SeikoSport-blue.png')
             ->setPriceHt(200)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(42)
             ->setCategory('homme')
-            ->setColor('white')
+            ->setColor('black,blue')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(100)
@@ -213,21 +213,35 @@ class AppFixtures extends Fixture
 
         $watch = new Product();
         $watch->setBrand('Seiko')
-            ->setModel('Prospex Diver')
-            ->setImgUrl('no-image.png')
+            ->setModel('Diver')
+            ->setImgUrl('SeikoDiver-red.png,SeikoDiver-green.png,SeikoDiver-blue.png')
             ->setPriceHt(300)
             ->setMaterial('acier')
             ->setMovement('Automatique')
-            ->setCaseDiameter(42)
-            ->setCategory('homme')
-            ->setColor('white')
+            ->setCaseDiameter(38)
+            ->setCategory('femme')
+            ->setColor('red,green,blue')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(200)
             ->setDescription("La montre Seiko Prospex Diver pour homme est une montre automatique conçue pour les plongeurs. Son boîtier en acier inoxydable mesure 42 mm de diamètre et offre une étanchéité de 200 mètres. La montre dispose d'une lunette tournante unidirectionnelle pour mesurer le temps de plongée et d'un affichage de la date à 3 heures. Le bracelet en caoutchouc noir assure un bon maintien sur le poignet, même sous l'eau.");
         $manager->persist($watch);
 
-
+        $watch = new Product();
+        $watch->setBrand('Seiko')
+            ->setModel('Cocktail Time')
+            ->setImgUrl('SeikoCocktail-orange.png')
+            ->setPriceHt(500)
+            ->setMaterial('acier')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(40)
+            ->setCategory('homme')
+            ->setColor('orange')
+            ->setStock(rand(0, 50))
+            ->setSlug($slugger->slug($watch->getModel()))
+            ->setWaterResistance(50)
+            ->setDescription("La montre Seiko Cocktail Time pour homme est une montre élégante et raffinée conçue pour les amateurs de cocktails. Son boîtier en acier inoxydable mesure 40,5 mm de diamètre et son cadran vert bouteille est orné d'un motif de soleil rayonnant. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 50 mètres. La montre Presage Cocktail Time est un choix parfait pour les soirées chics et les dîners entre amis.");
+        $manager->persist($watch);
 
         $watch = new Product();
         $watch->setBrand('Seiko')
@@ -245,21 +259,7 @@ class AppFixtures extends Fixture
             ->setDescription("La montre Seiko Astron pour homme est une montre GPS solaire haut de gamme. Son boîtier en titane mesure 42,9 mm de diamètre et offre une étanchéité de 100 mètres. La montre est alimentée par l'énergie solaire et dispose d'une fonction GPS qui permet de régler automatiquement l'heure et la date en fonction de votre position géographique. La montre dispose également d'un affichage de la date et d'un bracelet en titane.");
         $manager->persist($watch);
 
-        $watch = new Product();
-        $watch->setBrand('Seiko')
-            ->setModel('Presage Cocktail Time')
-            ->setImgUrl('no-image.png')
-            ->setPriceHt(500)
-            ->setMaterial('acier')
-            ->setMovement('Automatique')
-            ->setCaseDiameter(40)
-            ->setCategory('homme')
-            ->setColor('white')
-            ->setStock(rand(0, 50))
-            ->setSlug($slugger->slug($watch->getModel()))
-            ->setWaterResistance(50)
-            ->setDescription("La montre Seiko Presage Cocktail Time pour homme est une montre élégante et raffinée conçue pour les amateurs de cocktails. Son boîtier en acier inoxydable mesure 40,5 mm de diamètre et son cadran vert bouteille est orné d'un motif de soleil rayonnant. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 50 mètres. La montre Presage Cocktail Time est un choix parfait pour les soirées chics et les dîners entre amis.");
-        $manager->persist($watch);
+
 
         $watch = new Product();
         $watch->setBrand('Seiko')
