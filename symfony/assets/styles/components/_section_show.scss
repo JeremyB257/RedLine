@@ -2,16 +2,19 @@
   width: 50%;
   .little-pictures-container {
     flex: 10%;
-    background-color: aqua;
     .little-pictures {
       width: 50px;
       height: 50px;
       background-color: blueviolet;
+      cursor: pointer;
+      transition: 0.7s;
+      &:hover {
+        transform: scale(105%);
+      }
     }
   }
   .main-picture-container {
-    flex: 40%;
-    background-color: crimson;
+    flex: 45%;
     .main-picture {
       width: 80%;
       height: 350px;
@@ -19,16 +22,43 @@
     }
   }
   .info {
-    flex: 50%;
-    background-color: pink;
-    .choice-color {
-      height: 50px;
-      width: 50px;
-      background-color: cornflowerblue;
+    flex: 45%;
+    padding: 10px;
+    color: $color-dark;
+    .product-name {
+      font-size: 32px;
+      font-weight: bold;
     }
-    .description {
-      font-size: 13px;
-      color: gray;
+    .price {
+      font-weight: bold;
+      color: $color-primary;
+    }
+    .choice-title {
+      font-weight: bold;
+      padding-bottom: 10px;
+      margin: 0;
+    }
+    .choice-color {
+      height: 30px;
+      width: 30px;
+      border: solid 1px $color-primary;
+      background-color: cornflowerblue;
+      transition: 0.3s;
+      cursor: pointer;
+      &:hover {
+        filter: brightness(115%);
+      }
+    }
+    .btn-add-to-cart {
+      width: 70%;
+      margin-top: 20px;
+      padding: 20px 15px 20px 15px;
+      background-color: $color-primary;
+      border: none;
+      transition: 0.3s;
+      &:hover {
+        filter: brightness(90%);
+      }
     }
   }
 }
