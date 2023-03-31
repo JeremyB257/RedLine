@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Contact;
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\Review;
 use App\Entity\User;
@@ -36,6 +37,7 @@ class AppFixtures extends Fixture
 
         $faker = Factory::create('fr_FR');
 
+        $users = [$user];
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setFirstname($faker->firstname());
@@ -43,6 +45,7 @@ class AppFixtures extends Fixture
             $user->setPassword($this->hasher->hashPassword($user, $faker->password()));
             $user->setNewsletter(true);
             $manager->persist($user);
+            $users[] = $user;
         }
 
         $slugger = new AsciiSlugger();
@@ -497,7 +500,6 @@ class AppFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
         for ($i = 0; $i < 10; $i++) {
-
             $contact = new Contact();
             $contact->setName($faker->name());
             $contact->setLastName($faker->lastName());
@@ -517,6 +519,17 @@ class AppFixtures extends Fixture
             $review->setProduct($watch);
             $review->setUser($user);
             $manager->persist($review);
+        }
+
+        for ($i = 0; $i < 40; $i++) {
+            $order = new Order();
+            $order->setUser($users[rand(0, 10)])
+                ->setTotal(rand(300, 1800))
+                ->setStatus(rand(0, 2) == 1 ? 'Livré' : ((rand(0, 1) == 1) ? 'En cours' : 'Annulé'))
+                ->setPayment(rand(0, 1) == 1 ? 'Payé' : 'non Payé')
+                ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-15 days')));
+
+            $manager->persist($order);
         }
 
         $manager->flush();
