@@ -8,14 +8,14 @@
 		<div class="container-lg text-center text-md-start py-5">
 			<div class="row">
 				<div class="col-12 col-md-6 ">
-					<h1 class="fw-bold">{{watch.brand}}
-						{{watch.model}}</h1>
-					<p class="text-white py-3">{{watch.description}}</p>
+					<h1 class="fw-bold">{{watches[0].brand}}
+						{{watches[0].model}}</h1>
+					<p class="text-white py-3">{{watches[0].description}}</p>
 					<button class="btn btn-xl btn-primary fs-5">Acheter</button>
-					<span class="fs-5 fw-bold ms-3">{{(watch.priceHT * 1.2) | format_currency('EUR')}}</span>
+					<span class="fs-5 fw-bold ms-3">{{(watches[0].priceHT * 1.2) | format_currency('EUR')}}</span>
 				</div>
 				<div class="col-12 col-md-6 position-relative banner-img-col">
-					<img class="banner-img position-absolute" src="{{'img/' ~ (watch.imgUrl | split(',')[0])}}" alt="">
+					<img class="banner-img position-absolute" src="{{'img/' ~ (watches[0].imgUrl | split(',')[0])}}" alt="">
 				</div>
 			</div>
 		</div>
@@ -74,41 +74,121 @@
 		</div>
 	</div>
 
-	<div class="container-lg d-flex">
-		<div class="d-flex justify-content-center align-items-center">
-			<div class=" widht-flex filter-watch">
 
-				{% for img in (watch.imgUrl | split(',')) %}
-					<img class="size-filter" src="{{'img/' ~ img}}" alt="{{ watch.model }}">
-				{% endfor %}
+	<div class="product container-lg d-flex justify-content-center align-items-center my-5 flex-wrap">
+		<div class="filter-watch">
+			{% for img in (watches[0].imgUrl | split(',')) %}
+				<img class="size-filter" src="{{'img/' ~ img}}" alt="{{ watches[0].model }}">
+			{% endfor %}
+		</div>
 
-			</div>
-			<div class="width-flex">
-			<div class="containe-watch">
-				<img class="w-100 main-img" src="{{'img/' ~ (watch.imgUrl | split(','))[0]}}" alt="laxar">
-			</div>
-			</div>
-			<div class="contenu-flex">
-				<h2>{{ watch.brand}}
-					{{ watch.model}}</h2>
-				<h4 class="price">$
-					{{ watch.priceHT }}</h4>
+		<div class="width-flex">
+			<img class="w-100 main-img" src="{{'img/' ~ (watches[0].imgUrl | split(','))[0]}}" alt="laxar">
+		</div>
 
-				<p class="text-justify">{{ watch.description }}</p>
-				<div class="d-flex flex-column">
-					<h4 ="fw-bold">Colors</h4>
-					<div class="d-flex gap-4">
-						<div class="colors black"></div>
-						<div class="colors gray"></div>
-						<div class="colors red"></div>
-					</div>
-				</div>
-				<div>
-					<button class="btn btn-lg btn-primary mt-4">BUY-NOW</button>
+		<div class="contenu">
+			<h2>{{ watches[0].brand}}
+				{{ watches[0].model}}</h2>
+			<h4 class="price">{{ (watches[0].priceHT * 1.2) | format_currency('EUR') }}</h4>
+			<p class="text-justify">{{ watches[0].description }}</p>
+			<div class="d-flex flex-column">
+				<h4 ="fw-bold">Couleur</h4>
+				<div class="d-flex gap-4">
+					{% for color in (watches[0].color | split(',')) %}
+						<div class="colors {{color}}" data-color="{{color}}"></div>
+					{% endfor %}
+
 				</div>
 			</div>
-
+			<div>
+				<button class="btn btn-lg btn-primary mt-4">Acheter</button>
+			</div>
 		</div>
 	</div>
+
+	<div class="container-fluid similar-product text-center my-5">
+		<div class="container-lg py-4">
+			<h2 class="primary fw-bold">Produits similaire</h2>
+
+			<div class="d-flex justify-content-center align-items-center flex-wrap gap-5">
+				{% for i in 1..4 %}
+					<div class="watch">
+						<img class="w-75" src="{{'img/' ~ (watches[i].imgUrl | split(',')[0])}}" alt="">
+						<h4 class="fw-bold">{{watches[i].brand}}
+							{{watches[i].model}}</h4>
+						<h5 class="primary fw-bold">{{(watches[i].priceHT * 1.2) | format_currency('EUR')}}</h5>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	<div class="home-review container-lg border border-4 border-primary my-5">
+		<div class="quote"></div>
+		<div class="quote2"></div>
+
+		<div id="carouselExample" class="carousel slide">
+			<div class="carousel-inner">
+
+				<div class="carousel-item active my-3 py-5">
+					<div class="reviews-container d-flex flex-column justify-content-center align-items-center">
+						<div class="reviews">
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+						</div>
+						<p class="w-50 text-center my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique magni nihil consequatur totam voluptatum ducimus fugit earum impedit aperiam, incidunt voluptates distinctio error pariatur sit sint! Porro possimus nisi maiores?
+						</p>
+						<h5 class="fw-bold">Anthony Brooks</h5>
+					</div>
+				</div>
+
+				<div class="carousel-item my-3 py-5">
+					<div class="reviews-container d-flex flex-column justify-content-center align-items-center">
+						<div class="reviews">
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+						</div>
+						<p class="w-50 text-center my-5">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique magni nihil consequatur totam voluptatum ducimus fugit earum impedit aperiam, incidunt voluptates distinctio error pariatur sit sint! Porro possimus nisi maiores?
+						</p>
+						<h5 class="fw-bold">Anthony Brooks</h5>
+					</div>
+				</div>
+
+				<div class="carousel-item my-3 py-5">
+					<div class="reviews-container d-flex flex-column justify-content-center align-items-center">
+						<div class="reviews">
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+						</div>
+						<p class="w-50 text-center my-5">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique magni nihil consequatur totam voluptatum ducimus fugit earum impedit aperiam, incidunt voluptates distinctio error pariatur sit sint! Porro possimus nisi maiores?
+						</p>
+						<h5 class="fw-bold">Anthony Brooks</h5>
+					</div>
+				</div>
+			</div>
+			<div class="carousel-btn">
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
 
 {% endblock %}

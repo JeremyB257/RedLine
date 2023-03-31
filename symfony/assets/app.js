@@ -11,16 +11,33 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
+//search navbar
 const searchBtn = document.querySelector('#searchBtn');
-searchBtn.addEventListener('click', e => {
-  e.target.previousElementSibling.classList.toggle('show');
-});
+if (searchBtn) {
+  searchBtn.addEventListener('click', e => {
+    e.target.previousElementSibling.classList.toggle('show');
+  });
+}
 
-const sizeFilter = document.querySelectorAll('.size-filter');
+//pic & color picker on homepage
+const picFilter = document.querySelectorAll('.size-filter');
+const colorFilter = document.querySelectorAll('.colors');
 const mainImg = document.querySelector('.main-img');
 
-for (const img of sizeFilter) {
-  img.addEventListener('click', e => {
-    mainImg.src = e.target.src;
-  });
+if (picFilter) {
+  for (const img of picFilter) {
+    img.addEventListener('click', e => {
+      mainImg.src = e.target.src;
+    });
+  }
+}
+
+if (colorFilter) {
+  for (const color of colorFilter) {
+    color.addEventListener('click', e => {
+      if (mainImg.src.includes('-')) {
+        mainImg.src = mainImg.src.split('-')[0] + '-' + color.dataset.color + '.png';
+      }
+    });
+  }
 }

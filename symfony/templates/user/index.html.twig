@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user.firstname }} - {{ parent() }} {% endblock %}
+
+{% block body %}
+<div class="container-lg">
+    
+    <h2 class="fs-4 my-4"> Mon compte </h2>  
+
+    <div class="d-flex justify-content-between">
+        {# Menu #}
+        <div class="card my-5 account" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item py-3 bg-color">
+                    <h2 class="fs-4 fw-bold"> Bonjour {{ user.firstname }} </h2>
+                </li>
+                <li class="list-group-item py-3 bg-color-active">
+                    <a href="#">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <i class="fa-solid fa-memo-circle-info fs-4" style="color: #000000;"></i>
+                            <span class="fs-5">Informations</span>
+                            <i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+                        </div>
+                    </a>
+                </li>
+                <li class="list-group-item py-3 bg-color">
+                    <a href="{{ path('app_reset_password') }}">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <i class="fa-solid fa-lock fs-4" style="color: #000000;"></i>
+                            <span class="fs-5">Mot de passe</span>
+                            <i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+                        </div>
+                    </a>
+                </li>
+                <li class="list-group-item py-3 bg-color">
+                    <a href="#">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <i class="fa-solid fa-bags-shopping fs-4" style="color: #000000;"></i>
+                            <span class=" fs-5">Mes commandes</span>
+                            <i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+                        </div>
+                    </a>
+                </li>
+                <li class="list-group-item py-3 bg-color">
+                    <a href="{{ path('app_logout') }}">
+                        <div class="d-flex">
+                            <i class="fa-solid fa-right-from-bracket fs-4" style="color: #000000;"></i>
+                            <span class="ms-4 ps-2 fs-5"> Se déconnecter</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -19,7 +19,7 @@ a {
   text-align: center;
 }
 
-.text-justify{
+.text-justify {
   text-align: justify;
 }
 
@@ -43,7 +43,7 @@ a {
   }
 }
 
-.btn-xl{
+.btn-xl {
   --bs-btn-padding-y: 1rem;
   --bs-btn-padding-x: 1.5rem;
   --bs-btn-font-size: 2rem;
@@ -84,6 +84,10 @@ a {
   --bs-btn-disabled-border-color: #{lighten($color-primary, 20%)};
 }
 
+.border-primary {
+  border-color: #{$color-primary} !important;
+}
+
 .w-sm-50 {
   @media (min-width: 768px) {
     width: 50%;
@@ -92,4 +96,36 @@ a {
 
 .primary {
   color: $color-primary;
+}
+
+.colors {
+  width: 50px;
+  height: 50px;
+  border: 2px solid $color-primary;
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+}
+
+.red {
+  background-color: rgb(180, 68, 68);
+}
+.black {
+  background-color: rgb(32, 32, 32);
+}
+.blue {
+  background-color: rgb(68, 124, 180);
+}
+.green {
+  background-color: rgb(68, 180, 72);
+}
+.yellow {
+  background-color: rgb(180, 176, 68);
+}
+.purple {
+  background-color: rgb(167, 68, 180);
+}
+.white {
+  background-color: rgb(221, 221, 221);
 }
