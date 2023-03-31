@@ -48,20 +48,54 @@ class AppFixtures extends Fixture
         $slugger = new AsciiSlugger();
 
         $watch = new Product();
-        $watch->setBrand('Laxar')
-            ->setModel('Parlin Supernova')
-            ->setImgUrl('laxar.png,rolex.png,rolex2.png')
-            ->setPriceHt(450)
-            ->setMaterial('cuir')
-            ->setMovement('quartz')
+        $watch->setBrand('Rolex')
+            ->setModel('GMT-Master II')
+            ->setImgUrl('RolexGmtMaster-green.png,RolexGmtMaster-red.png,RolexGmtMaster-blue.png')
+            ->setPriceHt(12000)
+            ->setMaterial('acier')
+            ->setMovement('Automatique')
             ->setCaseDiameter(44)
             ->setCategory('homme')
-            ->setColor('black')
+            ->setColor('green,red,blue')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(100)
-            ->setDescription('Découvrez la montre Parlin Supernova pour homme. Cette montre sportive automatique est conçue pour les plongeurs professionnels. Son boîtier en acier inoxydable résistant mesure 44 mm de diamètre et offre une étanchéité de 200 mètres. La lunette tournante unidirectionnelle permet de mesurer le temps de plongée avec précision. La montre dispose également d\'un affichage de la date et d\'un bracelet en acier inoxydable.');
+            ->setDescription("La Rolex GMT-Master II est une montre pour homme conçue pour les voyageurs. Le boîtier en acier inoxydable mesure 40 mm de diamètre et est équipé d'une lunette bidirectionnelle en céramique. La montre dispose d'un affichage de l'heure GMT et d'un affichage de la date à 3 heures. Elle est étanche jusqu'à 100 mètres et dispose d'un bracelet en acier inoxydable confortable.");
         $manager->persist($watch);
+
+        $watch = new Product();
+        $watch->setBrand('Rolex')
+            ->setModel('Oyster Perpetual')
+            ->setImgUrl('RolexOysterPerpetual-green.png,RolexOysterPerpetual-blue.png,RolexOysterPerpetual-red.png')
+            ->setPriceHt(8500)
+            ->setMaterial('acier')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(41)
+            ->setCategory('homme')
+            ->setColor('green,blue,red')
+            ->setStock(rand(0, 50))
+            ->setSlug($slugger->slug($watch->getModel()))
+            ->setWaterResistance(200)
+            ->setDescription("La Rolex Submariner est une montre de plongée emblématique pour homme. Le boîtier en acier inoxydable mesure 41 mm de diamètre et est équipé d'une lunette tournante unidirectionnelle. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 300 mètres. Le bracelet en acier inoxydable est à la fois robuste et élégant.");
+        $manager->persist($watch);
+
+
+        $watch = new Product();
+        $watch->setBrand('Rolex')
+            ->setModel('Sea Dweller')
+            ->setImgUrl('RolexSeaDweller-black.png,RolexSeaDweller-red.png,RolexSeaDweller-blue.png')
+            ->setPriceHt(9500)
+            ->setMaterial('or')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(41)
+            ->setCategory('homme')
+            ->setColor('black,red,blue')
+            ->setStock(rand(0, 50))
+            ->setSlug($slugger->slug($watch->getModel()))
+            ->setWaterResistance(100)
+            ->setDescription("La Rolex Datejust pour homme est une montre élégante et intemporelle. Le boîtier en acier inoxydable et or jaune mesure 41 mm de diamètre et offre un design classique. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 100 mètres. Le bracelet en acier inoxydable et or jaune ajoute une touche de sophistication à l'ensemble.");
+        $manager->persist($watch);
+
 
         $watch = new Product();
         $watch->setBrand('Seiko')
@@ -375,27 +409,13 @@ class AppFixtures extends Fixture
             ->setDescription("La montre Tissot Seastar 1000 est une montre de plongée pour homme. Le boîtier en acier inoxydable mesure 43 mm de diamètre et est équipé d'une lunette unidirectionnelle en céramique. La montre dispose d'un affichage de la date à 6 heures, d'un chronographe et est étanche jusqu'à 300 mètres. Le bracelet en acier inoxydable et céramique est à la fois résistant et élégant.");
         $manager->persist($watch);
 
-        $watch = new Product();
-        $watch->setBrand('Rolex')
-            ->setModel('Submariner')
-            ->setImgUrl('no-image.png')
-            ->setPriceHt(8500)
-            ->setMaterial('acier')
-            ->setMovement('Automatique')
-            ->setCaseDiameter(41)
-            ->setCategory('homme')
-            ->setColor('white')
-            ->setStock(rand(0, 50))
-            ->setSlug($slugger->slug($watch->getModel()))
-            ->setWaterResistance(200)
-            ->setDescription("La Rolex Submariner est une montre de plongée emblématique pour homme. Le boîtier en acier inoxydable mesure 41 mm de diamètre et est équipé d'une lunette tournante unidirectionnelle. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 300 mètres. Le bracelet en acier inoxydable est à la fois robuste et élégant.");
-        $manager->persist($watch);
+
 
         $watch = new Product();
-        $watch->setBrand('Rolex')
-            ->setModel('GMT-Master II')
+        $watch->setBrand('Laxar')
+            ->setModel('Parlin Supernova')
             ->setImgUrl('no-image.png')
-            ->setPriceHt(12000)
+            ->setPriceHt(450)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(40)
@@ -404,25 +424,11 @@ class AppFixtures extends Fixture
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(100)
-            ->setDescription("La Rolex GMT-Master II est une montre pour homme conçue pour les voyageurs. Le boîtier en acier inoxydable mesure 40 mm de diamètre et est équipé d'une lunette bidirectionnelle en céramique. La montre dispose d'un affichage de l'heure GMT et d'un affichage de la date à 3 heures. Elle est étanche jusqu'à 100 mètres et dispose d'un bracelet en acier inoxydable confortable.");
+            ->setDescription("Découvrez la montre Parlin Supernova pour homme. Cette montre sportive automatique est conçue pour les plongeurs professionnels. Son boîtier en acier inoxydable résistant mesure 44 mm de diamètre et offre une étanchéité de 200 mètres. La lunette tournante unidirectionnelle permet de mesurer le temps de plongée avec précision. La montre dispose également d'un affichage de la date et d'un bracelet en acier inoxydable.");
         $manager->persist($watch);
 
 
-        $watch = new Product();
-        $watch->setBrand('Rolex')
-            ->setModel('Datejust')
-            ->setImgUrl('no-image.png')
-            ->setPriceHt(9500)
-            ->setMaterial('or')
-            ->setMovement('Automatique')
-            ->setCaseDiameter(41)
-            ->setCategory('homme')
-            ->setColor('white')
-            ->setStock(rand(0, 50))
-            ->setSlug($slugger->slug($watch->getModel()))
-            ->setWaterResistance(100)
-            ->setDescription("La Rolex Datejust pour homme est une montre élégante et intemporelle. Le boîtier en acier inoxydable et or jaune mesure 41 mm de diamètre et offre un design classique. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 100 mètres. Le bracelet en acier inoxydable et or jaune ajoute une touche de sophistication à l'ensemble.");
-        $manager->persist($watch);
+
 
         $watch = new Product();
         $watch->setBrand('Rolex')
