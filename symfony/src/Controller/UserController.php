@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UserController extends AbstractController
 {
-    #[Route('/user/{id}', name: 'app_user')]
+    #[Route('/user/{firstname}', name: 'app_user')]
     // #[IsGranted('ROLE_USER')]
     public function index(User $user, HttpFoundationRequest $request, UserRepository $userRepository ): Response
     {
@@ -24,7 +24,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
 
-            return $this->redirectToRoute('app_user', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user', ['firstname' => $user->getfirstname()], Response::HTTP_SEE_OTHER);
         }
         return $this->render('user/index.html.twig', [
             'user'=> $user,

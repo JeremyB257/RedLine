@@ -23,25 +23,41 @@ class UserType extends AbstractType
                 ],
                 'expanded'=> true,
                 'attr' => [
-                    'class' => 'd-flex gap-5',
-                ],          
+                    'class' => 'd-flex gap-3',
+                ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
+                ],    
             ])
             ->add('firstname', null, [
                 'label' => 'Prénom :',
                 'attr' => [
                     'class' => 'p-1'
                 ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
+                ],
+
             ])
             ->add('lastname', null, [
                 'label' => 'Nom :',
                 'attr' => [
                     'class' => 'p-1'
                 ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
+                ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
+                ],
             ])
             ->add('number_adress', null, [
                 'label' => 'n° :',
                 'attr' => [
-                    'class' => 'p-1 w-25'
+                    'class' => 'p-1'
+                ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
                 ],
             ])
             ->add('street1', null, [
@@ -49,11 +65,17 @@ class UserType extends AbstractType
                 'attr' => [
                     'class' => 'p-1'
                 ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
+                ],
             ])
             ->add('street2', null, [
                 'label' => 'Complément :',
                 'attr' => [
-                    'class' => 'p-1 w-75'
+                    'class' => 'p-1'
+                ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
                 ],
             ])
             ->add('postcode', null, [
@@ -61,29 +83,44 @@ class UserType extends AbstractType
                 'attr' => [
                     'class' => 'p-1'
                 ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
+                ],
             ])
             ->add('city', null, [
                 'label' => 'Ville :',
                 'attr' => [
                     'class' => 'p-1'
                 ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
+                ],
             ])
             ->add('country', null, [
                 'label' => 'Pays :',
                 'attr' => [
-                    'class' => 'p-1 w-75'
+                    'class' => 'p-1'
+                ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
                 ],
             ])
             ->add('email', null, [
                 'label' => 'Email :',
                 'attr' => [
-                    'class' => 'p-1 w-50'
+                    'class' => 'p-1'
+                ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
                 ],
             ])
             ->add('phoneNumber', null, [
                 'label' => 'n° de téléphone :',
                 'attr' => [
-                    'class' => 'p-1 w-50'
+                    'class' => 'p-1'
+                ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
                 ],
             ])
             ->add('birthday', BirthdayType::class, [
@@ -91,12 +128,18 @@ class UserType extends AbstractType
                 'widget'=> 'single_text',
                 'input'  => 'datetime_immutable',
                 'attr' => [
-                    'class' => 'p-1 w-25',
+                    'class' => 'p-1',
                     
+                ],
+                'label_attr' => [
+                    'class' => 'fw-bold',
                 ],
             ])
             ->add('newsletter', null, [
                 'label' => 'Newsletter',
+                'label_attr' => [
+                    'class' => 'fw-bold',
+                ],
             ])
             // ->add('password')
             // ->add('fidelity')
