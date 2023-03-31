@@ -31,7 +31,9 @@ if (picFilter) {
 if (colorFilter) {
   for (const color of colorFilter) {
     color.addEventListener('click', e => {
-      mainImg.src = mainImg.src.split('-')[0] + '-' + color.dataset.color + '.png';
+      if (mainImg.src.includes('-')) {
+        mainImg.src = mainImg.src.split('-')[0] + '-' + color.dataset.color + '.png';
+      }
     });
   }
 }
