@@ -16,13 +16,23 @@
 			<div class="w-50 d-flex flex-column gap-3">
 				{% for element in dataCart %}
 					<div class=" container-cart d-flex gap-3">
-						<div class="w-25">
-							<img class="w-100" src="{{'img/' ~ (element.product.imgUrl)}}" alt="">
+						<div class="w-25 d-flex align-items-center justify-content-center">
+							<img class="w-75" src="{{'img/' ~ (element.product.imgUrl | split(',')[0])}}" alt="">
 						</div>
 						<div>
-							<h3>{{ element.product.brand }}</h3>
-							<p>{{ element.product.priceHT }}€</p>
-							<p>{{ element.quantity }}</p>
+							<h3 class="mt-2">{{ element.product.brand }}</h3>
+
+							<p>{{ element.product.priceHT }}€ HT</p>
+							<p>
+								<a class="btn btn-light" href="{{path('app_remove', {id: element.product.id})}}">-</a>
+								{{element.quantity}}
+								<a class="btn btn-light" href="{{path('app_add', {id: element.product.id})}}">+</a>
+							</p>
+							<a href="{{path('app_delete', {id: element.product.id})}}" class="btn btn-danger mb-2">
+								<i class="fa-solid fa-trash"></i>
+							</a>
+
+
 						</div>
 
 					</div>
@@ -44,10 +54,13 @@
 						<input type="text">
 						<button>valider</button>
 					</p>
-					<p>Sous total :</p>
-					<p>Frais de livraison :</p>
-					<h2>TOTAL :
-						{{total }}
+					<p>Sous total HT :
+						{{ total / 1.2}}
+						€</p>
+					<p>Frais de livraison : 4.99 €</p>
+					<p>TVA : 20%</p>
+					<h2>TOTAL TTC :
+						{{ total + 4.99}}
 						€</h2>
 					<button class="btn btn-lg btn-primary">VALIDER MON PANIER</button>
 				</div>
@@ -55,6 +68,5 @@
 		</div>
 	</div>
 	<pre>
-		{{ dump() }}
 	</pre>
 {% endblock %}
