@@ -13,22 +13,48 @@
 			<p>Livraison OFFERTE* | Retours sous 30 jours</p>
 		</div>
 		<div class="d-flex">
-			<div class="w-50">
-				<p>panier vide.</p>
-                <div class="bonus">
-                    <p class="m-0">Bonus : Emballage cadeau avec checkbox</p>
-                </div>
+			<div class="w-50 d-flex flex-column gap-3">
+				{% for element in dataCart %}
+					<div class=" container-cart d-flex gap-3">
+						<div class="w-25">
+							<img class="w-100" src="{{'img/' ~ (element.product.imgUrl)}}" alt="">
+						</div>
+						<div>
+							<h3>{{ element.product.brand }}</h3>
+							<p>{{ element.product.priceHT }}€</p>
+							<p>{{ element.quantity }}</p>
+						</div>
+
+					</div>
+
+				{% else %}
+					<tr>
+						<td colspan="5" class"text-center">Votre panier est vide</td>
+					</tr>
+				{% endfor %}
+
+				<div class="bonus">
+					<p class="m-0">Bonus : Emballage cadeau avec checkbox</p>
+				</div>
 			</div>
 			<div class="w-50 order-recap">
-                <div class="ms-5 me-5 mt-3">
-                    <h2>Récapitulatif de la commande</h2>
-                    <p>code promo <input type="text"> <button>valider</button></p>
-                    <p>Sous total :</p>
-                    <p>Frais de livraison :</p>
-                    <h2>TOTAL :</h2>
-                    <button class="btn btn-lg btn-primary">VALIDER MON PANIER</button>
-                </div>
-            </div>
+				<div class="ms-5 me-5 mt-3">
+					<h2>Récapitulatif de la commande</h2>
+					<p>code promo
+						<input type="text">
+						<button>valider</button>
+					</p>
+					<p>Sous total :</p>
+					<p>Frais de livraison :</p>
+					<h2>TOTAL :
+						{{total }}
+						€</h2>
+					<button class="btn btn-lg btn-primary">VALIDER MON PANIER</button>
+				</div>
+			</div>
 		</div>
 	</div>
+	<pre>
+		{{ dump() }}
+	</pre>
 {% endblock %}
