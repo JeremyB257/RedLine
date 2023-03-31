@@ -4,6 +4,9 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,42 +15,85 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('civility', null, [
-                'label' => 'Civilité',
+            ->add('civility', ChoiceType::class, [
+                'label' => 'Civilité :',
+                'choices' => [
+                    'Mme' => true,
+                    'M.'=> false,
+                ],
+                'expanded'=> true,
+                'attr' => [
+                    'class' => 'd-flex gap-5',
+                ],          
             ])
             ->add('firstname', null, [
-                'label' => 'Prénom',
+                'label' => 'Prénom :',
+                'attr' => [
+                    'class' => 'p-1'
+                ],
             ])
             ->add('lastname', null, [
-                'label' => 'Nom',
+                'label' => 'Nom :',
+                'attr' => [
+                    'class' => 'p-1'
+                ],
             ])
             ->add('number_adress', null, [
-                'label' => 'n°',
+                'label' => 'n° :',
+                'attr' => [
+                    'class' => 'p-1 w-25'
+                ],
             ])
             ->add('street1', null, [
-                'label' => 'Rue',
+                'label' => 'Rue :',
+                'attr' => [
+                    'class' => 'p-1'
+                ],
             ])
             ->add('street2', null, [
-                'label' => 'Complément',
+                'label' => 'Complément :',
+                'attr' => [
+                    'class' => 'p-1 w-75'
+                ],
             ])
             ->add('postcode', null, [
-                'label' => 'Code postal',
+                'label' => 'Code postal :',
+                'attr' => [
+                    'class' => 'p-1'
+                ],
             ])
             ->add('city', null, [
-                'label' => 'Ville',
+                'label' => 'Ville :',
+                'attr' => [
+                    'class' => 'p-1'
+                ],
             ])
             ->add('country', null, [
-                'label' => 'Pays',
+                'label' => 'Pays :',
+                'attr' => [
+                    'class' => 'p-1 w-75'
+                ],
             ])
             ->add('email', null, [
-                'label' => 'Email',
+                'label' => 'Email :',
+                'attr' => [
+                    'class' => 'p-1 w-50'
+                ],
             ])
             ->add('phoneNumber', null, [
-                'label' => 'n° de téléphone',
+                'label' => 'n° de téléphone :',
+                'attr' => [
+                    'class' => 'p-1 w-50'
+                ],
             ])
             ->add('birthday', BirthdayType::class, [
-                'label' => 'Date de naissance',
+                'label' => 'Date de naissance :',
                 'widget'=> 'single_text',
+                'input'  => 'datetime_immutable',
+                'attr' => [
+                    'class' => 'p-1 w-25',
+                    
+                ],
             ])
             ->add('newsletter', null, [
                 'label' => 'Newsletter',

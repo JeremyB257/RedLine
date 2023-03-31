@@ -7,9 +7,9 @@
     
     <h2 class="fs-4 my-4"> Mon compte </h2>  
 
-    <div class="d-flex justify-content-between">
+    <div class="d-flex gap-5">
         {# Menu #}
-        <div class="card my-5 account" style="width: 18rem;">
+        <section class="my-5 account" style="width: 18rem;">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item py-3 bg-color">
                     <h2 class="fs-4 fw-bold"> Bonjour {{ user.firstname }} </h2>
@@ -18,7 +18,7 @@
                     <a href="#">
                         <div class="d-flex justify-content-between align-items-center">
                             <i class="fa-solid fa-memo-circle-info fs-4" style="color: #000000;"></i>
-                            <span class="fs-5">Informations</span>
+                            <span>Informations</span>
                             <i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
                         </div>
                     </a>
@@ -27,7 +27,7 @@
                     <a href="{{ path('app_reset_password') }}">
                         <div class="d-flex justify-content-between align-items-center">
                             <i class="fa-solid fa-lock fs-4" style="color: #000000;"></i>
-                            <span class="fs-5">Mot de passe</span>
+                            <span>Mot de passe</span>
                             <i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
                         </div>
                     </a>
@@ -36,7 +36,7 @@
                     <a href="#">
                         <div class="d-flex justify-content-between align-items-center">
                             <i class="fa-solid fa-bags-shopping fs-4" style="color: #000000;"></i>
-                            <span class=" fs-5">Mes commandes</span>
+                            <span>Mes commandes</span>
                             <i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
                         </div>
                     </a>
@@ -45,13 +45,39 @@
                     <a href="{{ path('app_logout') }}">
                         <div class="d-flex">
                             <i class="fa-solid fa-right-from-bracket fs-4" style="color: #000000;"></i>
-                            <span class="ms-4 ps-2 fs-5"> Se déconnecter</span>
+                            <span class="ms-4 ps-4"> Se déconnecter</span>
                         </div>
                     </a>
                 </li>
             </ul>
-        </div>
+        </section>
 
+        {# formulaires d'informations utilisateurs #}
+        <section class="border border-3 rounded rounded-4 shadow shadow-sm my-5">
+            <div class="m-4">
+                {{ form_start(accountForm) }}
+                    <div>{{ form_row(accountForm.civility) }}</div>
+                    <div class="d-flex gap-5">
+                        {{ form_row(accountForm.firstname) }}
+                        {{ form_row(accountForm.lastname) }}
+                    </div>
+                    <p class="mt-3">Adresse : </p>
+                    <div  class="d-flex gap-5">
+                        {{ form_row(accountForm.number_adress) }}
+                        {{ form_row(accountForm.street1) }}
+                    </div>
+                    {{ form_row(accountForm.street2) }}
+                    <div class="d-flex gap-5">
+                        {{ form_row(accountForm.postcode) }}
+                        {{ form_row(accountForm.city) }}
+                    </div>
+                    {{ form_rest(accountForm)}}
+
+
+                    <button formnovalidate class="btn btn-primary my-3">Enregistrer</button>
+                {{ form_end(accountForm)}}
+            </div>
+        </section>
     </div>
 
 </div>
