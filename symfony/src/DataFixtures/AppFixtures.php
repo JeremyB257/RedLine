@@ -50,7 +50,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Rolex')
             ->setModel('GMT-Master II')
-            ->setImgUrl('RolexGmtMaster-green.png,RolexGmtMaster-red.png,RolexGmtMaster-blue.png')
+            ->setImgUrl('RolexGmtMaster-green.png,RolexGmtMaster-red.png,RolexGmtMaster-blue.png,RolexBoite.png')
             ->setPriceHt(12000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
@@ -66,7 +66,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Rolex')
             ->setModel('Oyster Perpetual')
-            ->setImgUrl('RolexOysterPerpetual-green.png,RolexOysterPerpetual-blue.png,RolexOysterPerpetual-red.png')
+            ->setImgUrl('RolexOysterPerpetual-green.png,RolexOysterPerpetual-blue.png,RolexOysterPerpetual-red.png,RolexBoite.png')
             ->setPriceHt(8500)
             ->setMaterial('acier')
             ->setMovement('Automatique')
@@ -83,7 +83,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Rolex')
             ->setModel('Sea Dweller')
-            ->setImgUrl('RolexSeaDweller-black.png,RolexSeaDweller-red.png,RolexSeaDweller-blue.png')
+            ->setImgUrl('RolexSeaDweller-black.png,RolexSeaDweller-red.png,RolexSeaDweller-blue.png,RolexBoite.png')
             ->setPriceHt(9500)
             ->setMaterial('or')
             ->setMovement('Automatique')
@@ -99,7 +99,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Rolex')
             ->setModel('Daytona')
-            ->setImgUrl('RolexDaytona-white.png,RolexDaytona-yellow.png')
+            ->setImgUrl('RolexDaytona-white.png,RolexDaytona-yellow.png,RolexBoite.png')
             ->setPriceHt(13000)
             ->setMaterial('or')
             ->setMovement('Automatique')
@@ -115,7 +115,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Rolex')
             ->setModel('Explorer')
-            ->setImgUrl('RolexExplorer-purple.png,RolexExplorer-black.png')
+            ->setImgUrl('RolexExplorer-purple.png,RolexExplorer-black.png,RolexBoite.png')
             ->setPriceHt(6600)
             ->setMaterial('acier')
             ->setMovement('Automatique')
@@ -131,7 +131,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Rolex')
             ->setModel('Day-Date')
-            ->setImgUrl('RolexDaydate-green.png,RolexDaydate-blue.png')
+            ->setImgUrl('RolexDaydate-green.png,RolexDaydate-blue.png,RolexBoite.png')
             ->setPriceHt(33500)
             ->setMaterial('or')
             ->setMovement('Automatique')
@@ -147,7 +147,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Rolex')
             ->setModel('Air-King')
-            ->setImgUrl('RolexAirKing-black.png')
+            ->setImgUrl('RolexAirKing-black.png,RolexBoite.png')
             ->setPriceHt(6100)
             ->setMaterial('acier')
             ->setMovement('Automatique')
