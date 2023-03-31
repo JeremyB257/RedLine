@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OrderController extends AbstractController
 {
-    #[Route('/{id}commandes', name: 'order.index')]
+    #[Route('/{id}/commandes', name: 'order.index')]
     #[Security("is_granted('ROLE_USER') and user === currentUser")]
     public function index(User $currentUser): Response
     {
