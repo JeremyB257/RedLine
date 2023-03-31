@@ -1,0 +1,16 @@
+.account {
+    .bg-color {
+        background-color: #ede7e7;
+    
+    }
+
+    .bg-color-active {
+        background-color: $primary;
+    }
+
+    // A contrôler et peut-être le passer dans setting
+    a{
+        text-decoration: none;
+    }
+
+}

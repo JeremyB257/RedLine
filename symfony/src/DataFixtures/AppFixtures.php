@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Contact;
 use App\Entity\Product;
+use App\Entity\Review;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -44,13 +45,12 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-
         $slugger = new AsciiSlugger();
 
         $watch = new Product();
         $watch->setBrand('Rolex')
             ->setModel('GMT-Master II')
-            ->setImgUrl('RolexGmtMaster-green.png,RolexGmtMaster-red.png,RolexGmtMaster-blue.png')
+            ->setImgUrl('RolexGmtMaster-green.png,RolexGmtMaster-red.png,RolexGmtMaster-blue.png,RolexBoite.png')
             ->setPriceHt(12000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
@@ -66,7 +66,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Rolex')
             ->setModel('Oyster Perpetual')
-            ->setImgUrl('RolexOysterPerpetual-green.png,RolexOysterPerpetual-blue.png,RolexOysterPerpetual-red.png')
+            ->setImgUrl('RolexOysterPerpetual-green.png,RolexOysterPerpetual-blue.png,RolexOysterPerpetual-red.png,RolexBoite.png')
             ->setPriceHt(8500)
             ->setMaterial('acier')
             ->setMovement('Automatique')
@@ -83,7 +83,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Rolex')
             ->setModel('Sea Dweller')
-            ->setImgUrl('RolexSeaDweller-black.png,RolexSeaDweller-red.png,RolexSeaDweller-blue.png')
+            ->setImgUrl('RolexSeaDweller-black.png,RolexSeaDweller-red.png,RolexSeaDweller-blue.png,RolexBoite.png')
             ->setPriceHt(9500)
             ->setMaterial('or')
             ->setMovement('Automatique')
@@ -94,6 +94,70 @@ class AppFixtures extends Fixture
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(100)
             ->setDescription("La Rolex Datejust pour homme est une montre élégante et intemporelle. Le boîtier en acier inoxydable et or jaune mesure 41 mm de diamètre et offre un design classique. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 100 mètres. Le bracelet en acier inoxydable et or jaune ajoute une touche de sophistication à l'ensemble.");
+        $manager->persist($watch);
+
+        $watch = new Product();
+        $watch->setBrand('Rolex')
+            ->setModel('Daytona')
+            ->setImgUrl('RolexDaytona-white.png,RolexDaytona-yellow.png,RolexBoite.png')
+            ->setPriceHt(13000)
+            ->setMaterial('or')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(40)
+            ->setCategory('homme')
+            ->setColor('white,yellow')
+            ->setStock(rand(0, 50))
+            ->setSlug($slugger->slug($watch->getModel()))
+            ->setWaterResistance(100)
+            ->setDescription("La Rolex Daytona est une montre de sport de luxe pour homme. Le boîtier en or jaune 18 carats mesure 40 mm de diamètre et offre un design élégant et classique. La montre dispose d'un chronographe et est étanche jusqu'à 100 mètres. Le bracelet en or jaune 18 carats complète parfaitement l'ensemble.");
+        $manager->persist($watch);
+
+        $watch = new Product();
+        $watch->setBrand('Rolex')
+            ->setModel('Explorer')
+            ->setImgUrl('RolexExplorer-purple.png,RolexExplorer-black.png,RolexBoite.png')
+            ->setPriceHt(6600)
+            ->setMaterial('acier')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(39)
+            ->setCategory('femme')
+            ->setColor('black,purple')
+            ->setStock(rand(0, 50))
+            ->setSlug($slugger->slug($watch->getModel()))
+            ->setWaterResistance(0)
+            ->setDescription("La Rolex Explorer est une montre de sport pour homme. Le boîtier en acier inoxydable mesure 39 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un affichage de la date à 3 heures et d'aiguilles luminescentes pour une visibilité accrue dans l'obscurité. Le bracelet en acier inoxydable est à la fois robuste et élégant.");
+        $manager->persist($watch);
+
+        $watch = new Product();
+        $watch->setBrand('Rolex')
+            ->setModel('Day-Date')
+            ->setImgUrl('RolexDaydate-green.png,RolexDaydate-blue.png,RolexBoite.png')
+            ->setPriceHt(33500)
+            ->setMaterial('or')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(36)
+            ->setCategory('homme')
+            ->setColor('blue,green')
+            ->setStock(rand(0, 50))
+            ->setSlug($slugger->slug($watch->getModel()))
+            ->setWaterResistance(100)
+            ->setDescription("La Rolex Day-Date est une montre de luxe pour homme en or jaune 18 carats. Le boîtier mesure 36 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un affichage de la date à 3 heures et d'un affichage du jour de la semaine en toutes lettres à 12 heures. Le bracelet en or jaune 18 carats est à la fois élégant et confortable.");
+        $manager->persist($watch);
+
+        $watch = new Product();
+        $watch->setBrand('Rolex')
+            ->setModel('Air-King')
+            ->setImgUrl('RolexAirKing-black.png,RolexBoite.png')
+            ->setPriceHt(6100)
+            ->setMaterial('acier')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(42)
+            ->setCategory('homme')
+            ->setColor('black')
+            ->setStock(rand(0, 50))
+            ->setSlug($slugger->slug($watch->getModel()))
+            ->setWaterResistance(200)
+            ->setDescription("La Rolex Air-King est une montre pour homme inspirée par les pionniers de l'aviation. Le boîtier en acier Oystersteel mesure 40 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un design épuré et élégant, sans fonctionnalités spécifiques. Le mouvement automatique offre une grande précision et une autonomie longue durée.");
         $manager->persist($watch);
 
 
@@ -430,71 +494,6 @@ class AppFixtures extends Fixture
 
 
 
-        $watch = new Product();
-        $watch->setBrand('Rolex')
-            ->setModel('Daytona')
-            ->setImgUrl('no-image.png')
-            ->setPriceHt(13000)
-            ->setMaterial('or')
-            ->setMovement('Automatique')
-            ->setCaseDiameter(40)
-            ->setCategory('homme')
-            ->setColor('white')
-            ->setStock(rand(0, 50))
-            ->setSlug($slugger->slug($watch->getModel()))
-            ->setWaterResistance(100)
-            ->setDescription("La Rolex Daytona est une montre de sport de luxe pour homme. Le boîtier en or jaune 18 carats mesure 40 mm de diamètre et offre un design élégant et classique. La montre dispose d'un chronographe et est étanche jusqu'à 100 mètres. Le bracelet en or jaune 18 carats complète parfaitement l'ensemble.");
-        $manager->persist($watch);
-
-
-        $watch = new Product();
-        $watch->setBrand('Rolex')
-            ->setModel('Explorer')
-            ->setImgUrl('no-image.png')
-            ->setPriceHt(6600)
-            ->setMaterial('acier')
-            ->setMovement('Automatique')
-            ->setCaseDiameter(39)
-            ->setCategory('femme')
-            ->setColor('white')
-            ->setStock(rand(0, 50))
-            ->setSlug($slugger->slug($watch->getModel()))
-            ->setWaterResistance(0)
-            ->setDescription("La Rolex Explorer est une montre de sport pour homme. Le boîtier en acier inoxydable mesure 39 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un affichage de la date à 3 heures et d'aiguilles luminescentes pour une visibilité accrue dans l'obscurité. Le bracelet en acier inoxydable est à la fois robuste et élégant.");
-        $manager->persist($watch);
-
-        $watch = new Product();
-        $watch->setBrand('Rolex')
-            ->setModel('Day-Date')
-            ->setImgUrl('no-image.png')
-            ->setPriceHt(33500)
-            ->setMaterial('or')
-            ->setMovement('Automatique')
-            ->setCaseDiameter(36)
-            ->setCategory('homme')
-            ->setColor('white')
-            ->setStock(rand(0, 50))
-            ->setSlug($slugger->slug($watch->getModel()))
-            ->setWaterResistance(100)
-            ->setDescription("La Rolex Day-Date est une montre de luxe pour homme en or jaune 18 carats. Le boîtier mesure 36 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un affichage de la date à 3 heures et d'un affichage du jour de la semaine en toutes lettres à 12 heures. Le bracelet en or jaune 18 carats est à la fois élégant et confortable.");
-        $manager->persist($watch);
-
-        $watch = new Product();
-        $watch->setBrand('Rolex')
-            ->setModel('Air-King')
-            ->setImgUrl('no-image.png')
-            ->setPriceHt(6100)
-            ->setMaterial('acier')
-            ->setMovement('Automatique')
-            ->setCaseDiameter(42)
-            ->setCategory('homme')
-            ->setColor('white')
-            ->setStock(rand(0, 50))
-            ->setSlug($slugger->slug($watch->getModel()))
-            ->setWaterResistance(200)
-            ->setDescription("La Rolex Air-King est une montre pour homme inspirée par les pionniers de l'aviation. Le boîtier en acier Oystersteel mesure 40 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un design épuré et élégant, sans fonctionnalités spécifiques. Le mouvement automatique offre une grande précision et une autonomie longue durée.");
-        $manager->persist($watch);
-
         $faker = Factory::create('fr_FR');
 
         for ($i = 0; $i < 10; $i++) {
@@ -508,6 +507,18 @@ class AppFixtures extends Fixture
             $contact->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
             $manager->persist($contact);
         }
+
+        for ($i = 0; $i < 14; $i++) {
+            $review = new Review();
+            $review->setFirstname($faker->firstname());
+            $review->setContent($faker->sentence(13));
+            $review->setEvaluation($faker->numberBetween(1, 5));
+            $review->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
+            $review->setProduct($watch);
+            $review->setUser($user);
+            $manager->persist($review);
+        }
+
         $manager->flush();
     }
 }
