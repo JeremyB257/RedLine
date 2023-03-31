@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container-lg container-show d-flex py-10">
-        <div class="little-pictures-container d-flex flex-column align-items-center justify-content-center gap-4">
+        <div class="little-pictures-container d-flex align-items-center">
             <div class="little-pictures"></div>
             <div class="little-pictures"></div>
             <div class="little-pictures"></div>
@@ -15,7 +15,7 @@
         <div class="info d-flex flex-column gap-3">
             <h1 class="product-name">{{ product.brand }} {{ product.model }}</h1>
             <h2 class="price">{{ (product.priceHt * 1.20 - 0.01) | format_currency('EUR') }}</h2>
-            <div>
+            <div class="choice-color-container">
                 <p class="choice-title">Colors</p>
                 <div class="d-flex gap-3">
                     <div class="choice-color"></div>
@@ -23,8 +23,7 @@
                     <div class="choice-color"></div>
                 </div>
             </div>
-            
-            <button class="btn-primary btn-add-to-cart">Ajouter au panier</button>
+                <button class="btn-primary btn-add-to-cart">Ajouter au panier</button>
         </div>
     </div>
 {% endblock %}
