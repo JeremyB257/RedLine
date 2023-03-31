@@ -17,7 +17,7 @@ class ProductController extends AbstractController
         $filters = [];
         $filters['material'] = ($request->get('material') ?  $request->get('material') : null);
         $filters['case_diameter'] = ($request->get('case_diameter') ?  $request->get('case_diameter') : null);
-        
+
         if ($filters['material'] || $filters['case_diameter']) {
             $products = $repository->findByManyFilters($filters);
         } else {
@@ -25,7 +25,7 @@ class ProductController extends AbstractController
         };
 
 
-        
+
         return $this->render('product/index.html.twig', [
             'products' => $products,
         ]);

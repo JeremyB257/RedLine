@@ -78,12 +78,12 @@
 	<div class="product container-lg d-flex justify-content-center align-items-center my-5 flex-wrap">
 		<div class="filter-watch">
 			{% for img in (watches[0].imgUrl | split(',')) %}
-				<img class="size-filter" src="{{'img/' ~ img}}" alt="{{ watches[0].model }}">
+				<img class="little-pictures" src="{{'img/' ~ img}}" alt="{{ watches[0].model }}">
 			{% endfor %}
 		</div>
 
 		<div class="width-flex">
-			<img class="w-100 main-img" src="{{'img/' ~ (watches[0].imgUrl | split(','))[0]}}" alt="laxar">
+			<img class="w-100 main-picture" src="{{'img/' ~ (watches[0].imgUrl | split(','))[0]}}" alt="laxar">
 		</div>
 
 		<div class="contenu">

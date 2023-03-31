@@ -1,86 +1,72 @@
 .container-main {
   padding: 30px 10px;
-}
-
-.container-section {
-  gap: 15px;
-  flex: 70%;
-}
-
-.filter {
-  flex: 30%;
-  font-size: 15px;
-  color: $color-dark;
-  border-right: solid 3px lightgray;
-}
-
-.card-watch {
-  width: 600px;
-  height: fit-content;
-  max-height: 250px;
-  border: solid 2px $color-dark;
-  padding: 10px 30px 10px 10px;
-  gap: 0 20px;
-}
-
-.infos {
-  flex: 70%;
-  gap: 10px;
-}
-
-.price {
-  font-weight: bold;
-  font-size: 20px;
-  color: $color-primary;
-}
-
-.brand-model {
-  font-size: 23px;
-  color: $color-dark;
-  font-weight: bold;
-}
-
-.desc {
-  color: gray;
-  font-size: 12px;
-  margin: 0;
-  padding: 0;
-}
-
-.show-more-button {
-  align-self: flex-end;
-}
-
-.img-product {
-  flex: 30%;
-  height: 200px;
-  background-color: brown;
-  align-self: center;
-}
-
-h3,
-.title-filter {
-  font-size: 15px;
-  padding-top: 20px;
-}
-
-.separate-line {
-  width: 90%;
-  background-color: $color-dark;
-  border-radius: 25px;
-  height: 1px;
-}
-
-.btn-filter {
-  width: 50%;
-  margin: auto;
-}
-
-.category-filter {
-  padding-bottom: 40px;
-}
-
-.in-progress {
-  color: red;
-  font-weight: bold;
+  .filter {
+    flex: 30%;
+    font-size: 15px;
+    color: $color-dark;
+    border-right: solid 3px lightgray;
+    .separate-line {
+      width: 90%;
+      background-color: $color-dark;
+      border-radius: 25px;
+      height: 1px;
+    }
+    h3,
+    .title-filter {
+      font-size: 15px;
+      padding-top: 20px;
+    }
+    .in-progress {
+      color: red;
+      font-weight: bold;
+    }
+    .category-filter {
+      padding-bottom: 40px;
+    }
+    .btn-filter {
+      width: 50%;
+      margin: auto;
+    }
+  }
+  .container-section {
+    gap: 15px;
+    flex: 70%;
+    .card-watch {
+      width: 600px;
+      height: fit-content;
+      max-height: 250px;
+      border: solid 2px $color-dark;
+      padding: 10px 30px 10px 10px;
+      gap: 0 20px;
+      .infos {
+        flex: 70%;
+        gap: 10px;
+      }
+      .price {
+        font-weight: bold;
+        font-size: 20px;
+        color: $color-primary;
+      }
+      .brand-model {
+        font-size: 23px;
+        color: $color-dark;
+        font-weight: bold;
+      }
+      .desc {
+        color: gray;
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+      }
+      .show-more-button {
+        align-self: flex-end;
+      }
+      .img-product {
+        flex: 30%;
+        height: 200px;
+        background-color: brown;
+        align-self: center;
+      }
+    }
+  }
 }
