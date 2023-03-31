@@ -5,9 +5,10 @@
 {% block body %}
     <div class="container-lg container-show d-flex py-10">
         <div class="little-pictures-container d-flex align-items-center">
-            <div class="little-pictures"></div>
-            <div class="little-pictures"></div>
-            <div class="little-pictures"></div>
+            {% for img in (product.imgUrl | split(',')) %}
+                {{ dump(img) }}
+				<img class="little-pictures" src="{{ '../../public/img/' ~ img }}" alt="{{ product.model }}">
+			{% endfor %}
         </div>
         <div class="main-picture-container d-flex flex-column align-items-center justify-content-center">
             <div class="main-picture">main_picture.png</div>
