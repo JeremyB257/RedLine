@@ -296,18 +296,18 @@ class AppFixtures extends Fixture
 
         $watch = new Product();
         $watch->setBrand('Seiko')
-            ->setModel('Prospex Samurai')
-            ->setImgUrl('no-image.png')
+            ->setModel('Astron')
+            ->setImgUrl('SeikoAstron-white.png,SeikoAstron-red.png')
             ->setPriceHt(500)
             ->setMaterial('acier')
             ->setMovement('Automatique')
-            ->setCaseDiameter(40)
+            ->setCaseDiameter(44)
             ->setCategory('homme')
-            ->setColor('white')
+            ->setColor('white,red')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(200)
-            ->setDescription("La montre Seiko Prospex Samurai pour homme est une montre automatique conçue pour les plongeurs. Son boîtier en acier inoxydable mesure 44 mm de diamètre et offre une étanchéité de 200 mètres. La montre dispose d'une lunette tournante unidirectionnelle pour mesurer le temps de plongée et d'un affichage de la date à 3 heures. Le bracelet en acier inoxydable assure un look robuste et sportif.");
+            ->setDescription("La montre Seiko Astron pour homme est une montre automatique conçue pour les plongeurs. Son boîtier en acier inoxydable mesure 44 mm de diamètre et offre une étanchéité de 200 mètres. La montre dispose d'une lunette tournante unidirectionnelle pour mesurer le temps de plongée et d'un affichage de la date à 3 heures. Le bracelet en acier inoxydable assure un look robuste et sportif.");
         $manager->persist($watch);
 
         $watch = new Product();
