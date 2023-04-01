@@ -280,18 +280,18 @@ class AppFixtures extends Fixture
 
         $watch = new Product();
         $watch->setBrand('Seiko')
-            ->setModel('Prospex Spring Drive')
-            ->setImgUrl('no-image.png')
+            ->setModel('Alpinist')
+            ->setImgUrl('SeikoAlpinist-green.png,SeikoAlpinist-brown.png')
             ->setPriceHt(1200)
             ->setMaterial('titane')
             ->setMovement('Automatique')
             ->setCaseDiameter(44)
             ->setCategory('homme')
-            ->setColor('white')
+            ->setColor('green,brown')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(300)
-            ->setDescription("La montre Seiko Prospex pour homme est une montre de plongée haut de gamme. Son boîtier en titane mesure 44 mm de diamètre et offre une étanchéité de 300 mètres. La montre est équipée d'un mouvement automatique et dispose d'une fonction GMT pour afficher un second fuseau horaire. La date est affichée à 3 heures. Le bracelet en titane est confortable à porter, même lors de plongées prolongées. La montre Seiko Prospex est un choix parfait pour les plongeurs expérimentés et les amateurs de montres robustes.");
+            ->setDescription("La montre Seiko Alpinist pour homme est une montre de plongée haut de gamme. Son boîtier en titane mesure 44 mm de diamètre et offre une étanchéité de 300 mètres. La montre est équipée d'un mouvement automatique et dispose d'une fonction GMT pour afficher un second fuseau horaire. La date est affichée à 3 heures. Le bracelet en titane est confortable à porter, même lors de plongées prolongées. La montre Seiko Prospex est un choix parfait pour les plongeurs expérimentés et les amateurs de montres robustes.");
         $manager->persist($watch);
 
         $watch = new Product();
