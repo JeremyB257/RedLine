@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\User;
+use App\Repository\OrderItemsRepository;
 use App\Repository\OrderRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -28,12 +29,13 @@ class OrderController extends AbstractController
     #[Security("is_granted('ROLE_USER') and user === currentUser and user === order.getUser()")]
     #[ParamConverter('currentUser', options: ['mapping' => ['idUser' => 'id']])]
     #[ParamConverter('order', options: ['mapping' => ['idOrder' => 'id']])]
-    public function show(User $currentUser, Order $order, OrderRepository $orderRepo): Response
+    public function show(User $currentUser, Order $order, OrderRepository $orderRepo, OrderItemsRepository $orderItemsRepo): Response
     {
 
         return $this->render('user/orderShow.html.twig', [
             'user' => $currentUser,
-            'order' => $orderRepo->findOneBy(['id' => $order], ['createdAt' => 'DESC'])
+            'order' => $orderRepo->findOneBy(['id' => $order], ['createdAt' => 'DESC']),
+            'orderItems' => $orderItemsRepo->findBy(['order' => $order])
         ]);
     }
 }
