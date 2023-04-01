@@ -542,7 +542,7 @@ class AppFixtures extends Fixture
         }
 
         $orders = [];
-        for ($i = 0; $i < 40; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $order = new Order();
             $order->setUser($users[rand(0, 10)])
                 ->setTotal(rand(300, 1800))
@@ -553,9 +553,9 @@ class AppFixtures extends Fixture
             $manager->persist($order);
         }
 
-        for ($i = 0; $i < 40; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $orderItem = new OrderItems();
-            $orderItem->setOrder($orders[rand(0, 40)])
+            $orderItem->setOrder($orders[rand(0, 20)])
                 ->setProduct($watches[rand(0, 26)])
                 ->setQuantity(rand(1, 2))
                 ->setTotal($orderItem->getProduct()->getPriceHt() * $orderItem->getQuantity())
