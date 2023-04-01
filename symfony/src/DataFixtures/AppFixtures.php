@@ -263,18 +263,18 @@ class AppFixtures extends Fixture
 
         $watch = new Product();
         $watch->setBrand('Seiko')
-            ->setModel('Prospex Alpinist')
-            ->setImgUrl('no-image.png')
+            ->setModel('Lukia')
+            ->setImgUrl('SeikoLukia-green.png,SeikoLukia-white.png')
             ->setPriceHt(750)
             ->setMaterial('acier')
             ->setMovement('Automatique')
-            ->setCaseDiameter(40)
-            ->setCategory('homme')
-            ->setColor('white')
+            ->setCaseDiameter(36)
+            ->setCategory('femme')
+            ->setColor('green,white')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(200)
-            ->setDescription("Découvrez la montre Seiko Prospex Alpinist pour homme. Cette montre automatique est conçue pour les aventuriers et les amateurs d'activités de plein air. Son boîtier en acier inoxydable mesure 40 mm de diamètre et offre une étanchéité de 200 mètres. La montre dispose d'un affichage de la date à 3 heures et d'une boussole sur le cadran pour vous orienter lors de vos sorties en montagne. Le bracelet en cuir marron apporte une touche de rusticité à cette montre sportive.");
+            ->setDescription("Découvrez la montre Seiko Lukia pour femme. Cette montre automatique est conçue pour les aventuriers et les amateurs d'activités de plein air. Son boîtier en acier inoxydable mesure 40 mm de diamètre et offre une étanchéité de 200 mètres. La montre dispose d'un affichage de la date à 3 heures et d'une boussole sur le cadran pour vous orienter lors de vos sorties en montagne. Le bracelet en cuir marron apporte une touche de rusticité à cette montre sportive.");
         $manager->persist($watch);
 
 
