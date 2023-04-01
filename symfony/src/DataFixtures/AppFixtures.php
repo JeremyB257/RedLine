@@ -312,10 +312,10 @@ class AppFixtures extends Fixture
 
         $watch = new Product();
         $watch->setBrand('Seiko')
-            ->setModel('Presage Chrono')
-            ->setImgUrl('no-image.png')
+            ->setModel('Classic')
+            ->setImgUrl('SeikoClassic-green.png,SeikoClassic-white.png')
             ->setPriceHt(800)
-            ->setMaterial('acier')
+            ->setMaterial('cuir')
             ->setMovement('Automatique')
             ->setCaseDiameter(41)
             ->setCategory('homme')
@@ -323,7 +323,7 @@ class AppFixtures extends Fixture
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(50)
-            ->setDescription("La montre Seiko Presage pour homme est une montre élégante et fonctionnelle. Son boîtier en acier inoxydable mesure 40,5 mm de diamètre et son cadran bleu soleillé est orné de sous-cadrans pour le chronographe. La montre dispose d'une fonction chronographe pour mesurer le temps écoulé et d'un affichage de la date à 4 heures. La montre est étanche jusqu'à 50 mètres et dispose d'un bracelet en cuir noir. La montre Seiko Presage est un choix parfait pour les hommes élégants qui ont besoin d'une montre polyvalente pour leur vie quotidienne.");
+            ->setDescription("La montre Seiko Classic pour homme est une montre élégante et fonctionnelle. Son boîtier en acier inoxydable mesure 40,5 mm de diamètre et son cadran bleu soleillé est orné de sous-cadrans pour le chronographe. La montre dispose d'une fonction chronographe pour mesurer le temps écoulé et d'un affichage de la date à 4 heures. La montre est étanche jusqu'à 50 mètres et dispose d'un bracelet en cuir noir. La montre Seiko Presage est un choix parfait pour les hommes élégants qui ont besoin d'une montre polyvalente pour leur vie quotidienne.");
         $manager->persist($watch);
 
         $watch = new Product();
