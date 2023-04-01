@@ -15,19 +15,26 @@ class ProductController extends AbstractController
     {
 
         $filters = [];
-        $filters['material'] = ($request->get('material') ?  $request->get('material') : null);
-        $filters['case_diameter'] = ($request->get('case_diameter') ?  $request->get('case_diameter') : null);
+        $filters['brand'] = $request->get('brand') ?? null;
+        $filters['material'] = $request->get('material') ?? null;
+        $filters['case_diameter'] = $request->get('case_diameter') ?? null;
 
-        if ($filters['material'] || $filters['case_diameter']) {
+        if (!empty($filters)) {
             $products = $repository->findByManyFilters($filters);
         } else {
             $products = $repository->findAll();
         };
 
+        $brands = $repository->findDistinctBrand();
+        $materials = $repository->findDistinctMaterial();
+        $case_diameters = $repository->findDistinctCaseDiameter();
 
 
         return $this->render('product/index.html.twig', [
             'products' => $products,
+            'brands' => $brands,
+            'materials' => $materials,
+            'case_diameters' => $case_diameters,
         ]);
     }
 

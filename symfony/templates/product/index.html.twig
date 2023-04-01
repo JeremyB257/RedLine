@@ -1,58 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produits - OverTime{% endblock %}
+{% block title %}Produits - {{ parent() }}{% endblock %}
 
 {% block body %}
 <div class="d-flex container-lg container-main">
     <aside class="filter">
         <form action="{{ path('app_product') }}" method="GET" class="d-flex flex-column">
-            <div class="in-progress">SYSTEME DE FILTRE NON FINI</div>
+            <div class="in-progress">Affiner vos recherches</div>
             <div class="separate-line"></div>
             <div class="category-filter">
-                <h3 class="title-filter pb-3">Matériaux :</h3>
                 <div class="d-flex flex-column gap-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="material[]" id="acier" value="acier">
-                        <label class="form-check-label" for="acier">Acier</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="material[]" id="cuir" value="cuir">
-                        <label class="form-check-label" for="cuir">Cuir</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="material[]" id="or" value="or">
-                        <label class="form-check-label" for="or">Or</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="material[]" id="titane" value="titane">
-                        <label class="form-check-label" for="titane">Titane</label>
-                    </div>
-                </div>
-            </div>
-            <div class="separate-line"></div>
-            <div class="category-filter">
-                <h3 class="title-filter pb-3">Tailles du cadran :</h3>
-                <div class="d-flex flex-column gap-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_38" value=38>
-                        <label class="form-check-label" for="case_diameter_38">38 mm</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_40" value=40>
-                        <label class="form-check-label" for="case_diameter_40">40 mm</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_42" value=42>
-                        <label class="form-check-label" for="case_diameter_42">42 mm</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_44" value=44>
-                        <label class="form-check-label" for="case_diameter_44">44 mm</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="case_diameter[]" id="case_diameter_45" value=45>
-                        <label class="form-check-label" for="case_diameter_45">45 mm</label>
-                    </div>
+                    <label for="select-brand" class="title-filter">Marques</label>
+                    <select name="brand" id="select-brand">
+                        <option value="">Toutes</option>
+                        {% for brand in brands %}
+                            <option value="{{ brand['brand'] }}">{{ brand['brand'] }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="select-material" class="title-filter">Matériaux :</label>
+                    <select name="material" id="select-material">
+                        <option value="" selected>Tous</option>
+                        {% for material in materials %}
+                            <option value="{{ material['material'] }}">{{ material['material'] | title }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="select-case-diameter" class="title-filter">Tailles du cadran :</label>
+                    <select name="case_diameter" id="select-case-diameter">
+                        <option value="">Toutes</option>
+                        {% for case_diameter in case_diameters %}
+                            <option value="{{ case_diameter['case_diameter'] }}">{{ case_diameter['case_diameter'] }} mm</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
             <button class="btn-primary btn-filter">Filtrer</button>
