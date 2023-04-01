@@ -283,7 +283,7 @@ class AppFixtures extends Fixture
             ->setModel('Alpinist')
             ->setImgUrl('SeikoAlpinist-green.png,SeikoAlpinist-brown.png')
             ->setPriceHt(1200)
-            ->setMaterial('titane')
+            ->setMaterial('nylon')
             ->setMovement('Automatique')
             ->setCaseDiameter(44)
             ->setCategory('homme')
