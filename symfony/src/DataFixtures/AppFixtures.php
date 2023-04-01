@@ -471,7 +471,7 @@ class AppFixtures extends Fixture
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(0)
-            ->setDescription("La montre Tissot Carson pour homme est une montre élégante et intemporelle. Le boîtier en acier inoxydable mesure 40 mm de diamètre et offre un design simple et épuré. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 30 mètres. Le bracelet en acier inoxydable ajoute une touche de sophistication à l'ensemble.");
+            ->setDescription("La montre Tissot Carson pour femme est une montre élégante et intemporelle. Le boîtier en acier inoxydable mesure 39 mm de diamètre et offre un design simple et épuré. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 30 mètres. Le bracelet en acier inoxydable ajoute une touche de sophistication à l'ensemble.");
         $manager->persist($watch);
 
 
