@@ -245,18 +245,18 @@ class AppFixtures extends Fixture
 
         $watch = new Product();
         $watch->setBrand('Seiko')
-            ->setModel('Astron')
-            ->setImgUrl('no-image.png')
+            ->setModel('Queen')
+            ->setImgUrl('SeikoQueen-red.png,SeikoQueen-brown.png,SeikoQueen-purple.png')
             ->setPriceHt(2200)
             ->setMaterial('titane')
-            ->setMovement('Quartz solaire')
-            ->setCaseDiameter(43)
-            ->setCategory('homme')
-            ->setColor('white')
+            ->setMovement('Automatique')
+            ->setCaseDiameter(37)
+            ->setCategory('femme')
+            ->setColor('red,brown,purple')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(100)
-            ->setDescription("La montre Seiko Astron pour homme est une montre GPS solaire haut de gamme. Son boîtier en titane mesure 42,9 mm de diamètre et offre une étanchéité de 100 mètres. La montre est alimentée par l'énergie solaire et dispose d'une fonction GPS qui permet de régler automatiquement l'heure et la date en fonction de votre position géographique. La montre dispose également d'un affichage de la date et d'un bracelet en titane.");
+            ->setDescription("La montre Seiko Queen pour femme est une montre GPS solaire haut de gamme. Son boîtier en titane mesure 37 mm de diamètre et offre une étanchéité de 100 mètres. La montre est alimentée par l'énergie solaire et dispose d'une fonction GPS qui permet de régler automatiquement l'heure et la date en fonction de votre position géographique. La montre dispose également d'un affichage de la date et d'un bracelet en titane.");
         $manager->persist($watch);
 
 
