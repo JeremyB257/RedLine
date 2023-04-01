@@ -347,19 +347,19 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Tissot')
             ->setModel('Le Locle')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('TissotLocle-blue.png,TissotLocle-black.png,TissotLocle-white.png')
             ->setPriceHt(700)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(39)
             ->setCategory('femme')
-            ->setColor('white')
+            ->setColor('blue,black,white')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(0)
             ->setDescription("Découvrez la montre Tissot Le Locle pour homme. Cette montre automatique est un hommage à la ville suisse du même nom, berceau de l'horlogerie Tissot. Le boîtier en acier inoxydable mesure 39 mm de diamètre et offre un design élégant et classique. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 30 mètres. Le bracelet en acier inoxydable complète parfaitement l'ensemble.");
         $manager->persist($watch);
-        $watches[] = $watch;
+
 
         $watch = new Product();
         $watch->setBrand('Tissot')
@@ -376,7 +376,6 @@ class AppFixtures extends Fixture
             ->setWaterResistance(100)
             ->setDescription("La montre Tissot T-Touch Expert Solar est une montre de sport pour homme équipée de la dernière technologie. Le boîtier en titane résistant mesure 45 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose de fonctionnalités utiles pour les activités en plein air, notamment un altimètre, un baromètre, une boussole, un chronographe et un thermomètre. Le mouvement à quartz solaire assure une précision exceptionnelle et une autonomie longue durée.");
         $manager->persist($watch);
-        $watches[] = $watch;
 
         $watch = new Product();
         $watch->setBrand('Tissot')
@@ -393,35 +392,34 @@ class AppFixtures extends Fixture
             ->setWaterResistance(0)
             ->setDescription("La montre Tissot Carson pour homme est une montre élégante et intemporelle. Le boîtier en acier inoxydable mesure 40 mm de diamètre et offre un design simple et épuré. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 30 mètres. Le bracelet en acier inoxydable ajoute une touche de sophistication à l'ensemble.");
         $manager->persist($watch);
-        $watches[] = $watch;
 
         $watch = new Product();
         $watch->setBrand('Tissot')
             ->setModel('V8')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('TissotV8-pink.png,TissotV8-white.png,TissotV8-black.png')
             ->setPriceHt(550)
             ->setMaterial('acier')
             ->setMovement('Quartz')
             ->setCaseDiameter(42)
-            ->setCategory('homme')
-            ->setColor('white')
+            ->setCategory('femme')
+            ->setColor('pink,white,black')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(100)
-            ->setDescription("La montre Tissot V8 pour homme est une montre sportive et élégante. Le boîtier en acier inoxydable mesure 42,5 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un chronographe et d'un affichage de la date à 4 heures. Le bracelet en acier inoxydable ajoute une touche de sophistication à l'ensemble.");
+            ->setDescription("La montre Tissot V8 pour femme est une montre sportive et élégante. Le boîtier en acier inoxydable mesure 42,5 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un chronographe et d'un affichage de la date à 4 heures. Le bracelet en acier inoxydable ajoute une touche de sophistication à l'ensemble.");
         $manager->persist($watch);
         $watches[] = $watch;
 
         $watch = new Product();
         $watch->setBrand('Tissot')
             ->setModel('Heritage Visodate')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('TissotHeritageVisodate-blue.png,TissotHeritageVisodate-green.png,TissotHeritageVisodate-orange.png')
             ->setPriceHt(580)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(41)
             ->setCategory('homme')
-            ->setColor('white')
+            ->setColor('blue,green,orange')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(30)
@@ -432,13 +430,13 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Tissot')
             ->setModel('Seastar 1000 Powermatic 80')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('TissotSeastar1000Powermatic80-blue.png,TissotSeastar1000Powermatic80-grey.png,TissotSeastar1000Powermatic80-brown')
             ->setPriceHt(990)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(43)
             ->setCategory('homme')
-            ->setColor('white')
+            ->setColor('blue,grey,brown')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(300)
@@ -449,13 +447,13 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Tissot')
             ->setModel('Everytime')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('TissotEverytime-green.png,TissotEverytime-red.png,TissotEverytime-yellow.png')
             ->setPriceHt(250)
             ->setMaterial('cuir')
             ->setMovement('Quartz')
             ->setCaseDiameter(38)
             ->setCategory('femme')
-            ->setColor('white')
+            ->setColor('green,red,yellow')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(0)
@@ -466,34 +464,67 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Tissot')
             ->setModel('Gentleman')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('TissotGentleman-blue.png,TissotGentleman-yellow.png,TissotGentleman-pink.png')
             ->setPriceHt(800)
             ->setMaterial('acier')
             ->setMovement('Automatique')
-            ->setCaseDiameter(44)
-            ->setCategory('homme')
-            ->setColor('white')
+            ->setCaseDiameter(36)
+            ->setCategory('femme')
+            ->setColor('blue,yellow,pink')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(0)
-            ->setDescription("La montre Tissot Gentleman est une montre pour homme élégante et sophistiquée. Le boîtier en acier inoxydable mesure 40 mm de diamètre et offre un design classique et intemporel. La montre dispose d'un mouvement automatique fiable et est étanche jusqu'à 100 mètres. L'affichage de la date à 3 heures ajoute une touche de praticité à l'ensemble. Le bracelet en acier inoxydable complète parfaitement le design élégant de cette montre.");
+            ->setDescription("La montre Tissot Gentleman est une montre pour femme élégante et sophistiquée. Le boîtier en acier inoxydable mesure 40 mm de diamètre et offre un design classique et intemporel. La montre dispose d'un mouvement automatique fiable et est étanche jusqu'à 100 mètres. L'affichage de la date à 3 heures ajoute une touche de praticité à l'ensemble. Le bracelet en acier inoxydable complète parfaitement le design élégant de cette montre.");
         $manager->persist($watch);
         $watches[] = $watch;
 
         $watch = new Product();
         $watch->setBrand('Tissot')
             ->setModel('Seastar 1000')
-            ->setImgUrl('no-image.png')
+            ->setImgUrl('TissotSeastar1000-green.png,TissotSeastar1000-purple.png,TissotSeastar1000-red.png')
             ->setPriceHt(950)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(43)
-            ->setCategory('homme')
-            ->setColor('white')
+            ->setCategory('femme')
+            ->setColor('green,purple,red')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(200)
-            ->setDescription("La montre Tissot Seastar 1000 est une montre de plongée pour homme. Le boîtier en acier inoxydable mesure 43 mm de diamètre et est équipé d'une lunette unidirectionnelle en céramique. La montre dispose d'un affichage de la date à 6 heures, d'un chronographe et est étanche jusqu'à 300 mètres. Le bracelet en acier inoxydable et céramique est à la fois résistant et élégant.");
+            ->setDescription("La montre Tissot Seastar 1000 est une montre de plongée pour femme. Le boîtier en acier inoxydable mesure 43 mm de diamètre et est équipé d'une lunette unidirectionnelle en céramique. La montre dispose d'un affichage de la date à 6 heures, d'un chronographe et est étanche jusqu'à 300 mètres. Le bracelet en acier inoxydable et céramique est à la fois résistant et élégant.");
+        $manager->persist($watch);
+
+
+        $watch = new Product();
+        $watch->setBrand('Tissot')
+            ->setModel('T-Touch Expert Solar')
+            ->setImgUrl('TissotTouchExpertSolar-green.png,TissotTouchExpertSolar-blue.png,TissotTouchExpertSolar-black.png')
+            ->setPriceHt(1200)
+            ->setMaterial('titane')
+            ->setMovement('Quartz solaire')
+            ->setCaseDiameter(45)
+            ->setCategory('homme')
+            ->setColor('green,blue,black')
+            ->setStock(rand(0, 50))
+            ->setSlug($slugger->slug($watch->getModel()))
+            ->setWaterResistance(100)
+            ->setDescription("La montre Tissot T-Touch Expert Solar est une montre de sport pour homme équipée de la dernière technologie. Le boîtier en titane résistant mesure 45 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose de fonctionnalités utiles pour les activités en plein air, notamment un altimètre, un baromètre, une boussole, un chronographe et un thermomètre. Le mouvement à quartz solaire assure une précision exceptionnelle et une autonomie longue durée.");
+        $manager->persist($watch);
+
+        $watch = new Product();
+        $watch->setBrand('Tissot')
+            ->setModel('Carson')
+            ->setImgUrl('TissotCarson-gold.png,TissotCarson-green.png,TissotCarson-pink.png')
+            ->setPriceHt(350)
+            ->setMaterial('acier')
+            ->setMovement('Quartz')
+            ->setCaseDiameter(39)
+            ->setCategory('femme')
+            ->setColor('white')
+            ->setStock(rand(0, 50))
+            ->setSlug($slugger->slug($watch->getModel()))
+            ->setWaterResistance(0)
+            ->setDescription("La montre Tissot Carson pour femme est une montre élégante et intemporelle. Le boîtier en acier inoxydable mesure 39 mm de diamètre et offre un design simple et épuré. La montre dispose d'un affichage de la date à 3 heures et est étanche jusqu'à 30 mètres. Le bracelet en acier inoxydable ajoute une touche de sophistication à l'ensemble.");
         $manager->persist($watch);
         $watches[] = $watch;
 
