@@ -15,7 +15,19 @@ class OrderController extends AbstractController
     #[Security("is_granted('ROLE_USER') and user === currentUser")]
     public function index(User $currentUser, OrderRepository $orderRepo): Response
     {
-        return $this->render('user/order.html.twig', [
+        return $this->render('user/orderIndex.html.twig', [
+            'user' => $currentUser,
+            'orders' => $orderRepo->findBy(['user' => $currentUser], ['createdAt' => 'DESC'])
+        ]);
+    }
+
+
+    #[Route('/{idUser}/commandes/{idOrder}', name: 'order.show')]
+    #[Security("is_granted('ROLE_USER') and user === currentUser")]
+    public function show(User $currentUser, OrderRepository $orderRepo): Response
+    {
+
+        return $this->render('user/orderShow.html.twig', [
             'user' => $currentUser,
             'orders' => $orderRepo->findBy(['user' => $currentUser], ['createdAt' => 'DESC'])
         ]);
