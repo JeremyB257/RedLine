@@ -39,8 +39,8 @@
     <div class="container-section d-flex flex-column align-items-center">
         {% for product in products|sort((a, b) => a.priceHt <=> b.priceHt) %}
             <div class="card-watch d-flex justify-between">
-                <div class="img-product d-flex justify-content-center align-items-center">
-                    <span>image.png</span>
+                <div class="d-flex justify-content-center align-items-center">
+				    <img class="img-product" src="{{ '/img/' ~ (product.imgUrl | split(',')[0]) }}" alt="{{ product.model }}">
                 </div>
                 <div class="infos d-flex flex-column">
                     <span class="brand-model">{{ product.brand }} - {{ product.model }}</span>
