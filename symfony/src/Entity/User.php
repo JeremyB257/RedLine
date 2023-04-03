@@ -81,18 +81,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?bool $newsletter = null;
 
-
-
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTimeImmutable();
-        $this->orders = new ArrayCollection();
-        $this->carts = new ArrayCollection();
-        $this->reviews = new ArrayCollection();
-    }
-
-
     /**
      * @var string The hashed password
      */
