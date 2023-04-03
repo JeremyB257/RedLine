@@ -8,14 +8,9 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
-
+use Symfony\Component\HttpFoundation\Request;
 use App\Form\PasswordType;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,7 +20,7 @@ class UserController extends AbstractController
     #[Route('/utilisateur/{id}', name: 'app_user')]
     #[Security("is_granted('ROLE_USER') and user === currentUser")]
 
-    public function index(User $currentUser, HttpFoundationRequest $request, UserRepository $userRepository): Response
+    public function index(User $currentUser, Request $request, UserRepository $userRepository): Response
 
     {
 
