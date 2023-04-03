@@ -44,9 +44,6 @@
         </form>
     </aside>
     <div class="container-section d-flex flex-column align-items-center">
-        {% if alert %}
-            <div class="alertMsg py-3">Aucun résultat trouvé pour votre recherche.</div>
-        {% endif %}
         {% for product in products|sort((a, b) => a.priceHt <=> b.priceHt) %}
             <div class="card-watch d-flex justify-between">
                 <div class="d-flex justify-content-center align-items-center">
@@ -63,6 +60,8 @@
                     <a href="{{ path('app_product_show', { id: product.id }) }}" class="btn-primary show-more-button">Voir plus</a>
                 </div>
             </div>
+        {% else %}
+            <div class="alertMsg py-3">Aucun résultat trouvé pour votre recherche.</div>
         {% endfor %}
     </div>
 </div>
