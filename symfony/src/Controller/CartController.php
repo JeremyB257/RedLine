@@ -55,12 +55,11 @@ class CartController extends AbstractController
             ];
             //if cart isn't empty
         } else {
-            foreach ($cart as $product) {
+            foreach ($cart as $index => $product) {
                 //if product already exist in cart
                 if ($product['id'] == $id && $product['color'] == $color) {
-                    $product['quantity'] = $product['quantity'] + 1;
+                    $cart[$index]['quantity'] = $product['quantity'] + 1;
                     $handleAdd = 1;
-                    dd($product);
                 }
             }
             // if product doesn't exist in cart
