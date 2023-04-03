@@ -559,6 +559,7 @@ class AppFixtures extends Fixture
                 ->setProduct($watches[rand(0, 26)])
                 ->setQuantity(rand(1, 2))
                 ->setTotal($orderItem->getProduct()->getPriceHt() * $orderItem->getQuantity())
+                ->setColor(explode(',', $orderItem->getProduct()->getColor())[0])
                 ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-15 days')));
 
             $manager->persist($orderItem);
