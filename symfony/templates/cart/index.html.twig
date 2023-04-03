@@ -26,12 +26,11 @@
 							<p>
 								<a class="btn btn-light" href="{{path('app_remove', {id: element.product.id})}}">-</a>
 								{{element.quantity}}
-								<a class="btn btn-light" href="{{path('app_add', {id: element.product.id})}}">+</a>
+								<a class="btn btn-light" href="{{path('app_add', {product: element.product.id})}}">+</a>
 							</p>
 							<a href="{{path('app_delete', {id: element.product.id})}}" class="btn btn-danger mb-2">
 								<i class="fa-solid fa-trash"></i>
 							</a>
-							
 
 
 						</div>

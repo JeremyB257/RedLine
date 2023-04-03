@@ -4,15 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Repository\ProductRepository;
-use phpDocumentor\Reflection\Types\Void_;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
-    #[Route('/cart', name: 'app_cart')]
+    #[Route('/panier', name: 'app_cart')]
     public function index(SessionInterface $session, ProductRepository $productRepository,): Response
     {
 
@@ -22,7 +23,7 @@ class CartController extends AbstractController
         $dataCart = [];
         $total = 0;
 
-        foreach($cart as $id => $quantity){
+        foreach ($cart as $id => $quantity) {
             $product = $productRepository->find($id);
             $dataCart[] = [
                 "product" => $product,
@@ -35,11 +36,12 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart/add', name: 'app_add')]
-    public function add(Product $product, $id, SessionInterface $session)
+    public function add(SessionInterface $session, Request $request)
     {
         // On recupere le panier actuelle
         $cart = $session->get('panier', []);
-        $id = $product->getId();
+        $id = $request->get('product');
+        $color = $request->get('color');
 
         if (!empty($cart[$id])) {
             $cart[$id]++;
@@ -47,7 +49,7 @@ class CartController extends AbstractController
             $cart[$id] = 1;
         }
 
-        // on sauvegarde dans la seesion
+        // on sauvegarde dans la session
         $session->set('panier', $cart);
 
         return $this->redirectToRoute("app_cart");
@@ -57,14 +59,14 @@ class CartController extends AbstractController
     public function remove(Product $product, $id, SessionInterface $session)
     {
         // On recupere le panier actuelle
-        
+
         $cart = $session->get('panier', []);
         $id = $product->getId();
 
         if (!empty($cart[$id])) {
-            if($cart[$id] > 1){
+            if ($cart[$id] > 1) {
                 $cart[$id]--;
-            }else{
+            } else {
                 unset($cart[$id]);
             }
         }
@@ -83,7 +85,7 @@ class CartController extends AbstractController
         $id = $product->getId();
 
         if (!empty($cart[$id])) {
-                unset($cart[$id]);
+            unset($cart[$id]);
         }
         // on sauvegarde dans la seesion
         $session->set('panier', $cart);
