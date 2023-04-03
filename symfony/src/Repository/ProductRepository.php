@@ -83,6 +83,14 @@ class ProductRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
    }
 
+   public function findDistinctCategory()
+   {
+        $query = $this->createQueryBuilder('c')
+                ->select('c.category')
+                ->groupBy('c.category');
+        return $query->getQuery()->getResult();
+   }
+
 //    public function findOneBySomeField($value): ?Product
 //    {
 //        return $this->createQueryBuilder('p')
