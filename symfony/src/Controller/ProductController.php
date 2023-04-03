@@ -16,7 +16,8 @@ class ProductController extends AbstractController
         $filters['brand'] = $request->get('brand') ?? null;
         $filters['material'] = $request->get('material') ?? null;
         $filters['case_diameter'] = $request->get('case_diameter') ?? null;
-
+        $searchTerm = $request->get('search') ?? null;
+        dd($searchTerm);
         $brands = $repository->findDistinctBrand();
         $materials = $repository->findDistinctMaterial();
         $case_diameters = $repository->findDistinctCaseDiameter();
