@@ -5,29 +5,29 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UserController extends AbstractController
 {
-    #[Route('/user/{firstname}', name: 'app_user')]
-    // #[IsGranted('ROLE_USER')]
-    public function index(User $user, HttpFoundationRequest $request, UserRepository $userRepository ): Response
+    #[Route('/utilisateur/{id}', name: 'app_user')]
+    #[Security("is_granted('ROLE_USER') and user === currentUser")]
+    public function index(User $currentUser, HttpFoundationRequest $request, UserRepository $userRepository ): Response
     {
 
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $currentUser);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->save($user, true);
+            $userRepository->save($currentUser, true);
 
-            return $this->redirectToRoute('app_user', ['firstname' => $user->getfirstname()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user', ['id' => $currentUser->getid()], Response::HTTP_SEE_OTHER);
         }
         return $this->render('user/index.html.twig', [
-            'user'=> $user,
+            'currentUser'=> $currentUser,
             'accountForm' => $form,
         ]);
     }

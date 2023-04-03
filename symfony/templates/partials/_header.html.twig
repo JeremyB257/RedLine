@@ -95,9 +95,9 @@
 				</a>
 				{% endif %}
 				{% if app.user %}
-				{# <a href=" {{ path('app_user', {id:user.id}) }}"> #}
+				<a href=" {{ path('app_user', { id: currentUser.id }) }}">
 					<i class="fa-regular fa-user"></i>
-				{# </a> #}
+				</a>
 				{% endif %}
 				<a href="{{path('app_cart')}}">
 					<i class="fa-regular fa-cart-shopping"></i>
