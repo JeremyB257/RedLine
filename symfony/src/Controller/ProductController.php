@@ -19,16 +19,16 @@ class ProductController extends AbstractController
         $filters['material'] = $request->get('material') ?? null;
         $filters['case_diameter'] = $request->get('case_diameter') ?? null;
 
-        if (!empty($filters)) {
-            $products = $repository->findByManyFilters($filters);
-        } else {
-            $products = $repository->findAll();
-        };
-
         $brands = $repository->findDistinctBrand();
         $materials = $repository->findDistinctMaterial();
         $case_diameters = $repository->findDistinctCaseDiameter();
-
+        
+        if (!empty($filters)) {
+            $products = $repository->findByManyFilters($filters);
+            $products = empty($products) ? $repository->findAll() : null;
+        } else {
+            $products = $repository->findAll();
+        };
 
         return $this->render('product/index.html.twig', [
             'products' => $products,
