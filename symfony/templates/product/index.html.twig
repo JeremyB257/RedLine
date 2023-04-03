@@ -14,21 +14,22 @@
                     <select name="brand" id="select-brand">
                         <option value="">Toutes</option>
                         {% for brand in brands %}
-                            <option value="{{ brand['brand'] }}">{{ brand['brand'] }}</option>
+                            <option value="{{ brand['brand'] }}" {{ brand_choice == brand['brand'] ? 'selected' : null }}>{{ brand['brand'] }}</option>
                         {% endfor %}
                     </select>
                     <label for="select-material" class="title-filter">Matériaux :</label>
                     <select name="material" id="select-material">
                         <option value="" selected>Tous</option>
                         {% for material in materials %}
-                            <option value="{{ material['material'] }}">{{ material['material'] | title }}</option>
+                            <option value="{{ material['material'] }}" {{ material_choice == material['material'] ? 'selected' : null }}
+                            >{{ material['material'] | title }}</option>
                         {% endfor %}
                     </select>
                     <label for="select-case-diameter" class="title-filter">Tailles du cadran :</label>
                     <select name="case_diameter" id="select-case-diameter">
                         <option value="">Toutes</option>
                         {% for case_diameter in case_diameters %}
-                            <option value="{{ case_diameter['case_diameter'] }}">{{ case_diameter['case_diameter'] }} mm</option>
+                            <option value="{{ case_diameter['case_diameter'] }}" {{ case_diameter_choice == case_diameter['case_diameter'] ? 'selected' : null }}>{{ case_diameter['case_diameter'] }} mm</option>
                         {% endfor %}
                     </select>
                 </div>
