@@ -29,6 +29,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotNull]
     private ?string $civility = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -84,8 +85,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-
-
         $this->createdAt = new \DateTimeImmutable();
         $this->orders = new ArrayCollection();
         $this->carts = new ArrayCollection();
