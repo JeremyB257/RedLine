@@ -126,7 +126,6 @@ class UserType extends AbstractType
             ->add('birthday', BirthdayType::class, [
                 'label' => 'Date de naissance :',
                 'widget'=> 'single_text',
-                'input'  => 'datetime_immutable',
                 'attr' => [
                     'class' => 'p-1',
                     
