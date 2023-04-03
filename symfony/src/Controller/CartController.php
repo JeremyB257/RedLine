@@ -22,11 +22,14 @@ class CartController extends AbstractController
         //ON fabrique les données
         $dataCart = [];
         $total = 0;
-
-        foreach ($cart as $id => $quantity) {
-            $product = $productRepository->find($id);
+        dump($cart);
+        foreach ($cart as $product) {
+            $color = $product['color'];
+            $quantity = $product['quantity'];
+            $product = $productRepository->find($product['id']);
             $dataCart[] = [
                 "product" => $product,
+                "color" => $color,
                 "quantity" => $quantity,
             ];
             $total += ($product->getPriceHt() * 1.2) * $quantity;
@@ -43,11 +46,33 @@ class CartController extends AbstractController
         $id = $request->get('product');
         $color = $request->get('color');
 
-        if (!empty($cart[$id])) {
-            $cart[$id]++;
+
+        // if cart is empty = add product
+        if (empty($cart)) {
+            $cart[] = [
+                'id' => $id,
+                'color' => $color,
+                'quantity' => 1
+            ];
+            //if cart isn't empty
         } else {
-            $cart[$id] = 1;
+            foreach ($cart as $product) {
+                //if product already exist in cart
+                if ($product['id'] == $id && $product['color'] == $color) {
+                    $product['quantity'] = $product['quantity'] + 1;
+                    dd($product);
+                    break;
+                }
+            }
+            // if product doesn't exist in cart
+            $cart[] = [
+                'id' => $id,
+                'color' => $color,
+                'quantity' => 1
+            ];
         }
+
+
 
         // on sauvegarde dans la session
         $session->set('panier', $cart);
