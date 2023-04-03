@@ -59,17 +59,6 @@
       @media (max-width: 680px) {
         align-self: flex-start;
       }
-      .choice-color {
-        height: 30px;
-        width: 30px;
-        border: solid 1px $color-primary;
-        background-color: cornflowerblue;
-        transition: 0.3s;
-        cursor: pointer;
-        &:hover {
-          filter: brightness(115%);
-        }
-      }
     }
 
     .btn-add-to-cart {
