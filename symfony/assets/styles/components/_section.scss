@@ -3,19 +3,19 @@
   margin: auto;
   width: 70%;
   display: flex;
+  justify-content: space-between;
   gap: 20px;
   @media (max-width: 1200px) {
     flex-direction: column;
     width: 90%;
   }
   .filter {
-    flex: 30%;
+    width: 100%;
     font-size: 15px;
     color: $color-dark;
     border-right: solid 3px lightgray;
     @media (max-width: 1200px) {
       border: 0;
-      width: 100%;
     }
     .separate-line {
       width: 90%;
@@ -75,7 +75,6 @@
   }
   .container-section {
     gap: 15px;
-    flex: 70%;
     .card-watch {
       width: 600px;
       height: fit-content;
@@ -83,7 +82,7 @@
       border: solid 2px $color-dark;
       padding: 10px 30px 10px 10px;
       gap: 0 20px;
-      @media (max-width: 992px) {
+      @media (max-width: 767px) {
         width: 400px;
       }
       .infos {
