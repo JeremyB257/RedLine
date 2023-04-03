@@ -22,10 +22,16 @@ class ProductController extends AbstractController
         $brands = $repository->findDistinctBrand();
         $materials = $repository->findDistinctMaterial();
         $case_diameters = $repository->findDistinctCaseDiameter();
-        
+
+        $alert = false;
+
         if (!empty($filters)) {
-            $products = $repository->findByManyFilters($filters);
-            $products = empty($products) ? $repository->findAll() : null;
+           if ($repository->findByManyFilters($filters) == null) {
+                $products = $repository->findAll();
+                $alert = true;
+           } else {
+                $products = $repository->findByManyFilters($filters);
+           };   
         } else {
             $products = $repository->findAll();
         };
@@ -38,6 +44,7 @@ class ProductController extends AbstractController
             'brand_choice' => $filters['brand'],
             'material_choice' =>  $filters['material'],
             'case_diameter_choice' =>  $filters['case_diameter'],
+            'alert' => $alert,
         ]);
     }
 
