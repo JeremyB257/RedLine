@@ -67,20 +67,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?bool $fidelity = null;
 
-    #[ORM\Column(nullable:true)]
+    #[ORM\Column(nullable: true)]
     private ?bool $newsletter = null;
-
-
-
-    public function __construct()
-    {
-
-
-        $this->createdAt = new \DateTimeImmutable();
-        $this->orders = new ArrayCollection();
-        $this->carts = new ArrayCollection();
-        $this->reviews = new ArrayCollection();
-    }
 
     /**
      * @var string The hashed password
@@ -96,6 +84,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Review::class, orphanRemoval: true)]
     private Collection $reviews;
+
+
+    public function __construct()
+    {
+
+
+        $this->createdAt = new \DateTimeImmutable();
+        $this->orders = new ArrayCollection();
+        $this->carts = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
