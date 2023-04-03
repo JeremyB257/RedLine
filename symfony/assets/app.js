@@ -23,6 +23,7 @@ if (searchBtn) {
 const picFilter = document.querySelectorAll('.little-pictures');
 const colorFilter = document.querySelectorAll('.colors');
 const mainImg = document.querySelector('.main-picture');
+const formColor = document.querySelector('#form-color');
 
 if (picFilter) {
   for (const img of picFilter) {
@@ -32,12 +33,30 @@ if (picFilter) {
   }
 }
 
+let selectedColor = '';
+
 if (colorFilter) {
-  for (const color of colorFilter) {
+  colorFilter.forEach((color, index) => {
+    if (index !== 0) {
+      color.classList.add('desactive-color');
+    } else {
+      mainImg.src = mainImg.src.split('-')[0] + '-' + color.dataset.color + '.png';
+      selectedColor = color.dataset.color;
+    }
     color.addEventListener('click', e => {
       if (mainImg.src.includes('-')) {
         mainImg.src = mainImg.src.split('-')[0] + '-' + color.dataset.color + '.png';
+        formColor.value = color.dataset.color;
+        color.classList.remove('desactive-color');
+        colorFilter.forEach(otherColor => {
+          if (otherColor !== color) {
+            otherColor.classList.add('desactive-color');
+          }
+        });
+        selectedColor = color.dataset.color;
       }
     });
-  }
+  });
 }
+
+// Utilisez la variable selectedColor pour ajouter la couleur sélectionnée dans le panier

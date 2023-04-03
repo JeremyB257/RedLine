@@ -34,7 +34,7 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', compact("dataCart", "total"));
     }
 
-    #[Route('/cart/add/{id}', name: 'app_add')]
+    #[Route('/cart/add', name: 'app_add')]
     public function add(Product $product, $id, SessionInterface $session)
     {
         // On recupere le panier actuelle
