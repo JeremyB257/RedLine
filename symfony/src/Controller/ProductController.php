@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route('/product', name: 'app_product')]
+    #[Route('/produits', name: 'app_product')]
     public function index(ProductRepository $repository, Request $request): Response
     {
 
@@ -35,10 +35,13 @@ class ProductController extends AbstractController
             'brands' => $brands,
             'materials' => $materials,
             'case_diameters' => $case_diameters,
+            'brand_choice' => $filters['brand'],
+            'material_choice' =>  $filters['material'],
+            'case_diameter_choice' =>  $filters['case_diameter'],
         ]);
     }
 
-    #[Route(path: '/{id}/product', name: 'app_product_show')]
+    #[Route(path: '/{id}/produit', name: 'app_product_show')]
     public function show(int $id, ProductRepository $repository): Response
     {
         $product = $repository->find($id);
