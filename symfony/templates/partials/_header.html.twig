@@ -88,7 +88,16 @@
 
 					<i type="submit" class="fa-regular fa-magnifying-glass" id="searchBtn"></i>
 				</form>
-				<i class="fa-regular fa-user"></i>
+				{% if app.user == null %}
+					<a href=" {{ path('app_login') }}">
+						<i class="fa-regular fa-user"></i>
+					</a>
+				{% endif %}
+				{% if app.user %}
+					<a href=" {{ path('app_user', { id: app.user.id }) }}">
+						<i class="fa-regular fa-user"></i>
+					</a>
+				{% endif %}
 				<a href="{{path('app_cart')}}">
 					<i class="fa-regular fa-cart-shopping"></i>
 				</a>
