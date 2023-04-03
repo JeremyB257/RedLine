@@ -38,12 +38,20 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div>
-                        <p>Catégories :</p>
+                    <div class="select">
+                        <label for="select-movement" class="title-filter label">Mouvements :</label>
+                        <select class="select form-select" name="movement" id="select-movement">
+                            <option value="">Tous</option>
+                            {% for movement in movements %}
+                                <option value="{{ movement['movement'] }}" {{ movement_choice == movement['movement'] ? 'selected' : null }}>{{ movement['movement'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="d-flex">
                         {% for category in categories %}
                             <div class="d-flex align-items-start justify-content-between radio-category">
-                                <label for="radio-category-{{ category['category'] }}">{{ category['category']|title }}</label>
-                                <input class="form-check-input" type="radio" id="radio-category-{{ category['category'] }}" name="category" value="{{ category['category'] }}"  {{ category_choice == category['category'] ? 'checked' : null }}>
+                                <label class="label-category" for="radio-category-{{ category['category'] }}">{{ category['category']|title }}</label>
+                                <input class="form-check-input input-radio" type="radio" id="radio-category-{{ category['category'] }}" name="category" value="{{ category['category'] }}"  {{ category_choice == category['category'] ? 'checked' : null }}>
                             </div>
                         {% endfor %}
                     </div>

@@ -83,6 +83,15 @@ class ProductRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
    }
 
+   public function findDistinctMovement()
+   {
+        $query = $this->createQueryBuilder('mv')
+                ->select('mv.movement')
+                ->groupBy('mv.movement')
+                ->orderBy('mv.movement','ASC');
+        return $query->getQuery()->getResult();
+   }
+
    public function findDistinctCategory()
    {
         $query = $this->createQueryBuilder('c')

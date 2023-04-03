@@ -16,12 +16,14 @@ class ProductController extends AbstractController
         $filters['brand'] = $request->get('brand') ?? null;
         $filters['material'] = $request->get('material') ?? null;
         $filters['case_diameter'] = $request->get('case_diameter') ?? null;
+        $filters['movement'] = $request->get('movement') ?? null;
         $filters['category'] = $request->get('category') ?? null;
         $searchTerm = $request->get('search') ?? null;
 
         $brands = $repository->findDistinctBrand();
         $materials = $repository->findDistinctMaterial();
         $case_diameters = $repository->findDistinctCaseDiameter();
+        $movements = $repository->findDistinctMovement();
         $categories = $repository->findDistinctCategory();
 
         $products = !empty($filters) ? $repository->findByManyFilters($filters) : $products = $repository->findAll();
@@ -30,11 +32,13 @@ class ProductController extends AbstractController
             'products' => $products,
             'brands' => $brands,
             'materials' => $materials,
+            'movements' => $movements,
             'categories' => $categories,
             'case_diameters' => $case_diameters,
             'brand_choice' => $filters['brand'],
             'material_choice' =>  $filters['material'],
             'case_diameter_choice' =>  $filters['case_diameter'],
+            'movement_choice' => $filters['movement'],
             'category_choice' => $filters['category'],
         ]);
     }
