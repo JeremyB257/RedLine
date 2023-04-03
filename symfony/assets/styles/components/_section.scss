@@ -2,16 +2,30 @@
   padding: 30px 10px;
   margin: auto;
   width: 70%;
+  display: flex;
+  gap: 20px;
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    width: 90%;
+  }
   .filter {
     flex: 30%;
     font-size: 15px;
     color: $color-dark;
     border-right: solid 3px lightgray;
+    @media (max-width: 1200px) {
+      border: 0;
+      width: 100%;
+    }
     .separate-line {
       width: 90%;
       background-color: $color-dark;
       border-radius: 25px;
       height: 1px;
+      @media (max-width: 1200px) {
+        margin: auto;
+        width: 70%;
+      }
     }
     h3,
     .title-filter {
@@ -20,19 +34,43 @@
     }
     .select {
       width: 80%;
+      @media (max-width: 1200px) {
+        justify-content: space-between;
+        width: 100%;
+      }
+      .label {
+        padding-bottom: 5px;
+      }
     }
     .in-progress {
       color: $color-primary;
       font-weight: bold;
+      padding-bottom: 20px;
+      @media (max-width: 1200px) {
+        text-align: center;
+      }
     }
     .category-filter {
       padding-bottom: 40px;
+      .choice-filter {
+        flex-direction: column;
+        @media (max-width: 1200px) {
+          flex-direction: row;
+        }
+      }
     }
     .btn-filter {
       width: 50%;
+      @media (max-width: 1200px) {
+        align-self: center;
+        margin-bottom: 25px;
+      }
     }
     .alertMsg {
       color: red;
+      @media (max-width: 1200px) {
+        text-align: center;
+      }
     }
   }
   .container-section {
@@ -45,6 +83,9 @@
       border: solid 2px $color-dark;
       padding: 10px 30px 10px 10px;
       gap: 0 20px;
+      @media (max-width: 992px) {
+        width: 400px;
+      }
       .infos {
         flex: 70%;
         gap: 10px;
