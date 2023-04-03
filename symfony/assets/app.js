@@ -13,9 +13,12 @@ import './bootstrap';
 
 //search navbar
 const searchBtn = document.querySelector('#searchBtn');
+const searchSubmit = document.querySelector('.searchSubmit');
+
 if (searchBtn) {
   searchBtn.addEventListener('click', e => {
     e.target.previousElementSibling.classList.toggle('show');
+    searchSubmit.style.transform = 'translate(0)';
   });
 }
 

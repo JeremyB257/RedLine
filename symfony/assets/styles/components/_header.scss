@@ -37,6 +37,11 @@
   }
   .form-search {
     position: relative;
+    .searchSubmit {
+      position: absolute;
+      opacity: 0.2;
+      transform: translateY(-75px);
+    }
     .search {
       width: 0px;
       opacity: 0;

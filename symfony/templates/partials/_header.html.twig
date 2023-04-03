@@ -84,8 +84,8 @@
 			<a class="w-25 title d-none d-lg-flex align-items-baseline justify-content-center" href="{{path('home.index')}}">LA<span>X</span>AR</a>
 			<div class="w-25 navbar-nav d-flex gap-4 justify-content-end align-items-lg-center">
 				<form class="form-search d-flex align-items-center" role="search">
+					<input class="searchSubmit" type="submit" value="">
 					<input class="form-control me-2 search" type="search" name="search" placeholder="Recherche..." aria-label="Search"/>
-
 					<i type="submit" class="fa-regular fa-magnifying-glass" id="searchBtn"></i>
 				</form>
 				{% if app.user == null %}
