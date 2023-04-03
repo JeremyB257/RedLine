@@ -11,14 +11,21 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
+//search navbar
 const searchBtn = document.querySelector('#searchBtn');
-searchBtn.addEventListener('click', e => {
-  e.target.previousElementSibling.classList.toggle('show');
-});
+const searchSubmit = document.querySelector('.searchSubmit');
 
-const picFilter = document.querySelectorAll('.size-filter');
+if (searchBtn) {
+  searchBtn.addEventListener('click', e => {
+    e.target.previousElementSibling.classList.toggle('show');
+    searchSubmit.style.transform = 'translate(0)';
+  });
+}
+
+//pic & color picker on homepage
+const picFilter = document.querySelectorAll('.little-pictures');
 const colorFilter = document.querySelectorAll('.colors');
-const mainImg = document.querySelector('.main-img');
+const mainImg = document.querySelector('.main-picture');
 
 if (picFilter) {
   for (const img of picFilter) {
@@ -31,7 +38,9 @@ if (picFilter) {
 if (colorFilter) {
   for (const color of colorFilter) {
     color.addEventListener('click', e => {
-      mainImg.src = mainImg.src.split('-')[0] + '-' + color.dataset.color + '.png';
+      if (mainImg.src.includes('-')) {
+        mainImg.src = mainImg.src.split('-')[0] + '-' + color.dataset.color + '.png';
+      }
     });
   }
 }

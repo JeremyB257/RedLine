@@ -78,12 +78,12 @@
 	<div class="product container-lg d-flex justify-content-center align-items-center my-5 flex-wrap">
 		<div class="filter-watch">
 			{% for img in (watches[0].imgUrl | split(',')) %}
-				<img class="size-filter" src="{{'img/' ~ img}}" alt="{{ watches[0].model }}">
+				<img class="little-pictures" src="{{'img/' ~ img}}" alt="{{ watches[0].model }}">
 			{% endfor %}
 		</div>
 
 		<div class="width-flex">
-			<img class="w-100 main-img" src="{{'img/' ~ (watches[0].imgUrl | split(','))[0]}}" alt="laxar">
+			<img class="w-100 main-picture" src="{{'img/' ~ (watches[0].imgUrl | split(','))[0]}}" alt="laxar">
 		</div>
 
 		<div class="contenu">
@@ -129,53 +129,23 @@
 
 		<div id="carouselExample" class="carousel slide">
 			<div class="carousel-inner">
-
-				<div class="carousel-item active my-3 py-5">
-					<div class="reviews-container d-flex flex-column justify-content-center align-items-center">
-						<div class="reviews">
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
+				{% for i in 0..2 %}
+					<div class="carousel-item my-3 py-5 {{ i == 0 ? 'active' : ''}}">
+						<div class="reviews-container d-flex flex-column justify-content-center align-items-center">
+							<div class="reviews">
+								<i class="fa-solid fa-star {{reviews[i].evaluation >= 1 ? 'primary' : 'grey'}}"></i>
+								<i class="fa-solid fa-star {{reviews[i].evaluation >= 2 ? 'primary' : 'grey'}}"></i>
+								<i class="fa-solid fa-star {{reviews[i].evaluation >= 3 ? 'primary' : 'grey'}}"></i>
+								<i class="fa-solid fa-star {{reviews[i].evaluation >= 4 ? 'primary' : 'grey'}}"></i>
+								<i class="fa-solid fa-star {{reviews[i].evaluation >= 5 ? 'primary' : 'grey'}}"></i>
+							</div>
+							<p class="w-50 text-center my-5">{{reviews[i].content}}
+							</p>
+							<h5 class="fw-bold">{{reviews[i].firstname}}</h5>
 						</div>
-						<p class="w-50 text-center my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique magni nihil consequatur totam voluptatum ducimus fugit earum impedit aperiam, incidunt voluptates distinctio error pariatur sit sint! Porro possimus nisi maiores?
-						</p>
-						<h5 class="fw-bold">Anthony Brooks</h5>
 					</div>
-				</div>
+				{% endfor %}
 
-				<div class="carousel-item my-3 py-5">
-					<div class="reviews-container d-flex flex-column justify-content-center align-items-center">
-						<div class="reviews">
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-						</div>
-						<p class="w-50 text-center my-5">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique magni nihil consequatur totam voluptatum ducimus fugit earum impedit aperiam, incidunt voluptates distinctio error pariatur sit sint! Porro possimus nisi maiores?
-						</p>
-						<h5 class="fw-bold">Anthony Brooks</h5>
-					</div>
-				</div>
-
-				<div class="carousel-item my-3 py-5">
-					<div class="reviews-container d-flex flex-column justify-content-center align-items-center">
-						<div class="reviews">
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-						</div>
-						<p class="w-50 text-center my-5">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique magni nihil consequatur totam voluptatum ducimus fugit earum impedit aperiam, incidunt voluptates distinctio error pariatur sit sint! Porro possimus nisi maiores?
-						</p>
-						<h5 class="fw-bold">Anthony Brooks</h5>
-					</div>
-				</div>
 			</div>
 			<div class="carousel-btn">
 				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
