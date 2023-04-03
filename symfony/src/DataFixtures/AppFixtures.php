@@ -489,7 +489,7 @@ class AppFixtures extends Fixture
             ->setMovement('Quartz')
             ->setCaseDiameter(39)
             ->setCategory('femme')
-            ->setColor('white')
+            ->setColor('gold,green,pink')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(0)

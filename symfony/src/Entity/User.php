@@ -29,36 +29,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotNull]
     private ?string $civility = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Vous devez entrer un prénom')]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Vous devez entrer un nom')]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Veuillez entrer un numéro d\'adresse')]
     private ?string $number_adress = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Veuillez entrer votre adresse')]
     private ?string $street1 = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $street2 = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Veuillez entrer code postal')]
     private ?string $postcode = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Veuillez entrer une ville')]
     private ?string $city = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Veuillez entrer un pays')]
     private ?string $country = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Veuillez entrer un numéro de téléphone')]
     private ?string $phoneNumber = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\NotBlank(message: 'Veuillez entrer une date d\'anniversaire')]
+    #[Assert\LessThan('-18 years', message: 'Vous devez être majeur')]
     private ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -67,20 +78,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?bool $fidelity = null;
 
-    #[ORM\Column(nullable:true)]
+    #[ORM\Column(nullable: true)]
     private ?bool $newsletter = null;
-
-
-
-    public function __construct()
-    {
-
-
-        $this->createdAt = new \DateTimeImmutable();
-        $this->orders = new ArrayCollection();
-        $this->carts = new ArrayCollection();
-        $this->reviews = new ArrayCollection();
-    }
 
     /**
      * @var string The hashed password
@@ -96,6 +95,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Review::class, orphanRemoval: true)]
     private Collection $reviews;
+
+
+    public function __construct()
+    {
+
+
+        $this->createdAt = new \DateTimeImmutable();
+        $this->orders = new ArrayCollection();
+        $this->carts = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
