@@ -6,19 +6,19 @@
 <div class="d-flex container-lg container-main">
     <aside class="filter">
         <form action="{{ path('app_product') }}" method="GET" class="d-flex flex-column">
-            <div class="in-progress">Affiner vos recherches</div>
+            <div class="in-progress">Affinez vos recherches</div>
             <div class="separate-line"></div>
             <div class="category-filter">
                 <div class="d-flex flex-column gap-3">
                     <label for="select-brand" class="title-filter">Marques</label>
-                    <select name="brand" id="select-brand">
+                    <select class="select" name="brand" id="select-brand">
                         <option value="">Toutes</option>
                         {% for brand in brands %}
                             <option value="{{ brand['brand'] }}" {{ brand_choice == brand['brand'] ? 'selected' : null }}>{{ brand['brand'] }}</option>
                         {% endfor %}
                     </select>
                     <label for="select-material" class="title-filter">Matériaux :</label>
-                    <select name="material" id="select-material">
+                    <select class="select" name="material" id="select-material">
                         <option value="" selected>Tous</option>
                         {% for material in materials %}
                             <option value="{{ material['material'] }}" {{ material_choice == material['material'] ? 'selected' : null }}
@@ -26,7 +26,7 @@
                         {% endfor %}
                     </select>
                     <label for="select-case-diameter" class="title-filter">Tailles du cadran :</label>
-                    <select name="case_diameter" id="select-case-diameter">
+                    <select class="select" name="case_diameter" id="select-case-diameter">
                         <option value="">Toutes</option>
                         {% for case_diameter in case_diameters %}
                             <option value="{{ case_diameter['case_diameter'] }}" {{ case_diameter_choice == case_diameter['case_diameter'] ? 'selected' : null }}>{{ case_diameter['case_diameter'] }} mm</option>
@@ -37,7 +37,7 @@
             <button class="btn-primary btn-filter">Filtrer</button>
         </form>
         {% if alert %}
-            <div>Aucun résultat trouvé pour votre recherche.</div>
+            <div class="alertMsg py-3">Aucun résultat trouvé pour votre recherche.</div>
         {% endif %}
     </aside>
     <div class="container-section d-flex flex-column align-items-center">

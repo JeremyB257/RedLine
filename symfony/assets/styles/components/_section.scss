@@ -1,5 +1,7 @@
 .container-main {
   padding: 30px 10px;
+  margin: auto;
+  width: 70%;
   .filter {
     flex: 30%;
     font-size: 15px;
@@ -16,8 +18,11 @@
       font-size: 15px;
       padding-top: 20px;
     }
+    .select {
+      width: 80%;
+    }
     .in-progress {
-      color: red;
+      color: $color-primary;
       font-weight: bold;
     }
     .category-filter {
@@ -25,7 +30,9 @@
     }
     .btn-filter {
       width: 50%;
-      margin: auto;
+    }
+    .alertMsg {
+      color: red;
     }
   }
   .container-section {
