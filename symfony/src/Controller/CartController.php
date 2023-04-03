@@ -84,13 +84,16 @@ class CartController extends AbstractController
         // On recupere le panier actuelle
 
         $cart = $session->get('panier', []);
-        //@todo a faire
-        /* 
+
         foreach ($cart as $index => $product) {
             if ($product['id'] == $id && $product['color'] == $color) {
-                unset($cart[$index]);
+                if ($product['quantity'] > 1) {
+                    $cart[$index]['quantity'] = $product['quantity'] - 1;
+                } else {
+                    unset($cart[$index]);
+                }
             }
-        } */
+        }
         // on sauvegarde dans la seesion
         $session->set('panier', $cart);
 
