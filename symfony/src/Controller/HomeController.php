@@ -14,12 +14,21 @@ class HomeController extends AbstractController
     public function index(ProductRepository $productRepo, ReviewRepository $reviewRepo): Response
     {
 
+        $brands = $productRepo->findDistinctBrand();
+        $materials = $productRepo->findDistinctMaterial();
+        $movements = $productRepo->findDistinctMovement();
 
         return $this->render('index.html.twig', [
             'watches' => $productRepo->findBy([], null, 5),
-            'reviews' => $reviewRepo->findBy([], ['evaluation' => 'DESC'], 3)
+            'reviews' => $reviewRepo->findBy([], ['evaluation' => 'DESC'], 3),
+            'brands' => $brands,
+            'materials' => $materials,
+            'movements' => $movements,
         ]);
     }
+
+    
+
 
     #[Route('/a-propos', name: 'app_about')]
     public function about(): Response
