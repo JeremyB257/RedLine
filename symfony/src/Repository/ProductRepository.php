@@ -48,17 +48,38 @@ class ProductRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('p');
         foreach($filters as $key => $filter) {
             if ($filter) {
-                foreach ($filter as $k => $fil) {
-                    $index+=1;
-                    $query->andWhere('p.'.$key.' = :val'.$index);
-                    $query->setParameter('val'.$index, $fil);
-                    dump($filter);
-                    dump($fil);
-                    dump($key);
-                    dump($index);
-                }
+                $index+=1;
+                $query->andWhere('p.'.$key.' = :val'.$index);
+                $query->setParameter('val'.$index, $filter);
             }
         }
+        return $query->getQuery()->getResult();
+   }
+
+   public function findDistinctBrand()
+   {
+        $query = $this->createQueryBuilder('b')
+                ->select('b.brand')
+                ->groupBy('b.brand')
+                ->orderBy('b.brand','ASC');
+        return $query->getQuery()->getResult();
+   }
+
+   public function findDistinctMaterial()
+   {
+        $query = $this->createQueryBuilder('m')
+                ->select('m.material')
+                ->groupBy('m.material')
+                ->orderBy('m.material','ASC');
+        return $query->getQuery()->getResult();
+   }
+
+   public function findDistinctCaseDiameter()
+   {
+        $query = $this->createQueryBuilder('cd')
+                ->select('cd.case_diameter')
+                ->groupBy('cd.case_diameter')
+                ->orderBy('cd.case_diameter','ASC');
         return $query->getQuery()->getResult();
    }
 

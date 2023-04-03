@@ -23,9 +23,9 @@
 			<div class="choice-color-container">
 				<p class="choice-title">Colors</p>
 				<div class="d-flex gap-3">
-					<div class="choice-color"></div>
-					<div class="choice-color"></div>
-					<div class="choice-color"></div>
+					{% for color in product.color | split(',') %}
+						<div class="colors {{color}}" data-color="{{color}}"></div>
+					{% endfor %}
 				</div>
 			</div>
 			<button class="btn-primary btn-add-to-cart">Ajouter au panier</button>
