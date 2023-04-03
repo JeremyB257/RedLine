@@ -90,14 +90,14 @@
 				</form>
 
 				{% if app.user == null %}
-				<a href=" {{ path('app_login') }}">
-					<i class="fa-regular fa-user"></i>
-				</a>
+					<a href=" {{ path('app_login') }}">
+						<i class="fa-regular fa-user"></i>
+					</a>
 				{% endif %}
 				{% if app.user %}
-				<a href=" {{ path('app_user', { id: currentUser.id }) }}">
-					<i class="fa-regular fa-user"></i>
-				</a>
+					<a href=" {{ path('app_user', { id: app.user.id }) }}">
+						<i class="fa-regular fa-user"></i>
+					</a>
 				{% endif %}
 				<a href="{{path('app_cart')}}">
 					<i class="fa-regular fa-cart-shopping"></i>

@@ -15,7 +15,7 @@ class UserController extends AbstractController
 {
     #[Route('/utilisateur/{id}', name: 'app_user')]
     #[Security("is_granted('ROLE_USER') and user === currentUser")]
-    public function index(User $currentUser, HttpFoundationRequest $request, UserRepository $userRepository ): Response
+    public function index(User $currentUser, HttpFoundationRequest $request, UserRepository $userRepository): Response
     {
 
         $form = $this->createForm(UserType::class, $currentUser);
@@ -27,7 +27,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_user', ['id' => $currentUser->getid()], Response::HTTP_SEE_OTHER);
         }
         return $this->render('user/index.html.twig', [
-            'currentUser'=> $currentUser,
+            'user' => $currentUser,
             'accountForm' => $form,
         ]);
     }
