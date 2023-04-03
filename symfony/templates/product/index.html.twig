@@ -42,8 +42,8 @@
                         <p>Catégories :</p>
                         {% for category in categories %}
                             <div class="d-flex align-items-start justify-content-between radio-category">
-                                <label for="radio-category">{{ category['category']|title }}</label>
-                                <input class="form-check-input" type="radio" id="radio-category" name="category" value="{{ category['category'] }}"  {{ category_choice == category['category'] ? 'checked' : null }}>
+                                <label for="radio-category-{{ category['category'] }}">{{ category['category']|title }}</label>
+                                <input class="form-check-input" type="radio" id="radio-category-{{ category['category'] }}" name="category" value="{{ category['category'] }}"  {{ category_choice == category['category'] ? 'checked' : null }}>
                             </div>
                         {% endfor %}
                     </div>
