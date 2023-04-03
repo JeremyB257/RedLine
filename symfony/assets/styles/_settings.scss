@@ -133,3 +133,7 @@ a {
     background-color: rgb(221, 221, 221);
   }
 }
+
+:root {
+  --bs-link-hover-color: #{$color-primary};
+}
