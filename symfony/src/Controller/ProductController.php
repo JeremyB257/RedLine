@@ -13,8 +13,6 @@ class ProductController extends AbstractController
     #[Route('/produits', name: 'app_product')]
     public function index(ProductRepository $repository, Request $request): Response
     {
-
-        $filters = [];
         $filters['brand'] = $request->get('brand') ?? null;
         $filters['material'] = $request->get('material') ?? null;
         $filters['case_diameter'] = $request->get('case_diameter') ?? null;
@@ -23,18 +21,7 @@ class ProductController extends AbstractController
         $materials = $repository->findDistinctMaterial();
         $case_diameters = $repository->findDistinctCaseDiameter();
 
-        $alert = false;
-
-        if (!empty($filters)) {
-           if ($repository->findByManyFilters($filters) == null) {
-                $products = $repository->findAll();
-                $alert = true;
-           } else {
-                $products = $repository->findByManyFilters($filters);
-           };   
-        } else {
-            $products = $repository->findAll();
-        };
+        $products = !empty($filters) ? $repository->findByManyFilters($filters) : $products = $repository->findAll();
 
         return $this->render('product/index.html.twig', [
             'products' => $products,
@@ -44,7 +31,6 @@ class ProductController extends AbstractController
             'brand_choice' => $filters['brand'],
             'material_choice' =>  $filters['material'],
             'case_diameter_choice' =>  $filters['case_diameter'],
-            'alert' => $alert,
         ]);
     }
 
