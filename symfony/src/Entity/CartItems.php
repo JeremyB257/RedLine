@@ -26,6 +26,9 @@ class CartItems
     #[ORM\ManyToOne(inversedBy: 'cartItems')]
     private ?Product $product = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $color = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -80,6 +83,18 @@ class CartItems
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
 
         return $this;
     }
