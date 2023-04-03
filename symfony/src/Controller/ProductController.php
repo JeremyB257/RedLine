@@ -10,28 +10,38 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route('/product', name: 'app_product')]
+    #[Route('/produits', name: 'app_product')]
     public function index(ProductRepository $repository, Request $request): Response
     {
+        $filters['brand'] = $request->get('brand') ?? null;
+        $filters['material'] = $request->get('material') ?? null;
+        $filters['case_diameter'] = $request->get('case_diameter') ?? null;
+        $searchTerm = $request->get('search') ?? '';
+        $brands = $repository->findDistinctBrand();
+        $materials = $repository->findDistinctMaterial();
+        $case_diameters = $repository->findDistinctCaseDiameter();
 
-        $filters = [];
-        $filters['material'] = ($request->get('material') ?  $request->get('material') : null);
-        $filters['case_diameter'] = ($request->get('case_diameter') ?  $request->get('case_diameter') : null);
-
-        if ($filters['material'] || $filters['case_diameter']) {
-            $products = $repository->findByManyFilters($filters);
+        if ($filters['brand'] || $filters['material'] || $filters['case_diameter']) {
+            $products =  $repository->findByManyFilters($filters);
         } else {
-            $products = $repository->findAll();
-        };
+            $products = $repository->findBySearchTerms($searchTerm);
+        }
 
+        dump($products);
 
 
         return $this->render('product/index.html.twig', [
             'products' => $products,
+            'brands' => $brands,
+            'materials' => $materials,
+            'case_diameters' => $case_diameters,
+            'brand_choice' => $filters['brand'],
+            'material_choice' =>  $filters['material'],
+            'case_diameter_choice' =>  $filters['case_diameter'],
         ]);
     }
 
-    #[Route(path: '/{id}/product', name: 'app_product_show')]
+    #[Route(path: '/{id}/produit', name: 'app_product_show')]
     public function show(int $id, ProductRepository $repository): Response
     {
         $product = $repository->find($id);
