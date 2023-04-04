@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
-    #[Route('/panier', name: 'app_cart')]
+    #[Route('/panier', name: 'cart.index')]
     public function index(SessionInterface $session, ProductRepository $productRepository,): Response
     {
 
@@ -22,11 +22,13 @@ class CartController extends AbstractController
         //ON fabrique les données
         $dataCart = [];
         $total = 0;
-
-        foreach ($cart as $id => $quantity) {
-            $product = $productRepository->find($id);
+        foreach ($cart as $product) {
+            $color = $product['color'];
+            $quantity = $product['quantity'];
+            $product = $productRepository->find($product['id']);
             $dataCart[] = [
                 "product" => $product,
+                "color" => $color,
                 "quantity" => $quantity,
             ];
             $total += ($product->getPriceHt() * 1.2) * $quantity;
@@ -35,61 +37,82 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', compact("dataCart", "total"));
     }
 
-    #[Route('/cart/add', name: 'app_add')]
-    public function add(SessionInterface $session, Request $request)
+    #[Route('/cart/add/{id}', name: 'cart.add')]
+    public function add(Int $id, SessionInterface $session, Request $request)
     {
         // On recupere le panier actuelle
         $cart = $session->get('panier', []);
-        $id = $request->get('product');
         $color = $request->get('color');
 
-        if (!empty($cart[$id])) {
-            $cart[$id]++;
+        $handleAdd = 0;
+        // if cart is empty = add product
+        if (empty($cart)) {
+            $cart[] = [
+                'id' => $id,
+                'color' => $color,
+                'quantity' => 1
+            ];
+            //if cart isn't empty
         } else {
-            $cart[$id] = 1;
+            foreach ($cart as $index => $product) {
+                //if product already exist in cart
+                if ($product['id'] == $id && $product['color'] == $color) {
+                    $cart[$index]['quantity'] = $product['quantity'] + 1;
+                    $handleAdd = 1;
+                }
+            }
+            // if product doesn't exist in cart
+            if ($handleAdd == 0) {
+                $cart[] = [
+                    'id' => $id,
+                    'color' => $color,
+                    'quantity' => 1
+                ];
+            }
         }
 
         // on sauvegarde dans la session
         $session->set('panier', $cart);
 
-        return $this->redirectToRoute("app_cart");
+        return $this->redirectToRoute("cart.index");
     }
 
-    #[Route('/cart/remove/{id}', name: 'app_remove')]
-    public function remove(Product $product, $id, SessionInterface $session)
+    #[Route('/cart/remove/{id}/{color}', name: 'cart.remove')]
+    public function remove(Int $id, String $color, SessionInterface $session)
     {
         // On recupere le panier actuelle
 
         $cart = $session->get('panier', []);
-        $id = $product->getId();
 
-        if (!empty($cart[$id])) {
-            if ($cart[$id] > 1) {
-                $cart[$id]--;
-            } else {
-                unset($cart[$id]);
+        foreach ($cart as $index => $product) {
+            if ($product['id'] == $id && $product['color'] == $color) {
+                if ($product['quantity'] > 1) {
+                    $cart[$index]['quantity'] = $product['quantity'] - 1;
+                } else {
+                    unset($cart[$index]);
+                }
             }
         }
         // on sauvegarde dans la seesion
         $session->set('panier', $cart);
 
-        return $this->redirectToRoute("app_cart");
+        return $this->redirectToRoute("cart.index");
     }
 
-    #[Route('/cart/delete/{id}', name: 'app_delete')]
-    public function delete(Product $product, $id, SessionInterface $session)
+    #[Route('/cart/delete/{id}/{color}', name: 'cart.delete')]
+    public function delete(Int $id, String $color, SessionInterface $session)
     {
         // On recupere le panier actuelle
-
         $cart = $session->get('panier', []);
-        $id = $product->getId();
 
-        if (!empty($cart[$id])) {
-            unset($cart[$id]);
+        foreach ($cart as $index => $product) {
+            if ($product['id'] == $id && $product['color'] == $color) {
+                unset($cart[$index]);
+            }
         }
         // on sauvegarde dans la seesion
         $session->set('panier', $cart);
 
-        return $this->redirectToRoute("app_cart");
+        return $this->redirectToRoute("cart.index");
     }
 }

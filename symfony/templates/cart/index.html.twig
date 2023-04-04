@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!
+{% block title %}
+	{{parent()}}
+	- Panier
 {% endblock %}
 
 {% block body %}
@@ -17,18 +19,22 @@
 				{% for element in dataCart %}
 					<div class=" container-cart d-flex gap-3">
 						<div class="w-25 d-flex align-items-center justify-content-center">
-							<img class="w-75" src="{{'img/' ~ (element.product.imgUrl | split(',')[0])}}" alt="">
+							<img class="w-75" src="{{'img/' ~ ((element.product.imgUrl | split(',')[0]) | split('-')[0] ~ '-' ~ element.color ~ '.png')}}" alt="">
 						</div>
 						<div>
-							<h3 class="mt-2">{{ element.product.brand }}</h3>
+
+							<h3 class="mt-2">{{ element.product.brand }}
+								-
+								{{element.product.model}}</h3>
 
 							<p>{{ element.product.priceHT }}€ HT</p>
 							<p>
-								<a class="btn btn-light" href="{{path('app_remove', {id: element.product.id})}}">-</a>
+								<a class="btn btn-light" href="{{path('cart.remove', {id: element.product.id, color: element.color})}}">-</a>
 								{{element.quantity}}
-								<a class="btn btn-light" href="{{path('app_add', {product: element.product.id})}}">+</a>
+								<a class="btn btn-light" href="{{path('cart.add', {id: element.product.id, color: element.color})}}">+</a>
 							</p>
-							<a href="{{path('app_delete', {id: element.product.id})}}" class="btn btn-danger mb-2">
+
+							<a href="{{path('cart.delete', {id: element.product.id, color: element.color})}}" class="btn btn-danger mb-2">
 								<i class="fa-solid fa-trash"></i>
 							</a>
 
@@ -57,10 +63,10 @@
 					<p>Sous total HT :
 						{{ total / 1.2}}
 						€</p>
-					<p>Frais de livraison : 4.99 €</p>
+					<p>Frais de livraison : Offert</p>
 					<p>TVA : 20%</p>
 					<h2>TOTAL TTC :
-						{{ total + 4.99}}
+						{{ total}}
 						€</h2>
 					<button class="btn btn-lg btn-primary">VALIDER MON PANIER</button>
 				</div>

@@ -11,7 +11,7 @@
 					<h1 class="fw-bold">{{watches[0].brand}}
 						{{watches[0].model}}</h1>
 					<p class="text-white py-3">{{watches[0].description}}</p>
-					<button class="btn btn-xl btn-primary fs-5">Acheter</button>
+					<a href="{{path('app_product_show', {id: watches[0].id})}}" class="btn btn-xl btn-primary fs-5">Voir</a>
 					<span class="fs-5 fw-bold ms-3">{{(watches[0].priceHT * 1.2) | format_currency('EUR')}}</span>
 				</div>
 				<div class="col-12 col-md-6 position-relative banner-img-col">
@@ -100,8 +100,7 @@
 				</div>
 			</div>
 			<div>
-				<form action="{{path('app_add')}}" method="get">
-					<input type="hidden" name="product" value="{{watches[0].id}}">
+				<form action="{{path('cart.add', {id: watches[0].id})}}" method="get">
 					<input type="hidden" name="color" value="green" id="form-color">
 					<button class="btn btn-lg btn-primary mt-4">Acheter</button>
 				</form>
@@ -116,10 +115,12 @@
 			<div class="d-flex justify-content-center align-items-center flex-wrap gap-5">
 				{% for i in 1..4 %}
 					<div class="watch">
-						<img class="w-75" src="{{'img/' ~ (watches[i].imgUrl | split(',')[0])}}" alt="">
-						<h4 class="fw-bold">{{watches[i].brand}}
-							{{watches[i].model}}</h4>
-						<h5 class="primary fw-bold">{{(watches[i].priceHT * 1.2) | format_currency('EUR')}}</h5>
+						<a class="text-decoration-none" href="{{path('app_product_show', {id: watches[i].id})}}">
+							<img class="w-75" src="{{'img/' ~ (watches[i].imgUrl | split(',')[0])}}" alt="">
+							<h4 class="fw-bold">{{watches[i].brand}}
+								{{watches[i].model}}</h4>
+							<h5 class="primary fw-bold">{{(watches[i].priceHT * 1.2) | format_currency('EUR')}}</h5>
+						</a>
 					</div>
 				{% endfor %}
 			</div>
