@@ -91,6 +91,7 @@ class ProductRepository extends ServiceEntityRepository
             ->where('p.brand LIKE :search')
             ->orWhere('p.model LIKE :search')
             ->setParameter(':search', '%' . $search . '%')
+            ->orderBy('p.price_ht', 'ASC')
             ->getQuery()->getResult();
     }
 

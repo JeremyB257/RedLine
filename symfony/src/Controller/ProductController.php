@@ -23,7 +23,7 @@ class ProductController extends AbstractController
         $order = $request->get('order_price') ?? false;
         $searchTerm = $request->get('search') ?? null;
 
-        if ($filters['brand'] || $filters['material'] || $filters['case_diameter'] || $filters['movement'] || $filters['category']) {
+        if ($filters['brand'] || $filters['material'] || $filters['case_diameter'] || $filters['movement'] || $filters['category'] || $order) {
             $products =  $repository->getPaginatedProducts($filters, $order);
         } else {
             $products = $repository->getPaginatedProductsSearch($searchTerm);
