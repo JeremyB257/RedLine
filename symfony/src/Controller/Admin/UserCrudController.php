@@ -39,15 +39,24 @@ class UserCrudController extends AbstractCrudController
                 ->hideOnForm(),
                 EmailField::new('email')
                 ->setFormTypeOption('disabled', 'disabled'),
-            TextField::new('lastname'),
-            TextField::new('firstname'),
-            TextField::new('number_adress'),
-            TextField::new('street1'),
-            TextField::new('street2'),
-            TextField::new('postcode'),
-            TextField::new('city'),
-            TextField::new('country'),
+            TextField::new('lastname')
+            ->setLabel('Nom'),
+            TextField::new('firstname')
+            ->setLabel('Prénom'),
+            TextField::new('number_adress')
+            ->setLabel('N° de rue'),
+            TextField::new('street1')
+            ->setLabel('Rue'),
+            TextField::new('street2')
+            ->setLabel('Complément d\'adresse'),
+            TextField::new('postcode')
+            ->setLabel('Code postal'),
+            TextField::new('city')
+            ->setLabel('Ville'),
+            TextField::new('country')
+            ->setLabel('Pays'),
             TextField::new('phone_number')
+            ->setLabel('Numéro de téléphone')
                 ->setFormTypeOption('disabled', 'disabled'),
             DateField::new('birthday')
                 ->hideOnForm()

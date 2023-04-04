@@ -33,18 +33,23 @@ class ContactCrudController extends AbstractCrudController
         return [
             // Permet de choisir la liste dispo dans la page contact
             IdField::new('id')
-                ->hideOnIndex(),
+                ->hideOnForm(),
             TextField::new('email')
                 ->setFormTypeOption('disabled', 'disabled'),
-            TextField::new('lastname'),
+            TextField::new('lastname')
+                ->setFormTypeOption('disabled', 'disabled')
+                ->setLabel('Nom'),
             TextField::new('name')
+                ->setLabel('Prénom')
                 ->hideOnForm(),
             TextField::new('subject')
+                ->setLabel('Sujet')
                 ->setFormTypeOption('disabled', 'disabled'),
             TextareaField::new('message')
                 ->setFormType(CKEditorType::class)
                 ->setFormTypeOption('disabled', 'disabled'),
             DateField::new('createdAt')
+                ->setLabel("Date de création")
                 ->hideOnForm()
                 ->setFormTypeOption('disabled', 'disabled'),
 

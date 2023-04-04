@@ -26,6 +26,7 @@ class ReduceCrudController extends AbstractCrudController
         return $crud
 
         ->setPageTitle("index", "Laxar - Réduction")
+        ->setEntityLabelInSingular("une réduction")
         ;
     }
 

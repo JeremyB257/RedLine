@@ -45,5 +45,7 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Produit', 'fa fa-watch', Product::class);
         yield MenuItem::linkToCrud('Reduction', 'fa fa-watch', Reduce::class);
         
+
+        
     }
 }
