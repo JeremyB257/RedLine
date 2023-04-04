@@ -20,7 +20,7 @@ class ProductService
     {
         $request = $this->requestStack->getMainRequest();
         $page = $request->query->getInt('page', 1);
-        $limit = 2;
+        $limit = 3;
         $productsQuery = $this->productRepository->findByManyFilters($filters);
 
         return $this->paginator->paginate($productsQuery, $page, $limit);
@@ -30,7 +30,7 @@ class ProductService
     {
         $request = $this->requestStack->getMainRequest();
         $page = $request->query->getInt('page', 1);
-        $limit = 2;
+        $limit = 3;
         $productsQuery = $this->productRepository->findBySearchTerms($search);
 
         return $this->paginator->paginate($productsQuery, $page, $limit);
