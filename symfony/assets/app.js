@@ -68,4 +68,5 @@ starRatingStars.addEventListener('click', e => {
   starRatingStars.classList.add('s' + e.target.dataset.value + '0');
 
   starRatingStars.nextElementSibling.innerText = e.target.dataset.text;
+  select.value = e.target.dataset.value;
 });
