@@ -5,6 +5,12 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -16,20 +22,32 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-        ->setEntityLabelInPlural('Utilisateurs')
-        ->setEntityLabelInSingular('Utilisateur')
+            ->setEntityLabelInPlural('Utilisateurs')
+            ->setEntityLabelInSingular('Utilisateur')
 
-        ->setPageTitle("index", "Laxar - Administration des utilisateurs");
+            ->setPageTitle("index", "Laxar - Administration des utilisateurs")
+
+            ->setPaginatorPageSize(10);
     }
 
-    /*
+
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('email'),
+            TextField::new('lastname'),
+            TextField::new('firstname'),
+            NumberField::new('number_adress'),
+            TextField::new('street1'),
+            TextField::new('street2'),
+            TextField::new('postcode'),
+            TextField::new('city'),
+            TextField::new('country'),
+            TextField::new('phone_number'),
+            DateField::new('birthday'),
+            ArrayField::new('roles'),
+
         ];
     }
-    */
 }
