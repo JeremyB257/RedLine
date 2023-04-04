@@ -97,11 +97,13 @@
 					{% for color in (watches[0].color | split(',')) %}
 						<div class="colors {{color}}" data-color="{{color}}"></div>
 					{% endfor %}
-
 				</div>
 			</div>
 			<div>
-				<button class="btn btn-lg btn-primary mt-4">Acheter</button>
+				<form action="{{path('cart.add', {id: watches[0].id})}}" method="get">
+					<input type="hidden" name="color" value="green" id="form-color">
+					<button class="btn btn-lg btn-primary mt-4">Acheter</button>
+				</form>
 			</div>
 		</div>
 	</div>
