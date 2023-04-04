@@ -39,49 +39,60 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Product[] Returns an array of Product objects
-//     */
-   public function findByManyFilters(array $filters)
-   {
-        $index=0;
+    //    /**
+    //     * @return Product[] Returns an array of Product objects
+    //     */
+    public function findByManyFilters(array $filters)
+    {
+        $index = 0;
         $query = $this->createQueryBuilder('p');
-        foreach($filters as $key => $filter) {
+        foreach ($filters as $key => $filter) {
             if ($filter) {
-                $index+=1;
-                $query->andWhere('p.'.$key.' = :val'.$index);
-                $query->setParameter('val'.$index, $filter);
+                $index += 1;
+                $query->andWhere('p.' . $key . ' = :val' . $index);
+                $query->setParameter('val' . $index, $filter);
             }
         }
         return $query->getQuery()->getResult();
-   }
+    }
 
-   public function findDistinctBrand()
-   {
+    public function findDistinctBrand()
+    {
         $query = $this->createQueryBuilder('b')
-                ->select('b.brand')
-                ->groupBy('b.brand')
-                ->orderBy('b.brand','ASC');
+            ->select('b.brand')
+            ->groupBy('b.brand')
+            ->orderBy('b.brand', 'ASC');
         return $query->getQuery()->getResult();
-   }
+    }
 
-   public function findDistinctMaterial()
-   {
+    public function findDistinctMaterial()
+    {
         $query = $this->createQueryBuilder('m')
-                ->select('m.material')
-                ->groupBy('m.material')
-                ->orderBy('m.material','ASC');
+            ->select('m.material')
+            ->groupBy('m.material')
+            ->orderBy('m.material', 'ASC');
         return $query->getQuery()->getResult();
-   }
+    }
 
-   public function findDistinctCaseDiameter()
-   {
+    public function findDistinctCaseDiameter()
+    {
         $query = $this->createQueryBuilder('cd')
-                ->select('cd.case_diameter')
-                ->groupBy('cd.case_diameter')
-                ->orderBy('cd.case_diameter','ASC');
+            ->select('cd.case_diameter')
+            ->groupBy('cd.case_diameter')
+            ->orderBy('cd.case_diameter', 'ASC');
         return $query->getQuery()->getResult();
-   }
+    }
+
+
+    public function findBySearchTerms($search)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.brand LIKE :search')
+            ->orWhere('p.model LIKE :search')
+            ->setParameter(':search', '%' . $search . '%')
+            ->getQuery()->getResult();
+    }
+
 
    public function findDistinctMovement()
    {
@@ -100,13 +111,13 @@ class ProductRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
    }
 
-//    public function findOneBySomeField($value): ?Product
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
-}
+    public function findOneBySomeField($value): ?Product
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
+            ->setParameter('val', $value)
+           ->getQuery()
+            ->getOneOrNullResult()
+        ;
+   }
+

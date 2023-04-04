@@ -102,6 +102,10 @@ a {
   color: $color-primary;
 }
 
+.form-check-input:checked {
+  background-color: $primary;
+  border-color: $primary;
+}
 .colors {
   width: 50px;
   height: 50px;
