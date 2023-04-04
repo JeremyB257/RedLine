@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Repository\ProductRepository;
+use App\Service\ProductService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/produits', name: 'app_product')]
-    public function index(ProductRepository $repository, Request $request): Response
+    public function index(ProductService $repository, Request $request): Response
     {
         $filters['brand'] = $request->get('brand') ?? null;
         $filters['material'] = $request->get('material') ?? null;
@@ -22,9 +23,9 @@ class ProductController extends AbstractController
         $searchTerm = $request->get('search') ?? null;
 
         if ($filters['brand'] || $filters['material'] || $filters['case_diameter'] || $filters['movement'] || $filters['category']) {
-            $products =  $repository->findByManyFilters($filters);
+            $products =  $repository->getPaginatedProducts($filters);
         } else {
-            $products = $repository->findBySearchTerms($searchTerm);
+            $products = $repository->getPaginatedProductsSearch($searchTerm);
         }
 
         return $this->render('product/index.html.twig', [
