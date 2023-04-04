@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Repository\ProductRepository;
 use App\Repository\ReviewRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -25,11 +27,21 @@ class HomeController extends AbstractController
     }
 
     
-
-
     #[Route('/a-propos', name: 'app_about')]
     public function about(): Response
     {
         return $this->render('about.html.twig');
     }
+
+
+    #[Route('/new', name:'new')]
+    function newsletter(Request $request, UserRepository $userRepository)
+    {
+        $email = $request->get('email');
+         
+        $bddEmail= $userRepository->findOneBy(['email'=> $email]); 
+
+        return $this->redirectToRoute('home.index');
+    }
+    
 }
