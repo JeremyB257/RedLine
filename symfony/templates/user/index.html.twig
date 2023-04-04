@@ -47,6 +47,16 @@
 					</li>
 				</a>
 			</li>
+						{% if 'ROLE_ADMIN' in app.user.roles %}
+				<li class="list-group-item py-3 bg-color">
+					<a href="{{ path('admin') }}">
+						<div class="d-flex">
+							<i class="fa-solid fa-screwdriver-wrench"></i>
+							<span class="ms-4 ps-4">Administration</span>
+						</div>
+					</a>
+				</li>
+			{% endif %}
 			<li class="list-group-item py-3 bg-color">
 				<a href="{{ path('app_logout') }}">
 					<div class="d-flex">
@@ -55,17 +65,7 @@
 					</div>
 				</a>
 			</li>
-<pre>
-	{{ dump(app.user.roles == "ROLE_ADMIN") }}
-</pre>
-			<li class="list-group-item py-3 bg-color">
-				<a href="{{ path('app_logout') }}">
-					<div class="d-flex">
-						<i class="fa-solid fa-right-from-bracket fs-4" style="color: #000000;"></i>
-						<span class="ms-4 ps-4">Se déconnecter</span>
-					</div>
-				</a>
-			</li>
+
 		</ul>
 	</section>
 	<section class="my-5 col-12 col-md-8">

@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Contact;
 use App\Entity\Product;
+use App\Entity\Reduce;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -37,9 +38,12 @@ class AdminController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+        // Permet de choisir le menu 
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('utilisateur', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Contact', 'fa fa-messages', Contact::class);
         yield MenuItem::linkToCrud('Produit', 'fa fa-watch', Product::class);
+        yield MenuItem::linkToCrud('Reduction', 'fa fa-watch', Reduce::class);
+        
     }
 }
