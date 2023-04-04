@@ -56,10 +56,17 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_product_show', ['id' => $product->getId()]);
         }
 
+        $reviews = $reviewRepo->findBy(['product' => $product], ['createdAt' => 'DESC']);
+        $total = 0;
+        foreach ($reviews as $key => $review) {
+            $total += $review->getEvaluation();
+        }
+        $average = $total / count($reviews);
         return $this->render('product/show.html.twig', [
             'product' => $product,
-            'reviews' => $reviewRepo->findBy(['product' => $product], ['createdAt' => 'DESC']),
-            'form' => $form
+            'reviews' => $reviews,
+            'average' => $average,
+            'form' => $form,
         ]);
     }
 }

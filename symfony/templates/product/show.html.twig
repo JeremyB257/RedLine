@@ -55,8 +55,32 @@
 				<p class="p-5">{{product.description}}</p>
 			</div>
 			<div class="tab-pane fade" id="reviews" role="tabpanel">
-				<div
-					class="p-5">
+				<div class="p-5">
+					<div class="bg-white rounded border shadow-sm p-4 mb-5 rating-review-select-page">
+						<div class="rating-block">
+							<h4>Note moyenne</h4>
+							<h2 class="bold padding-bottom-7">{{average | number_format(2, '.', ' ')}}
+								<small>/ 5</small>
+							</h2>
+							<button type="button" class="btn btn-primary btn-sm text-white" aria-label="Left Align">
+								<i class="fa-solid fa-star"></i>
+							</button>
+							<button type="button" class="btn {{average >= 2 ? 'btn-primary' : 'btn-grey'}}  btn-sm text-white" aria-label="Left Align">
+								<i class="fa-solid fa-star"></i>
+							</button>
+							<button type="button" class="btn {{average >= 3 ? 'btn-primary' : 'btn-grey'}}  btn-sm text-white" aria-label="Left Align">
+								<i class="fa-solid fa-star"></i>
+							</button>
+							<button type="button" class="btn  {{average >= 4 ? 'btn-primary' : 'btn-grey'}} btn-sm text-white" aria-label="Left Align">
+								<i class="fa-solid fa-star"></i>
+							</button>
+							<button type="button" class="btn {{average >= 5 ? 'btn-primary' : 'btn-grey'}}  btn-sm text-white" aria-label="Left Align">
+								<i class="fa-solid fa-star"></i>
+							</button>
+							<p>({{ reviews | length}}
+								avis)</p>
+						</div>
+					</div>
 					{# display all review #}
 					<div class="bg-white rounded border shadow-sm p-4 mb-5 rating-review-select-page">
 						{% for review in reviews %}
