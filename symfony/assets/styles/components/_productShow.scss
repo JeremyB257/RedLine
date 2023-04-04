@@ -1,0 +1,30 @@
+.container-show {
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
+  .little-pictures-container {
+    flex: 10%;
+    gap: 40px;
+    .little-pictures {
+      max-width: 80px;
+      max-height: 80px;
+      cursor: pointer;
+      transition: 0.7s;
+      &:hover {
+        transform: scale(105%);
+      }
+    }
+  }
+  .main-picture-container {
+    flex: 45%;
+    .main-picture {
+      width: 350px;
+      height: auto;
+    }
+  }
+  .info {
+    flex: 45%;
+    padding: 10px 10px 10px 0px;
+    color: $color-dark;
+  }
+}
