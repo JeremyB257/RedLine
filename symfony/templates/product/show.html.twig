@@ -58,25 +58,37 @@
 				<div class="p-5">
 					{% for review in reviews %}
 						<p>{{review.content}}</p>
-
-						<div class="bg-white rounded border shadow-sm p-4 mb-5 rating-review-select-page">
-							{{form_start(form)}}
-							<h5 class="mb-4">Laissez un avis</h5>
-							{{form_row(form.firstname)}}
-
-							<p class="mb-2">Note</p>
-							<span>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-								<i class="fa-solid fa-star"></i>
-							</span>
-							{{form_row(form.content)}}
-							<button class="btn btn-primary btn-sm mt-2" type="button">Envoyer</button>
-							{{form_end(form)}}
-						</div>
 					{% endfor %}
+					<div class="bg-white rounded border shadow-sm p-4 mb-5 rating-review-select-page">
+						{{form_start(form)}}
+						<h5 class="mb-4">Laissez un avis</h5>
+						{{form_row(form.firstname)}}
+
+
+						<span class="gl-star-rating gl-star-rating-ltr" data-star-rating="">
+							<select class="star-rating">
+								<option value="">Select a rating</option>
+								<option value="5">Excellent</option>
+								<option value="4">Very Good</option>
+								<option value="3">Average</option>
+								<option value="2">Poor</option>
+								<option value="1">Terrible</option>
+							</select>
+							<span class="gl-star-rating-stars s30">
+								<span data-value="1" data-text="Tres mauvais"></span>
+								<span data-value="2" data-text="Mauvais"></span>
+								<span data-value="3" data-text="Bien"></span>
+								<span data-value="4" data-text="Tres bien"></span>
+								<span data-value="5" data-text="Excellent"></span>
+							</span>
+							<span class="gl-star-rating-text">Bien</span>
+						</span>
+
+						{{form_row(form.content)}}
+						<button class="btn btn-primary btn-sm mt-2" type="button">Envoyer</button>
+						{{form_end(form)}}
+					</div>
+
 				</div>
 			</div>
 		</div>

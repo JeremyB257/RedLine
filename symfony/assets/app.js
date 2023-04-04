@@ -63,3 +63,14 @@ if (colorFilter) {
 }
 
 // Utilisez la variable selectedColor pour ajouter la couleur sélectionnée dans le panier
+
+//Rating review
+const starRatingStars = document.querySelector('.gl-star-rating-stars');
+
+starRatingStars.addEventListener('click', e => {
+  console.log(e.target.dataset.value);
+  starRatingStars.classList.remove(starRatingStars.classList[1]);
+  starRatingStars.classList.add('s' + e.target.dataset.value + '0');
+
+  starRatingStars.nextElementSibling.innerText = e.target.dataset.text;
+});
