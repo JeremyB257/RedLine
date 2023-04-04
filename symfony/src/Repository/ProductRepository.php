@@ -116,8 +116,7 @@ class ProductRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
-           ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getQuery()
+            ->getOneOrNullResult();
    }
-
+}
