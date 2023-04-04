@@ -22,7 +22,6 @@ class CartController extends AbstractController
         //ON fabrique les données
         $dataCart = [];
         $total = 0;
-        dump($cart);
         foreach ($cart as $product) {
             $color = $product['color'];
             $quantity = $product['quantity'];
