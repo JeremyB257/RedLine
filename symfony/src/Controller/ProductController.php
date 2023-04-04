@@ -48,6 +48,10 @@ class ProductController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $review->setProduct($product)
+                ->setUser($this->getUser());
+
+            $reviewRepo->save($review, true);
         }
 
         return $this->render('product/show.html.twig', [

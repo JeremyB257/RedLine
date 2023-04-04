@@ -66,14 +66,7 @@
 
 
 						<span class="gl-star-rating gl-star-rating-ltr" data-star-rating="">
-							<select class="star-rating">
-								<option value="">Select a rating</option>
-								<option value="5">Excellent</option>
-								<option value="4">Very Good</option>
-								<option value="3">Average</option>
-								<option value="2">Poor</option>
-								<option value="1">Terrible</option>
-							</select>
+							{{form_widget(form.evaluation)}}
 							<span class="gl-star-rating-stars s30">
 								<span data-value="1" data-text="Tres mauvais"></span>
 								<span data-value="2" data-text="Mauvais"></span>
@@ -85,7 +78,7 @@
 						</span>
 
 						{{form_row(form.content)}}
-						<button class="btn btn-primary btn-sm mt-2" type="button">Envoyer</button>
+						<button class="btn btn-primary btn-sm mt-2">Envoyer</button>
 						{{form_end(form)}}
 					</div>
 

@@ -16,7 +16,7 @@ class ReviewType extends AbstractType
             ->add('firstname', null, [
                 'label' => 'Prénom',
             ])
-            /*  ->add('evaluation', ChoiceType::class, [
+            ->add('evaluation', ChoiceType::class, [
                 'choices' => [
                     'Excellent' => '5',
                     'Tres bien' => '4',
@@ -24,7 +24,7 @@ class ReviewType extends AbstractType
                     'Faible' => '2',
                     'Mauvais' => '1',
                 ],
-            ]) */
+            ])
             ->add('content', null, [
                 'label' => 'Commentaire',
                 'label_attr' => ['class' => 'mt-2']
