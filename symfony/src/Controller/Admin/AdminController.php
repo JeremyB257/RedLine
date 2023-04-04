@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Contact;
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\Reduce;
 use App\Entity\User;
@@ -44,6 +45,8 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Contact', 'fa fa-messages', Contact::class);
         yield MenuItem::linkToCrud('Produit', 'fa fa-watch', Product::class);
         yield MenuItem::linkToCrud('Reduction', 'fa fa-watch', Reduce::class);
+        yield MenuItem::linkToCrud('Commande', 'fa fa-watch', Order::class);
+        
         
 
         
