@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\Review;
+use App\Form\ReviewType;
 use App\Repository\ProductRepository;
 use App\Repository\ReviewRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,11 +41,19 @@ class ProductController extends AbstractController
     }
 
     #[Route(path: '/produit/{id}', name: 'app_product_show')]
-    public function show(Product $product, ReviewRepository $reviewRepo): Response
+    public function show(Product $product, ReviewRepository $reviewRepo, Request $request): Response
     {
+        $review = new Review;
+        $form = $this->createForm(ReviewType::class, $review);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+        }
+
         return $this->render('product/show.html.twig', [
             'product' => $product,
             'reviews' => $reviewRepo->findBy(['product' => $product], ['createdAt' => 'DESC']),
+            'form' => $form
         ]);
     }
 }
