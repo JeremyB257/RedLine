@@ -336,7 +336,7 @@ class AppFixtures extends Fixture
             ->setMovement('Automatique')
             ->setCaseDiameter(41)
             ->setCategory('homme')
-            ->setColor('white')
+            ->setColor('green,white')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(50)
@@ -398,7 +398,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Tissot')
             ->setModel('Seastar 1000 Powermatic 80')
-            ->setImgUrl('TissotSeastar1000Powermatic80-blue.png,TissotSeastar1000Powermatic80-grey.png,TissotSeastar1000Powermatic80-brown')
+            ->setImgUrl('TissotSeastar1000Powermatic80-blue.png,TissotSeastar1000Powermatic80-grey.png,TissotSeastar1000Powermatic80-brown.png')
             ->setPriceHt(990)
             ->setMaterial('acier')
             ->setMovement('Automatique')
