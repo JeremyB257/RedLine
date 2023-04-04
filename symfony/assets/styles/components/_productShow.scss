@@ -83,7 +83,7 @@
 
 .gl-star-rating-stars {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   height: 26px;
   vertical-align: middle;
   cursor: pointer;
@@ -91,12 +91,11 @@
 
 .gl-star-rating-stars > span {
   display: inline-block;
-  width: 24px;
+  width: 30px;
   height: 24px;
   background-size: 24px;
   background-repeat: no-repeat;
   background-image: url(./star-empty.svg);
-  margin: 0 4px 0 0;
 }
 
 .gl-star-rating-stars > span:last-of-type {
