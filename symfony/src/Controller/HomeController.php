@@ -13,11 +13,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home.index')]
     public function index(ProductRepository $productRepo, ReviewRepository $reviewRepo): Response
     {
-
-        $brands = $productRepo->findDistinctBrand();
-        $materials = $productRepo->findDistinctMaterial();
-        $movements = $productRepo->findDistinctMovement();
-
         return $this->render('index.html.twig', [
             'watches' => $productRepo->findBy([], null, 5),
             'reviews' => $reviewRepo->findBy([], ['evaluation' => 'DESC'], 3),
