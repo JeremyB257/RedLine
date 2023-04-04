@@ -23,6 +23,7 @@ class ProductController extends AbstractController
         $products = !empty($filters) ? $repository->findByManyFilters($filters) : $products = $repository->findAll();
 
         return $this->render('product/index.html.twig', [
+            'products' => $products,
             'brand_choice' => $filters['brand'],
             'material_choice' =>  $filters['material'],
             'case_diameter_choice' =>  $filters['case_diameter'],
