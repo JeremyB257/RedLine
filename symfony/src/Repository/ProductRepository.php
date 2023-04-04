@@ -42,7 +42,7 @@ class ProductRepository extends ServiceEntityRepository
     //    /**
     //     * @return Product[] Returns an array of Product objects
     //     */
-    public function findByManyFilters(array $filters)
+    public function findByManyFilters(array $filters, $order)
     {
         $index = 0;
         $query = $this->createQueryBuilder('p');
@@ -53,7 +53,7 @@ class ProductRepository extends ServiceEntityRepository
                 $query->setParameter('val' . $index, $filter);
             }
         }
-        $query->orderBy('p.price_ht', 'ASC');
+        $query->orderBy('p.price_ht', ($order ? 'DESC' : 'ASC'));
         return $query->getQuery()->getResult();
     }
 
