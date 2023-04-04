@@ -42,6 +42,12 @@
         padding-bottom: 5px;
       }
     }
+    .radio-category-container {
+      gap: 10%;
+      .radio-category {
+        width: 80px;
+      }
+    }
     .in-progress {
       color: $color-primary;
       font-weight: bold;

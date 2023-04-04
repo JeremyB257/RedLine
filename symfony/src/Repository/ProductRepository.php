@@ -93,13 +93,30 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()->getResult();
     }
 
-    //    public function findOneBySomeField($value): ?Product
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+
+   public function findDistinctMovement()
+   {
+        $query = $this->createQueryBuilder('mv')
+                ->select('mv.movement')
+                ->groupBy('mv.movement')
+                ->orderBy('mv.movement','ASC');
+        return $query->getQuery()->getResult();
+   }
+
+   public function findDistinctCategory()
+   {
+        $query = $this->createQueryBuilder('c')
+                ->select('c.category')
+                ->groupBy('c.category');
+        return $query->getQuery()->getResult();
+   }
+
+    public function findOneBySomeField($value): ?Product
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult();
+   }
 }
