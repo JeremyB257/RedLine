@@ -25,6 +25,7 @@
     "build": "encore production --progress"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^36.0.1"
+    "@ckeditor/ckeditor5-build-classic": "^36.0.1",
+    "ckeditor4": "^4.13.0"
   }
 }

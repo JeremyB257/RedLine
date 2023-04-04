@@ -7,9 +7,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class ContactCrudController extends AbstractCrudController
 {
@@ -27,7 +27,9 @@ class ContactCrudController extends AbstractCrudController
 
         ->setPageTitle("index", "Laxar - Administration des demandes de contact")
 
-        ->setPaginatorPageSize(10);
+        ->setPaginatorPageSize(10)
+
+        ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
 
     public function configureFields(string $pageName): iterable
@@ -43,6 +45,7 @@ class ContactCrudController extends AbstractCrudController
         TextField::new('subject')
         ->setFormTypeOption('disabled', 'disabled'),
         TextareaField::new('message')
+        ->setFormType(CKEditorType::class)
         ->setFormTypeOption('disabled', 'disabled'),
         DateField::new('createdAt')
             ->hideOnForm()

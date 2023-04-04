@@ -32,13 +32,14 @@ class AppFixtures extends Fixture
         $user->setFirstname('Laxar');
         $user->setEmail('laxar@laxar.com');
         $user->setPassword($this->hasher->hashPassword($user, 'password'));
-        $user->setRoles(['ROLE_ADMIN']);
+        $user->setRoles(['ROLE_USER','ROLE_ADMIN']);
         $user->setNewsletter(true);
         $manager->persist($user);
 
         $faker = Factory::create('fr_FR');
 
         $users = [$user];
+
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setFirstname($faker->firstname());
