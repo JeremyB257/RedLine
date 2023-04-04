@@ -40,7 +40,7 @@ class UserCrudController extends AbstractCrudController
                 ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('lastname'),
             TextField::new('firstname'),
-            NumberField::new('number_adress'),
+            TextField::new('number_adress'),
             TextField::new('street1'),
             TextField::new('street2'),
             TextField::new('postcode'),
@@ -52,7 +52,6 @@ class UserCrudController extends AbstractCrudController
                 ->hideOnForm()
                 ->setFormTypeOption('disabled', 'disabled'),
             ArrayField::new('roles'),
-
         ];
     }
 }

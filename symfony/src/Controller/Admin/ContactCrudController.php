@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ContactCrudController extends AbstractCrudController
 {
@@ -31,7 +32,7 @@ class ContactCrudController extends AbstractCrudController
 
         ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
-
+    
     public function configureFields(string $pageName): iterable
     {
         return [

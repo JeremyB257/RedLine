@@ -8,7 +8,7 @@
 
 {% block body %}
 	<div class="container-lg">
-  
+
 
 		<h2 class="fs-4 my-4">Mon compte</h2>
 		<div class="row">
@@ -36,17 +36,28 @@
 							</div>
 						</a>
 					</li>
-					<li
-						class="list-group-item py-3 bg-color">
+					<li class="list-group-item py-3 bg-color">
 						<a href="{{path('order.index', {id: app.user.id})}}">
-						<div class="d-flex justify-content-between align-items-center">
-							<i class="fa-solid fa-bags-shopping fs-4" style="color: #000000;"></i>
-							<span>Mes commandes</span>
-							<i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
-						</div>
+							<div class="d-flex justify-content-between align-items-center">
+								<i class="fa-solid fa-bags-shopping fs-4" style="color: #000000;"></i>
+								<span>Mes commandes</span>
+								<i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+							</div>
+						</li>
 					</li>
 				</a>
 			</li>
+			<li class="list-group-item py-3 bg-color">
+				<a href="{{ path('app_logout') }}">
+					<div class="d-flex">
+						<i class="fa-solid fa-right-from-bracket fs-4" style="color: #000000;"></i>
+						<span class="ms-4 ps-4">Se déconnecter</span>
+					</div>
+				</a>
+			</li>
+<pre>
+	{{ dump(app.user.roles == "ROLE_ADMIN") }}
+</pre>
 			<li class="list-group-item py-3 bg-color">
 				<a href="{{ path('app_logout') }}">
 					<div class="d-flex">
@@ -89,4 +100,3 @@
 		</div>
 	</section>
 </div></div>{% endblock %}
-
