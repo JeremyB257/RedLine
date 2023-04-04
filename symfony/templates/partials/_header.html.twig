@@ -17,25 +17,25 @@
 								<div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
 									<div class="list-group list-group-flush">
 										<p class="mb-0 list-group-item text-white fw-bold">Marque</p>
-										<a href="" class="list-group-item py-1">Rolex</a>
-										<a href="" class="list-group-item py-1">Seiko</a>
-										<a href="" class="list-group-item py-1">Omega</a>
-										<a href="" class="list-group-item py-1">Tissot</a>
+										{% for brand in brandsGlobal %}
+											<a href="{{ path('app_product') }}?brand={{ brand['brand'] }}&category=homme" class="list-group-item py-1">{{ brand['brand'] }}</a>
+										{% endfor %}
 									</div>
 								</div>
 								<div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
 									<div class="list-group list-group-flush">
 										<p class="mb-0 list-group-item text-white fw-bold">Matieres</p>
-										<a href="" class="list-group-item py-1">Metal</a>
-										<a href="" class="list-group-item py-1">Cuir</a>
-										<a href="" class="list-group-item py-1">Silicone</a>
+										{% for material in materialsGlobal %}
+											<a href="{{ path('app_product') }}?material={{ material['material'] }}&category=homme" class="list-group-item py-1">{{ material['material']|title }}</a>
+										{% endfor %}
 									</div>
 								</div>
 								<div class="col-md-6 col-lg-4 mb-3 mb-md-0">
 									<div class="list-group list-group-flush">
-										<p class="mb-0 list-group-item text-white fw-bold">Mouvement</p>
-										<a href="" class="list-group-item py-1">Automatique</a>
-										<a href="" class="list-group-item py-1">Mecanique</a>
+										<p class="mb-0 list-group-item text-white fw-bold">Mouvements</p>
+										{% for movement in movementsGlobal %}
+											<a href="{{ path('app_product') }}?movement={{ movement['movement'] }}&category=homme" class="list-group-item py-1">{{ movement['movement']|title }}</a>
+										{% endfor %}
 									</div>
 								</div>
 							</div>
@@ -52,25 +52,25 @@
 								<div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
 									<div class="list-group list-group-flush">
 										<p class="mb-0 list-group-item text-white fw-bold">Marque</p>
-										<a href="" class="list-group-item py-1">Rolex</a>
-										<a href="" class="list-group-item py-1">Seiko</a>
-										<a href="" class="list-group-item py-1">Omega</a>
-										<a href="" class="list-group-item py-1">Tissot</a>
+										{% for brand in brandsGlobal %}
+											<a href="{{ path('app_product') }}?brand={{ brand['brand'] }}&category=femme" class="list-group-item py-1">{{ brand['brand'] }}</a>
+										{% endfor %}
 									</div>
 								</div>
 								<div class="col-md-6 col-lg-4 mb-3 mb-lg-0">
 									<div class="list-group list-group-flush">
 										<p class="mb-0 list-group-item text-white fw-bold">Matieres</p>
-										<a href="" class="list-group-item py-1">Metal</a>
-										<a href="" class="list-group-item py-1">Cuir</a>
-										<a href="" class="list-group-item py-1">Silicone</a>
+										{% for material in materialsGlobal %}
+											<a href="{{ path('app_product') }}?material={{ material['material'] }}&category=femme" class="list-group-item py-1">{{ material['material']|title }}</a>
+										{% endfor %}
 									</div>
 								</div>
 								<div class="col-md-6 col-lg-4 mb-3 mb-md-0">
 									<div class="list-group list-group-flush">
-										<p class="mb-0 list-group-item text-white fw-bold">Mouvement</p>
-										<a href="" class="list-group-item py-1">Automatique</a>
-										<a href="" class="list-group-item py-1">Mecanique</a>
+										<p class="mb-0 list-group-item text-white fw-bold">Mouvements</p>
+										{% for movement in movementsGlobal %}
+											<a href="{{ path('app_product') }}?movement={{ movement['movement'] }}&category=femme" class="list-group-item py-1">{{ movement['movement']|title }}</a>
+										{% endfor %}
 									</div>
 								</div>
 							</div>
