@@ -17,28 +17,23 @@ class ProductController extends AbstractController
         $filters['brand'] = $request->get('brand') ?? null;
         $filters['material'] = $request->get('material') ?? null;
         $filters['case_diameter'] = $request->get('case_diameter') ?? null;
-        $searchTerm = $request->get('search') ?? '';
-        $brands = $repository->findDistinctBrand();
-        $materials = $repository->findDistinctMaterial();
-        $case_diameters = $repository->findDistinctCaseDiameter();
+        $filters['movement'] = $request->get('movement') ?? null;
+        $filters['category'] = $request->get('category') ?? null;
+        $searchTerm = $request->get('search') ?? null;
 
-        if ($filters['brand'] || $filters['material'] || $filters['case_diameter']) {
+        if ($filters['brand'] || $filters['material'] || $filters['case_diameter'] || $filters['movement'] || $filters['category']) {
             $products =  $repository->findByManyFilters($filters);
         } else {
             $products = $repository->findBySearchTerms($searchTerm);
         }
 
-        dump($products);
-
-
         return $this->render('product/index.html.twig', [
             'products' => $products,
-            'brands' => $brands,
-            'materials' => $materials,
-            'case_diameters' => $case_diameters,
             'brand_choice' => $filters['brand'],
             'material_choice' =>  $filters['material'],
             'case_diameter_choice' =>  $filters['case_diameter'],
+            'movement_choice' => $filters['movement'],
+            'category_choice' => $filters['category'],
         ]);
     }
 
