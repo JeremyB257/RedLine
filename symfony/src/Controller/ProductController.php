@@ -52,6 +52,8 @@ class ProductController extends AbstractController
                 ->setUser($this->getUser());
 
             $reviewRepo->save($review, true);
+
+            return $this->redirectToRoute('app_product_show', ['id' => $product->getId()]);
         }
 
         return $this->render('product/show.html.twig', [

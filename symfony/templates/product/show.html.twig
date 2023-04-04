@@ -55,16 +55,28 @@
 				<p class="p-5">{{product.description}}</p>
 			</div>
 			<div class="tab-pane fade" id="reviews" role="tabpanel">
-				<div class="p-5">
-					{% for review in reviews %}
-						<p>{{review.content}}</p>
-					{% endfor %}
+				<div
+					class="p-5">
+					{# display all review #}
+					<div class="bg-white rounded border shadow-sm p-4 mb-5 rating-review-select-page">
+						{% for review in reviews %}
+							<h5>{{review.firstname | capitalize }}</h5>
+							<span>
+								<i class="fa-solid fa-star primary"></i>
+								<i class="{{review.evaluation >= 2 ? 'fa-solid' : 'fa-regular' }} fa-star primary"></i>
+								<i class="{{review.evaluation >= 3 ? 'fa-solid' : 'fa-regular' }} fa-star primary"></i>
+								<i class="{{review.evaluation >= 4 ? 'fa-solid' : 'fa-regular' }} fa-star primary"></i>
+								<i class="{{review.evaluation >= 5 ? 'fa-solid' : 'fa-regular' }} fa-star primary"></i>
+							</span>
+							<p>{{review.content}}</p>
+							<hr>
+						{% endfor %}
+					</div>
+					{# form send review #}
 					<div class="bg-white rounded border shadow-sm p-4 mb-5 rating-review-select-page">
 						{{form_start(form)}}
 						<h5 class="mb-4">Laissez un avis</h5>
 						{{form_row(form.firstname)}}
-
-
 						<span class="gl-star-rating gl-star-rating-ltr" data-star-rating="">
 							{{form_widget(form.evaluation)}}
 							<span class="gl-star-rating-stars s30">
