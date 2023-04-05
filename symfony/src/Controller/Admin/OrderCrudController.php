@@ -21,9 +21,9 @@ class OrderCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            IdField::new('userid')
+            IdField::new('id')
             ->setDisabled('disabled', 'disabled'),
+            IdField::new('user_id'),
             TextField::new('Reduce')
             ->setLabel('Réduction'),
             NumberField::new('Total')

@@ -49,8 +49,10 @@ class SecurityController extends AbstractController
                 $userPasswordHasher->hashPassword(
                     $user,
                     $registerForm->get('plainPassword')->getData()
-                )
+                ),
             );
+            
+            $user->setActive(true);
             
             $entityManager->persist($user);
             $entityManager->flush();

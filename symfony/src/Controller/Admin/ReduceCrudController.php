@@ -43,7 +43,7 @@ class ReduceCrudController extends AbstractCrudController
                 '%' => '%',
                 '€' => '€',
             ]),
-            TextEditorField::new('code'),
+            TextField::new('code'),
             NumberField::new('value')
             ->setLabel('Valeur'),
             ChoiceField::new('active')
