@@ -33,7 +33,7 @@ class AppFixtures extends Fixture
         $user->setFirstname('Laxar');
         $user->setEmail('laxar@laxar.com');
         $user->setPassword($this->hasher->hashPassword($user, 'password'));
-        $user->setRoles(['ROLE_USER','ROLE_ADMIN']);
+        $user->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
         $user->setNewsletter(true);
         $user->setActive(true);
         $manager->persist($user);
@@ -572,8 +572,8 @@ class AppFixtures extends Fixture
         //reduce
         $reduce = new Reduce;
         $reduce->setType('%')
-            ->setCode('laxar')
-            ->setValue('10')
+            ->setCode('fiofio')
+            ->setValue('50')
             ->setActive(true)
             ->setDateStart($faker->dateTimeBetween('-15 days'))
             ->setDateEnd($faker->dateTimeBetween('100 days', '+150 days'));
