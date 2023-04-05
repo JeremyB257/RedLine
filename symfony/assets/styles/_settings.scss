@@ -91,6 +91,9 @@ a {
 .border-primary {
   border-color: #{$color-primary} !important;
 }
+.bg-primary {
+  background-color: $color-primary !important;
+}
 
 .w-sm-50 {
   @media (min-width: 768px) {
@@ -98,6 +101,9 @@ a {
   }
 }
 
+i {
+  cursor: pointer;
+}
 .primary {
   color: $color-primary;
 }
@@ -121,9 +127,6 @@ a {
   &.black {
     background-color: rgb(32, 32, 32);
   }
-  &.brown {
-    background-color: rgb(84, 16, 16);
-  }
   &.blue {
     background-color: rgb(68, 124, 180);
   }
@@ -142,8 +145,14 @@ a {
   &.pink {
     background-color: rgb(255, 174, 228);
   }
+  &.orange {
+    background-color: rgb(255, 177, 67);
+  }
   &.white {
     background-color: rgb(221, 221, 221);
+  }
+  &.brown {
+    background-color: rgb(142, 82, 66);
   }
 }
 

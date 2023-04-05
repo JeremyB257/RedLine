@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Reduce;
 use App\Repository\ProductRepository;
 use App\Repository\ReduceRepository;
-use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,6 +26,7 @@ class CartController extends AbstractController
     #[Route('/panier', name: 'cart.index')]
     public function index(SessionInterface $session, ProductRepository $productRepository, Request $request, ReduceRepository $reduceRepo): Response
     {
+
         // Get cart from session
         $cart = $session->get('panier', []);
         $dataReduce = $session->get('reduce', []);
@@ -87,6 +88,7 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', compact("dataCart", "total", "productTotal", "reduceForm", "dataReduce", "totalReduce"));
     }
 
+
     /**
      * Add item to cart
      *
@@ -98,11 +100,12 @@ class CartController extends AbstractController
     #[Route('/cart/add/{id}', name: 'cart.add')]
     public function add(Int $id, SessionInterface $session, Request $request): Response
     {
+
         // Get cart from session
         $cart = $session->get('panier', []);
         $color = $request->get('color');
-
         $handleAdd = 0;
+
         // if cart is empty = add product
         if (empty($cart)) {
             $cart[] = [
@@ -137,6 +140,7 @@ class CartController extends AbstractController
 
     /**
      * Remove one item from cart
+     * remove one item in cart
      *
      * @param Int $id
      * @param String $color
@@ -146,6 +150,7 @@ class CartController extends AbstractController
     #[Route('/cart/remove/{id}/{color}', name: 'cart.remove')]
     public function remove(Int $id, String $color, SessionInterface $session): Response
     {
+
         // Get cart from session
         $cart = $session->get('panier', []);
 
@@ -158,6 +163,7 @@ class CartController extends AbstractController
                 }
             }
         }
+
         // Save cart on session
         $session->set('panier', $cart);
 
@@ -183,6 +189,7 @@ class CartController extends AbstractController
                 unset($cart[$index]);
             }
         }
+
         // Save cart on session
         $session->set('panier', $cart);
 

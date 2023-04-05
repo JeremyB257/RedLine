@@ -10,6 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    /**
+     * Home page
+     *
+     * @param ProductRepository $productRepo
+     * @param ReviewRepository $reviewRepo
+     * @return Response
+     */
     #[Route('/', name: 'home.index')]
     public function index(ProductRepository $productRepo, ReviewRepository $reviewRepo): Response
     {
@@ -19,9 +26,14 @@ class HomeController extends AbstractController
         ]);
     }
 
-    
 
 
+
+    /**
+     * About page
+     *
+     * @return Response
+     */
     #[Route('/a-propos', name: 'app_about')]
     public function about(): Response
     {
