@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
 use App\Security\AppAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,13 +19,15 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class SecurityController extends AbstractController
 {
     #[Route(path: '/connexion', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils, 
-    Request $request, 
-    UserPasswordHasherInterface $userPasswordHasher, 
-    UserAuthenticatorInterface $userAuthenticator, 
-    AppAuthenticator $authenticator, 
-    EntityManagerInterface $entityManager): Response
-    {
+    public function login(
+        AuthenticationUtils $authenticationUtils,
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        UserRepository $userRepository,
+        UserAuthenticatorInterface $userAuthenticator,
+        AppAuthenticator $authenticator,
+        EntityManagerInterface $entityManager
+    ): Response {
 
         //Security Controller de Base
         // if ($this->getUser()) {
@@ -43,18 +46,34 @@ class SecurityController extends AbstractController
         ]);
         $registerForm->handleRequest($request);
 
+
+
         if ($registerForm->isSubmitted() && $registerForm->isValid()) {
             // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
+            $userDisable = $userRepository->findOneBy(["email" => $user->getEmail()]);
+            if ($userDisable) {
+                if ($userPasswordHasher->isPasswordValid(
+                    $userDisable,
                     $registerForm->get('plainPassword')->getData()
-                )
-            );
-            
+                )) {
+                    $user = $userDisable;
+                    $user->setActive(true);
+                } else {
+                    $this->addFlash('danger', 'Le mot de passe ne correspond pas avec le compte relier');
+                    return $this->redirectToRoute('app_login');
+                }
+            } else {
+                $user->setActive(true);
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $registerForm->get('plainPassword')->getData()
+                    )
+                );
+            }
+
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(
                 $user,

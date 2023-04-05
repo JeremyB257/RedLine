@@ -78,7 +78,7 @@ class ProductController extends AbstractController
         $count3 = 0;
         $count2 = 0;
         $count1 = 0;
-
+        $average = 0;
         foreach ($reviews as $key => $review) {
             $total += $review->getEvaluation();
             if ($review->getEvaluation() == 5) $count5 += 1;
@@ -87,7 +87,7 @@ class ProductController extends AbstractController
             if ($review->getEvaluation() == 2) $count2 += 1;
             if ($review->getEvaluation() == 1) $count1 += 1;
         }
-        $average = $total / count($reviews);
+        if ($reviews) $average = $total / count($reviews);
         return $this->render('product/show.html.twig', [
             'product' => $product,
             'reviews' => $reviews,
