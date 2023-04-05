@@ -34,8 +34,16 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', compact("dataCart", "total"));
     }
 
+    /**
+     * Add item to cart
+     *
+     * @param Int $id
+     * @param SessionInterface $session
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/cart/add/{id}', name: 'cart.add')]
-    public function add(Int $id, SessionInterface $session, Request $request)
+    public function add(Int $id, SessionInterface $session, Request $request): Response
     {
         // Get cart from session
         $cart = $session->get('panier', []);
@@ -74,8 +82,16 @@ class CartController extends AbstractController
         return $this->redirectToRoute("cart.index");
     }
 
+    /**
+     * Remove one item from cart
+     *
+     * @param Int $id
+     * @param String $color
+     * @param SessionInterface $session
+     * @return Response
+     */
     #[Route('/cart/remove/{id}/{color}', name: 'cart.remove')]
-    public function remove(Int $id, String $color, SessionInterface $session)
+    public function remove(Int $id, String $color, SessionInterface $session): Response
     {
         // Get cart from session
         $cart = $session->get('panier', []);
@@ -95,8 +111,16 @@ class CartController extends AbstractController
         return $this->redirectToRoute("cart.index");
     }
 
+    /**
+     * delete one item from cart
+     *
+     * @param Int $id
+     * @param String $color
+     * @param SessionInterface $session
+     * @return Response
+     */
     #[Route('/cart/delete/{id}/{color}', name: 'cart.delete')]
-    public function delete(Int $id, String $color, SessionInterface $session)
+    public function delete(Int $id, String $color, SessionInterface $session): Response
     {
         // Get cart from session
         $cart = $session->get('panier', []);
