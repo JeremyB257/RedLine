@@ -29,8 +29,8 @@ class ProductCrudController extends AbstractCrudController
 
             ->setEntityLabelInSingular("un produit")
             ->setEntityLabelInPlural("un produits")
-
-            ->setPageTitle("index", "Laxar - Produit");
+            ->setPageTitle("index", "Laxar - Produit")
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');;
     }
 
     public function configureFields(string $pageName): iterable
@@ -65,7 +65,7 @@ class ProductCrudController extends AbstractCrudController
                 ]),
             NumberField::new('case_diameter')
                 ->setLabel("Taille du cadran"),
-            TextareaField::new('description')
+            TextEditorField::new('description')
                 ->setFormType(CKEditorType::class),
             NumberField::new('stock'),
             TextField::new('slug')
