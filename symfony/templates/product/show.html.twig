@@ -162,11 +162,7 @@
 						mm</p>
 				</div>
 			</div>
-			<a href="{{path('cart.add', {id: product.id})}}" class="btn btn-primary btn-add-to-cart">Ajouter au panier</a>
-			<form action="{{path('cart.add', {id: product.id})}}" method="get">
-				<input type="hidden" name="color" value="{{product.color | split(',')[0]}}" id="form-color">
-				<button class="btn btn-lg btn-primary mt-4">Ajouter au panier</button>
-			</form>
+
 
 		</div>
 	</div>
