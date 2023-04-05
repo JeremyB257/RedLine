@@ -31,19 +31,38 @@
     .title-filter {
       font-size: 15px;
       padding-top: 20px;
-    }
-    .select {
-      width: 80%;
       @media (max-width: 1200px) {
-        justify-content: space-between;
-        width: 100%;
-      }
-      .label {
-        padding-bottom: 5px;
+        font-size: 10px;
       }
     }
+    .select-container {
+      width: 80%;
+      .select {
+        width: 80%;
+        @media (max-width: 1200px) {
+          justify-content: space-between;
+          width: 100%;
+        }
+        .label {
+          padding-bottom: 5px;
+        }
+        option {
+          &:checked {
+            background-color: $color-primary;
+          }
+        }
+      }
+    }
+
     .radio-category-container {
       gap: 10%;
+      padding-top: 15px;
+      @media (max-width: 1200px) {
+        width: 40%;
+        margin: auto;
+        justify-content: space-between;
+      }
+
       .radio-category {
         width: 80px;
       }

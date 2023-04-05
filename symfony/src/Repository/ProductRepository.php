@@ -53,6 +53,7 @@ class ProductRepository extends ServiceEntityRepository
                 $query->setParameter('val' . $index, $filter);
             }
         }
+        $query->orderBy('p.price_ht', 'ASC');
         return $query->getQuery()->getResult();
     }
 

@@ -10,7 +10,7 @@
             <div class="separate-line"></div>
             <div class="category-filter">
                 <div class="d-flex gap-3 choice-filter">
-                    <div class="select">
+                    <div class="select-container">
                         <label for="select-brand" class="title-filter label">Marques</label>
                         <select class="select form-select" name="brand" id="select-brand">
                             <option value="">Toutes</option>
@@ -18,8 +18,8 @@
                                 <option value="{{ brand['brand'] }}" {{ brand_choice == brand['brand'] ? 'selected' : null }}>{{ brand['brand'] }}</option>
                             {% endfor %}
                         </select>
-                    </div class="select">
-                    <div class="select">
+                    </div>
+                    <div class="select-container">
                         <label for="select-material" class="title-filter label">Matériaux :</label>
                         <select class="select form-select" name="material" id="select-material">
                             <option value="" selected>Tous</option>
@@ -29,7 +29,7 @@
                             {% endfor %}
                         </select>
                     </div>  
-                    <div class="select">
+                    <div class="select-container">
                         <label for="select-case-diameter" class="title-filter label">Tailles du cadran :</label>
                         <select class="select form-select" name="case_diameter" id="select-case-diameter">
                             <option value="">Toutes</option>
@@ -38,7 +38,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="select">
+                    <div class="select-container">
                         <label for="select-movement" class="title-filter label">Mouvements :</label>
                         <select class="select form-select" name="movement" id="select-movement">
                             <option value="">Tous</option>
@@ -47,14 +47,14 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="d-flex radio-category-container">
-                        {% for category in categoriesGlobal %}
-                            <div class="d-flex align-items-start justify-content-between radio-category">
-                                <label class="label-category" for="radio-category-{{ category['category'] }}">{{ category['category']|title }}</label>
-                                <input class="form-check-input input-radio" type="radio" id="radio-category-{{ category['category'] }}" name="category" value="{{ category['category'] }}"  {{ category_choice == category['category'] ? 'checked' : null }}>
-                            </div>
-                        {% endfor %}
-                    </div>
+                </div>    
+                <div class="d-flex radio-category-container">
+                    {% for category in categoriesGlobal %}
+                        <div class="d-flex align-items-start justify-content-between radio-category">
+                            <label class="label-category" for="radio-category-{{ category['category'] }}">{{ category['category']|title }}</label>
+                            <input class="form-check-input input-radio" type="radio" id="radio-category-{{ category['category'] }}" name="category" value="{{ category['category'] }}"  {{ category_choice == category['category'] ? 'checked' : null }}>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
             <button class="btn-primary btn-filter">Filtrer</button>
@@ -81,5 +81,8 @@
             <div class="alertMsg py-3">Aucun résultat trouvé pour votre recherche.</div>
         {% endfor %}
     </div>
+</div>
+<div class="d-flex justify-content-center align-items-center">
+    {{ knp_pagination_render(products) }}
 </div>
 {% endblock %}
