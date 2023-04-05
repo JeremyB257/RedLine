@@ -63,7 +63,7 @@
 								<h2 class="bold padding-bottom-7">{{average | number_format(1, '.', ' ')}}
 									<small>/ 5</small>
 								</h2>
-								<button type="button" class="btn btn-primary btn-sm text-white" aria-label="Left Align">
+								<button type="button" class="btn {{average >= 1 ? 'btn-primary' : 'btn-grey'}} btn-sm text-white" aria-label="Left Align">
 									<i class="fa-solid fa-star"></i>
 								</button>
 								<button type="button" class="btn {{average >= 2 ? 'btn-primary' : 'btn-grey'}}  btn-sm text-white" aria-label="Left Align">
@@ -93,8 +93,11 @@
 										</span>
 										<i class="fa-solid fa-star"></i>
 									</div>
+
 									<div class="progress">
-										<div class="progress-bar bg-primary" role="progressbar" aria-label="Success example" aria-valuenow="{{(((_context['count' ~ i]) / (reviews | length)) * 100) | round}}" aria-valuemin="0" aria-valuemax="100"></div>
+										{% if reviews %}
+											<div class="progress-bar bg-primary" role="progressbar" aria-label="Success example" aria-valuenow="{{(((_context['count' ~ i]) / (reviews | length)) * 100) | round}}" aria-valuemin="0" aria-valuemax="100"></div>
+										{% endif %}
 									</div>
 									<div class="ms-2">({{_context['count' ~ i]}})</div>
 								</div>
@@ -119,6 +122,8 @@
 								</a>
 							{% endif %}
 							<hr>
+						{% else %}
+							<p>Pas encore d'avis</p>
 						{% endfor %}
 					</div>
 					{# form send review #}
