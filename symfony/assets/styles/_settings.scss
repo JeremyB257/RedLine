@@ -91,6 +91,9 @@ a {
 .border-primary {
   border-color: #{$color-primary} !important;
 }
+.bg-primary {
+  background-color: $color-primary !important;
+}
 
 .w-sm-50 {
   @media (min-width: 768px) {

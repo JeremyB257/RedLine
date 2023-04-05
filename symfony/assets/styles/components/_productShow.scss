@@ -162,3 +162,14 @@
   background-color: #d8d8d8;
   color: #fff;
 }
+
+.progress {
+  max-width: 180px;
+  width: 100%;
+  height: 10px;
+}
+@for $i from 0 through 100 {
+  .progress-bar[aria-valuenow='#{$i}'] {
+    width: 1% * $i;
+  }
+}

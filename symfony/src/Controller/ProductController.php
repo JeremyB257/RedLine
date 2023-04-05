@@ -43,9 +43,9 @@ class ProductController extends AbstractController
     #[Route(path: '/produit/{id}', name: 'app_product_show')]
     public function show(Product $product, ReviewRepository $reviewRepo, Request $request): Response
     {
+        //send a review
         $review = new Review;
         $form = $this->createForm(ReviewType::class, $review);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $review->setProduct($product)
@@ -57,7 +57,10 @@ class ProductController extends AbstractController
         }
 
         $reviews = $reviewRepo->findBy(['product' => $product], ['createdAt' => 'DESC']);
+
+        //calc review average
         $total = 0;
+
         foreach ($reviews as $key => $review) {
             $total += $review->getEvaluation();
         }
