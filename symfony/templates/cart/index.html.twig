@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="col-12 col-md-6 d-flex flex-column gap-3">
 				{% for element in dataCart %}
-					<div class=" container-cart d-flex gap-3">
+					<div class="me-3 border border-2 border-dark d-flex gap-3">
 						<div class="w-25 d-flex align-items-center justify-content-center">
 							<img class="w-75" src="{{'img/' ~ ((element.product.imgUrl | split(',')[0]) | split('-')[0] ~ '-' ~ element.color ~ '.png')}}" alt="">
 						</div>
@@ -51,11 +51,9 @@
 					</tr>
 				{% endfor %}
 
-				<div class="bonus">
-					<p class="m-0">Bonus : Emballage cadeau avec checkbox</p>
-				</div>
+
 			</div>
-			<div class="col-12 col-md-6 order-recap">
+			<div class="col-12 col-md-6 py-3 order-recap">
 				<div class="ms-5 me-5 mt-3">
 					<h2>Récapitulatif de la commande</h2>
 
