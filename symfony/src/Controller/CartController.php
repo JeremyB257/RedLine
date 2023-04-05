@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Reduce;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,8 +22,9 @@ class CartController extends AbstractController
     #[Route('/panier', name: 'cart.index')]
     public function index(SessionInterface $session, ProductRepository $productRepository,): Response
     {
-        // Get cart from session
+        // Get cart & reduce from session
         $cart = $session->get('panier', []);
+        $reduce = $session->get('reduce', '');
 
         $dataCart = [];
         $total = 0;
@@ -141,5 +143,13 @@ class CartController extends AbstractController
         $session->set('panier', $cart);
 
         return $this->redirectToRoute("cart.index");
+    }
+
+    #[Route('/panier/reduction/{code}', name: ('reduce.add'), methods: ['POST'])]
+    public function addReduce(Reduce $reduce): Response
+    {
+
+
+        return $this->redirectToRoute('cart.index');
     }
 }

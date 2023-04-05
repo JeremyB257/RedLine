@@ -6,6 +6,7 @@ use App\Entity\Contact;
 use App\Entity\Order;
 use App\Entity\OrderItems;
 use App\Entity\Product;
+use App\Entity\Reduce;
 use App\Entity\Review;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -564,6 +565,25 @@ class AppFixtures extends Fixture
 
             $manager->persist($orderItem);
         }
+
+        //reduce
+        $reduce = new Reduce;
+        $reduce->setType('%')
+            ->setCode('laxar')
+            ->setValue('10')
+            ->setActive(true)
+            ->setDateStart($faker->dateTimeBetween('-15 days'))
+            ->setDateEnd($faker->dateTimeBetween('100 days', '+150 days'));
+        $manager->persist($reduce);
+
+        $reduce = new Reduce;
+        $reduce->setType('€')
+            ->setCode('laxar')
+            ->setValue('10')
+            ->setActive(true)
+            ->setDateStart($faker->dateTimeBetween('-15 days'))
+            ->setDateEnd($faker->dateTimeBetween('100 days', '+150 days'));
+        $manager->persist($reduce);
 
         $manager->flush();
     }
