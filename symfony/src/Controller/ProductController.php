@@ -60,15 +60,30 @@ class ProductController extends AbstractController
 
         //calc review average
         $total = 0;
+        $count5 = 0;
+        $count4 = 0;
+        $count3 = 0;
+        $count2 = 0;
+        $count1 = 0;
 
         foreach ($reviews as $key => $review) {
             $total += $review->getEvaluation();
+            if ($review->getEvaluation() == 5) $count5 += 1;
+            if ($review->getEvaluation() == 4) $count4 += 1;
+            if ($review->getEvaluation() == 3) $count3 += 1;
+            if ($review->getEvaluation() == 2) $count2 += 1;
+            if ($review->getEvaluation() == 1) $count1 += 1;
         }
         $average = $total / count($reviews);
         return $this->render('product/show.html.twig', [
             'product' => $product,
             'reviews' => $reviews,
             'average' => $average,
+            'count5' => $count5,
+            'count4' => $count4,
+            'count3' => $count3,
+            'count2' => $count2,
+            'count1' => $count1,
             'form' => $form,
         ]);
     }
