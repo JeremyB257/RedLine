@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="cart container mb-5">
+	<div class="cart container-lg mb-5">
 		<div class="d-flex gap-3 align-items-center">
 			<h2 class="m-0">MON PANIER</h2>
 			<p class="m-0">{{productTotal}}
@@ -16,15 +16,15 @@
 			<p>Livraison OFFERTE* | Retours sous 30 jours</p>
 		</div>
 		<div class="row">
-			<div class="col-12 col-md-6 d-flex flex-column gap-3">
+			<div class="col-12 col-md-6 d-flex flex-column gap-3 mt-2">
 				{% for element in dataCart %}
-					<div class="me-3 border border-2 border-dark d-flex gap-3">
+					<div class="border border-2 border-dark d-flex gap-3 position-relative">
 						<div class="w-25 d-flex align-items-center justify-content-center">
 							<img class="w-75" src="{{'img/' ~ ((element.product.imgUrl | split(',')[0]) | split('-')[0] ~ '-' ~ element.color ~ '.png')}}" alt="">
 						</div>
 						<div>
 
-							<h3 class="mt-2">{{ element.product.brand }}
+							<h3 class="mt-2 me-5">{{ element.product.brand }}
 								-
 								{{element.product.model}}</h3>
 
@@ -36,8 +36,8 @@
 								<a class="btn btn-light" href="{{path('cart.add', {id: element.product.id, color: element.color})}}">+</a>
 							</p>
 
-							<a href="{{path('cart.delete', {id: element.product.id, color: element.color})}}" class="btn btn-danger mb-2">
-								<i class="fa-solid fa-trash"></i>
+							<a href="{{path('cart.delete', {id: element.product.id, color: element.color})}}" class="btn position-absolute cartDelete">
+								<i class="fa-solid fa-xmark fs-3 primary"></i>
 							</a>
 
 
@@ -53,8 +53,8 @@
 
 
 			</div>
-			<div class="col-12 col-md-6 py-3 order-recap">
-				<div class="ms-5 me-5 mt-3">
+			<div class="col-12 col-md-6 mt-2">
+				<div class="p-3 order-recap">
 					<h2>Récapitulatif de la commande</h2>
 
 					<form action="">
