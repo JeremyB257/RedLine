@@ -8,14 +8,14 @@
 		<div class="container-lg text-center text-md-start py-5">
 			<div class="row">
 				<div class="col-12 col-md-6 ">
-					<h1 class="fw-bold">{{watches[0].brand}}
+					<h1 class="fw-bold titleReveal">{{watches[0].brand}}
 						{{watches[0].model}}</h1>
-					<p class="text-white py-3">{{watches[0].description}}</p>
-					<a href="{{path('app_product_show', {id: watches[0].id})}}" class="btn btn-xl btn-primary fs-5">Voir</a>
-					<span class="fs-5 fw-bold ms-3">{{(watches[0].priceHT * 1.2) | format_currency('EUR')}}</span>
+					<p class="text-white py-3 titleReveal">{{watches[0].description}}</p>
+					<a href="{{path('app_product_show', {id: watches[0].id})}}" class="btn btn-xl btn-primary fs-5 titleReveal">Voir</a>
+					<span class="d-inline-block fs-5 fw-bold ms-3 titleReveal">{{(watches[0].priceHT * 1.2) | format_currency('EUR')}}</span>
 				</div>
 				<div class="col-12 col-md-6 position-relative banner-img-col">
-					<img class="banner-img position-absolute" src="{{'img/' ~ (watches[0].imgUrl | split(',')[0])}}" alt="">
+					<img class="banner-img position-absolute imgReveal" src="{{'img/' ~ (watches[0].imgUrl | split(',')[0])}}" alt="">
 				</div>
 			</div>
 		</div>
