@@ -6,6 +6,7 @@
   justify-content: space-between;
   gap: 10%;
   @media (max-width: 1200px) {
+    align-items: center;
     flex-direction: column;
     width: 90%;
   }
@@ -13,6 +14,9 @@
     font-size: 15px;
     color: $color-dark;
     flex: 30%;
+    @media (max-width: 1200px) {
+      flex-direction: row;
+    }
     .in-progress {
       color: $color-primary;
       font-weight: bold;
@@ -39,6 +43,11 @@
       flex-direction: column;
       align-items: center;
       padding: 20px;
+      @media (max-width: 1200px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
       .title-filter {
         font-size: 15px;
         @media (max-width: 1200px) {
@@ -52,12 +61,11 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        @media (max-width: 1200px) {
+          width: 40%;
+        }
         .select {
           width: 100%;
-          @media (max-width: 1200px) {
-            justify-content: space-between;
-            width: 100%;
-          }
           .label {
             padding-bottom: 5px;
           }
@@ -77,8 +85,8 @@
         display: flex;
         justify-content: space-between;
         @media (max-width: 1200px) {
-          width: 40%;
-          margin: auto;
+          justify-content: center;
+          gap: 75px;
         }
         .radio-category {
           display: flex;
@@ -88,13 +96,20 @@
         }
       }
     }
+    .cursor {
+      @media (max-width: 1200px) {
+        margin: auto;
+      }
+    }
     .btn-filter {
       width: 90%;
       margin-top: 20px;
       margin-bottom: 20px;
       @media (max-width: 1200px) {
-        align-self: center;
-        margin-bottom: 25px;
+        margin: auto;
+        margin-bottom: 50px;
+        margin-top: 25px;
+        width: 80%;
       }
     }
   }
@@ -114,8 +129,9 @@
       &:hover {
         transform: scale(102%);
       }
-      @media (max-width: 767px) {
-        width: 400px;
+      @media (max-width: 1200px) {
+        width: 70%;
+        margin: auto;
       }
       .infos {
         flex: 70%;
