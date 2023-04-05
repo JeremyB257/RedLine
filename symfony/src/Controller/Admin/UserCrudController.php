@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -41,21 +42,29 @@ class UserCrudController extends AbstractCrudController
                 EmailField::new('email')
                 ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('lastname')
-            ->setLabel('Nom'),
+            ->setLabel('Nom')
+            ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('firstname')
-            ->setLabel('Prénom'),
+            ->setLabel('Prénom')
+            ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('number_adress')
-            ->setLabel('N° de rue'),
+            ->setLabel('N° de rue')
+            ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('street1')
-            ->setLabel('Rue'),
+            ->setLabel('Rue')
+            ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('street2')
-            ->setLabel('Complément d\'adresse'),
+            ->setLabel('Complément d\'adresse')
+            ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('postcode')
-            ->setLabel('Code postal'),
+            ->setLabel('Code postal')
+            ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('city')
-            ->setLabel('Ville'),
+            ->setLabel('Ville')
+            ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('country')
-            ->setLabel('Pays'),
+            ->setLabel('Pays')
+            ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('phone_number')
             ->setLabel('Numéro de téléphone')
                 ->setFormTypeOption('disabled', 'disabled'),
@@ -63,7 +72,12 @@ class UserCrudController extends AbstractCrudController
                 ->hideOnForm()
                 ->setFormTypeOption('disabled', 'disabled'),
             ArrayField::new('roles'),
-            BooleanField::new('active'),
+            ChoiceField::new('active')
+            ->setChoices([
+                "oui" => 1,
+                "non" => 0,
+            ])
+
 
         ];
     }
