@@ -66,7 +66,7 @@
     </aside>
     <div class="container-section d-flex flex-column align-items-center">
         {% for product in products %}
-            <div class="card-watch d-flex justify-between">
+            <div class="card-watch d-flex justify-between shadow">
                 <div class="d-flex justify-content-center align-items-center">
 				    <img class="img-product" src="{{ '/img/' ~ (product.imgUrl | split(',')[0]) }}" alt="{{ product.model }}">
                 </div>
@@ -78,7 +78,7 @@
                     {% else %}
                         <p class="desc">{{ product.description }}</p>
                     {% endif %}
-                    <a href="{{ path('app_product_show', { id: product.id }) }}" class="btn-primary show-more-button">Voir plus</a>
+                    <a href="{{ path('app_product_show', { id: product.id }) }}" class="btn btn-primary show-more-button">Voir plus</a>
                 </div>
             </div>
         {% else %}
