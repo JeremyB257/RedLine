@@ -15,8 +15,8 @@
 		<div>
 			<p>Livraison OFFERTE* | Retours sous 30 jours</p>
 		</div>
-		<div class="d-flex">
-			<div class="w-50 d-flex flex-column gap-3">
+		<div class="row">
+			<div class="col-12 col-md-6 d-flex flex-column gap-3">
 				{% for element in dataCart %}
 					<div class=" container-cart d-flex gap-3">
 						<div class="w-25 d-flex align-items-center justify-content-center">
@@ -28,7 +28,8 @@
 								-
 								{{element.product.model}}</h3>
 
-							<p>{{ element.product.priceHT }}€ HT</p>
+							<p>{{ (element.product.priceHT * 1.2) | format_currency('EUR')}}
+							</p>
 							<p>
 								<a class="btn btn-light" href="{{path('cart.remove', {id: element.product.id, color: element.color})}}">-</a>
 								{{element.quantity}}
@@ -54,21 +55,23 @@
 					<p class="m-0">Bonus : Emballage cadeau avec checkbox</p>
 				</div>
 			</div>
-			<div class="w-50 order-recap">
+			<div class="col-12 col-md-6 order-recap">
 				<div class="ms-5 me-5 mt-3">
 					<h2>Récapitulatif de la commande</h2>
-					<p>code promo
-						<input type="text" class="mb-2">
-						<button class="btn btn-outline-primary">valider</button>
-					</p>
+
+					<form action="">
+						<label for="reduce">Code promo</label>
+						<input id="reduce" type="text" class="mb-2" name="reduce">
+						<button class="btn btn-outline-primary mb-2">valider</button>
+					</form>
+
 					<p>Sous total HT :
-						{{ total / 1.2}}
-						€</p>
+						{{ (total / 1.2) | format_currency('EUR')}}</p>
 					<p>Frais de livraison : Offert</p>
 					<p>TVA : 20%</p>
 					<h2>TOTAL TTC :
-						{{ total}}
-						€</h2>
+						{{ total | format_currency('EUR')}}
+					</h2>
 					<button class="btn btn-lg btn-primary">VALIDER MON PANIER</button>
 				</div>
 			</div>
