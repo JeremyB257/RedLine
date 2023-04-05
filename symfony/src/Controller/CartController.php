@@ -11,6 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
+    /**
+     * Display cart
+     *
+     * @param SessionInterface $session
+     * @param ProductRepository $productRepository
+     * @return Response
+     */
     #[Route('/panier', name: 'cart.index')]
     public function index(SessionInterface $session, ProductRepository $productRepository,): Response
     {
