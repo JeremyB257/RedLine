@@ -95,3 +95,12 @@ ScrollReveal().reveal(textHomePage, {
   origin: 'left',
   distance: '50px',
 });
+
+let reviews = document.querySelector('.reviewReveal');
+ScrollReveal().reveal(reviews, {
+  delay: 300,
+  interval: 150,
+  duration: 700,
+  origin: 'bottom',
+  distance: '50px',
+});
