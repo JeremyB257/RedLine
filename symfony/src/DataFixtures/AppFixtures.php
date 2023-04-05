@@ -578,7 +578,7 @@ class AppFixtures extends Fixture
 
         $reduce = new Reduce;
         $reduce->setType('€')
-            ->setCode('laxar')
+            ->setCode('laxar2')
             ->setValue('10')
             ->setActive(true)
             ->setDateStart($faker->dateTimeBetween('-15 days'))
