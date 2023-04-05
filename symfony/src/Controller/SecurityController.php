@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -17,7 +18,12 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class SecurityController extends AbstractController
 {
     #[Route(path: '/connexion', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils, Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function login(AuthenticationUtils $authenticationUtils, 
+    Request $request, 
+    UserPasswordHasherInterface $userPasswordHasher, 
+    UserAuthenticatorInterface $userAuthenticator, 
+    AppAuthenticator $authenticator, 
+    EntityManagerInterface $entityManager): Response
     {
 
         //Security Controller de Base
@@ -32,7 +38,9 @@ class SecurityController extends AbstractController
 
         // Importation du RegistrationController
         $user = new User();
-        $registerForm = $this->createForm(RegistrationFormType::class, $user);
+        $registerForm = $this->createForm(RegistrationFormType::class, $user, [
+            'validation_groups' => ['registration'],
+        ]);
         $registerForm->handleRequest($request);
 
         if ($registerForm->isSubmitted() && $registerForm->isValid()) {
@@ -43,7 +51,7 @@ class SecurityController extends AbstractController
                     $registerForm->get('plainPassword')->getData()
                 )
             );
-
+            
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
