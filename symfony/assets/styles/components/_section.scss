@@ -109,7 +109,7 @@
         margin: auto;
         margin-bottom: 50px;
         margin-top: 25px;
-        width: 80%;
+        width: 90%;
       }
     }
   }
@@ -155,7 +155,7 @@
         color: $color-primary;
       }
       .brand-model {
-        font-size: 23px;
+        font-size: 17px;
         color: $color-dark;
         font-weight: bold;
       }
@@ -176,7 +176,9 @@
       }
       .img-product {
         flex: 30%;
+        max-width: 138px;
         height: 200px;
+        object-fit: cover;
         align-self: center;
       }
     }
