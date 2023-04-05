@@ -336,7 +336,7 @@ class AppFixtures extends Fixture
             ->setMovement('Automatique')
             ->setCaseDiameter(41)
             ->setCategory('homme')
-            ->setColor('white')
+            ->setColor('green,white')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(50)
@@ -398,7 +398,7 @@ class AppFixtures extends Fixture
         $watch = new Product();
         $watch->setBrand('Tissot')
             ->setModel('Seastar 1000 Powermatic 80')
-            ->setImgUrl('TissotSeastar1000Powermatic80-blue.png,TissotSeastar1000Powermatic80-grey.png,TissotSeastar1000Powermatic80-brown')
+            ->setImgUrl('TissotSeastar1000Powermatic80-blue.png,TissotSeastar1000Powermatic80-grey.png,TissotSeastar1000Powermatic80-brown.png')
             ->setPriceHt(990)
             ->setMaterial('acier')
             ->setMovement('Automatique')
@@ -530,14 +530,14 @@ class AppFixtures extends Fixture
             $manager->persist($contact);
         }
 
-        for ($i = 0; $i < 14; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $review = new Review();
             $review->setFirstname($faker->firstname());
             $review->setContent($faker->sentence(13));
             $review->setEvaluation($faker->numberBetween(1, 5));
             $review->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTime()));
-            $review->setProduct($watch);
-            $review->setUser($user);
+            $review->setProduct($watches[rand(0, 26)]);
+            $review->setUser($users[rand(0, 10)]);
             $manager->persist($review);
         }
 
