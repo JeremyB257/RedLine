@@ -4,53 +4,51 @@
 
 {% block body %}
 <div class="container-lg container-main">
-    <aside class="filter">
+    <aside class="filter d-flex flex-column align-items-center">
         <form action="{{ path('app_product') }}" method="GET" class="d-flex flex-column">
             <div class="in-progress">Affinez vos recherches</div>
             <div class="separate-line"></div>
             <div class="category-filter">
-                <div class="d-flex gap-3 choice-filter">
-                    <div class="select-container">
-                        <label for="select-brand" class="title-filter label">Marques</label>
-                        <select class="select form-select" name="brand" id="select-brand">
-                            <option value="">Toutes</option>
-                            {% for brand in brandsGlobal %}
-                                <option value="{{ brand['brand'] }}" {{ brand_choice == brand['brand'] ? 'selected' : null }}>{{ brand['brand'] }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="select-container">
-                        <label for="select-material" class="title-filter label">Matériaux :</label>
-                        <select class="select form-select" name="material" id="select-material">
-                            <option value="" selected>Tous</option>
-                            {% for material in materialsGlobal %}
-                                <option value="{{ material['material'] }}" {{ material_choice == material['material'] ? 'selected' : null }}
-                                >{{ material['material'] | title }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>  
-                    <div class="select-container">
-                        <label for="select-case-diameter" class="title-filter label">Tailles du cadran :</label>
-                        <select class="select form-select" name="case_diameter" id="select-case-diameter">
-                            <option value="">Toutes</option>
-                            {% for case_diameter in caseDiametersGlobal %}
-                                <option value="{{ case_diameter['case_diameter'] }}" {{ case_diameter_choice == case_diameter['case_diameter'] ? 'selected' : null }}>{{ case_diameter['case_diameter'] }} mm</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="select-container">
-                        <label for="select-movement" class="title-filter label">Mouvements :</label>
-                        <select class="select form-select" name="movement" id="select-movement">
-                            <option value="">Tous</option>
-                            {% for movement in movementsGlobal %}
-                                <option value="{{ movement['movement'] }}" {{ movement_choice == movement['movement'] ? 'selected' : null }}>{{ movement['movement'] }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>    
-                <div class="d-flex radio-category-container">
+                <div class="select-container">
+                    <label for="select-brand" class="title-filter label">Marques :</label>
+                    <select class="select form-select" name="brand" id="select-brand">
+                        <option value="">Toutes</option>
+                        {% for brand in brandsGlobal %}
+                            <option value="{{ brand['brand'] }}" {{ brand_choice == brand['brand'] ? 'selected' : null }}>{{ brand['brand'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="select-container">
+                    <label for="select-material" class="title-filter label">Matériaux :</label>
+                    <select class="select form-select" name="material" id="select-material">
+                        <option value="" selected>Tous</option>
+                        {% for material in materialsGlobal %}
+                            <option value="{{ material['material'] }}" {{ material_choice == material['material'] ? 'selected' : null }}
+                            >{{ material['material'] | title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>  
+                <div class="select-container">
+                    <label for="select-case-diameter" class="title-filter label">Tailles du cadran :</label>
+                    <select class="select form-select" name="case_diameter" id="select-case-diameter">
+                        <option value="">Toutes</option>
+                        {% for case_diameter in caseDiametersGlobal %}
+                            <option value="{{ case_diameter['case_diameter'] }}" {{ case_diameter_choice == case_diameter['case_diameter'] ? 'selected' : null }}>{{ case_diameter['case_diameter'] }} mm</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="select-container">
+                    <label for="select-movement" class="title-filter label">Mouvements :</label>
+                    <select class="select form-select" name="movement" id="select-movement">
+                        <option value="">Tous</option>
+                        {% for movement in movementsGlobal %}
+                            <option value="{{ movement['movement'] }}" {{ movement_choice == movement['movement'] ? 'selected' : null }}>{{ movement['movement'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>   
+                <div class="radio-category-container">
                     {% for category in categoriesGlobal %}
-                        <div class="d-flex align-items-start justify-content-between radio-category">
+                        <div class="radio-category">
                             <label class="label-category" for="radio-category-{{ category['category'] }}">{{ category['category']|title }}</label>
                             <input class="form-check-input input-radio" type="radio" id="radio-category-{{ category['category'] }}" name="category" value="{{ category['category'] }}"  {{ category_choice == category['category'] ? 'checked' : null }}>
                         </div>
@@ -60,11 +58,11 @@
                     <label for="order_price">Prix décroissant</label>
                     <input type="checkbox" id="order_price" name="order_price" class="form-check-input" value=true {{ order ? 'checked' : null }}>
                 </div>
+                <button class="btn btn-outline-primary btn-filter">Filtrer</button>
             </div>
-            <button class="btn btn-outline-primary btn-filter">Filtrer</button>
         </form>
     </aside>
-    <div class="container-section d-flex flex-column align-items-center">
+    <div class="container-section d-flex flex-column align-items-end">
         {% for product in products %}
             <div class="card-watch d-flex justify-between shadow">
                 <div class="d-flex justify-content-center align-items-center">
