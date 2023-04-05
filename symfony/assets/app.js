@@ -62,15 +62,15 @@ if (colorFilter) {
 //Rating review
 const starRatingStars = document.querySelector('.gl-star-rating-stars');
 const select = document.querySelector('select');
+if (starRatingStars) {
+  starRatingStars.addEventListener('click', e => {
+    starRatingStars.classList.remove(starRatingStars.classList[1]);
+    starRatingStars.classList.add('s' + e.target.dataset.value + '0');
 
-starRatingStars.addEventListener('click', e => {
-  starRatingStars.classList.remove(starRatingStars.classList[1]);
-  starRatingStars.classList.add('s' + e.target.dataset.value + '0');
-
-  starRatingStars.nextElementSibling.innerText = e.target.dataset.text;
-  select.value = e.target.dataset.value;
-});
-
+    starRatingStars.nextElementSibling.innerText = e.target.dataset.text;
+    select.value = e.target.dataset.value;
+  });
+}
 // Scroll Reveal Plug-In
 
 // Home page
