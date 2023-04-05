@@ -59,6 +59,7 @@ if (colorFilter) {
   });
 }
 
+
 //Rating review
 const starRatingStars = document.querySelector('.gl-star-rating-stars');
 const select = document.querySelector('select');
@@ -69,4 +70,46 @@ starRatingStars.addEventListener('click', e => {
 
   starRatingStars.nextElementSibling.innerText = e.target.dataset.text;
   select.value = e.target.dataset.value;
+
+
+
+//-------
+
+// Scroll Reveal Plug-In
+
+// Home page
+let watches = document.querySelectorAll('.watch');
+ScrollReveal().reveal(watches, {
+  interval: 200,
+  reset: true,
+  delay: 150,
+  duration: 600,
+  origin: 'bottom',
+  distance: '50px',
+});
+
+let watchHomePage = document.querySelector('.imgReveal');
+ScrollReveal().reveal(watchHomePage, {
+  delay: 150,
+  duration: 700,
+  origin: 'top',
+  distance: '50px',
+});
+
+let textHomePage = document.querySelectorAll('.titleReveal');
+ScrollReveal().reveal(textHomePage, {
+  delay: 300,
+  interval: 150,
+  duration: 700,
+  origin: 'left',
+  distance: '50px',
+});
+
+let reviews = document.querySelector('.reviewReveal');
+ScrollReveal().reveal(reviews, {
+  delay: 300,
+  interval: 150,
+  duration: 700,
+  origin: 'bottom',
+  distance: '50px',
 });
