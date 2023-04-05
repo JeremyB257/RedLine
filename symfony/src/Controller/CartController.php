@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Reduce;
 use App\Repository\ProductRepository;
 use App\Repository\ReduceRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,13 +43,19 @@ class CartController extends AbstractController
             $codeReduce = $reduceForm->getData();
             $reduce = $reduceRepo->findOneby(['code' => $codeReduce['code']]);
             if ($reduce) {
-                if ($reduce->getDateEnd())
+                if (new \DateTime('now') < $reduce->getDateEnd()) {
                     $dataReduce = [
                         "code" => $codeReduce['code'],
                         "type" => $reduce->getType(),
                         "value" => $reduce->getValue(),
                     ];
-                $session->set('reduce', $dataReduce);
+                    $session->set('reduce', $dataReduce);
+                    $this->addFlash('success', 'Code promo ajouté');
+                } else {
+                    $this->addFlash('warning', 'Code promo expiré');
+                }
+            } else {
+                $session->set('reduce', []);
             }
         }
 
@@ -64,6 +71,15 @@ class CartController extends AbstractController
             ];
             $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
             $productTotal += $product['quantity'];
+        }
+
+        if ($dataReduce) {
+            if ($dataReduce['type'] == '€') {
+                $total -= $dataReduce['value'];
+            }
+            if ($dataReduce['type'] == '%') {
+                $total -= $total * ($dataReduce['value'] / 100);
+            }
         }
 
         return $this->render('cart/index.html.twig', compact("dataCart", "total", "productTotal", "reduceForm", "dataReduce"));

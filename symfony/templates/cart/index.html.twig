@@ -56,7 +56,14 @@
 			<div class="col-12 col-md-6 mt-2">
 				<div class="p-3 order-recap">
 					<h2>Récapitulatif de la commande</h2>
+					{% for label, messages in app.flashes %}
+						{% for message in messages %}
+							<div class="alert alert-{{ label }}">
+								{{ message }}
+							</div>
+						{% endfor %}
 
+					{% endfor %}
 
 					{{form_start(reduceForm)}}
 					<div class="row g-3">
@@ -74,7 +81,9 @@
 						{{ (total / 1.2) | format_currency('EUR')}}</p>
 					{% if dataReduce %}
 						<p>Code de réduction :
-							{{dump(dataReduce)}}</p>
+							{{dataReduce.code}}
+							(-{{dataReduce.value ~ dataReduce.type}})
+						</p>
 					{% endif %}
 
 					<p>Frais de livraison : Offert</p>
