@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Product;
 use App\Repository\ProductRepository;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,13 +11,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
+    /**
+     * Display cart
+     *
+     * @param SessionInterface $session
+     * @param ProductRepository $productRepository
+     * @return Response
+     */
     #[Route('/panier', name: 'cart.index')]
     public function index(SessionInterface $session, ProductRepository $productRepository,): Response
     {
-
         $cart = $session->get('panier', []);
-
-        //ON fabrique les données
         $dataCart = [];
         $total = 0;
         foreach ($cart as $product) {
@@ -37,14 +39,22 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', compact("dataCart", "total"));
     }
 
+
+    /**
+     * add one item in cart
+     *
+     * @param Int $id
+     * @param SessionInterface $session
+     * @param Request $request
+     * @return void
+     */
     #[Route('/cart/add/{id}', name: 'cart.add')]
     public function add(Int $id, SessionInterface $session, Request $request)
     {
-        // On recupere le panier actuelle
         $cart = $session->get('panier', []);
         $color = $request->get('color');
-
         $handleAdd = 0;
+
         // if cart is empty = add product
         if (empty($cart)) {
             $cart[] = [
@@ -70,18 +80,24 @@ class CartController extends AbstractController
                 ];
             }
         }
-
-        // on sauvegarde dans la session
+        // save cart in session
         $session->set('panier', $cart);
 
         return $this->redirectToRoute("cart.index");
     }
 
+    /**
+     * remove one item in cart
+     *
+     * @param Int $id
+     * @param String $color
+     * @param SessionInterface $session
+     * @return void
+     */
     #[Route('/cart/remove/{id}/{color}', name: 'cart.remove')]
     public function remove(Int $id, String $color, SessionInterface $session)
     {
-        // On recupere le panier actuelle
-
+        // get cart in session
         $cart = $session->get('panier', []);
 
         foreach ($cart as $index => $product) {
@@ -93,16 +109,24 @@ class CartController extends AbstractController
                 }
             }
         }
-        // on sauvegarde dans la seesion
+        // save cart in session
         $session->set('panier', $cart);
 
         return $this->redirectToRoute("cart.index");
     }
 
+    /**
+     * remove one item in cart
+     *
+     * @param Int $id
+     * @param String $color
+     * @param SessionInterface $session
+     * @return void
+     */
     #[Route('/cart/delete/{id}/{color}', name: 'cart.delete')]
     public function delete(Int $id, String $color, SessionInterface $session)
     {
-        // On recupere le panier actuelle
+        // get cart in session
         $cart = $session->get('panier', []);
 
         foreach ($cart as $index => $product) {
@@ -110,7 +134,7 @@ class CartController extends AbstractController
                 unset($cart[$index]);
             }
         }
-        // on sauvegarde dans la seesion
+        // save cart in session
         $session->set('panier', $cart);
 
         return $this->redirectToRoute("cart.index");

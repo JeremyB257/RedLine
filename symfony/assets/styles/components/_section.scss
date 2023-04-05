@@ -1,94 +1,115 @@
 .container-main {
-  padding: 30px 10px;
+  padding: 30px 20px;
   margin: auto;
   width: 70%;
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 10%;
   @media (max-width: 1200px) {
+    align-items: center;
     flex-direction: column;
     width: 90%;
   }
   .filter {
-    width: 100%;
     font-size: 15px;
     color: $color-dark;
     flex: 30%;
-    border-right: solid 3px lightgray;
     @media (max-width: 1200px) {
-      border: 0;
+      flex-direction: row;
+    }
+    .in-progress {
+      color: $color-primary;
+      font-weight: bold;
+      padding: 20px;
+      font-size: 25px;
+      white-space: nowrap;
+      @media (max-width: 1200px) {
+        text-align: center;
+      }
     }
     .separate-line {
-      width: 90%;
+      width: 100%;
       background-color: $color-dark;
       border-radius: 25px;
-      height: 1px;
+      height: 2px;
+      opacity: 80%;
       @media (max-width: 1200px) {
         margin: auto;
         width: 70%;
       }
     }
-    h3,
-    .title-filter {
-      font-size: 15px;
-      padding-top: 20px;
+    .category-filter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
       @media (max-width: 1200px) {
-        font-size: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
       }
-    }
-    .select-container {
-      width: 80%;
-      .select {
-        width: 80%;
+      .title-filter {
+        font-size: 15px;
         @media (max-width: 1200px) {
-          justify-content: space-between;
+          font-size: 10px;
+        }
+      }
+      .select-container {
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        @media (max-width: 1200px) {
+          width: 40%;
+        }
+        .select {
           width: 100%;
-        }
-        .label {
-          padding-bottom: 5px;
-        }
-        option {
-          &:checked {
-            background-color: $color-primary;
+          .label {
+            padding-bottom: 5px;
+          }
+          option {
+            &:checked {
+              background-color: $color-primary;
+            }
           }
         }
       }
-    }
 
-    .radio-category-container {
-      gap: 10%;
-      padding-top: 15px;
-      @media (max-width: 1200px) {
-        width: 40%;
-        margin: auto;
+      .radio-category-container {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        align-self: start;
+        width: 100%;
+        display: flex;
         justify-content: space-between;
-      }
-
-      .radio-category {
-        width: 80px;
-      }
-    }
-    .in-progress {
-      color: $color-primary;
-      font-weight: bold;
-      padding-bottom: 20px;
-      @media (max-width: 1200px) {
-        text-align: center;
-      }
-    }
-    .category-filter {
-      padding-bottom: 40px;
-      .choice-filter {
-        flex-direction: column;
         @media (max-width: 1200px) {
-          flex-direction: row;
+          justify-content: center;
+          gap: 75px;
+        }
+        .radio-category {
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: start;
+          gap: 8px;
         }
       }
     }
-    .btn-filter {
-      width: 50%;
+    .cursor {
       @media (max-width: 1200px) {
-        align-self: center;
-        margin-bottom: 25px;
+        margin: auto;
+      }
+    }
+    .btn-filter {
+      width: 90%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      @media (max-width: 1200px) {
+        margin: auto;
+        margin-bottom: 50px;
+        margin-top: 25px;
+        width: 80%;
       }
     }
   }
@@ -96,18 +117,37 @@
     gap: 15px;
     flex: 70%;
     .card-watch {
-      width: 600px;
+      position: relative;
+      width: 100%;
       height: fit-content;
       max-height: 250px;
       border: solid 2px $color-dark;
       padding: 10px 30px 10px 10px;
       gap: 0 20px;
+      will-change: contents;
+      transition: 0.5s;
+      &:hover {
+        transform: scale(102%);
+      }
+      @media (max-width: 1200px) {
+        width: 70%;
+        margin: auto;
+      }
       @media (max-width: 767px) {
-        width: 400px;
+        width: 50%;
+        min-width: 300px;
+        flex-direction: column;
+        align-items: center;
+        max-height: none;
+        padding: 20px;
       }
       .infos {
         flex: 70%;
         gap: 10px;
+        @media (max-width: 767px) {
+          flex-direction: column;
+          align-items: center;
+        }
       }
       .price {
         font-weight: bold;
@@ -126,7 +166,13 @@
         padding: 0;
       }
       .show-more-button {
-        align-self: flex-end;
+        position: absolute;
+        right: 25px;
+        bottom: 25px;
+        @media (max-width: 767px) {
+          position: initial;
+          align-self: center;
+        }
       }
       .img-product {
         flex: 30%;
