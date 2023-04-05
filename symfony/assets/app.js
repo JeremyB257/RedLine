@@ -59,7 +59,6 @@ if (colorFilter) {
   });
 }
 
-// Utilisez la variable selectedColor pour ajouter la couleur sélectionnée dans le panier
 
 //Rating review
 const starRatingStars = document.querySelector('.gl-star-rating-stars');
