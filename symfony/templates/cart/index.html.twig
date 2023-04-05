@@ -9,7 +9,8 @@
 	<div class="cart container mb-5">
 		<div class="d-flex gap-3 align-items-center">
 			<h2 class="m-0">MON PANIER</h2>
-			<p class="m-0">? articles</p>
+			<p class="m-0">{{productTotal}}
+				articles</p>
 		</div>
 		<div>
 			<p>Livraison OFFERTE* | Retours sous 30 jours</p>
@@ -57,8 +58,8 @@
 				<div class="ms-5 me-5 mt-3">
 					<h2>Récapitulatif de la commande</h2>
 					<p>code promo
-						<input type="text">
-						<button>valider</button>
+						<input type="text" class="mb-2">
+						<button class="btn btn-outline-primary">valider</button>
 					</p>
 					<p>Sous total HT :
 						{{ total / 1.2}}

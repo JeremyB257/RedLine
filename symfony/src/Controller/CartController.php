@@ -26,19 +26,19 @@ class CartController extends AbstractController
 
         $dataCart = [];
         $total = 0;
+        $productTotal = 0;
         foreach ($cart as $product) {
-            $color = $product['color'];
-            $quantity = $product['quantity'];
-            $product = $productRepository->find($product['id']);
+            $productData = $productRepository->find($product['id']);
             $dataCart[] = [
-                "product" => $product,
-                "color" => $color,
-                "quantity" => $quantity,
+                "product" => $productData,
+                "color" => $product['color'],
+                "quantity" => $product['quantity'],
             ];
-            $total += ($product->getPriceHt() * 1.2) * $quantity;
+            $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
+            $productTotal += $product['quantity'];
         }
 
-        return $this->render('cart/index.html.twig', compact("dataCart", "total"));
+        return $this->render('cart/index.html.twig', compact("dataCart", "total", "productTotal"));
     }
 
     /**
