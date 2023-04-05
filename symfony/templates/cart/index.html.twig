@@ -57,17 +57,26 @@
 				<div class="p-3 order-recap">
 					<h2>Récapitulatif de la commande</h2>
 
-					<form class="row g-3" action="">
+
+					{{form_start(reduceForm)}}
+					<div class="row g-3">
 						<div class="col">
-							<input id="reduce" type="text" class=" form-control mb-2" name="reduce" placeholder="Code promo">
+							{{form_widget(reduceForm.code)}}
+							{{form_errors(reduceForm.code)}}
 						</div>
 						<div class="col">
 							<button class="btn btn-outline-primary mb-2">Appliquer</button>
 						</div>
-					</form>
+					</div>
+					{{form_end(reduceForm)}}
 
 					<p>Sous total HT :
 						{{ (total / 1.2) | format_currency('EUR')}}</p>
+					{% if dataReduce %}
+						<p>Code de réduction :
+							{{dump(dataReduce)}}</p>
+					{% endif %}
+
 					<p>Frais de livraison : Offert</p>
 					<p>TVA : 20%</p>
 					<h2>TOTAL TTC :

@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Reduce;
 use App\Repository\ProductRepository;
+use App\Repository\ReduceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Length;
 
 class CartController extends AbstractController
 {
@@ -20,11 +23,34 @@ class CartController extends AbstractController
      * @return Response
      */
     #[Route('/panier', name: 'cart.index')]
-    public function index(SessionInterface $session, ProductRepository $productRepository,): Response
+    public function index(SessionInterface $session, ProductRepository $productRepository, Request $request, ReduceRepository $reduceRepo): Response
     {
-        // Get cart & reduce from session
+        // Get cart from session
         $cart = $session->get('panier', []);
-        $reduce = $session->get('reduce', '');
+        $dataReduce = $session->get('reduce', []);
+
+        //form for reduce
+        $defaultReduce = ['code' => ''];
+        $reduceForm = $this->createFormBuilder($defaultReduce)
+            ->add('code', TextType::class, [
+                'constraints' => new Length(['min' => 3]),
+                'attr' => ['placeholder' => 'Code de réduction']
+            ])
+            ->getForm();
+        $reduceForm->handleRequest($request);
+        if ($reduceForm->isSubmitted() && $reduceForm->isValid()) {
+            $codeReduce = $reduceForm->getData();
+            $reduce = $reduceRepo->findOneby(['code' => $codeReduce['code']]);
+            if ($reduce) {
+                if ($reduce->getDateEnd())
+                    $dataReduce = [
+                        "code" => $codeReduce['code'],
+                        "type" => $reduce->getType(),
+                        "value" => $reduce->getValue(),
+                    ];
+                $session->set('reduce', $dataReduce);
+            }
+        }
 
         $dataCart = [];
         $total = 0;
@@ -40,7 +66,7 @@ class CartController extends AbstractController
             $productTotal += $product['quantity'];
         }
 
-        return $this->render('cart/index.html.twig', compact("dataCart", "total", "productTotal"));
+        return $this->render('cart/index.html.twig', compact("dataCart", "total", "productTotal", "reduceForm", "dataReduce"));
     }
 
     /**
@@ -143,13 +169,5 @@ class CartController extends AbstractController
         $session->set('panier', $cart);
 
         return $this->redirectToRoute("cart.index");
-    }
-
-    #[Route('/panier/reduction/{code}', name: ('reduce.add'), methods: ['POST'])]
-    public function addReduce(Reduce $reduce): Response
-    {
-
-
-        return $this->redirectToRoute('cart.index');
     }
 }
