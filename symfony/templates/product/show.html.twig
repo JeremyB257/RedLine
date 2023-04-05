@@ -113,6 +113,11 @@
 								<i class="{{review.evaluation >= 5 ? 'fa-solid' : 'fa-regular' }} fa-star primary"></i>
 							</span>
 							<p>{{review.content}}</p>
+							{% if review.user == app.user %}
+								<a href="{{path('review.delete', {idProduct: product.id, idReview: review.id})}}">
+									<i class="fa-solid fa-trash primary"></i>
+								</a>
+							{% endif %}
 							<hr>
 						{% endfor %}
 					</div>

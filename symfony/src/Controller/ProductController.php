@@ -7,6 +7,8 @@ use App\Entity\Review;
 use App\Form\ReviewType;
 use App\Repository\ProductRepository;
 use App\Repository\ReviewRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,6 +42,14 @@ class ProductController extends AbstractController
         ]);
     }
 
+    /**
+     * display a product, send a review
+     *
+     * @param Product $product
+     * @param ReviewRepository $reviewRepo
+     * @param Request $request
+     * @return Response
+     */
     #[Route(path: '/produit/{id}', name: 'app_product_show')]
     public function show(Product $product, ReviewRepository $reviewRepo, Request $request): Response
     {
@@ -86,5 +96,23 @@ class ProductController extends AbstractController
             'count1' => $count1,
             'form' => $form,
         ]);
+    }
+
+    /**
+     * remove a review
+     *
+     * @param Product $product
+     * @param Review $review
+     * @param ReviewRepository $reviewRepo
+     * @return Response
+     */
+    #[Route(path: '/produit/{idProduct}/{idReview}', name: 'review.delete')]
+    #[ParamConverter('product', options: ['mapping' => ['idProduct' => 'id']])]
+    #[ParamConverter('review', options: ['mapping' => ['idReview' => 'id']])]
+    #[Security("is_granted('ROLE_USER') and user === review.getUser()")]
+    public function deleteComment(Product $product, Review $review, ReviewRepository $reviewRepo): Response
+    {
+        $reviewRepo->remove($review, true);
+        return $this->redirectToRoute('app_product_show', ['id' => $product->getId()]);
     }
 }
