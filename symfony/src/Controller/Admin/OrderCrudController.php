@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Order;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -22,18 +23,18 @@ class OrderCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')
-            ->setDisabled('disabled', 'disabled'),
+                ->setDisabled('disabled', 'disabled'),
+            AssociationField::new('user'),
             IdField::new('user_id'),
             TextField::new('Reduce')
-            ->setLabel('Réduction'),
+                ->setLabel('Réduction'),
             NumberField::new('Total')
-            ->setDisabled('disabled', 'disabled'),
+                ->setDisabled('disabled', 'disabled'),
             TextField::new('Status'),
             TextField::new('Payement'),
             DateField::new('createdAt')
-            ->setLabel('Date de commande'),
-            
+                ->setLabel('Date de commande'),
+
         ];
     }
-
 }

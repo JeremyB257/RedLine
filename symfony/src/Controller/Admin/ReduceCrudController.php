@@ -18,16 +18,14 @@ class ReduceCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Reduce::class;
-        
     }
 
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
 
-        ->setPageTitle("index", "Laxar - Réduction")
-        ->setEntityLabelInSingular("une réduction")
-        ;
+            ->setPageTitle("index", "Laxar - Réduction")
+            ->setEntityLabelInSingular("une réduction");
     }
 
 
@@ -35,23 +33,23 @@ class ReduceCrudController extends AbstractCrudController
     {
         return [
             DateField::new('dateStart')
-            ->setLabel('Date de début'),
+                ->setLabel('Date de début'),
             DateField::new('dateEnd')
-            ->setLabel('Date de fin'),
+                ->setLabel('Date de fin'),
             ChoiceField::new('type')
-            ->setChoices([
-                '%' => '%',
-                '€' => '€',
-            ]),
+                ->setChoices([
+                    '%' => '%',
+                    '€' => '€',
+                ]),
             TextField::new('code'),
             NumberField::new('value')
-            ->setLabel('Valeur'),
+                ->setLabel('Valeur'),
             ChoiceField::new('active')
-            ->setChoices([
-                'Oui' => 'oui',
-                'Non' => 'non',
-            ]),
-            
+                ->setChoices([
+                    'Oui' => 'oui',
+                    'Non' => 'non',
+                ]),
+
         ];
     }
 }

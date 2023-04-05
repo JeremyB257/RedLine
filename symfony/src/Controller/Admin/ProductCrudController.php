@@ -3,8 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
+use Doctrine\ORM\Mapping\Id;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -25,73 +27,60 @@ class ProductCrudController extends AbstractCrudController
     {
         return $crud
 
-        ->setEntityLabelInSingular("un produit")
-        ->setEntityLabelInPlural("un produits")
+            ->setEntityLabelInSingular("un produit")
+            ->setEntityLabelInPlural("un produits")
 
-        ->setPageTitle("index", "Laxar - Produit")
-        ;
+            ->setPageTitle("index", "Laxar - Produit");
     }
 
-  public function configureFields(string $pageName): iterable
+    public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id')
-            ->setDisabled('disabled', 'disabled'),
+                ->setDisabled('disabled', 'disabled'),
             TextField::new('brand')
-            ->setLabel("Marque"),
+                ->setLabel("Marque"),
             TextField::new('model'),
             TextField::new('img_url'),
             NumberField::new('price_ht')
-            ->setLabel("Prix HT"),
+                ->setLabel("Prix HT"),
             ChoiceField::new('material')
-            ->setLabel("Matière")
-            ->setChoices([
-                'acier' => 'Acier',
-                'or' => 'Or',
-                'titane' => 'Titane',
-                'nylon' => 'Nylon',
-                'cuir' => 'Cuir',
-            ]),
+                ->setLabel("Matière")
+                ->setChoices([
+                    'acier' => 'Acier',
+                    'or' => 'Or',
+                    'titane' => 'Titane',
+                    'nylon' => 'Nylon',
+                    'cuir' => 'Cuir',
+                ]),
             NumberField::new('water_resistance')
-            ->setLabel("Résistance à l'eau"),
+                ->setLabel("Résistance à l'eau"),
             ChoiceField::new('movement')
-            ->setLabel("Mouvement")
-            ->setChoices([
-                'automatique' => 'Automatique',
-                'quartz' => 'quartz',
-                'quartz solaire' => 'Quartz solaire',
-                'mecanique' => 'Mécanique'
-            ]),
+                ->setLabel("Mouvement")
+                ->setChoices([
+                    'automatique' => 'Automatique',
+                    'quartz' => 'quartz',
+                    'quartz solaire' => 'Quartz solaire',
+                    'mecanique' => 'Mécanique'
+                ]),
             NumberField::new('case_diameter')
-            ->setLabel("Taille du cadran"),
+                ->setLabel("Taille du cadran"),
             TextareaField::new('description')
-            ->setFormType(CKEditorType::class),
+                ->setFormType(CKEditorType::class),
             NumberField::new('stock'),
             TextField::new('slug')
-            ->setLabel('Référence'),
+                ->setLabel('Référence'),
             ChoiceField::new('category')
-            ->setLabel("categorie")
-            ->setChoices([
-                'Homme' => 'Homme',
-                'femme' => 'Femme',
-            ]),
-            ChoiceField::new('color')
-            ->setLabel("couleur")
-            ->setChoice([
-                'red' => 'Rouge',
-                'black' => 'Noir',
-                'blue' => 'Bleu',
-                'green' => 'Vert',
-                'white' => 'Blanc',
-                'yellow' => 'Jaune',
-                'purple' => 'Viollet',
-                'orange' => 'Orange',
-                'brown' => 'Marron',
-                'pink' => 'Rose',
-            ]),
+                ->setLabel("categorie")
+                ->setChoices([
+                    'Homme' => 'Homme',
+                    'femme' => 'Femme',
+                ]),
+            TextField::new('color')
+                ->setLabel('Couleur'),
             TextField::new('reduce')
-            ->setLabel('Réduction'),
-            
+                ->setLabel('Réduction'),
+
         ];
-    } 
+    }
 }
