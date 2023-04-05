@@ -102,6 +102,11 @@
       border: solid 2px $color-dark;
       padding: 10px 30px 10px 10px;
       gap: 0 20px;
+      will-change: contents;
+      transition: 0.5s;
+      &:hover {
+        transform: scale(102%);
+      }
       @media (max-width: 767px) {
         width: 400px;
       }

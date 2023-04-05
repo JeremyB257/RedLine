@@ -16,12 +16,12 @@ class ProductService
     {
         
     }
-    public function getPaginatedProducts($filters)
+    public function getPaginatedProducts($filters, $order)
     {
         $request = $this->requestStack->getMainRequest();
         $page = $request->query->getInt('page', 1);
         $limit = 3;
-        $productsQuery = $this->productRepository->findByManyFilters($filters);
+        $productsQuery = $this->productRepository->findByManyFilters($filters, $order);
 
         return $this->paginator->paginate($productsQuery, $page, $limit);
     }

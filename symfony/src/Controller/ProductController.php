@@ -20,16 +20,18 @@ class ProductController extends AbstractController
         $filters['case_diameter'] = $request->get('case_diameter') ?? null;
         $filters['movement'] = $request->get('movement') ?? null;
         $filters['category'] = $request->get('category') ?? null;
+        $order = $request->get('order_price') ?? false;
         $searchTerm = $request->get('search') ?? null;
 
-        if ($filters['brand'] || $filters['material'] || $filters['case_diameter'] || $filters['movement'] || $filters['category']) {
-            $products =  $repository->getPaginatedProducts($filters);
+        if ($filters['brand'] || $filters['material'] || $filters['case_diameter'] || $filters['movement'] || $filters['category'] || $order) {
+            $products =  $repository->getPaginatedProducts($filters, $order);
         } else {
             $products = $repository->getPaginatedProductsSearch($searchTerm);
         }
 
         return $this->render('product/index.html.twig', [
             'products' => $products,
+            'order' => $order,
             'brand_choice' => $filters['brand'],
             'material_choice' =>  $filters['material'],
             'case_diameter_choice' =>  $filters['case_diameter'],

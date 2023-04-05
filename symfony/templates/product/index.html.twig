@@ -56,13 +56,17 @@
                         </div>
                     {% endfor %}
                 </div>
+                <div class="form-check form-switch py-3">
+                    <label for="order_price">Prix décroissant</label>
+                    <input type="checkbox" id="order_price" name="order_price" class="form-check-input" value=true {{ order ? 'checked' : null }}>
+                </div>
             </div>
-            <button class="btn-primary btn-filter">Filtrer</button>
+            <button class="btn btn-outline-primary btn-filter">Filtrer</button>
         </form>
     </aside>
     <div class="container-section d-flex flex-column align-items-center">
-        {% for product in products|sort((a, b) => a.priceHt <=> b.priceHt) %}
-            <div class="card-watch d-flex justify-between">
+        {% for product in products %}
+            <div class="card-watch d-flex justify-between shadow">
                 <div class="d-flex justify-content-center align-items-center">
 				    <img class="img-product" src="{{ '/img/' ~ (product.imgUrl | split(',')[0]) }}" alt="{{ product.model }}">
                 </div>
@@ -74,7 +78,7 @@
                     {% else %}
                         <p class="desc">{{ product.description }}</p>
                     {% endif %}
-                    <a href="{{ path('app_product_show', { id: product.id }) }}" class="btn-primary show-more-button">Voir plus</a>
+                    <a href="{{ path('app_product_show', { id: product.id }) }}" class="btn btn-primary show-more-button">Voir plus</a>
                 </div>
             </div>
         {% else %}
