@@ -43,7 +43,7 @@ class CartController extends AbstractController
             $codeReduce = $reduceForm->getData();
             $reduce = $reduceRepo->findOneby(['code' => $codeReduce['code']]);
             if ($reduce) {
-                if (new \DateTime('now') < $reduce->getDateEnd()) {
+                if (new \DateTime('now') < $reduce->getDateEnd() && $reduce->isActive()) {
                     $dataReduce = [
                         "code" => $codeReduce['code'],
                         "type" => $reduce->getType(),
@@ -56,6 +56,8 @@ class CartController extends AbstractController
                 }
             } else {
                 $session->set('reduce', []);
+                $this->addFlash('danger', 'Code promo inconnu');
+                return $this->redirectToRoute("cart.index");
             }
         }
 
@@ -72,17 +74,17 @@ class CartController extends AbstractController
             $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
             $productTotal += $product['quantity'];
         }
-
+        $totalReduce = 0;
         if ($dataReduce) {
             if ($dataReduce['type'] == '€') {
-                $total -= $dataReduce['value'];
+                $totalReduce = $total - $dataReduce['value'];
             }
             if ($dataReduce['type'] == '%') {
-                $total -= $total * ($dataReduce['value'] / 100);
+                $totalReduce = $total - ($total * ($dataReduce['value'] / 100));
             }
         }
 
-        return $this->render('cart/index.html.twig', compact("dataCart", "total", "productTotal", "reduceForm", "dataReduce"));
+        return $this->render('cart/index.html.twig', compact("dataCart", "total", "productTotal", "reduceForm", "dataReduce", "totalReduce"));
     }
 
     /**

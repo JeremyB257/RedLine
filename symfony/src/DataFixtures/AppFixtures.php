@@ -585,6 +585,15 @@ class AppFixtures extends Fixture
             ->setDateEnd($faker->dateTimeBetween('100 days', '+150 days'));
         $manager->persist($reduce);
 
+        $reduce = new Reduce;
+        $reduce->setType('€')
+            ->setCode('laxar3')
+            ->setValue('10')
+            ->setActive(true)
+            ->setDateStart($faker->dateTimeBetween('-15 days'))
+            ->setDateEnd($faker->dateTimeBetween('-15 days', '-7 days'));
+        $manager->persist($reduce);
+
         $manager->flush();
     }
 }
