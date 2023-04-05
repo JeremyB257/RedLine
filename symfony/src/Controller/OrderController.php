@@ -14,6 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OrderController extends AbstractController
 {
+    /**
+     * Display all orders for one user
+     *
+     * @param User $currentUser
+     * @param OrderRepository $orderRepo
+     * @return Response
+     */
     #[Route('/{id}/commandes', name: 'order.index')]
     #[Security("is_granted('ROLE_USER') and user === currentUser")]
     public function index(User $currentUser, OrderRepository $orderRepo): Response
@@ -25,6 +32,15 @@ class OrderController extends AbstractController
     }
 
 
+    /**
+     * display one order for one user
+     *
+     * @param User $currentUser
+     * @param Order $order
+     * @param OrderRepository $orderRepo
+     * @param OrderItemsRepository $orderItemsRepo
+     * @return Response
+     */
     #[Route('/{idUser}/commandes/{idOrder}', name: 'order.show')]
     #[Security("is_granted('ROLE_USER') and user === currentUser and user === order.getUser()")]
     #[ParamConverter('currentUser', options: ['mapping' => ['idUser' => 'id']])]

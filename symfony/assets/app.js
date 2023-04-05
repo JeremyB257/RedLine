@@ -29,6 +29,7 @@ const mainImg = document.querySelector('.main-picture');
 const formColor = document.querySelector('#form-color');
 
 if (picFilter) {
+  //OnClick in small Picture : change main picture
   for (const img of picFilter) {
     img.addEventListener('click', e => {
       mainImg.src = e.target.src;
@@ -36,19 +37,16 @@ if (picFilter) {
   }
 }
 
-let selectedColor = '';
-
 if (colorFilter) {
   colorFilter.forEach((color, index) => {
     if (index !== 0) {
       color.classList.add('desactive-color');
-    } else {
-      mainImg.src = mainImg.src.split('-')[0] + '-' + color.dataset.color + '.png';
-      selectedColor = color.dataset.color;
     }
+
     color.addEventListener('click', e => {
       if (mainImg.src.includes('-')) {
         mainImg.src = mainImg.src.split('-')[0] + '-' + color.dataset.color + '.png';
+
         formColor.value = color.dataset.color;
         color.classList.remove('desactive-color');
         colorFilter.forEach(otherColor => {
@@ -56,10 +54,19 @@ if (colorFilter) {
             otherColor.classList.add('desactive-color');
           }
         });
-        selectedColor = color.dataset.color;
       }
     });
   });
 }
 
-// Utilisez la variable selectedColor pour ajouter la couleur sélectionnée dans le panier
+//Rating review
+const starRatingStars = document.querySelector('.gl-star-rating-stars');
+const select = document.querySelector('select');
+
+starRatingStars.addEventListener('click', e => {
+  starRatingStars.classList.remove(starRatingStars.classList[1]);
+  starRatingStars.classList.add('s' + e.target.dataset.value + '0');
+
+  starRatingStars.nextElementSibling.innerText = e.target.dataset.text;
+  select.value = e.target.dataset.value;
+});
