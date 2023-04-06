@@ -157,17 +157,30 @@ class CartController extends AbstractController
         foreach ($cart as $index => $product) {
             $productData = $productRepository->find($product['id']);
             if ($dataReduce) {
-                if ($dataReduce['type'] == '€' && $index == 0) {
-                    $stripeCart[] = [
-                        'price_data' => [
-                            'currency' => 'eur',
-                            'product_data' => [
-                                'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
+                if ($dataReduce['type'] == '€') {
+                    if ($index == 0) {
+                        $stripeCart[] = [
+                            'price_data' => [
+                                'currency' => 'eur',
+                                'product_data' => [
+                                    'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
+                                ],
+                                'unit_amount' => $productData->getPriceHt() * 1.2 * 100 - ($dataReduce['value'] * 100),
                             ],
-                            'unit_amount' => $productData->getPriceHt() * 1.2 * 100 - $dataReduce['value'],
-                        ],
-                        'quantity' => $product['quantity'],
-                    ];
+                            'quantity' => $product['quantity'],
+                        ];
+                    } else {
+                        $stripeCart[] = [
+                            'price_data' => [
+                                'currency' => 'eur',
+                                'product_data' => [
+                                    'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
+                                ],
+                                'unit_amount' => $productData->getPriceHt() * 1.2 * 100,
+                            ],
+                            'quantity' => $product['quantity'],
+                        ];
+                    }
                 }
                 if ($dataReduce['type'] == '%') {
                     $stripeCart[] = [
