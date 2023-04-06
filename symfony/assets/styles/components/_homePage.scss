@@ -2,7 +2,7 @@
   background-color: $color-dark;
   color: $color-primary;
   .banner-img-col {
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
       height: 250px;
     }
   }
@@ -186,6 +186,6 @@
   justify-content: space-between;
 }
 
-.desactive-color{
+.desactive-color {
   filter: opacity(0.5);
 }
