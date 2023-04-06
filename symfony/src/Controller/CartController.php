@@ -154,60 +154,33 @@ class CartController extends AbstractController
 
         $stripeCart = [];
 
-        foreach ($cart as $index => $product) {
+        foreach ($cart as $product) {
             $productData = $productRepository->find($product['id']);
-            if ($dataReduce) {
-                if ($dataReduce['type'] == '€') {
-                    if ($index == 0) {
-                        $stripeCart[] = [
-                            'price_data' => [
-                                'currency' => 'eur',
-                                'product_data' => [
-                                    'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
-                                ],
-                                'unit_amount' => $productData->getPriceHt() * 1.2 * 100 - ($dataReduce['value'] * 100),
-                            ],
-                            'quantity' => $product['quantity'],
-                        ];
-                    } else {
-                        $stripeCart[] = [
-                            'price_data' => [
-                                'currency' => 'eur',
-                                'product_data' => [
-                                    'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
-                                ],
-                                'unit_amount' => $productData->getPriceHt() * 1.2 * 100,
-                            ],
-                            'quantity' => $product['quantity'],
-                        ];
-                    }
-                }
-                if ($dataReduce['type'] == '%') {
-                    $stripeCart[] = [
-                        'price_data' => [
-                            'currency' => 'eur',
-                            'product_data' => [
-                                'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
-                            ],
-                            'unit_amount' => $productData->getPriceHt() * 1.2 * 100 * ($dataReduce['value'] / 100),
-                        ],
-                        'quantity' => $product['quantity'],
-                    ];
-                }
-            } else {
-                $stripeCart[] = [
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'product_data' => [
-                            'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
-                        ],
-                        'unit_amount' => $productData->getPriceHt() * 1.2 * 100,
+            $stripeCart[] = [
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
                     ],
-                    'quantity' => $product['quantity'],
+                    'unit_amount' => $productData->getPriceHt() * 1.2 * 100,
+                ],
+                'quantity' => $product['quantity'],
+            ];
+        }
+        $stripeReduce = [];
+        if ($dataReduce) {
+            if ($dataReduce['code'] == 'fiofio') {
+                $stripeReduce = [
+                    'coupon' => 'iOghThKk'
+                ];
+            }
+            if ($dataReduce['code'] == 'laxar2') {
+
+                $stripeReduce = [
+                    'coupon' => 'tucsk2lF'
                 ];
             }
         }
-
 
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
@@ -218,6 +191,9 @@ class CartController extends AbstractController
             'customer_email' => $user->getEmail(),
             'line_items' => [
                 $stripeCart
+            ],
+            'discounts' => [
+                $stripeReduce
             ],
             'mode' => 'payment',
             'success_url' => $this->generateUrl('cart.success', [], UrlGeneratorInterface::ABSOLUTE_URL),
