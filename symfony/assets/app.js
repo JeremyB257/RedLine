@@ -125,3 +125,27 @@ ScrollReveal().reveal(attributesRight, {
   origin: 'right',
   distance: '50px',
 });
+
+let xLaxar = document.querySelector('.xLaxarReveal');
+ScrollReveal().reveal(xLaxar, {
+  delay: 400,
+  duration: 700,
+  origin: 'top',
+  distance: '50px',
+});
+
+let LaLaxar = document.querySelector('.laLaxarReveal');
+ScrollReveal().reveal(LaLaxar, {
+  delay: 200,
+  duration: 700,
+  origin: 'left',
+  distance: '50px',
+});
+
+let ArLaxar = document.querySelector('.arLaxarReveal');
+ScrollReveal().reveal(ArLaxar, {
+  delay: 200,
+  duration: 700,
+  origin: 'right',
+  distance: '50px',
+});
