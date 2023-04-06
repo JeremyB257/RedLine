@@ -59,7 +59,6 @@ if (colorFilter) {
   });
 }
 
-
 //Rating review
 const starRatingStars = document.querySelector('.gl-star-rating-stars');
 const select = document.querySelector('select');
@@ -70,8 +69,7 @@ starRatingStars.addEventListener('click', e => {
 
   starRatingStars.nextElementSibling.innerText = e.target.dataset.text;
   select.value = e.target.dataset.value;
-
-
+});
 
 //-------
 
