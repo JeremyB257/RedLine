@@ -17,11 +17,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
+    /**
+     * display information form
+     *
+     * @param User $currentUser
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @return Response
+     */
     #[Route('/utilisateur/{id}', name: 'app_user')]
     #[Security("is_granted('ROLE_USER') and user === currentUser")]
-
     public function index(User $currentUser, Request $request, UserRepository $userRepository): Response
-
     {
 
         $form = $this->createForm(UserType::class, $currentUser);
@@ -40,6 +46,15 @@ class UserController extends AbstractController
     }
 
 
+    /**
+     * Change password
+     *
+     * @param User $currentUser
+     * @param Request $request
+     * @param UserPasswordHasherInterface $userPasswordHasher
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
     #[Route('/utilisateur/{id}/mot-de-passe', name: 'user.password')]
     #[Security("is_granted('ROLE_USER') and user === currentUser")]
     public function changePassword(User $currentUser, Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $manager): Response

@@ -22,7 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank(message: 'Vous devez saisir votre email')]
+    #[Assert\NotBlank(message: 'Vous devez saisir votre email', groups: ['Registration'])]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -30,19 +30,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotNull]
-    private ?string $civility = null;
+    private ?string $civility = '';
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message: 'Vous devez entrer un prénom')]
-    private ?string $firstname = null;
+    private ?string $firstname = '';
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message: 'Vous devez entrer un nom')]
-    private ?string $lastname = null;
+    private ?string $lastname = '';
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez entrer un numéro d\'adresse')]
-    private ?string $number_adress = null;
+    private ?string $number_adress = '';
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez entrer votre adresse')]
@@ -85,6 +85,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(groups: ['Registration'])]
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
@@ -95,6 +96,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Review::class, orphanRemoval: true)]
     private Collection $reviews;
+
+    #[ORM\Column]
+    private ?bool $active = null;
 
 
     public function __construct()
@@ -431,6 +435,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $review->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }

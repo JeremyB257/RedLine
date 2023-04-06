@@ -19,15 +19,15 @@ class UserType extends AbstractType
                 'label' => 'Civilité :',
                 'choices' => [
                     'Mme' => true,
-                    'M.'=> false,
+                    'M.' => false,
                 ],
-                'expanded'=> true,
+                'expanded' => true,
                 'attr' => [
                     'class' => 'd-flex gap-3',
                 ],
                 'label_attr' => [
                     'class' => 'fw-bold',
-                ],    
+                ],
             ])
             ->add('firstname', null, [
                 'label' => 'Prénom :',
@@ -125,10 +125,10 @@ class UserType extends AbstractType
             ])
             ->add('birthday', BirthdayType::class, [
                 'label' => 'Date de naissance :',
-                'widget'=> 'single_text',
+                'widget' => 'single_text',
                 'attr' => [
                     'class' => 'p-1',
-                    
+
                 ],
                 'label_attr' => [
                     'class' => 'fw-bold',
