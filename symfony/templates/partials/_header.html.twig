@@ -81,7 +81,11 @@
 					<a class="nav-link" href="#">Accessoires</a>
 				</li>
 			</ul>
-			<a class="w-25 title d-none d-lg-flex align-items-baseline justify-content-center" href="{{path('home.index')}}"><span class="laLaxarReveal">LA</span><span class="xLaxarReveal">X</span> <span class="arLaxarReveal">AR</span></a>
+			{% if route is defined %}
+				<a class="w-25 title d-none d-lg-flex align-items-baseline justify-content-center" href="{{path('home.index')}}"><span class="laLaxarReveal">LA</span><span class="xLaxarReveal">X</span> <span class="arLaxarReveal">AR</span></a>
+			{% else %}
+				<a class="w-25 title d-none d-lg-flex align-items-baseline justify-content-center" href="{{path('home.index')}}">LA<span>X</span>AR</a>
+			{% endif %}
 			<div class="w-25 navbar-nav d-flex gap-4 justify-content-end align-items-lg-center">
 				<form action="{{path('app_product')}}" class="form-search d-flex align-items-center" role="search">
 					<input class="searchSubmit" type="submit" value="">
