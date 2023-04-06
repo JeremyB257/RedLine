@@ -100,11 +100,14 @@
 							{{ total | format_currency('EUR')}}
 						{% endif %}
 					</h2>
-					<button class="btn btn-lg btn-primary">VALIDER MON PANIER</button>
+					{% if total > 0 %}
+						<a href="{{path('cart.delivery')}}" class="btn btn-lg btn-primary">VALIDER MON PANIER</a>
+					{% else %}
+						<a href="{{path('home.index')}}" class="btn btn-lg btn-primary">Retour au achat</a>
+					{% endif %}
+
 				</div>
 			</div>
 		</div>
 	</div>
-	<pre>
-	</pre>
 {% endblock %}

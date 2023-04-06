@@ -4,14 +4,17 @@ namespace App\Controller;
 
 
 use App\Entity\Reduce;
+use App\Form\UserType;
 use App\Repository\ProductRepository;
 use App\Repository\ReduceRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Constraints\Length;
 
 class CartController extends AbstractController
@@ -88,6 +91,48 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', compact("dataCart", "total", "productTotal", "reduceForm", "dataReduce", "totalReduce"));
     }
 
+    #[Route('/panier/livraison', name: 'cart.delivery')]
+    #[IsGranted('ROLE_USER')]
+    public function delivery(SessionInterface $session, ProductRepository $productRepository, Request $request, ReduceRepository $reduceRepo, EntityManagerInterface $manager): Response
+    {
+
+
+        // Get cart from session
+        $cart = $session->get('panier', []);
+        $dataReduce = $session->get('reduce', []);
+
+        $dataCart = [];
+        $total = 0;
+        $productTotal = 0;
+        foreach ($cart as $product) {
+            $productData = $productRepository->find($product['id']);
+            $dataCart[] = [
+                "product" => $productData,
+                "color" => $product['color'],
+                "quantity" => $product['quantity'],
+            ];
+            $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
+            $productTotal += $product['quantity'];
+        }
+        $totalReduce = 0;
+        if ($dataReduce) {
+            if ($dataReduce['type'] == '€') {
+                $totalReduce = $total - $dataReduce['value'];
+            }
+            if ($dataReduce['type'] == '%') {
+                $totalReduce = $total - ($total * ($dataReduce['value'] / 100));
+            }
+        }
+
+        $deliveryForm = $this->createForm(UserType::class, $this->getUser(), ['options' => 'delivery']);
+        $deliveryForm->handleRequest($request);
+
+        if ($deliveryForm->isSubmitted() && $deliveryForm->isValid()) {
+            $manager->persist($this->getUser());
+            $manager->flush();
+        }
+        return $this->render('cart/delivery.html.twig', compact("dataCart", "total", "productTotal", "dataReduce", "totalReduce", "deliveryForm"));
+    }
 
     /**
      * Add item to cart
