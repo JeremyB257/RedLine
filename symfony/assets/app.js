@@ -109,3 +109,19 @@ ScrollReveal().reveal(reviews, {
   origin: 'bottom',
   distance: '50px',
 });
+
+let attributesLeft = document.querySelectorAll('.attrRevealLeft');
+ScrollReveal().reveal(attributesLeft, {
+  delay: 200,
+  duration: 700,
+  origin: 'left',
+  distance: '50px',
+});
+
+let attributesRight = document.querySelectorAll('.attrRevealRight');
+ScrollReveal().reveal(attributesRight, {
+  delay: 300,
+  duration: 700,
+  origin: 'right',
+  distance: '50px',
+});
