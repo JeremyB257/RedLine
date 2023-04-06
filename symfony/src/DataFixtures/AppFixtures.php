@@ -69,7 +69,16 @@ class AppFixtures extends Fixture
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(100)
-            ->setDescription("La Rolex GMT-Master II est une montre pour homme conçue pour les voyageurs. Le boîtier en acier inoxydable mesure 40 mm de diamètre et est équipé d'une lunette bidirectionnelle en céramique. La montre dispose d'un affichage de l'heure GMT et d'un affichage de la date à 3 heures. Elle est étanche jusqu'à 100 mètres et dispose d'un bracelet en acier inoxydable confortable.");
+            ->setDescription("<h1>Rolex GMT-Master II</h1>
+
+            <p>La Rolex GMT-Master II est une montre pour homme con&ccedil;ue pour les voyageurs. Le bo&icirc;tier en acier inoxydable mesure 40 mm de diam&egrave;tre et est &eacute;quip&eacute; d&#39;une lunette bidirectionnelle en c&eacute;ramique. La montre dispose d&#39;un affichage de l&#39;heure GMT et d&#39;un affichage de la date &agrave; 3 heures. Elle est &eacute;tanche jusqu&#39;&agrave; 100 m&egrave;tres et dispose d&#39;un bracelet en acier inoxydable confortable.</p>
+            <p>Ses atouts :&nbsp;</p>
+            <ul>
+                <li>Confortable</li>
+                <li>Etanche jusqu&#39;a 100m</li>
+            </ul>
+            <p><img alt='' src='https://www.rare-watches-co.com/wp-content/uploads/2021/11/IMG_7198.jpg' /></p>
+            ");
         $manager->persist($watch);
         $watches[] = $watch;
 
