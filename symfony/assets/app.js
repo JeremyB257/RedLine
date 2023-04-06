@@ -155,3 +155,17 @@ ScrollReveal().reveal(ArLaxar, {
   origin: 'right',
   distance: '50px',
 });
+
+// A retravailler
+// let products = document.querySelectorAll('.productReveal');
+// ScrollReveal().reveal(products, {
+//   delay: 0,
+//   interval: 150,
+//   duration: 400,
+//   origin: 'right',
+//   distance: '50px',
+//   opacity: 0,
+// });
+// loadMore(products).then(function () {
+//   ScrollReveal().sync();
+// });
