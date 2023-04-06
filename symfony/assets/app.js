@@ -74,10 +74,16 @@ if (starRatingStars) {
 // Scroll Reveal Plug-In
 
 // Home page
+
+ScrollReveal({
+  viewFactor: 0.3,
+  easing: 'ease',
+  reset: false,
+});
+
 let watches = document.querySelectorAll('.watchReveal');
 ScrollReveal().reveal(watches, {
   interval: 200,
-  reset: true,
   delay: 150,
   duration: 600,
   origin: 'bottom',
