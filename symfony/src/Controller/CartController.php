@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Constraints\Length;
 
@@ -173,23 +174,32 @@ class CartController extends AbstractController
             }
         }
 
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
         Stripe::setApiKey('sk_test_51MtoxTH83TDU5LYyGV0f2MmiV6wILYSo7lqL68BYwkELL08yVIRCsUN5HlD3WGJLoxWVkJvoyXWHVwGIVapf6M7P00MQ04ZY2P');
 
         $checkout_session = \Stripe\Checkout\Session::create([
+            'customer_email' => $user->getEmail(),
             'line_items' => [
                 [
-                    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-                    'price' => 'price_1MtptMH83TDU5LYyVDBdswtA',
+                    'price_data' => [
+                        'currency' => 'eur',
+                        'product_data' => [
+                            'name' => 'T-shirt'
+                        ],
+                        'unit_amount' => 2000,
+                    ],
                     'quantity' => 1,
                 ]
             ],
             'mode' => 'payment',
-            'success_url' => $this->generateUrl('cart.success'),
-            'cancel_url' => $this->generateUrl('cart.failed'),
+            'success_url' => $this->generateUrl('cart.success', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'cancel_url' => $this->generateUrl('cart.failed', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
 
-        dd($checkout_session);
-        return $this->render('cart/payment.html.twig', compact("dataCart", "total", "productTotal", "dataReduce", "totalReduce"));
+
+        return $this->redirect($checkout_session->url, 303);
     }
 
 
