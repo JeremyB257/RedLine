@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Entity\OrderItems;
 use App\Form\UserType;
+use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ReduceRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -98,8 +100,6 @@ class CartController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function delivery(SessionInterface $session, ProductRepository $productRepository, Request $request, ReduceRepository $reduceRepo, EntityManagerInterface $manager): Response
     {
-
-
         // Get cart from session
         $cart = $session->get('panier', []);
         $dataReduce = $session->get('reduce', []);
@@ -143,7 +143,7 @@ class CartController extends AbstractController
 
     #[Route('/panier/paiement', name: 'cart.payment')]
     #[IsGranted('ROLE_USER')]
-    public function payment(SessionInterface $session, ProductRepository $productRepository, Request $request, ReduceRepository $reduceRepo, EntityManagerInterface $manager): Response
+    public function payment(SessionInterface $session, ProductRepository $productRepository): Response
     {
         // Get cart from session
         $cart = $session->get('panier', []);
@@ -177,7 +177,7 @@ class CartController extends AbstractController
                 $stripe->coupons->retrieve($dataReduce['code']);
             } catch (\Exception $e) {
                 if ($dataReduce['type'] == '€') {
-                    $stripe->coupons->create(['amount_off' => $dataReduce['value'], 'currency' => 'eur', 'duration' => 'forever', 'id' => $dataReduce['code'], 'name' => $dataReduce['code']]);
+                    $stripe->coupons->create(['amount_off' => $dataReduce['value'] * 100, 'currency' => 'eur', 'duration' => 'forever', 'id' => $dataReduce['code'], 'name' => $dataReduce['code']]);
                 }
                 if ($dataReduce['type'] == '%') {
                     $stripe->coupons->create(['percent_off' => $dataReduce['value'], 'duration' => 'forever', 'id' => $dataReduce['code'], 'name' => $dataReduce['code']]);
@@ -210,19 +210,63 @@ class CartController extends AbstractController
 
 
     #[Route('/panier/paiement/succes', name: 'cart.success')]
-    public function successUrl(SessionInterface $session)
+    #[IsGranted('ROLE_USER')]
+    public function successUrl(SessionInterface $session, ProductRepository $productRepository, EntityManagerInterface $manager)
     {
+        $cart = $session->get('panier', []);
+        $dataReduce = $session->get('reduce', []);
+        if (empty($cart)) {
+            return $this->redirectToRoute('cart.index');
+        }
+        $total = 0;
+        $order = new Order;
+
+        foreach ($cart as $product) {
+            $productData = $productRepository->find($product['id']);
+            $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
+
+            $orderItem = new OrderItems;
+            $orderItem->setProduct($productData)
+                ->setOrder($order)
+                ->setQuantity($product['quantity'])
+                ->setTotal(($productData->getPriceHt() * 1.2) * $product['quantity'])
+                ->setColor($product['color']);
+
+            $manager->persist($orderItem);
+        }
+
+        $totalWithReduce = 0;
+        $totalReduce = 0;
+        if ($dataReduce) {
+            if ($dataReduce['type'] == '€') {
+                $totalWithReduce = $total - $dataReduce['value'];
+                $totalReduce = $dataReduce['value'];
+            }
+            if ($dataReduce['type'] == '%') {
+                $totalWithReduce = $total - ($total * ($dataReduce['value'] / 100));
+                $totalReduce = $total * ($dataReduce['value'] / 100);
+            }
+        }
+
+
+        $order->setUser($this->getUser())
+            ->setStatus('En cours')
+            ->setPayment('Payé')
+            ->setTotal($totalWithReduce)
+            ->setReduce($totalReduce);
+
+        $manager->persist($order);
+        $manager->flush();
 
         // delete cart and reduce
         $session->set('panier', []);
         $session->set('reduce', []);
-        $order = new Order;
-
 
         return $this->render('cart/success.html.twig');
     }
 
     #[Route('/panier/paiement/echec', name: 'cart.failed')]
+    #[IsGranted('ROLE_USER')]
     public function failedUrl()
     {
         return $this->render('cart/failed.html.twig');
