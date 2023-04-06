@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 
-use App\Entity\Reduce;
 use App\Form\UserType;
 use App\Repository\ProductRepository;
 use App\Repository\ReduceRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +33,9 @@ class CartController extends AbstractController
         // Get cart from session
         $cart = $session->get('panier', []);
         $dataReduce = $session->get('reduce', []);
-
+        if (empty($cart)) {
+            $session->set('reduce', []);
+        }
         //form for reduce
         $defaultReduce = ['code' => ''];
         $reduceForm = $this->createFormBuilder($defaultReduce)
@@ -100,7 +102,9 @@ class CartController extends AbstractController
         // Get cart from session
         $cart = $session->get('panier', []);
         $dataReduce = $session->get('reduce', []);
-
+        if (empty($cart)) {
+            return $this->redirectToRoute('cart.index');
+        }
         $dataCart = [];
         $total = 0;
         $productTotal = 0;
@@ -130,9 +134,77 @@ class CartController extends AbstractController
         if ($deliveryForm->isSubmitted() && $deliveryForm->isValid()) {
             $manager->persist($this->getUser());
             $manager->flush();
+
+            return $this->redirectToRoute('cart.payment');
         }
         return $this->render('cart/delivery.html.twig', compact("dataCart", "total", "productTotal", "dataReduce", "totalReduce", "deliveryForm"));
     }
+
+    #[Route('/panier/paiement', name: 'cart.payment')]
+    #[IsGranted('ROLE_USER')]
+    public function payment(SessionInterface $session, ProductRepository $productRepository, Request $request, ReduceRepository $reduceRepo, EntityManagerInterface $manager): Response
+    {
+        // Get cart from session
+        $cart = $session->get('panier', []);
+        $dataReduce = $session->get('reduce', []);
+        if (empty($cart)) {
+            return $this->redirectToRoute('cart.index');
+        }
+        $dataCart = [];
+        $total = 0;
+        $productTotal = 0;
+        foreach ($cart as $product) {
+            $productData = $productRepository->find($product['id']);
+            $dataCart[] = [
+                "product" => $productData,
+                "color" => $product['color'],
+                "quantity" => $product['quantity'],
+            ];
+            $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
+            $productTotal += $product['quantity'];
+        }
+        $totalReduce = 0;
+        if ($dataReduce) {
+            if ($dataReduce['type'] == '€') {
+                $totalReduce = $total - $dataReduce['value'];
+            }
+            if ($dataReduce['type'] == '%') {
+                $totalReduce = $total - ($total * ($dataReduce['value'] / 100));
+            }
+        }
+
+        Stripe::setApiKey('sk_test_51MtoxTH83TDU5LYyGV0f2MmiV6wILYSo7lqL68BYwkELL08yVIRCsUN5HlD3WGJLoxWVkJvoyXWHVwGIVapf6M7P00MQ04ZY2P');
+
+        $checkout_session = \Stripe\Checkout\Session::create([
+            'line_items' => [
+                [
+                    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+                    'price' => 'price_1MtptMH83TDU5LYyVDBdswtA',
+                    'quantity' => 1,
+                ]
+            ],
+            'mode' => 'payment',
+            'success_url' => $this->generateUrl('cart.success'),
+            'cancel_url' => $this->generateUrl('cart.failed'),
+        ]);
+
+        dd($checkout_session);
+        return $this->render('cart/payment.html.twig', compact("dataCart", "total", "productTotal", "dataReduce", "totalReduce"));
+    }
+
+
+    #[Route('/panier/paiement/succes', name: 'cart.success')]
+    public function successUrl()
+    {
+        return $this->render('cart/success.html.twig');
+    }
+
+    #[Route('/panier/paiement/echec', name: 'cart.failed')]
+    public function failedUrl()
+    {
+        return $this->render('cart/failed.html.twig');
+    }
+
 
     /**
      * Add item to cart
