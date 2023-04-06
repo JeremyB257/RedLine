@@ -67,11 +67,15 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Review::class, orphanRemoval: true)]
     private Collection $reviews;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'favorite')]
+    private Collection $favorite;
+
     public function __construct()
     {
         $this->orderItems = new ArrayCollection();
         $this->cartItems = new ArrayCollection();
         $this->reviews = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -333,6 +337,30 @@ class Product
                 $review->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->favorite;
+    }
+
+    public function addFavorite(User $favorite): self
+    {
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite->add($favorite);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(User $favorite): self
+    {
+        $this->favorite->removeElement($favorite);
 
         return $this;
     }
