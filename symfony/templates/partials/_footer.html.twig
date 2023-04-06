@@ -28,7 +28,11 @@
 
 				<ul class="list-unstyled">
 					<li>
+					{% if app.user %}
 						<a href="{{ path('order.index', {id: app.user.id }) }}" class="nav-link">Commandes</a>
+					{% else %}
+						<a href="#" class="nav-link">Commandes</a>
+					{% endif %}
 					</li>
 					<li>
 						<a href="#" class="nav-link">Livraison</a>

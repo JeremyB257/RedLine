@@ -39,9 +39,20 @@ class HomeController extends AbstractController
     {
         $email = $request->get('email');
          
-        $bddEmail= $userRepository->findOneBy(['email'=> $email]); 
+        $bddEmail= $userRepository->findOneBy(['email'=> $email]);
+        
+        if ($bddEmail == null) {
 
-        return $this->redirectToRoute('home.index');
+            return $this->redirectToRoute('app_login');
+        } else {
+            /** @var \App\Entity\User $user */
+            $user = $this->getUser();
+            $user->setNewsletter(true);
+
+            $userRepository->save($user, true);
+
+            return $this->redirectToRoute('home.index');
+        } 
     }
     
 }
