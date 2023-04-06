@@ -47,21 +47,21 @@ class ProductCrudController extends AbstractCrudController
             ChoiceField::new('material')
                 ->setLabel("Matière")
                 ->setChoices([
-                    'acier' => 'Acier',
-                    'or' => 'Or',
-                    'titane' => 'Titane',
-                    'nylon' => 'Nylon',
-                    'cuir' => 'Cuir',
+                    'acier' => 'acier',
+                    'or' => 'or',
+                    'titane' => 'titane',
+                    'nylon' => 'nylon',
+                    'cuir' => 'cuir',
                 ]),
             NumberField::new('water_resistance')
                 ->setLabel("Résistance à l'eau"),
             ChoiceField::new('movement')
                 ->setLabel("Mouvement")
                 ->setChoices([
-                    'automatique' => 'Automatique',
-                    'quartz' => 'quartz',
-                    'quartz solaire' => 'Quartz solaire',
-                    'mecanique' => 'Mécanique'
+                    'Automatique' => 'Automatique',
+                    'Quartz' => 'quartz',
+                    'Quartz solaire' => 'Quartz solaire',
+                    'Mecanique' => 'Mécanique'
                 ]),
             NumberField::new('case_diameter')
                 ->setLabel("Taille du cadran"),
@@ -73,8 +73,8 @@ class ProductCrudController extends AbstractCrudController
             ChoiceField::new('category')
                 ->setLabel("categorie")
                 ->setChoices([
-                    'Homme' => 'Homme',
-                    'femme' => 'Femme',
+                    'Homme' => 'homme',
+                    'Femme' => 'femme',
                 ]),
             TextField::new('color')
                 ->setLabel('Couleur'),
