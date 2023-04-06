@@ -28,6 +28,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        $faker = Factory::create('fr_FR');
 
         $user = new User();
         $user->setFirstname('Laxar');
@@ -38,7 +39,6 @@ class AppFixtures extends Fixture
         $user->setActive(true);
         $manager->persist($user);
 
-        $faker = Factory::create('fr_FR');
 
         $users = [$user];
 
@@ -150,7 +150,7 @@ class AppFixtures extends Fixture
             ->setMovement('Automatique')
             ->setCaseDiameter(36)
             ->setCategory('homme')
-            ->setColor('blue,green')
+            ->setColor('green,blue')
             ->setStock(rand(0, 50))
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(100)

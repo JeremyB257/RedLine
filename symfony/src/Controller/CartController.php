@@ -235,7 +235,7 @@ class CartController extends AbstractController
             $manager->persist($orderItem);
         }
 
-        $totalWithReduce = 0;
+        $totalWithReduce = $total;
         $totalReduce = 0;
         if ($dataReduce) {
             if ($dataReduce['type'] == '€') {
