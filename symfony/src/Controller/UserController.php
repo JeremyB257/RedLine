@@ -38,10 +38,22 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('app_user', ['id' => $currentUser->getid()], Response::HTTP_SEE_OTHER);
         }
+
+        $delete = $request->get('delete');
+
+        if ($delete) {
+            /** @var \App\Entity\User $user */
+            $user = $this->getUser();
+            $user->setActive(false);
+
+            $userRepository->save($user, true);
+
+            return $this->redirectToRoute('app_logout');
+        }
+
         return $this->render('user/index.html.twig', [
             'user' => $currentUser,
             'accountForm' => $form,
-
         ]);
     }
 
