@@ -167,19 +167,27 @@ class CartController extends AbstractController
                 'quantity' => $product['quantity'],
             ];
         }
+
+        $stripe = new \Stripe\StripeClient('sk_test_51MtoxTH83TDU5LYyGV0f2MmiV6wILYSo7lqL68BYwkELL08yVIRCsUN5HlD3WGJLoxWVkJvoyXWHVwGIVapf6M7P00MQ04ZY2P');
+
+
         $stripeReduce = [];
         if ($dataReduce) {
-            if ($dataReduce['code'] == 'fiofio') {
-                $stripeReduce = [
-                    'coupon' => 'iOghThKk'
-                ];
+            try {
+                $stripe->coupons->retrieve($dataReduce['code']);
+            } catch (\Exception $e) {
+                if ($dataReduce['type'] == '€') {
+                    $stripe->coupons->create(['amount_off' => $dataReduce['value'], 'currency' => 'eur', 'duration' => 'forever', 'id' => $dataReduce['code'], 'name' => $dataReduce['code']]);
+                }
+                if ($dataReduce['type'] == '%') {
+                    $stripe->coupons->create(['percent_off' => $dataReduce['value'], 'duration' => 'forever', 'id' => $dataReduce['code'], 'name' => $dataReduce['code']]);
+                }
             }
-            if ($dataReduce['code'] == 'laxar2') {
 
-                $stripeReduce = [
-                    'coupon' => 'tucsk2lF'
-                ];
-            }
+
+            $stripeReduce = [
+                'coupon' => $dataReduce['code']
+            ];
         }
 
         /** @var \App\Entity\User $user */
@@ -189,12 +197,8 @@ class CartController extends AbstractController
 
         $checkout_session = \Stripe\Checkout\Session::create([
             'customer_email' => $user->getEmail(),
-            'line_items' => [
-                $stripeCart
-            ],
-            'discounts' => [
-                $stripeReduce
-            ],
+            'line_items' => [$stripeCart],
+            'discounts' => [$stripeReduce],
             'mode' => 'payment',
             'success_url' => $this->generateUrl('cart.success', [], UrlGeneratorInterface::ABSOLUTE_URL),
             'cancel_url' => $this->generateUrl('cart.failed', [], UrlGeneratorInterface::ABSOLUTE_URL),
