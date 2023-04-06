@@ -41,11 +41,11 @@ class AdminController extends AbstractDashboardController
     {
         // Permet de choisir le menu 
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('utilisateur', 'fas fa-user', User::class);
-        yield MenuItem::linkToCrud('Contact', 'fa fa-messages', Contact::class);
-        yield MenuItem::linkToCrud('Produit', 'fa fa-watch', Product::class);
-        yield MenuItem::linkToCrud('Reduction', 'fa fa-watch', Reduce::class);
-        yield MenuItem::linkToCrud('Commande', 'fa fa-watch', Order::class);
+        yield MenuItem::linkToCrud('utilisateurs', 'fas fa-user', User::class);
+        yield MenuItem::linkToCrud('Contacts', 'fa fa-messages', Contact::class);
+        yield MenuItem::linkToCrud('Produits', 'fa fa-watch', Product::class);
+        yield MenuItem::linkToCrud('Reductions', 'fa fa-watch', Reduce::class);
+        yield MenuItem::linkToCrud('Commandes', 'fa fa-watch', Order::class);
         
         
 

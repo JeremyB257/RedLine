@@ -46,8 +46,8 @@ class ReduceCrudController extends AbstractCrudController
                 ->setLabel('Valeur'),
             ChoiceField::new('active')
                 ->setChoices([
-                    'Oui' => 'oui',
-                    'Non' => 'non',
+                    'oui' => 'oui',
+                    'non' => 'non',
                 ]),
 
         ];
