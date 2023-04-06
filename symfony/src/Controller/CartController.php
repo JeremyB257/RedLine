@@ -151,28 +151,50 @@ class CartController extends AbstractController
         if (empty($cart)) {
             return $this->redirectToRoute('cart.index');
         }
-        $dataCart = [];
-        $total = 0;
-        $productTotal = 0;
-        foreach ($cart as $product) {
+
+        $stripeCart = [];
+
+        foreach ($cart as $index => $product) {
             $productData = $productRepository->find($product['id']);
-            $dataCart[] = [
-                "product" => $productData,
-                "color" => $product['color'],
-                "quantity" => $product['quantity'],
-            ];
-            $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
-            $productTotal += $product['quantity'];
-        }
-        $totalReduce = 0;
-        if ($dataReduce) {
-            if ($dataReduce['type'] == '€') {
-                $totalReduce = $total - $dataReduce['value'];
+            if ($dataReduce) {
+                if ($dataReduce['type'] == '€' && $index == 0) {
+                    $stripeCart[] = [
+                        'price_data' => [
+                            'currency' => 'eur',
+                            'product_data' => [
+                                'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
+                            ],
+                            'unit_amount' => $productData->getPriceHt() * 1.2 * 100 - $dataReduce['value'],
+                        ],
+                        'quantity' => $product['quantity'],
+                    ];
+                }
+                if ($dataReduce['type'] == '%') {
+                    $stripeCart[] = [
+                        'price_data' => [
+                            'currency' => 'eur',
+                            'product_data' => [
+                                'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
+                            ],
+                            'unit_amount' => $productData->getPriceHt() * 1.2 * 100 * ($dataReduce['value'] / 100),
+                        ],
+                        'quantity' => $product['quantity'],
+                    ];
+                }
+            } else {
+                $stripeCart[] = [
+                    'price_data' => [
+                        'currency' => 'eur',
+                        'product_data' => [
+                            'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
+                        ],
+                        'unit_amount' => $productData->getPriceHt() * 1.2 * 100,
+                    ],
+                    'quantity' => $product['quantity'],
+                ];
             }
-            if ($dataReduce['type'] == '%') {
-                $totalReduce = $total - ($total * ($dataReduce['value'] / 100));
-            }
         }
+
 
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
@@ -182,16 +204,7 @@ class CartController extends AbstractController
         $checkout_session = \Stripe\Checkout\Session::create([
             'customer_email' => $user->getEmail(),
             'line_items' => [
-                [
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'product_data' => [
-                            'name' => 'T-shirt'
-                        ],
-                        'unit_amount' => 2000,
-                    ],
-                    'quantity' => 1,
-                ]
+                $stripeCart
             ],
             'mode' => 'payment',
             'success_url' => $this->generateUrl('cart.success', [], UrlGeneratorInterface::ABSOLUTE_URL),
