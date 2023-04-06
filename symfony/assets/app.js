@@ -129,7 +129,7 @@ ScrollReveal().reveal(attributesRight, {
 let xLaxar = document.querySelector('.xLaxarReveal');
 ScrollReveal().reveal(xLaxar, {
   delay: 400,
-  duration: 700,
+  duration: 400,
   origin: 'top',
   distance: '50px',
 });
@@ -137,7 +137,7 @@ ScrollReveal().reveal(xLaxar, {
 let LaLaxar = document.querySelector('.laLaxarReveal');
 ScrollReveal().reveal(LaLaxar, {
   delay: 200,
-  duration: 700,
+  duration: 400,
   origin: 'left',
   distance: '50px',
 });
@@ -145,7 +145,7 @@ ScrollReveal().reveal(LaLaxar, {
 let ArLaxar = document.querySelector('.arLaxarReveal');
 ScrollReveal().reveal(ArLaxar, {
   delay: 200,
-  duration: 700,
+  duration: 400,
   origin: 'right',
   distance: '50px',
 });
