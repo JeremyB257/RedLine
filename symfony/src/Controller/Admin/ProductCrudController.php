@@ -47,11 +47,11 @@ class ProductCrudController extends AbstractCrudController
             ChoiceField::new('material')
                 ->setLabel("Matière")
                 ->setChoices([
-                    'acier' => 'Acier',
-                    'or' => 'Or',
-                    'titane' => 'Titane',
-                    'nylon' => 'Nylon',
-                    'cuir' => 'Cuir',
+                    'acier' => 'acier',
+                    'or' => 'or',
+                    'titane' => 'titane',
+                    'nylon' => 'nylon',
+                    'cuir' => 'cuir',
                 ]),
             NumberField::new('water_resistance')
                 ->setLabel("Résistance à l'eau"),
@@ -73,14 +73,13 @@ class ProductCrudController extends AbstractCrudController
             ChoiceField::new('category')
                 ->setLabel("categorie")
                 ->setChoices([
-                    'Homme' => 'Homme',
-                    'femme' => 'Femme',
+                    'Homme' => 'homme',
+                    'femme' => 'femme',
                 ]),
             TextField::new('color')
                 ->setLabel('Couleur'),
             TextField::new('reduce')
                 ->setLabel('Réduction'),
-
         ];
     }
 }
