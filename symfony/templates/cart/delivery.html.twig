@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{parent()}}
+	- Panier
+{% endblock %}
+
+{% block body %}
+	<div class="cart cart-delivery container-lg mb-5">
+		<div class="d-flex mt-3 justify-content-center">
+			<div class="rounded-circle d-flex align-items-center justify-content-center bg-dark">1</div>
+			<div class="rounded-circle d-flex align-items-center justify-content-center bg-dark">2</div>
+			<div class="rounded-circle d-flex align-items-center justify-content-center bg-grey">3</div>
+		</div>
+		<div class="d-flex gap-3 align-items-center">
+			<h2 class="mt-3 fw-bold">MON PANIER
+				<span class="fs-6">({{productTotal}}
+					articles)</span>
+			</h2>
+		</div>
+		<div>
+			<p class="fw-bold">Livraison OFFERTE* | Retours sous 30 jours</p>
+		</div>
+
+		<div class="row">
+			<div class="col-12 col-md-6 d-flex flex-column gap-3 mt-2">
+				{{ form_start(deliveryForm) }}
+				<div class="row g-5 mt-2">
+					<div class="col-md-4 mt-0">
+						{{ form_row(deliveryForm.civility) }}
+					</div>
+					<div class="col-md-4 mt-0">{{ form_row(deliveryForm.firstname) }}</div>
+					<div class="col-md-4 mt-0">{{ form_row(deliveryForm.lastname) }}</div>
+				</div>
+
+				<div class="row g-4 mt-2">
+					<p class="my-2">Adresse :
+					</p>
+					<div class="col-lg-2 col-md-4 mt-0">{{ form_row(deliveryForm.number_adress) }}</div>
+					<div class="col-lg-5 col-md-8 mt-0">{{ form_row(deliveryForm.street1) }}</div>
+					<div class="col-lg-5 mt-0">{{ form_row(deliveryForm.street2) }}</div>
+					<div class="col-lg-3 col-md-5 mt-0">{{ form_row(deliveryForm.postcode) }}</div>
+					<div class="col-lg-5 col-md-7 mt-0">{{ form_row(deliveryForm.city) }}</div>
+					<div class="col-lg-4 mt-0">{{ form_row(deliveryForm.country) }}</div>
+				</div>
+
+				<div class="mt-4">{{ form_rest(deliveryForm)}}</div>
+
+				<div class="d-flex justify-content-center">
+					<button class="btn btn-primary" formnovalidate>Passage en caisse</button>
+				</div>
+
+				{{ form_end(deliveryForm)}}
+
+
+			</div>
+			<div class="col-12 col-md-6 mt-2">
+				<div class="p-3 order-recap">
+					<h2>Récapitulatif de la commande</h2>
+					{% for label, messages in app.flashes %}
+						{% for message in messages %}
+							<div class="alert alert-{{ label }}" role="alert">
+								{{ message }}
+							</div>
+						{% endfor %}
+					{% endfor %}
+
+
+					<p>Sous total HT :
+						{{ (total / 1.2) | format_currency('EUR')}}</p>
+					{% if dataReduce %}
+						<p>Code de réduction :
+							{{dataReduce.code}}
+							(-{{dataReduce.value ~ dataReduce.type}})
+						</p>
+					{% endif %}
+
+					<p>Frais de livraison : Offert</p>
+					<p>TVA : 20%</p>
+					<h2>TOTAL TTC :
+						{% if dataReduce %}
+							<span class="fs-5">
+								<s>{{ total | format_currency('EUR')}}</s>
+							</span>
+							{{ totalReduce | format_currency('EUR')}}
+						{% else %}
+							{{ total | format_currency('EUR')}}
+						{% endif %}
+					</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

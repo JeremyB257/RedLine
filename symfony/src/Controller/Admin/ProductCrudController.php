@@ -58,10 +58,10 @@ class ProductCrudController extends AbstractCrudController
             ChoiceField::new('movement')
                 ->setLabel("Mouvement")
                 ->setChoices([
-                    'automatique' => 'Automatique',
-                    'quartz' => 'quartz',
-                    'quartz solaire' => 'Quartz solaire',
-                    'mecanique' => 'Mécanique'
+                    'Automatique' => 'Automatique',
+                    'Quartz' => 'quartz',
+                    'Quartz solaire' => 'Quartz solaire',
+                    'Mecanique' => 'Mécanique'
                 ]),
             NumberField::new('case_diameter')
                 ->setLabel("Taille du cadran"),
@@ -74,7 +74,9 @@ class ProductCrudController extends AbstractCrudController
                 ->setLabel("categorie")
                 ->setChoices([
                     'Homme' => 'homme',
-                    'femme' => 'femme',
+
+                    'Femme' => 'femme',
+
                 ]),
             TextField::new('color')
                 ->setLabel('Couleur'),

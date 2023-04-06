@@ -14,12 +14,13 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
         $builder
             ->add('civility', ChoiceType::class, [
                 'label' => 'Civilité :',
                 'choices' => [
-                    'Mme' => true,
-                    'M.' => false,
+                    'Mme' => 'Mme',
+                    'M.' => 'M.',
                 ],
                 'expanded' => true,
                 'attr' => [
@@ -105,15 +106,6 @@ class UserType extends AbstractType
                     'class' => 'fw-bold',
                 ],
             ])
-            ->add('email', null, [
-                'label' => 'Email :',
-                'attr' => [
-                    'class' => 'p-1'
-                ],
-                'label_attr' => [
-                    'class' => 'fw-bold',
-                ],
-            ])
             ->add('phoneNumber', null, [
                 'label' => 'n° de téléphone :',
                 'attr' => [
@@ -133,22 +125,37 @@ class UserType extends AbstractType
                 'label_attr' => [
                     'class' => 'fw-bold',
                 ],
-            ])
-            ->add('newsletter', null, [
-                'label' => 'Newsletter',
-                'label_attr' => [
-                    'class' => 'fw-bold',
-                ],
-            ])
-            // ->add('password')
-            // ->add('fidelity')
-        ;
+            ]);
+
+        if ($options['options'] != 'delivery') {
+            $builder
+                ->add('email', null, [
+                    'label' => 'Email :',
+                    'attr' => [
+                        'class' => 'p-1'
+                    ],
+                    'label_attr' => [
+                        'class' => 'fw-bold',
+                    ],
+                ])
+
+                ->add('newsletter', null, [
+                    'label' => 'Newsletter',
+                    'label_attr' => [
+                        'class' => 'fw-bold',
+                    ],
+                ])
+                // ->add('password')
+                // ->add('fidelity')
+            ;
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'options' => null
         ]);
     }
 }
