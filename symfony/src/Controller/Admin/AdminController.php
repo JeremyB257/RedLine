@@ -19,7 +19,6 @@ class AdminController extends AbstractDashboardController
 {
     public function __construct(private AdminUrlGenerator $adminUrlGenerator)
     {
-        
     }
     #[Route('/admin', name: 'admin')]
     #[IsGranted('ROLE_ADMIN')]
@@ -27,7 +26,6 @@ class AdminController extends AbstractDashboardController
     {
 
         return $this->render('admin/dashboard.html.twig');
-
     }
 
     public function configureDashboard(): Dashboard
@@ -46,9 +44,5 @@ class AdminController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Produits', 'fa fa-watch', Product::class);
         yield MenuItem::linkToCrud('Reductions', 'fa fa-watch', Reduce::class);
         yield MenuItem::linkToCrud('Commandes', 'fa fa-watch', Order::class);
-        
-        
-
-        
     }
 }
