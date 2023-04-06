@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Order;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
@@ -16,6 +17,16 @@ class OrderCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Order::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+
+            ->setEntityLabelInSingular("Commande")
+            ->setEntityLabelInPlural("Commandes")
+            ->setPageTitle("index", "Laxar - Commandes")
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
     }
 
 
