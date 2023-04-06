@@ -97,5 +97,31 @@
 				</div>
 			</section>
 		</div>
-	</div>
-{% endblock %}
+
+
+
+        <button formnovalidate class="btn btn-lg btn-primary px-5 my-3 fw-bold" data-bs-toggle="modal" data-bs-target="#delete">Supprimer mon compte</button>
+
+		<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="deleteLabel">Suppression du compte</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Souhaitez vous vraiment supprimer votre compte ?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+					<form method='get'>
+						<input type="submit" class="btn btn-primary" value="Supprimer" name="delete" >
+					</form>
+				</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</div></div>{% endblock %}
+

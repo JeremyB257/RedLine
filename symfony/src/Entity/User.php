@@ -444,6 +444,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->active;
     }
 
+    public function __toString()
+    {
+        return $this->email;
+    }
+
     public function setActive(bool $active): self
     {
         $this->active = $active;
