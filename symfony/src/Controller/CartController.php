@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Order;
 use App\Form\UserType;
 use App\Repository\ProductRepository;
 use App\Repository\ReduceRepository;
@@ -210,8 +210,15 @@ class CartController extends AbstractController
 
 
     #[Route('/panier/paiement/succes', name: 'cart.success')]
-    public function successUrl()
+    public function successUrl(SessionInterface $session)
     {
+
+        // delete cart and reduce
+        $session->set('panier', []);
+        $session->set('reduce', []);
+        $order = new Order;
+
+
         return $this->render('cart/success.html.twig');
     }
 
