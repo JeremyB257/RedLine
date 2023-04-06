@@ -2,7 +2,7 @@
   background-color: $color-dark;
   color: $color-primary;
   .banner-img-col {
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
       height: 250px;
     }
   }
@@ -86,7 +86,8 @@
     width: 100px;
     height: 100px;
     opacity: 0.8;
-    border: 3px solid rgb(117, 115, 115);
+    padding: 10px;
+    border: 2px solid rgb(117, 115, 115);
     object-fit: cover;
     &:hover {
       opacity: 0.5;
@@ -186,6 +187,6 @@
   justify-content: space-between;
 }
 
-.desactive-color{
+.desactive-color {
   filter: opacity(0.5);
 }

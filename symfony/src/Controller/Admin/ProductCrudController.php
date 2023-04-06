@@ -74,13 +74,14 @@ class ProductCrudController extends AbstractCrudController
                 ->setLabel("categorie")
                 ->setChoices([
                     'Homme' => 'homme',
+
                     'Femme' => 'femme',
+
                 ]),
             TextField::new('color')
                 ->setLabel('Couleur'),
             TextField::new('reduce')
                 ->setLabel('Réduction'),
-
         ];
     }
 }
