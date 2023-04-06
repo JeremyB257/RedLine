@@ -59,7 +59,7 @@ class SecurityController extends AbstractController
                     $user = $userDisable;
                     $user->setActive(true);
                 } else {
-                    $this->addFlash('danger', 'Le mot de passe ne correspond pas avec le compte relier');
+                    $this->addFlash('danger', 'Le mot de passe ne correspond pas avec le compte relié, veuillez saisir votre mot de passe d\'origine');
                     return $this->redirectToRoute('app_login');
                 }
             } else {
