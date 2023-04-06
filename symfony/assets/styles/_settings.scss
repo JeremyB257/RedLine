@@ -19,10 +19,6 @@ a {
   text-align: center;
 }
 
-.grey {
-  color: rgb(146, 146, 146);
-}
-
 .text-justify {
   text-align: justify;
 }
@@ -89,12 +85,18 @@ a {
 }
 
 .border-primary {
-  border-color: #{$color-primary} !important;
+  border-color: $color-primary !important;
 }
 .bg-primary {
   background-color: $color-primary !important;
 }
+.bg-dark {
+  background-color: $color-dark;
+}
 
+.bg-grey {
+  background-color: rgb(213, 213, 213);
+}
 .w-sm-50 {
   @media (min-width: 768px) {
     width: 50%;
@@ -106,6 +108,14 @@ i {
 }
 .primary {
   color: $color-primary;
+}
+
+.dark {
+  color: $color-dark;
+}
+
+.grey {
+  color: rgb(146, 146, 146);
 }
 
 .form-check-input:checked {

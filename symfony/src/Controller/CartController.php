@@ -140,7 +140,6 @@ class CartController extends AbstractController
 
     /**
      * Remove one item from cart
-     * remove one item in cart
      *
      * @param Int $id
      * @param String $color
