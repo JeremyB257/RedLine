@@ -25,13 +25,12 @@ class OrderCrudController extends AbstractCrudController
             IdField::new('id')
                 ->setDisabled('disabled', 'disabled'),
             AssociationField::new('user'),
-            IdField::new('user_id'),
             TextField::new('Reduce')
                 ->setLabel('Réduction'),
             NumberField::new('Total')
                 ->setDisabled('disabled', 'disabled'),
             TextField::new('Status'),
-            TextField::new('Payement'),
+            TextField::new('payment'),
             DateField::new('createdAt')
                 ->setLabel('Date de commande'),
 

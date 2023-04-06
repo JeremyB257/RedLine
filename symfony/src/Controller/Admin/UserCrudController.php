@@ -39,44 +39,44 @@ class UserCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->hideOnForm(),
-                EmailField::new('email')
+            EmailField::new('email')
                 ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('lastname')
-            ->setLabel('Nom')
-            ->setFormTypeOption('disabled', 'disabled'),
+                ->setLabel('Nom')
+                ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('firstname')
-            ->setLabel('Prénom')
-            ->setFormTypeOption('disabled', 'disabled'),
+                ->setLabel('Prénom')
+                ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('number_adress')
-            ->setLabel('N° de rue')
-            ->setFormTypeOption('disabled', 'disabled'),
+                ->setLabel('N° de rue')
+                ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('street1')
-            ->setLabel('Rue')
-            ->setFormTypeOption('disabled', 'disabled'),
+                ->setLabel('Rue')
+                ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('street2')
-            ->setLabel('Complément d\'adresse')
-            ->setFormTypeOption('disabled', 'disabled'),
+                ->setLabel('Complément d\'adresse')
+                ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('postcode')
-            ->setLabel('Code postal')
-            ->setFormTypeOption('disabled', 'disabled'),
+                ->setLabel('Code postal')
+                ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('city')
-            ->setLabel('Ville')
-            ->setFormTypeOption('disabled', 'disabled'),
+                ->setLabel('Ville')
+                ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('country')
-            ->setLabel('Pays')
-            ->setFormTypeOption('disabled', 'disabled'),
+                ->setLabel('Pays')
+                ->setFormTypeOption('disabled', 'disabled'),
             TextField::new('phone_number')
-            ->setLabel('Numéro de téléphone')
+                ->setLabel('Numéro de téléphone')
                 ->setFormTypeOption('disabled', 'disabled'),
             DateField::new('birthday')
                 ->hideOnForm()
                 ->setFormTypeOption('disabled', 'disabled'),
             ArrayField::new('roles'),
             ChoiceField::new('active')
-            ->setChoices([
-                "oui" => 1,
-                "non" => 0,
-            ])
+                ->setChoices([
+                    "oui" => 1,
+                    "non" => 0,
+                ])
 
 
         ];

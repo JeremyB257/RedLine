@@ -96,22 +96,22 @@ class ProductRepository extends ServiceEntityRepository
     }
 
 
-   public function findDistinctMovement()
-   {
+    public function findDistinctMovement()
+    {
         $query = $this->createQueryBuilder('mv')
-                ->select('mv.movement')
-                ->groupBy('mv.movement')
-                ->orderBy('mv.movement','ASC');
+            ->select('mv.movement')
+            ->groupBy('mv.movement')
+            ->orderBy('mv.movement', 'ASC');
         return $query->getQuery()->getResult();
-   }
+    }
 
-   public function findDistinctCategory()
-   {
+    public function findDistinctCategory()
+    {
         $query = $this->createQueryBuilder('c')
-                ->select('c.category')
-                ->groupBy('c.category');
+            ->select('c.category')
+            ->groupBy('c.category');
         return $query->getQuery()->getResult();
-   }
+    }
 
     public function findOneBySomeField($value): ?Product
     {
@@ -120,5 +120,5 @@ class ProductRepository extends ServiceEntityRepository
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult();
-   }
+    }
 }

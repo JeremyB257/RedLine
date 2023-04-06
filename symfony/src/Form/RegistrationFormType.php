@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
             ])
 
             ->add('plainPassword', RepeatedType::class, [
-                'type'=> PasswordType::class,
+                'type' => PasswordType::class,
                 'first_options'  => [
                     'label' => 'Mot de passe*',
                     'label_attr' => ['class' => 'form-label'],
@@ -41,7 +41,7 @@ class RegistrationFormType extends AbstractType
                     'attr' => ['class' => 'form-control border-0 border-bottom rounded-0 p-0'],
                 ],
                 'mapped' => false,
-                
+
                 'attr' => [
                     'autocomplete' => 'new-password',
                 ],
@@ -56,10 +56,10 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-                ])
-                
+            ])
+
             ->add('agreeTerms', CheckboxType::class, [
-                'label'=> 'conditions générales',
+                'label' => 'conditions générales',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
