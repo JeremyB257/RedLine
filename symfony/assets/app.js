@@ -12,10 +12,10 @@ import './styles/app.scss';
 import './bootstrap';
 
 // import scroll reveal file
-import './scripts/scroll_reveal';
+import './scroll_reveal';
 
 // import fav feature
-import Fav from './scripts/fav.js';
+import Fav from './controllers/fav_controller.js';
 
 //search navbar
 const searchBtn = document.querySelector('#searchBtn');
@@ -81,7 +81,7 @@ if (starRatingStars) {
 // Fav feature
 
 document.addEventListener('DOMContentLoaded', () => {
-  const favElements = [].slice.call(document.querySelectorAll('.fav'));
+  const favElements = [].slice.call(document.querySelectorAll('a[data-action="fav"]'));
   console.log(favElements);
   if (favElements) {
     new Fav(favElements);
