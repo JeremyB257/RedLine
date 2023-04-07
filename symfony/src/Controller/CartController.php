@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\OrderItems;
+use App\Entity\Reduce;
 use App\Form\UserType;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
@@ -30,9 +31,13 @@ class CartController extends AbstractController
      * @return Response
      */
     #[Route('/panier', name: 'cart.index')]
-    public function index(SessionInterface $session, ProductRepository $productRepository, Request $request, ReduceRepository $reduceRepo): Response
+    public function index(
+        SessionInterface $session, 
+        ProductRepository $productRepository, 
+        Request $request, 
+        ReduceRepository $reduceRepo
+        ): Response
     {
-
         // Get cart from session
         $cart = $session->get('panier', []);
         $dataReduce = $session->get('reduce', []);
@@ -47,28 +52,7 @@ class CartController extends AbstractController
                 'attr' => ['placeholder' => 'Code de réduction']
             ])
             ->getForm();
-        $reduceForm->handleRequest($request);
-        if ($reduceForm->isSubmitted() && $reduceForm->isValid()) {
-            $codeReduce = $reduceForm->getData();
-            $reduce = $reduceRepo->findOneby(['code' => $codeReduce['code']]);
-            if ($reduce) {
-                if (new \DateTime('now') < $reduce->getDateEnd() && $reduce->isActive()) {
-                    $dataReduce = [
-                        "code" => $codeReduce['code'],
-                        "type" => $reduce->getType(),
-                        "value" => $reduce->getValue(),
-                    ];
-                    $session->set('reduce', $dataReduce);
-                    $this->addFlash('success', 'Code promo ajouté');
-                } else {
-                    $this->addFlash('warning', 'Code promo expiré');
-                }
-            } else {
-                $session->set('reduce', []);
-                $this->addFlash('danger', 'Code promo inconnu');
-                return $this->redirectToRoute("cart.index");
-            }
-        }
+        $reduceForm->handleRequest($request); 
 
         $dataCart = [];
         $total = 0;
@@ -83,6 +67,30 @@ class CartController extends AbstractController
             $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
             $productTotal += $product['quantity'];
         }
+
+        // need to $total for the reduction
+        if ($reduceForm->isSubmitted() && $reduceForm->isValid()) {
+            $codeReduce = $reduceForm->getData();
+            $reduce = $reduceRepo->findOneby(['code' => $codeReduce['code']]);
+            if ($reduce) {
+                if (new \DateTime('now') < $reduce->getDateEnd() && $reduce->isActive() && $reduce->getMinPrice() < $total) {
+                    $dataReduce = [
+                        "code" => $codeReduce['code'],
+                        "type" => $reduce->getType(),
+                        "value" => $reduce->getValue(),
+                    ];
+                    $session->set('reduce', $dataReduce);
+                    $this->addFlash('success', 'Code promo ajouté');
+                } else {
+                    $this->addFlash('warning', 'Code promo expiré ou somme insuffisante');
+                }
+            } else {
+                $session->set('reduce', []);
+                $this->addFlash('danger', 'Code promo inconnu');
+                return $this->redirectToRoute("cart.index");
+            }
+        }
+
         $totalReduce = 0;
         if ($dataReduce) {
             if ($dataReduce['type'] == '€') {
