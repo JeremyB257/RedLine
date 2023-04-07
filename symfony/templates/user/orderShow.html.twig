@@ -86,15 +86,15 @@
 										<th scope="col">Image</th>
 										<th scope="col">Marque</th>
 										<th scope="col">Modèle</th>
-										<th scope="col">quantité</th>
-										<th scope="col">prix HT</th>
-										<th scope="col">prix TTC</th>
+										<th scope="col">Quantité</th>
+										<th scope="col">Prix HT</th>
+										<th scope="col">Prix TTC</th>
 									</tr>
 								</thead>
 								<tbody>
 									{% for item in orderItems %}
 										<tr>
-											<td><img style="width: 40px" src="{{asset('img/' ~ item.product.imgUrl | split(',')[0] )}}" alt=""></td>
+											<td><img style="width: 40px" src="{{asset('img/' ~ ((item.product.imgUrl | split(',')[0]) | split('-')[0] ~ '-' ~ item.color ~ '.png'))}}" alt=""></td>
 											<td>{{item.product.brand}}</td>
 											<td>{{item.product.model}}</td>
 											<td>{{item.quantity}}</td>
