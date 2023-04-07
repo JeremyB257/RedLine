@@ -555,6 +555,7 @@ class AppFixtures extends Fixture
         // orders
         $order1 = new Order();
         $order1->setUser($users[0])
+            ->setIdStripe('cs_test_a1tn4R3kcLjuwwPrjnAROBObHDv60oqZRHPrppra6j1ksds1wKJn5w29dA')
             ->setTotal(3456000)
             ->setStatus('Livré')
             ->setPayment('Payé')
@@ -564,6 +565,7 @@ class AppFixtures extends Fixture
 
         $order2 = new Order();
         $order2->setUser($users[0])
+            ->setIdStripe('cs_test_a1tn4R3kcLjuwwPrjnAROBObHDv60oqZRHPrppra6j1ksds1wKJn5w29dA')
             ->setTotal(3120000)
             ->setStatus('En cours')
             ->setPayment('Payé')
