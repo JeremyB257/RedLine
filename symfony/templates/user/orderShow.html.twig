@@ -73,9 +73,9 @@
 						<h4 class="card-title fw-bold">Commandes n°{{order.id}}</h4>
 						<p class="card-text fw-bold">Total :
 							{% if order.reduce %}
-								<s>{{(order.total + order.reduce) | format_currency('EUR')}}</s>
+								<s>{{((order.total + order.reduce) / 100) | format_currency('EUR')}}</s>
 							{% endif %}
-							{{order.total | format_currency('EUR')}}</p>
+							{{(order.total / 100) | format_currency('EUR')}}</p>
 						<p class="card-text fw-bold statut" data-statut="{{order.status}}">
 							{{order.status}}
 						</p>
