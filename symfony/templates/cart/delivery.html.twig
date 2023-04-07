@@ -67,7 +67,7 @@
 
 
 					<p>Sous total HT :
-						{{ (total / 1.2) | format_currency('EUR')}}</p>
+						{{ (total / 1.2 / 100) | format_currency('EUR')}}</p>
 					{% if dataReduce %}
 						<p>Code de réduction :
 							{{dataReduce.code}}
@@ -80,11 +80,11 @@
 					<h2>TOTAL TTC :
 						{% if dataReduce %}
 							<span class="fs-5">
-								<s>{{ total | format_currency('EUR')}}</s>
+								<s>{{ (total / 100) | format_currency('EUR')}}</s>
 							</span>
-							{{ totalReduce | format_currency('EUR')}}
+							{{ (totalReduce / 100) | format_currency('EUR')}}
 						{% else %}
-							{{ total | format_currency('EUR')}}
+							{{ (total / 100) | format_currency('EUR')}}
 						{% endif %}
 					</h2>
 				</div>

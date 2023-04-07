@@ -38,6 +38,9 @@ class Order
     #[ORM\Column(nullable: true)]
     private ?int $reduce = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $idStripe = null;
+
 
     public function __construct()
     {
@@ -147,6 +150,18 @@ class Order
     public function setReduce(?int $reduce): self
     {
         $this->reduce = $reduce;
+
+        return $this;
+    }
+
+    public function getIdStripe(): ?string
+    {
+        return $this->idStripe;
+    }
+
+    public function setIdStripe(?string $idStripe): self
+    {
+        $this->idStripe = $idStripe;
 
         return $this;
     }

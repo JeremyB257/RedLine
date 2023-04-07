@@ -555,16 +555,16 @@ class AppFixtures extends Fixture
         // orders
         $order1 = new Order();
         $order1->setUser($users[0])
-            ->setTotal(34560)
+            ->setTotal(3456000)
             ->setStatus('Livré')
             ->setPayment('Payé')
-            ->setReduce(3840)
+            ->setReduce(384000)
             ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days', '-15 days')));
         $manager->persist($order1);
 
         $order2 = new Order();
         $order2->setUser($users[0])
-            ->setTotal(31200)
+            ->setTotal(3120000)
             ->setStatus('En cours')
             ->setPayment('Payé')
             ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-15 days')));
