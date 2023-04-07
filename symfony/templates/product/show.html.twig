@@ -31,7 +31,7 @@
 				</div>
 				<form action="{{path('cart.add', {id: product.id})}}" method="get">
 					<input type="hidden" name="color" value="{{product.color | split(',')[0]}}" id="form-color">
-					<button class="btn btn-lg btn-primary mt-4">Ajouter au panier</button>
+					<button class="btn btn-lg btn-primary mt-4 {{product.stock < 1 ? 'disabled' : ''}}">Ajouter au panier</button>
 				</form>
 			</div>
 		</div>
