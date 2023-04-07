@@ -256,6 +256,10 @@ class CartController extends AbstractController
         if ($stripe->checkout->sessions->retrieve($order->getIdStripe())->payment_status == 'paid') {
             $order->setStatus('En cours')
                 ->setPayment('Payé');
+            foreach ($order->getOrderItems() as $product) {
+                $product->getProduct()->setStock($product->getProduct()->getStock() - $product->getQuantity());
+            }
+
             $manager->persist($order);
             $manager->flush();
 
