@@ -67,6 +67,7 @@
 		<div class="container-section d-flex flex-column align-items-end">
 			{% for product in products %}
 				<div class="card-watch d-flex justify-between shadow">
+					{% include "fav/_fav.html.twig" %}
 					<div class="d-flex justify-content-center align-items-center">
 						<img class="img-product" src="{{ '/img/' ~ (product.imgUrl | split(',')[0]) }}" alt="{{ product.model }}">
 					</div>
