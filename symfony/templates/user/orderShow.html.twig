@@ -98,8 +98,8 @@
 											<td>{{item.product.brand}}</td>
 											<td>{{item.product.model}}</td>
 											<td>{{item.quantity}}</td>
-											<td>{{(item.product.priceHT * item.quantity) | format_currency('EUR')}}</td>
-											<td>{{((item.product.priceHT * 1.2) * item.quantity) | format_currency('EUR')}}</td>
+											<td>{{(item.product.priceHT / 100 * item.quantity) | format_currency('EUR')}}</td>
+											<td>{{((item.product.priceHT / 100 * 1.2) * item.quantity) | format_currency('EUR')}}</td>
 										</tr>
 									{% endfor %}
 								</tbody>

@@ -35,7 +35,7 @@
 								-
 								{{element.product.model}}</h3>
 
-							<p>{{ (element.product.priceHT * 1.2) | format_currency('EUR')}}
+							<p>{{ (element.product.priceHT / 100 * 1.2) | format_currency('EUR')}}
 							</p>
 							<p>
 								<a class="btn btn-light" href="{{path('cart.remove', {id: element.product.id, color: element.color})}}">-</a>
