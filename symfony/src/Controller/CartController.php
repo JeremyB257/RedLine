@@ -80,7 +80,7 @@ class CartController extends AbstractController
                 "color" => $product['color'],
                 "quantity" => $product['quantity'],
             ];
-            $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
+            $total += ($productData->getPriceHt() / 100 * 1.2) * $product['quantity'];
             $productTotal += $product['quantity'];
         }
         $totalReduce = 0;
@@ -116,7 +116,7 @@ class CartController extends AbstractController
                 "color" => $product['color'],
                 "quantity" => $product['quantity'],
             ];
-            $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
+            $total += ($productData->getPriceHt() / 100 * 1.2) * $product['quantity'];
             $productTotal += $product['quantity'];
         }
         $totalReduce = 0;
@@ -162,7 +162,7 @@ class CartController extends AbstractController
                     'product_data' => [
                         'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
                     ],
-                    'unit_amount' => $productData->getPriceHt() * 1.2 * 100,
+                    'unit_amount' => $productData->getPriceHt() / 100 * 1.2 * 100,
                 ],
                 'quantity' => $product['quantity'],
             ];
@@ -223,13 +223,13 @@ class CartController extends AbstractController
 
         foreach ($cart as $product) {
             $productData = $productRepository->find($product['id']);
-            $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
+            $total += ($productData->getPriceHt() / 100 * 1.2) * $product['quantity'];
 
             $orderItem = new OrderItems;
             $orderItem->setProduct($productData)
                 ->setOrder($order)
                 ->setQuantity($product['quantity'])
-                ->setTotal(($productData->getPriceHt() * 1.2) * $product['quantity'])
+                ->setTotal(($productData->getPriceHt() / 100 * 1.2) * $product['quantity'])
                 ->setColor($product['color']);
 
             $manager->persist($orderItem);
