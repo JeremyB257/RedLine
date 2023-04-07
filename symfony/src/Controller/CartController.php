@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\OrderItems;
+use App\Entity\Product;
 use App\Form\UserType;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
@@ -289,7 +290,7 @@ class CartController extends AbstractController
      * @return Response
      */
     #[Route('/cart/add/{id}', name: 'cart.add')]
-    public function add(Int $id, SessionInterface $session, Request $request): Response
+    public function add(Product $product, SessionInterface $session, Request $request): Response
     {
 
         // Get cart from session
@@ -298,31 +299,39 @@ class CartController extends AbstractController
         $handleAdd = 0;
 
         // if cart is empty = add product
-        if (empty($cart)) {
-            $cart[] = [
-                'id' => $id,
-                'color' => $color,
-                'quantity' => 1
-            ];
-            //if cart isn't empty
+        if ($product->getStock() < 1) {
+            $this->addFlash('warning', 'Le produits n\'est plus en stock');
         } else {
-            foreach ($cart as $index => $product) {
-                //if product already exist in cart
-                if ($product['id'] == $id && $product['color'] == $color) {
-                    $cart[$index]['quantity'] = $product['quantity'] + 1;
-                    $handleAdd = 1;
-                }
-            }
-            // if product doesn't exist in cart
-            if ($handleAdd == 0) {
+            if (empty($cart)) {
                 $cart[] = [
-                    'id' => $id,
+                    'id' => $product->getId(),
                     'color' => $color,
                     'quantity' => 1
                 ];
+                //if cart isn't empty
+            } else {
+                foreach ($cart as $index => $prod) {
+                    //if product already exist in cart
+                    if ($prod['id'] == $product->getId() && $product->getStock() < $prod['quantity'] + 1) {
+                        $this->addFlash('warning', 'Le produits n\'est plus en stock');
+                        $handleAdd = 1;
+                    } else {
+                        if ($prod['id'] == $product->getId() && $prod['color'] == $color) {
+                            $cart[$index]['quantity'] = $prod['quantity'] + 1;
+                            $handleAdd = 1;
+                        }
+                    }
+                }
+                // if product doesn't exist in cart
+                if ($handleAdd == 0) {
+                    $cart[] = [
+                        'id' => $product->getId(),
+                        'color' => $color,
+                        'quantity' => 1
+                    ];
+                }
             }
         }
-
         // Save cart on session
         $session->set('panier', $cart);
 
