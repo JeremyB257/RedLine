@@ -552,35 +552,58 @@ class AppFixtures extends Fixture
             $manager->persist($review);
         }
 
-        $orders = [];
-        for ($i = 0; $i < 20; $i++) {
-            $order = new Order();
-            $order->setUser($users[rand(0, 10)])
-                ->setTotal(rand(300, 1800))
-                ->setStatus(rand(0, 2) == 1 ? 'Livré' : ((rand(0, 1) == 1) ? 'En cours' : 'Annulé'))
-                ->setPayment(rand(0, 1) == 1 ? 'Payé' : 'non Payé')
-                ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-15 days')));
-            $orders[] = $order;
-            $manager->persist($order);
-        }
+        // orders
+        $order1 = new Order();
+        $order1->setUser($users[0])
+            ->setTotal(34560)
+            ->setStatus('Livré')
+            ->setPayment('Payé')
+            ->setReduce(3840)
+            ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days', '-15 days')));
+        $manager->persist($order1);
 
-        for ($i = 0; $i < 50; $i++) {
-            $orderItem = new OrderItems();
-            $orderItem->setOrder($orders[rand(0, 19)])
-                ->setProduct($watches[rand(0, 26)])
-                ->setQuantity(rand(1, 2))
-                ->setTotal($orderItem->getProduct()->getPriceHt() * $orderItem->getQuantity())
-                ->setColor(explode(',', $orderItem->getProduct()->getColor())[0])
-                ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-15 days')));
+        $order2 = new Order();
+        $order2->setUser($users[0])
+            ->setTotal(31200)
+            ->setStatus('En cours')
+            ->setPayment('Payé')
+            ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-15 days')));
+        $manager->persist($order2);
 
-            $manager->persist($orderItem);
-        }
+        //ordersItems
+        $orderItem1 = new OrderItems();
+        $orderItem1->setOrder($order1)
+            ->setProduct($watches[2])
+            ->setQuantity(2)
+            ->setTotal($orderItem1->getProduct()->getPriceHt() * $orderItem1->getQuantity())
+            ->setColor(explode(',', $orderItem1->getProduct()->getColor())[0])
+            ->setCreatedAt($order1->getCreatedAt());
+        $manager->persist($orderItem1);
+
+        $orderItem2 = new OrderItems();
+        $orderItem2->setOrder($order1)
+            ->setProduct($watches[3])
+            ->setQuantity(1)
+            ->setTotal($orderItem2->getProduct()->getPriceHt() * $orderItem2->getQuantity())
+            ->setColor('white')
+            ->setCreatedAt($order1->getCreatedAt());
+        $manager->persist($orderItem2);
+
+        $orderItem3 = new OrderItems();
+        $orderItem3->setOrder($order2)
+            ->setProduct($watches[3])
+            ->setQuantity(2)
+            ->setTotal($orderItem3->getProduct()->getPriceHt() * $orderItem3->getQuantity())
+            ->setColor('yellow')
+            ->setCreatedAt($order2->getCreatedAt());
+        $manager->persist($orderItem3);
+
 
         //reduce
         $reduce = new Reduce;
         $reduce->setType('%')
             ->setCode('fiofio')
-            ->setValue('50')
+            ->setValue('10')
             ->setActive(true)
             ->setDateStart($faker->dateTimeBetween('-15 days'))
             ->setDateEnd($faker->dateTimeBetween('100 days', '+150 days'));
