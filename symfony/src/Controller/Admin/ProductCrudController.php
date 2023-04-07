@@ -45,6 +45,7 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('img_url'),
             MoneyField::new('price_ht')
                 ->setLabel("Prix HT")
+                ->setCurrency('EUR')
                 ->setStoredAsCents(),
             ChoiceField::new('material')
                 ->setLabel("Matière")
