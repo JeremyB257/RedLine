@@ -364,4 +364,10 @@ class Product
 
         return $this;
     }
+
+    //fonction custom crée par Timothé
+    public function isFavByUser(User $user): bool 
+    {
+        return $this->favorite->contains($user);
+    }
 }
