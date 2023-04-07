@@ -177,7 +177,7 @@ class AppFixtures extends Fixture
             ->setCaseDiameter(42)
             ->setCategory('homme')
             ->setColor('black')
-            ->setStock(rand(0, 50))
+            ->setStock(0)
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(200)
             ->setDescription("La Rolex Air-King est une montre pour homme inspirée par les pionniers de l'aviation. Le boîtier en acier Oystersteel mesure 40 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un design épuré et élégant, sans fonctionnalités spécifiques. Le mouvement automatique offre une grande précision et une autonomie longue durée.");
