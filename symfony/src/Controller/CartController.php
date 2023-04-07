@@ -208,6 +208,17 @@ class CartController extends AbstractController
             ];
         }
 
+        $totalWithReduce = $total;
+        $totalReduce = 0;
+        $order->setUser($this->getUser())
+            ->setStatus('Annulé')
+            ->setPayment('Non Payé')
+            ->setTotal($totalWithReduce)
+            ->setReduce($totalReduce);
+
+        $manager->persist($order);
+        $manager->flush();
+
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
 
@@ -217,30 +228,21 @@ class CartController extends AbstractController
             'line_items' => [$stripeCart],
             'discounts' => [$stripeReduce],
             'mode' => 'payment',
-            'success_url' => $this->generateUrl('cart.success', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'success_url' => $this->generateUrl('cart.success', ['id' => $order->getId()], UrlGeneratorInterface::ABSOLUTE_URL),
             'cancel_url' => $this->generateUrl('cart.failed', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
 
-        $totalWithReduce = $total;
-        $totalReduce = 0;
-        $order->setUser($this->getUser())
-            ->setIdStripe($checkout_session->id)
-            ->setStatus('Annulé')
-            ->setPayment('Non Payé')
-            ->setTotal($totalWithReduce)
-            ->setReduce($totalReduce);
-
+        $order->setIdStripe($checkout_session->id);
         $manager->persist($order);
         $manager->flush();
-
 
         return $this->redirect($checkout_session->url, 303);
     }
 
 
-    #[Route('/panier/paiement/succes', name: 'cart.success')]
+    #[Route('/panier/paiement/succes/{id}', name: 'cart.success')]
     #[IsGranted('ROLE_USER')]
-    public function successUrl(SessionInterface $session, ProductRepository $productRepository, EntityManagerInterface $manager)
+    public function successUrl(Order $order, SessionInterface $session, EntityManagerInterface $manager)
     {
         $cart = $session->get('panier', []);
         $dataReduce = $session->get('reduce', []);
@@ -248,11 +250,22 @@ class CartController extends AbstractController
             return $this->redirectToRoute('cart.index');
         }
 
-        // delete cart and reduce
-        $session->set('panier', []);
-        $session->set('reduce', []);
 
-        return $this->render('cart/success.html.twig');
+        $stripe = new \Stripe\StripeClient('sk_test_51MtoxTH83TDU5LYyGV0f2MmiV6wILYSo7lqL68BYwkELL08yVIRCsUN5HlD3WGJLoxWVkJvoyXWHVwGIVapf6M7P00MQ04ZY2P');
+
+        if ($stripe->checkout->sessions->retrieve($order->getIdStripe())->payment_status == 'paid') {
+            $order->setStatus('En cours')
+                ->setPayment('Payé');
+            $manager->persist($order);
+            $manager->flush();
+
+            // delete cart and reduce
+            $session->set('panier', []);
+            $session->set('reduce', []);
+            return $this->render('cart/success.html.twig');
+        } else {
+            return $this->redirectToRoute('cart.index');
+        }
     }
 
     #[Route('/panier/paiement/echec', name: 'cart.failed')]
