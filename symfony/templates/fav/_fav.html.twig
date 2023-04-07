@@ -1,6 +1,6 @@
 <div class="heart-container">
 {% if app.user %}
-    <a href="{{ path('fav.product', { id: product.id }) }}" class=".fav">
+    <a href="{{ path('fav.product', { id: product.id }) }}" data-action="fav">
 {% endif %}
 
         <svg class="heart" {{ app.user in product.favorite ? 'hidden' : null }} fill="#1C2033" width="30" height="30" version="1.1" id="lni_lni-heart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
