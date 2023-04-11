@@ -41,7 +41,8 @@ class ProductCrudController extends AbstractCrudController
                 ->setDisabled('disabled', 'disabled'),
             TextField::new('brand')
                 ->setLabel("Marque"),
-            TextField::new('model'),
+            TextField::new('model')
+                ->setLabel("Modèle"),
             TextField::new('img_url'),
             MoneyField::new('price_ht')
                 ->setLabel("Prix HT")
