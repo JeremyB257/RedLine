@@ -82,7 +82,11 @@
 				</li>
 			</ul>
 			{% if route is defined %}
-				<a class="w-25 title d-none d-lg-flex align-items-baseline justify-content-center" href="{{path('home.index')}}"><span class="laLaxarReveal">LA</span><span class="xLaxarReveal">X</span> <span class="arLaxarReveal">AR</span></a>
+				<a class="w-25 title d-none d-lg-flex align-items-baseline justify-content-center" href="{{path('home.index')}}">
+					<span class="laLaxarReveal">LA</span>
+					<span class="xLaxarReveal">X</span>
+					<span class="arLaxarReveal">AR</span>
+				</a>
 			{% else %}
 				<a class="w-25 title d-none d-lg-flex align-items-baseline justify-content-center" href="{{path('home.index')}}">LA<span>X</span>AR</a>
 			{% endif %}
@@ -103,10 +107,12 @@
 						<i class="fa-regular fa-user"></i>
 					</a>
 				{% endif %}
-				<a href="{{path('cart.index')}}">
+				<a class="position-relative" href="{{path('cart.index')}}">
 					<i class="fa-regular fa-cart-shopping"></i>
+					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+						{{app.session.get('panier') | length}}
+					</span>
 				</a>
-
 			</div>
 		</div>
 	</div>
