@@ -10,6 +10,14 @@
   display: none;
 }
 
+.filled,
+.unfilled {
+  color: $color-primary;
+  &:hover {
+    filter: brightness(0.85);
+  }
+}
+
 a {
   text-decoration: none;
 }
