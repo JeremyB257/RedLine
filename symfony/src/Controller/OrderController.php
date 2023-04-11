@@ -27,7 +27,7 @@ class OrderController extends AbstractController
     {
         return $this->render('user/orderIndex.html.twig', [
             'user' => $currentUser,
-            'orders' => $orderRepo->findBy(['user' => $currentUser], ['createdAt' => 'DESC'])
+            'orders' => $orderRepo->findByUserAndStatus(['user' => $currentUser])
         ]);
     }
 

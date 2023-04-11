@@ -20,7 +20,7 @@
 			<div class="info d-flex flex-column gap-3 align-items-center align-items-md-start">
 				<h1 class="fw-bold fs-1">{{ product.brand }}
 					{{ product.model }}</h1>
-				<h2 class="fw-bold primary">{{ (product.priceHt * 1.20) | format_currency('EUR') }}</h2>
+				<h2 class="fw-bold primary">{{ (product.priceHt / 100 * 1.20) | format_currency('EUR') }}</h2>
 				<div class="choice-color-container">
 					<p class="fw-bold mb-2">Colors</p>
 					<div class="d-flex gap-3">
@@ -31,7 +31,9 @@
 				</div>
 				<form action="{{path('cart.add', {id: product.id})}}" method="get">
 					<input type="hidden" name="color" value="{{product.color | split(',')[0]}}" id="form-color">
-					<button class="btn btn-lg btn-primary mt-4 {{ product.stock == 0 ? "disabled" : "" }}">Ajouter au panier</button>
+
+					<button class="btn btn-lg btn-primary mt-4 {{product.stock < 1 ? 'disabled' : ''}}">Ajouter au panier</button>
+
 				</form>
 			</div>
 		</div>

@@ -60,7 +60,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Rolex')
             ->setModel('GMT-Master II')
             ->setImgUrl('RolexGmtMaster-green.png,RolexGmtMaster-red.png,RolexGmtMaster-blue.png,RolexBoite.png')
-            ->setPriceHt(12000)
+            ->setPriceHt(1200000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(44)
@@ -86,7 +86,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Rolex')
             ->setModel('Oyster Perpetual')
             ->setImgUrl('RolexOysterPerpetual-green.png,RolexOysterPerpetual-blue.png,RolexOysterPerpetual-red.png,RolexBoite.png')
-            ->setPriceHt(8500)
+            ->setPriceHt(850000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(41)
@@ -103,7 +103,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Rolex')
             ->setModel('Sea Dweller')
             ->setImgUrl('RolexSeaDweller-black.png,RolexSeaDweller-red.png,RolexSeaDweller-blue.png,RolexBoite.png')
-            ->setPriceHt(9500)
+            ->setPriceHt(950000)
             ->setMaterial('or')
             ->setMovement('Automatique')
             ->setCaseDiameter(41)
@@ -120,7 +120,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Rolex')
             ->setModel('Daytona')
             ->setImgUrl('RolexDaytona-white.png,RolexDaytona-yellow.png,RolexBoite.png')
-            ->setPriceHt(13000)
+            ->setPriceHt(1300000)
             ->setMaterial('or')
             ->setMovement('Automatique')
             ->setCaseDiameter(40)
@@ -137,7 +137,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Rolex')
             ->setModel('Explorer')
             ->setImgUrl('RolexExplorer-purple.png,RolexExplorer-black.png,RolexBoite.png')
-            ->setPriceHt(6600)
+            ->setPriceHt(660000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(39)
@@ -154,7 +154,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Rolex')
             ->setModel('Day-Date')
             ->setImgUrl('RolexDaydate-green.png,RolexDaydate-blue.png,RolexBoite.png')
-            ->setPriceHt(33500)
+            ->setPriceHt(3350000)
             ->setMaterial('or')
             ->setMovement('Automatique')
             ->setCaseDiameter(36)
@@ -171,13 +171,13 @@ class AppFixtures extends Fixture
         $watch->setBrand('Rolex')
             ->setModel('Air-King')
             ->setImgUrl('RolexAirKing-black.png,RolexBoite.png')
-            ->setPriceHt(6100)
+            ->setPriceHt(610000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(42)
             ->setCategory('homme')
             ->setColor('black')
-            ->setStock(rand(0, 50))
+            ->setStock(0)
             ->setSlug($slugger->slug($watch->getModel()))
             ->setWaterResistance(200)
             ->setDescription("La Rolex Air-King est une montre pour homme inspirée par les pionniers de l'aviation. Le boîtier en acier Oystersteel mesure 40 mm de diamètre et est étanche jusqu'à 100 mètres. La montre dispose d'un design épuré et élégant, sans fonctionnalités spécifiques. Le mouvement automatique offre une grande précision et une autonomie longue durée.");
@@ -189,7 +189,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Seiko')
             ->setModel('Prospex')
             ->setImgUrl('SeikoProspex-black.png,SeikoProspex-blue.png,SeikoProspex-green.png')
-            ->setPriceHt(400)
+            ->setPriceHt(40000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(44)
@@ -206,7 +206,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Seiko')
             ->setModel('Presage')
             ->setImgUrl('SeikoPresage-blue.png')
-            ->setPriceHt(900)
+            ->setPriceHt(90000)
             ->setMaterial('cuir')
             ->setMovement('Automatique')
             ->setCaseDiameter(40)
@@ -224,7 +224,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Seiko')
             ->setModel('5 Sports')
             ->setImgUrl('SeikoSport-black.png,SeikoSport-blue.png')
-            ->setPriceHt(200)
+            ->setPriceHt(20000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(42)
@@ -241,7 +241,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Seiko')
             ->setModel('Diver')
             ->setImgUrl('SeikoDiver-red.png,SeikoDiver-green.png,SeikoDiver-blue.png')
-            ->setPriceHt(300)
+            ->setPriceHt(30000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(38)
@@ -258,7 +258,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Seiko')
             ->setModel('Cocktail Time')
             ->setImgUrl('SeikoCocktail-orange.png')
-            ->setPriceHt(500)
+            ->setPriceHt(50000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(40)
@@ -275,7 +275,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Seiko')
             ->setModel('Queen')
             ->setImgUrl('SeikoQueen-red.png,SeikoQueen-brown.png,SeikoQueen-purple.png')
-            ->setPriceHt(2200)
+            ->setPriceHt(220000)
             ->setMaterial('titane')
             ->setMovement('Automatique')
             ->setCaseDiameter(37)
@@ -293,7 +293,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Seiko')
             ->setModel('Lukia')
             ->setImgUrl('SeikoLukia-green.png,SeikoLukia-white.png')
-            ->setPriceHt(750)
+            ->setPriceHt(75000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(36)
@@ -310,7 +310,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Seiko')
             ->setModel('Alpinist')
             ->setImgUrl('SeikoAlpinist-green.png,SeikoAlpinist-brown.png')
-            ->setPriceHt(1200)
+            ->setPriceHt(120000)
             ->setMaterial('nylon')
             ->setMovement('Automatique')
             ->setCaseDiameter(44)
@@ -327,7 +327,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Seiko')
             ->setModel('Astron')
             ->setImgUrl('SeikoAstron-white.png,SeikoAstron-red.png')
-            ->setPriceHt(500)
+            ->setPriceHt(50000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(44)
@@ -344,7 +344,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Seiko')
             ->setModel('Classic')
             ->setImgUrl('SeikoClassic-green.png,SeikoClassic-white.png')
-            ->setPriceHt(800)
+            ->setPriceHt(80000)
             ->setMaterial('cuir')
             ->setMovement('Automatique')
             ->setCaseDiameter(41)
@@ -361,7 +361,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Tissot')
             ->setModel('Le Locle')
             ->setImgUrl('TissotLocle-blue.png,TissotLocle-black.png,TissotLocle-white.png')
-            ->setPriceHt(700)
+            ->setPriceHt(70000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(39)
@@ -378,7 +378,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Tissot')
             ->setModel('V8')
             ->setImgUrl('TissotV8-pink.png,TissotV8-white.png,TissotV8-black.png')
-            ->setPriceHt(550)
+            ->setPriceHt(55000)
             ->setMaterial('acier')
             ->setMovement('Quartz')
             ->setCaseDiameter(42)
@@ -395,7 +395,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Tissot')
             ->setModel('Heritage Visodate')
             ->setImgUrl('TissotHeritageVisodate-blue.png,TissotHeritageVisodate-green.png,TissotHeritageVisodate-orange.png')
-            ->setPriceHt(580)
+            ->setPriceHt(58000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(41)
@@ -412,7 +412,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Tissot')
             ->setModel('Seastar 1000 Powermatic 80')
             ->setImgUrl('TissotSeastar1000Powermatic80-blue.png,TissotSeastar1000Powermatic80-grey.png,TissotSeastar1000Powermatic80-brown.png')
-            ->setPriceHt(990)
+            ->setPriceHt(99000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(43)
@@ -429,7 +429,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Tissot')
             ->setModel('Everytime')
             ->setImgUrl('TissotEverytime-green.png,TissotEverytime-red.png,TissotEverytime-yellow.png')
-            ->setPriceHt(250)
+            ->setPriceHt(25000)
             ->setMaterial('cuir')
             ->setMovement('Quartz')
             ->setCaseDiameter(38)
@@ -446,7 +446,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Tissot')
             ->setModel('Gentleman')
             ->setImgUrl('TissotGentleman-blue.png,TissotGentleman-yellow.png,TissotGentleman-pink.png')
-            ->setPriceHt(800)
+            ->setPriceHt(80000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(36)
@@ -463,7 +463,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Tissot')
             ->setModel('Seastar 1000')
             ->setImgUrl('TissotSeastar1000-green.png,TissotSeastar1000-purple.png,TissotSeastar1000-red.png')
-            ->setPriceHt(950)
+            ->setPriceHt(95000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(43)
@@ -480,7 +480,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Tissot')
             ->setModel('T-Touch Expert Solar')
             ->setImgUrl('TissotTouchExpertSolar-green.png,TissotTouchExpertSolar-blue.png,TissotTouchExpertSolar-black.png')
-            ->setPriceHt(1200)
+            ->setPriceHt(120000)
             ->setMaterial('titane')
             ->setMovement('Quartz solaire')
             ->setCaseDiameter(45)
@@ -497,7 +497,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Tissot')
             ->setModel('Carson')
             ->setImgUrl('TissotCarson-gold.png,TissotCarson-green.png,TissotCarson-pink.png')
-            ->setPriceHt(350)
+            ->setPriceHt(35000)
             ->setMaterial('acier')
             ->setMovement('Quartz')
             ->setCaseDiameter(39)
@@ -515,7 +515,7 @@ class AppFixtures extends Fixture
         $watch->setBrand('Laxar')
             ->setModel('Parlin Supernova')
             ->setImgUrl('no-image.png')
-            ->setPriceHt(450)
+            ->setPriceHt(45000)
             ->setMaterial('acier')
             ->setMovement('Automatique')
             ->setCaseDiameter(40)
@@ -552,35 +552,60 @@ class AppFixtures extends Fixture
             $manager->persist($review);
         }
 
-        $orders = [];
-        for ($i = 0; $i < 20; $i++) {
-            $order = new Order();
-            $order->setUser($users[rand(0, 10)])
-                ->setTotal(rand(300, 1800))
-                ->setStatus(rand(0, 2) == 1 ? 'Livré' : ((rand(0, 1) == 1) ? 'En cours' : 'Annulé'))
-                ->setPayment(rand(0, 1) == 1 ? 'Payé' : 'non Payé')
-                ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-15 days')));
-            $orders[] = $order;
-            $manager->persist($order);
-        }
+        // orders
+        $order1 = new Order();
+        $order1->setUser($users[0])
+            ->setIdStripe('cs_test_a1tn4R3kcLjuwwPrjnAROBObHDv60oqZRHPrppra6j1ksds1wKJn5w29dA')
+            ->setTotal(3456000)
+            ->setStatus('Livré')
+            ->setPayment('Payé')
+            ->setReduce(384000)
+            ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days', '-15 days')));
+        $manager->persist($order1);
 
-        for ($i = 0; $i < 50; $i++) {
-            $orderItem = new OrderItems();
-            $orderItem->setOrder($orders[rand(0, 19)])
-                ->setProduct($watches[rand(0, 26)])
-                ->setQuantity(rand(1, 2))
-                ->setTotal($orderItem->getProduct()->getPriceHt() * $orderItem->getQuantity())
-                ->setColor(explode(',', $orderItem->getProduct()->getColor())[0])
-                ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-15 days')));
+        $order2 = new Order();
+        $order2->setUser($users[0])
+            ->setIdStripe('cs_test_a1tn4R3kcLjuwwPrjnAROBObHDv60oqZRHPrppra6j1ksds1wKJn5w29dA')
+            ->setTotal(3120000)
+            ->setStatus('En cours')
+            ->setPayment('Payé')
+            ->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-15 days')));
+        $manager->persist($order2);
 
-            $manager->persist($orderItem);
-        }
+        //ordersItems
+        $orderItem1 = new OrderItems();
+        $orderItem1->setOrder($order1)
+            ->setProduct($watches[2])
+            ->setQuantity(2)
+            ->setTotal($orderItem1->getProduct()->getPriceHt() * $orderItem1->getQuantity())
+            ->setColor(explode(',', $orderItem1->getProduct()->getColor())[0])
+            ->setCreatedAt($order1->getCreatedAt());
+        $manager->persist($orderItem1);
+
+        $orderItem2 = new OrderItems();
+        $orderItem2->setOrder($order1)
+            ->setProduct($watches[3])
+            ->setQuantity(1)
+            ->setTotal($orderItem2->getProduct()->getPriceHt() * $orderItem2->getQuantity())
+            ->setColor('white')
+            ->setCreatedAt($order1->getCreatedAt());
+        $manager->persist($orderItem2);
+
+        $orderItem3 = new OrderItems();
+        $orderItem3->setOrder($order2)
+            ->setProduct($watches[3])
+            ->setQuantity(2)
+            ->setTotal($orderItem3->getProduct()->getPriceHt() * $orderItem3->getQuantity())
+            ->setColor('yellow')
+            ->setCreatedAt($order2->getCreatedAt());
+        $manager->persist($orderItem3);
+
 
         //reduce
         $reduce = new Reduce;
         $reduce->setType('%')
             ->setCode('fiofio')
-            ->setValue('50')
+            ->setValue('10')
             ->setActive(true)
             ->setDateStart($faker->dateTimeBetween('-15 days'))
             ->setDateEnd($faker->dateTimeBetween('100 days', '+150 days'));

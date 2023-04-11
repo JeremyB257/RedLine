@@ -15,19 +15,19 @@
 		<div class="d-flex gap-3 align-items-center">
 			<h2 class="mt-3 fw-bold">MON PANIER
 				<span class="fs-6">({{productTotal}}
-					articles)</span>
+					{{productTotal > 1 ?  'articles' : 'article'}})</span>
 			</h2>
 
 		</div>
 		<div>
-			<p class="fw-bold">Livraison OFFERTE* | Retours sous 30 jours</p>
+			<p class="fw-bold">Livraison OFFERTE* | Retour sous 30 jours</p>
 		</div>
 		<div class="row">
 			<div class="col-12 col-md-6 d-flex flex-column gap-3 mt-2">
 				{% for element in dataCart %}
 					<div class="border border-2 border-dark d-flex gap-3 position-relative">
 						<div class="w-25 d-flex align-items-center justify-content-center">
-							<img class="w-75" src="{{'img/' ~ ((element.product.imgUrl | split(',')[0]) | split('-')[0] ~ '-' ~ element.color ~ '.png')}}" alt="">
+							<img class="w-75" src="{{asset('img/' ~ ((element.product.imgUrl | split(',')[0]) | split('-')[0] ~ '-' ~ element.color ~ '.png'))}}" alt="">
 						</div>
 						<div>
 
@@ -35,7 +35,7 @@
 								-
 								{{element.product.model}}</h3>
 
-							<p>{{ (element.product.priceHT * 1.2) | format_currency('EUR')}}
+							<p>{{ (element.product.priceHT / 100 * 1.2) | format_currency('EUR')}}
 							</p>
 							<p>
 								<a class="btn btn-light" href="{{path('cart.remove', {id: element.product.id, color: element.color})}}">-</a>
@@ -80,7 +80,7 @@
 					{{form_end(reduceForm)}}
 
 					<p>Sous total HT :
-						{{ (total / 1.2) | format_currency('EUR')}}</p>
+						{{ (total / 1.2 / 100) | format_currency('EUR')}}</p>
 					{% if dataReduce %}
 						<p>Code de réduction :
 							{{dataReduce.code}}
@@ -93,11 +93,11 @@
 					<h2>TOTAL TTC :
 						{% if dataReduce %}
 							<span class="fs-5">
-								<s>{{ total | format_currency('EUR')}}</s>
+								<s>{{( total / 100) | format_currency('EUR')}}</s>
 							</span>
-							{{ totalReduce | format_currency('EUR')}}
+							{{ (totalReduce / 100) | format_currency('EUR')}}
 						{% else %}
-							{{ total | format_currency('EUR')}}
+							{{ (total / 100) | format_currency('EUR')}}
 						{% endif %}
 					</h2>
 					{% if total > 0 %}

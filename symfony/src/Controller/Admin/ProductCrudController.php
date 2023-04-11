@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -42,8 +43,10 @@ class ProductCrudController extends AbstractCrudController
                 ->setLabel("Marque"),
             TextField::new('model'),
             TextField::new('img_url'),
-            NumberField::new('price_ht')
-                ->setLabel("Prix HT"),
+            MoneyField::new('price_ht')
+                ->setLabel("Prix HT")
+                ->setCurrency('EUR')
+                ->setStoredAsCents(),
             ChoiceField::new('material')
                 ->setLabel("Matière")
                 ->setChoices([
