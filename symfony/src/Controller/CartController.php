@@ -4,10 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\OrderItems;
-use App\Entity\Reduce;
 use App\Entity\Product;
 use App\Form\UserType;
-use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ReduceRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -33,12 +31,11 @@ class CartController extends AbstractController
      */
     #[Route('/panier', name: 'cart.index')]
     public function index(
-        SessionInterface $session, 
-        ProductRepository $productRepository, 
-        Request $request, 
+        SessionInterface $session,
+        ProductRepository $productRepository,
+        Request $request,
         ReduceRepository $reduceRepo
-        ): Response
-    {
+    ): Response {
         // Get cart from session
         $cart = $session->get('panier', []);
         $dataReduce = $session->get('reduce', []);
@@ -53,7 +50,7 @@ class CartController extends AbstractController
                 'attr' => ['placeholder' => 'Code de réduction']
             ])
             ->getForm();
-        $reduceForm->handleRequest($request); 
+        $reduceForm->handleRequest($request);
 
         $dataCart = [];
         $total = 0;
