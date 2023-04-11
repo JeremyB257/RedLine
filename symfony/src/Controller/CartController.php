@@ -251,7 +251,6 @@ class CartController extends AbstractController
     public function successUrl(Order $order, SessionInterface $session, EntityManagerInterface $manager)
     {
         $cart = $session->get('panier', []);
-        $dataReduce = $session->get('reduce', []);
         if (empty($cart)) {
             return $this->redirectToRoute('cart.index');
         }
@@ -305,7 +304,7 @@ class CartController extends AbstractController
 
         // if cart is empty = add product
         if ($product->getStock() < 1) {
-            $this->addFlash('warning', 'Le produits n\'est plus en stock');
+            $this->addFlash('warning', 'Le produit n\'est plus en stock');
         } else {
             if (empty($cart)) {
                 $cart[] = [
@@ -318,7 +317,7 @@ class CartController extends AbstractController
                 foreach ($cart as $index => $prod) {
                     //if product already exist in cart
                     if ($prod['id'] == $product->getId() && $product->getStock() < $prod['quantity'] + 1) {
-                        $this->addFlash('warning', 'Le produits n\'est plus en stock');
+                        $this->addFlash('warning', 'Le produit n\'est plus en stock');
                         $handleAdd = 1;
                     } else {
                         if ($prod['id'] == $product->getId() && $prod['color'] == $color) {
