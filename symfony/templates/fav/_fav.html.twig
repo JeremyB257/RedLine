@@ -1,9 +1,9 @@
 <div class="heart-container">
 {% if app.user %}
-    <a href="{{ path('fav.product', { id: product.id }) }}" data-action="fav">
+    <a href="{{ path('fav.product', { id: product.id }) }}" data-controller="fav" data-fav-target="name" data-action="click->fav#favorite">
 {% endif %}
 
-        <svg class="heart" {{ app.user in product.favorite ? 'hidden' : null }} fill="#1C2033" width="30" height="30" version="1.1" id="lni_lni-heart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+        <svg class="heart filled {{ app.user in product.favorite ? 'hidden' : null }}" fill="#1C2033" width="30" height="30" version="1.1" id="lni_lni-heart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
             y="0px" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
         <g>
             <path d="M32,59c-1.3,0-2.6-0.5-3.6-1.4c-2.3-2-4.4-3.8-6.3-5.4c-5.7-4.9-10.7-9-14.2-13.2c-4.1-5-6.1-9.7-6.1-15
@@ -15,7 +15,7 @@
                 c-0.6,0.7-1.5,1.2-2.5,1.2s-1.8-0.4-2.5-1.2c-0.8-0.9-1.6-1.7-2.5-2.4C24.9,10.4,22.4,9.5,19.6,9.5z"/>
         </g>
         </svg>
-        <svg class="heart" {{ app.user in product.favorite ? null : 'hidden' }}  fill="#1C2033" width="30" height="30" version="1.1" id="lni_lni-heart-filled" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        <svg class="heart unfilled {{ app.user in product.favorite ? null : 'hidden' }}"  fill="#1C2033" width="30" height="30" version="1.1" id="lni_lni-heart-filled" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
         <path d="M32,57.6c-0.8,0-1.6-0.3-2.2-0.8c-2.3-2-4.6-3.9-6.6-5.6l0,0c-5.8-4.9-10.9-9.2-14.4-13.4C4.8,33,3,28.6,3,23.7
             c0-4.7,1.6-9.1,4.6-12.3c3-3.2,7.1-5,11.6-5c3.3,0,6.4,1.1,9.1,3.1c1.1,0.8,2,1.8,2.9,2.9c0.4,0.5,1.1,0.5,1.5,0
