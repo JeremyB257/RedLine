@@ -13,17 +13,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class FavController extends AbstractController
 {
     #[Route(path: '/fav/{id}/produit', name: 'fav.product')]
+    #[Security("is_granted('ROLE_USER') and user === currentUser")]
     public function favoriteFeature(Product $product, EntityManagerInterface $manager): Response
     {
-        $user = $this->getUser();
+        $currentUser = $this->getUser();
 
-        if ($product->isFavByUser($user)) {
-            $product->removeFavorite($user);
+        if ($product->isFavByUser($currentUser)) {
+            $product->removeFavorite($currentUser);
             $manager->flush();
 
             return $this->json(['message' => 'Le produit ne fait plus partie des favoris.']);
         } else {
-            $product->addFavorite($user);
+            $product->addFavorite($currentUser);
             $manager->flush();
             return $this->json(['message' => 'Le produit a été ajouté aux favoris.']);
         };
@@ -34,12 +35,13 @@ class FavController extends AbstractController
     }
 
     #[Route(path: '/{id}/unfav', name: 'unfav.product')]
+    #[Security("is_granted('ROLE_USER') and user === currentUser")]
     public function removeFav(Product $product, EntityManagerInterface $manager): Response
     {
-        $user = $this->getUser();
+        $currentUser = $this->getUser();
 
-        if ($product->isFavByUser($user)) {
-            $product->removeFavorite($user);
+        if ($product->isFavByUser($currentUser)) {
+            $product->removeFavorite($currentUser);
             $manager->flush();
 
             return $this->json(['message' => 'Le produit ne fait plus partie des favoris.']);
