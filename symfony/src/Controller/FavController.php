@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,10 +33,12 @@ class FavController extends AbstractController
         ]);
     }
 
+
     #[Route(path: '/{id}/mes-favoris', name: 'fav.list')]
-    public function index($id, User $user): Response
+    #[Security("is_granted('ROLE_USER') and user === currentUser")]
+    public function index($id, User $currentUser): Response
     {
-        $favs = $user->getFavorite();
+        $favs = $currentUser->getFavorite();
 
         return $this->render('fav/favorites.html.twig', [
             'favs' => $favs,
