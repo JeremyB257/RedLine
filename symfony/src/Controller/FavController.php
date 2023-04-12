@@ -10,8 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FavController extends AbstractController
 {
-    #[Route('/fav/{id}/produit', name: 'fav.product')]
-    public function index(Product $product, EntityManagerInterface $manager): Response
+    #[Route(path: '/fav/{id}/produit', name: 'fav.product')]
+    public function favoriteFeature(Product $product, EntityManagerInterface $manager): Response
     {
         $user = $this->getUser();
 
@@ -30,4 +30,11 @@ class FavController extends AbstractController
             'controller_name' => 'FavController',
         ]);
     }
+
+    #[Route(path: '/{id}/mes-favoris', name: 'fav.list')]
+    public function index($id): Response
+    {   
+        return $this->render('fav/favorites.html.twig');
+    }
+
 }
