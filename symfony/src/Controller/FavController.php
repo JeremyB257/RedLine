@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,9 +33,13 @@ class FavController extends AbstractController
     }
 
     #[Route(path: '/{id}/mes-favoris', name: 'fav.list')]
-    public function index($id): Response
-    {   
-        return $this->render('fav/favorites.html.twig');
+    public function index($id, User $user): Response
+    {
+        $favs = $user->getFavorite();
+
+        return $this->render('fav/favorites.html.twig', [
+            'favs' => $favs,
+        ]);
     }
 
 }
