@@ -1,8 +1,10 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="container-main-favs">
-    <h1 class="title-fav">Consultez vos favoris</h1>
+<div class="container-main-favs pb-5">
+    {% if favs | length != 0 %}
+        <h1 class="title-fav py-5">Consultez vos favoris</h1>
+    {% endif %}
     {% for product in favs %}
     <div class="card-watch d-flex justify-between shadow">
         {% include "fav/_fav.html.twig" %}
@@ -22,6 +24,8 @@
             <a href="{{ path('app_product_show', { id: product.id }) }}" class="btn btn-primary show-more-button">Voir plus</a>
         </div>
     </div>
+    {% else %}
+        <h1 class="no-product">Vous n'avez aucun produit en favoris, cliquez sur le cœur doré pour en ajouter.</h1>
     {% endfor %}
 </div>
 
