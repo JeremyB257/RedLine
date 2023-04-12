@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container-main-favs">
+    <h1 class="title-fav">Consultez vos favoris</h1>
+    {% for fav in favs %}
+    <div class="card-watch d-flex justify-between shadow">
+        <div class="d-flex justify-content-center align-items-center">
+            <img class="img-fav" src="{{ '/img/' ~ (fav.imgUrl | split(',')[0]) }}" alt="{{ fav.model }}">
+        </div>
+        <div class="infos d-flex flex-column">
+            <span class="brand-model">{{ fav.brand }}
+                -
+                {{ fav.model }}</span>
+            <span class="d-block price">{{ (fav.priceHt * 1.20) | format_currency('EUR') }}</span>
+            {% if fav.description > 110 %}
+                <p class="desc">{{ fav.description | slice(0, 110) ~ '...' }}</p>
+            {% else %}
+                <p class="desc">{{ fav.description }}</p>
+            {% endif %}
+            <a href="{{ path('app_product_show', { id: fav.id }) }}" class="btn btn-primary show-more-button">Voir plus</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
