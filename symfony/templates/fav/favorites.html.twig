@@ -3,22 +3,23 @@
 {% block body %}
 <div class="container-main-favs">
     <h1 class="title-fav">Consultez vos favoris</h1>
-    {% for fav in favs %}
+    {% for product in favs %}
     <div class="card-watch d-flex justify-between shadow">
+        {% include "fav/_fav.html.twig" %}
         <div class="d-flex justify-content-center align-items-center">
-            <img class="img-fav" src="{{ '/img/' ~ (fav.imgUrl | split(',')[0]) }}" alt="{{ fav.model }}">
+            <img class="img-fav" src="{{ '/img/' ~ (product.imgUrl | split(',')[0]) }}" alt="{{ product.model }}">
         </div>
         <div class="infos d-flex flex-column">
-            <span class="brand-model">{{ fav.brand }}
+            <span class="brand-model">{{ product.brand }}
                 -
-                {{ fav.model }}</span>
-            <span class="d-block price">{{ (fav.priceHt * 1.20) | format_currency('EUR') }}</span>
-            {% if fav.description > 110 %}
-                <p class="desc">{{ fav.description | slice(0, 110) ~ '...' }}</p>
+                {{ product.model }}</span>
+            <span class="d-block price">{{ (product.priceHt * 1.20) | format_currency('EUR') }}</span>
+            {% if product.description > 110 %}
+                <p class="desc">{{ product.description | slice(0, 110) ~ '...' }}</p>
             {% else %}
-                <p class="desc">{{ fav.description }}</p>
+                <p class="desc">{{ product.description }}</p>
             {% endif %}
-            <a href="{{ path('app_product_show', { id: fav.id }) }}" class="btn btn-primary show-more-button">Voir plus</a>
+            <a href="{{ path('app_product_show', { id: product.id }) }}" class="btn btn-primary show-more-button">Voir plus</a>
         </div>
     </div>
     {% endfor %}

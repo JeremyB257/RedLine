@@ -13,4 +13,13 @@ export default class extends Controller {
       getUnfilled.classList.toggle('hidden');
     });
   }
+
+  removeFavorite(event) {
+    event.preventDefault();
+    const url = this.element.href;
+    axios.get(url).then(response => {
+      const getBreakHeart = this.element.querySelector('.removefav');
+      getBreakHeart.classList.add('disable');
+    });
+  }
 }
