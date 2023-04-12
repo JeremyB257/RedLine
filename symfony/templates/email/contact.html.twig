@@ -5,8 +5,8 @@
 	</head>
 	<body>
 		<h1>Demande de
-			{{ contact.name }}
-			{{ contact.firstname }}</h1>
+			{{ contact.name | capitalize }}
+			{{ contact.lastname | upper }}</h1>
 
 		<p>Email :
 			{{contact.email }}</p>
@@ -14,7 +14,7 @@
 			{{contact.subject}}</p>
 		<div>
 			<p>Message :</p>
-			<p>{{contact.message|raw }}</p>
+			<p>{{contact.message}}</p>
 		</div>
 	</body>
 </html>
