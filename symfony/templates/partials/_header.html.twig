@@ -105,7 +105,7 @@
 						<i class="fa-regular fa-user"></i>
 					</a>
 				{% endif %}
-				<a class="position-relative" href="{{path('cart.index')}}">
+				<a class="position-relative cartIcon" href="{{path('cart.index')}}">
 					<i class="fa-regular fa-cart-shopping"></i>
 					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 						{{app.session.get('panier') | length}}
