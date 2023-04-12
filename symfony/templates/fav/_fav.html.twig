@@ -1,11 +1,7 @@
 <div class="heart-container">
-{% if app.user %}
-    <a href="{{ path('fav.product', { id: product.id }) }}" data-controller="fav" data-fav-target="name" data-action="click->fav#favorite">
-{% endif %}
+    <a href="{{ app.user ? path('fav.product', { id: product.id }) : path('app_login') }}" data-controller="fav" data-fav-target="name" data-action="{{ app.user ? 'click->fav#favorite' : null }}">
         <i class="fa-solid fa-heart filled {{ app.user in product.favorite ? null : 'hidden' }}"></i> 
         <i class="fa-regular fa-heart unfilled {{ app.user in product.favorite ? 'hidden' : null }}"></i>
-{% if app.user %}
     </a>
-{% endif %}
 </div>
 
