@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class FavController extends AbstractController
 {
     #[Route(path: '/fav/{id}/produit', name: 'fav.product')]
-    #[Security("is_granted('ROLE_USER') and user === currentUser")]
     public function favoriteFeature(Product $product, EntityManagerInterface $manager): Response
     {
         $currentUser = $this->getUser();
