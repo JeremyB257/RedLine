@@ -8,8 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class OrderCrudController extends AbstractCrudController
@@ -36,15 +35,20 @@ class OrderCrudController extends AbstractCrudController
             IdField::new('id')
                 ->setDisabled('disabled', 'disabled'),
             AssociationField::new('user'),
-            TextField::new('Reduce')
-                ->setLabel('Réduction'),
-            NumberField::new('Total')
-                ->setDisabled('disabled', 'disabled'),
+            MoneyField::new('reduce')
+                ->setLabel("Reduction")
+                ->setCurrency('EUR')
+                ->setDisabled('disabled', 'disabled')
+                ->setStoredAsCents(),
+            MoneyField::new('Total')
+                ->setLabel("Total")
+                ->setCurrency('EUR')
+                ->setDisabled('disabled', 'disabled')
+                ->setStoredAsCents(),
             TextField::new('Status'),
             TextField::new('payment'),
             DateField::new('createdAt')
                 ->setLabel('Date de commande'),
-
         ];
     }
 }

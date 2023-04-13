@@ -36,6 +36,9 @@ class Reduce
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $minPrice = null;
+
 
     public function __construct()
     {
@@ -114,6 +117,18 @@ class Reduce
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getMinPrice(): ?int
+    {
+        return $this->minPrice;
+    }
+
+    public function setMinPrice(int $minPrice): self
+    {
+        $this->minPrice = $minPrice;
 
         return $this;
     }

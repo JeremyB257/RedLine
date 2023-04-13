@@ -20,35 +20,47 @@
 					<li class="list-group-item py-3 bg-color">
 						<a href="{{ path('app_user', {id: app.user.id}) }}">
 							<div class="d-flex justify-content-between align-items-center">
-								<i class="fa-solid fa-memo-circle-info fs-4" style="color: #000000;"></i>
+								<i class="fa-solid fa-memo-circle-info fs-4"></i>
 								<span>Informations</span>
-								<i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+								<i class="fa-solid fa-chevron-right"></i>
 							</div>
 						</a>
 					</li>
 					<li class="list-group-item py-3 bg-color">
 						<a href="{{ path('user.password', {id: user.id}) }}">
 							<div class="d-flex justify-content-between align-items-center">
-								<i class="fa-solid fa-lock fs-4" style="color: #000000;"></i>
+								<i class="fa-solid fa-lock fs-4"></i>
 								<span>Mot de passe</span>
-								<i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+								<i class="fa-solid fa-chevron-right"></i>
 							</div>
 						</a>
 					</li>
 					<li class="list-group-item py-3 bg-color-active">
 						<a href="{{path('order.index', {id: app.user.id})}}">
 							<div class="d-flex justify-content-between align-items-center">
-								<i class="fa-solid fa-bags-shopping fs-4" style="color: #000000;"></i>
+								<i class="fa-solid fa-bags-shopping fs-4"></i>
 								<span>Mes commandes</span>
-								<i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+								<i class="fa-solid fa-chevron-right"></i>
 							</div>
 						</a>
 					</li>
+					{% if 'ROLE_ADMIN' in app.user.roles %}
+						<li class="list-group-item py-3 bg-color">
+							<a href="{{ path('admin') }}">
+								<div class="d-flex justify-content-between align-items-center">
+									<i class="fa-solid fa-screwdriver-wrench fs-4"></i>
+									<span>Administration</span>
+									<i class="fa-solid fa-chevron-right"></i>
+								</div>
+							</a>
+						</li>
+					{% endif %}
 					<li class="list-group-item py-3 bg-color">
 						<a href="{{ path('app_logout') }}">
-							<div class="d-flex">
-								<i class="fa-solid fa-right-from-bracket fs-4" style="color: #000000;"></i>
-								<span class="ms-4 ps-4">Se déconnecter</span>
+							<div class="d-flex justify-content-between align-items-center">
+								<i class="fa-solid fa-right-from-bracket fs-4"></i>
+								<span>Se déconnecter</span>
+								<i class="fa-solid fa-chevron-right"></i>
 							</div>
 						</a>
 					</li>
@@ -60,7 +72,10 @@
 					<div class="card-body d-flex flex-column justify-content-between align-items-start h-100">
 						<h4 class="card-title fw-bold">Commandes n°{{order.id}}</h4>
 						<p class="card-text fw-bold">Total :
-							{{order.total | format_currency('EUR')}}</p>
+							{% if order.reduce %}
+								<s>{{((order.total + order.reduce) / 100) | format_currency('EUR')}}</s>
+							{% endif %}
+							{{(order.total / 100) | format_currency('EUR')}}</p>
 						<p class="card-text fw-bold statut" data-statut="{{order.status}}">
 							{{order.status}}
 						</p>
@@ -70,21 +85,21 @@
 									<tr>
 										<th scope="col">Image</th>
 										<th scope="col">Marque</th>
-										<th scope="col">Modele</th>
-										<th scope="col">quantité</th>
-										<th scope="col">prix HT</th>
-										<th scope="col">prix TTC</th>
+										<th scope="col">Modèle</th>
+										<th scope="col">Quantité</th>
+										<th scope="col">Prix HT</th>
+										<th scope="col">Prix TTC</th>
 									</tr>
 								</thead>
 								<tbody>
 									{% for item in orderItems %}
 										<tr>
-											<td><img style="width: 40px" src="{{asset('img/' ~ item.product.imgUrl | split(',')[0] )}}" alt=""></td>
+											<td><img style="width: 40px" src="{{asset('img/' ~ ((item.product.imgUrl | split(',')[0]) | split('-')[0] ~ '-' ~ item.color ~ '.png'))}}" alt=""></td>
 											<td>{{item.product.brand}}</td>
 											<td>{{item.product.model}}</td>
 											<td>{{item.quantity}}</td>
-											<td>{{(item.product.priceHT * item.quantity) | format_currency('EUR')}}</td>
-											<td>{{((item.product.priceHT * 1.2) * item.quantity) | format_currency('EUR')}}</td>
+											<td>{{(item.product.priceHT / 100 * item.quantity) | format_currency('EUR')}}</td>
+											<td>{{((item.product.priceHT / 100 * 1.2) * item.quantity) | format_currency('EUR')}}</td>
 										</tr>
 									{% endfor %}
 								</tbody>

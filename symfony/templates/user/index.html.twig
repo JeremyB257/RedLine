@@ -8,8 +8,6 @@
 
 {% block body %}
 	<div class="container-lg">
-
-
 		<h2 class="fs-4 my-4">Mon compte</h2>
 		<div class="row">
 			<section class="mt-5 account col-12 col-md-4 pe-md-4">
@@ -21,105 +19,106 @@
 					<li class="list-group-item py-3 bg-color-active">
 						<a href="{{ path('app_user', {id: app.user.id}) }}">
 							<div class="d-flex justify-content-between align-items-center">
-								<i class="fa-solid fa-memo-circle-info fs-4" style="color: #000000;"></i>
+								<i class="fa-solid fa-memo-circle-info fs-4"></i>
 								<span>Informations</span>
-								<i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+								<i class="fa-solid fa-chevron-right"></i>
 							</div>
 						</a>
 					</li>
 					<li class="list-group-item py-3 bg-color">
 						<a href="{{ path('user.password', {id: user.id}) }}">
 							<div class="d-flex justify-content-between align-items-center">
-								<i class="fa-solid fa-lock fs-4" style="color: #000000;"></i>
+								<i class="fa-solid fa-lock fs-4"></i>
 								<span>Mot de passe</span>
-								<i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+								<i class="fa-solid fa-chevron-right"></i>
 							</div>
 						</a>
 					</li>
 					<li class="list-group-item py-3 bg-color">
 						<a href="{{path('order.index', {id: app.user.id})}}">
 							<div class="d-flex justify-content-between align-items-center">
-								<i class="fa-solid fa-bags-shopping fs-4" style="color: #000000;"></i>
+								<i class="fa-solid fa-bags-shopping fs-4"></i>
 								<span>Mes commandes</span>
-								<i class="fa-solid fa-chevron-right" style="color: #000000;"></i>
+								<i class="fa-solid fa-chevron-right"></i>
 							</div>
-						</li>
+						</a>
 					</li>
-				</a>
-			</li>
-						{% if 'ROLE_ADMIN' in app.user.roles %}
-				<li class="list-group-item py-3 bg-color">
-					<a href="{{ path('admin') }}">
-						<div class="d-flex">
-							<i class="fa-solid fa-screwdriver-wrench"></i>
-							<span class="ms-4 ps-4">Administration</span>
+					{% if 'ROLE_ADMIN' in app.user.roles %}
+						<li class="list-group-item py-3 bg-color">
+							<a href="{{ path('admin') }}">
+								<div class="d-flex justify-content-between align-items-center">
+									<i class="fa-solid fa-screwdriver-wrench fs-4"></i>
+									<span>Administration</span>
+									<i class="fa-solid fa-chevron-right"></i>
+								</div>
+							</a>
+						</li>
+					{% endif %}
+					<li class="list-group-item py-3 bg-color">
+						<a href="{{ path('app_logout') }}">
+							<div class="d-flex justify-content-between align-items-center">
+								<i class="fa-solid fa-right-from-bracket fs-4"></i>
+								<span>Se déconnecter</span>
+								<i class="fa-solid fa-chevron-right"></i>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</section>
+			<section class="my-5 col-12 col-md-8">
+				<div class="card border border-3 rounded-2 mb-3 p-4">
+					{{ form_start(accountForm) }}
+					<div class="row g-5 mt-2">
+						<div class="col-md-4 mt-0">
+							{{ form_row(accountForm.civility) }}
 						</div>
-					</a>
-				</li>
-			{% endif %}
-			<li class="list-group-item py-3 bg-color">
-				<a href="{{ path('app_logout') }}">
-					<div class="d-flex">
-						<i class="fa-solid fa-right-from-bracket fs-4" style="color: #000000;"></i>
-						<span class="ms-4 ps-4">Se déconnecter</span>
+						<div class="col-md-4 mt-0">{{ form_row(accountForm.firstname) }}</div>
+						<div class="col-md-4 mt-0">{{ form_row(accountForm.lastname) }}</div>
 					</div>
-				</a>
-			</li>
 
-		</ul>
-	</section>
-	<section class="my-5 col-12 col-md-8">
-		<div class="card border border-3 rounded-2 mb-3 p-4">
-			{{ form_start(accountForm) }}
-			<div class="row g-5 mt-2">
-				<div class="col-md-4 mt-0">
-					{{ form_row(accountForm.civility) }}
+					<div class="row g-4 mt-3">
+						<p class="my-2">Adresse :
+						</p>
+						<div class="col-lg-2 col-md-4 mt-0">{{ form_row(accountForm.number_adress) }}</div>
+						<div class="col-lg-5 col-md-8 mt-0">{{ form_row(accountForm.street1) }}</div>
+						<div class="col-lg-5 mt-0">{{ form_row(accountForm.street2) }}</div>
+						<div class="col-lg-3 col-md-5 mt-0">{{ form_row(accountForm.postcode) }}</div>
+						<div class="col-lg-5 col-md-7 mt-0">{{ form_row(accountForm.city) }}</div>
+						<div class="col-lg-4 mt-0">{{ form_row(accountForm.country) }}</div>
+					</div>
+
+					<div class="mt-4">{{ form_rest(accountForm)}}</div>
+
+					<div class="d-flex justify-content-center">
+						<button formnovalidate class="btn btn-lg btn-primary px-5 my-3 fw-bold">Enregistrer</button>
+					</div>
+
+					{{ form_end(accountForm)}}
 				</div>
-				<div class="col-md-4 mt-0">{{ form_row(accountForm.firstname) }}</div>
-				<div class="col-md-4 mt-0">{{ form_row(accountForm.lastname) }}</div>
-			</div>
 
-			<div class="row g-4 mt-3">
-				<p class="my-2">Adresse :
-				</p>
-				<div class="col-lg-2 col-md-4 mt-0">{{ form_row(accountForm.number_adress) }}</div>
-				<div class="col-lg-5 col-md-8 mt-0">{{ form_row(accountForm.street1) }}</div>
-				<div class="col-lg-5 mt-0">{{ form_row(accountForm.street2) }}</div>
-				<div class="col-lg-3 col-md-5 mt-0">{{ form_row(accountForm.postcode) }}</div>
-				<div class="col-lg-5 col-md-7 mt-0">{{ form_row(accountForm.city) }}</div>
-				<div class="col-lg-4 mt-0">{{ form_row(accountForm.country) }}</div>
-			</div>
 
-			<div class="mt-4">{{ form_rest(accountForm)}}</div>
+				<button formnovalidate class="btn btn-lg btn-primary px-5 my-3 fw-bold" data-bs-toggle="modal" data-bs-target="#delete">Supprimer mon compte</button>
 
-			<div class="d-flex justify-content-center">
-				<button formnovalidate class="btn btn-lg btn-primary px-5 my-3 fw-bold">Enregistrer</button>
-			</div>
-
-			{{ form_end(accountForm)}}
+				<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="deleteLabel">Suppression du compte</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								Souhaitez vous vraiment supprimer votre compte ?
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+								<form method='get'>
+									<input type="submit" class="btn btn-primary" value="Supprimer" name="delete">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</div>
-
-        <button formnovalidate class="btn btn-lg btn-primary px-5 my-3 fw-bold" data-bs-toggle="modal" data-bs-target="#delete">Supprimer mon compte</button>
-
-		<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="deleteLabel">Suppression du compte</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					Souhaitez vous vraiment supprimer votre compte ?
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-					<form method='get'>
-						<input type="submit" class="btn btn-primary" value="Supprimer" name="delete" >
-					</form>
-				</div>
-				</div>
-			</div>
-		</div>
-
-	</section>
-</div></div>{% endblock %}
+	</div>
+{% endblock %}

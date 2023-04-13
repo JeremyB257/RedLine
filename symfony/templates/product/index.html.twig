@@ -64,7 +64,7 @@
 				</div>
 			</form>
 		</aside>
-		<div class="container-section d-flex flex-column align-items-end">
+		<div class="container-section d-flex flex-column align-items-center">
 			{% for product in products %}
 				<div class="card-watch d-flex justify-between shadow">
 					{% include "fav/_fav.html.twig" %}
@@ -75,9 +75,9 @@
 						<span class="brand-model">{{ product.brand }}
 							-
 							{{ product.model }}</span>
-						<span class="d-block price">{{ (product.priceHt * 1.20) | format_currency('EUR') }}</span>
+						<span class="d-block price">{{ (product.priceHt / 100 * 1.20) | format_currency('EUR') }}</span>
 						{% if product.description > 110 %}
-							<p class="desc">{{ product.description | slice(0, 110) ~ '...' }}</p>
+							<p class="desc">{{ (product.description | slice(0, 110) ~ '...') |striptags}}</p>
 						{% else %}
 							<p class="desc">{{ product.description }}</p>
 						{% endif %}
@@ -87,9 +87,9 @@
 			{% else %}
 				<div class="alertMsg py-3">Aucun résultat trouvé pour votre recherche.</div>
 			{% endfor %}
+			<div class="p-5">
+				{{ knp_pagination_render(products) }}
+			</div>
 		</div>
-	</div>
-	<div class="d-flex justify-content-center align-items-center p-5">
-		{{ knp_pagination_render(products) }}
 	</div>
 {% endblock %}

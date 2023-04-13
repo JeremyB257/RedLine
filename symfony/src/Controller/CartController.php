@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Entity\OrderItems;
+use App\Entity\Product;
 use App\Form\UserType;
 use App\Repository\ProductRepository;
 use App\Repository\ReduceRepository;
@@ -28,9 +30,12 @@ class CartController extends AbstractController
      * @return Response
      */
     #[Route('/panier', name: 'cart.index')]
-    public function index(SessionInterface $session, ProductRepository $productRepository, Request $request, ReduceRepository $reduceRepo): Response
-    {
-
+    public function index(
+        SessionInterface $session,
+        ProductRepository $productRepository,
+        Request $request,
+        ReduceRepository $reduceRepo
+    ): Response {
         // Get cart from session
         $cart = $session->get('panier', []);
         $dataReduce = $session->get('reduce', []);
@@ -46,27 +51,6 @@ class CartController extends AbstractController
             ])
             ->getForm();
         $reduceForm->handleRequest($request);
-        if ($reduceForm->isSubmitted() && $reduceForm->isValid()) {
-            $codeReduce = $reduceForm->getData();
-            $reduce = $reduceRepo->findOneby(['code' => $codeReduce['code']]);
-            if ($reduce) {
-                if (new \DateTime('now') < $reduce->getDateEnd() && $reduce->isActive()) {
-                    $dataReduce = [
-                        "code" => $codeReduce['code'],
-                        "type" => $reduce->getType(),
-                        "value" => $reduce->getValue(),
-                    ];
-                    $session->set('reduce', $dataReduce);
-                    $this->addFlash('success', 'Code promo ajouté');
-                } else {
-                    $this->addFlash('warning', 'Code promo expiré');
-                }
-            } else {
-                $session->set('reduce', []);
-                $this->addFlash('danger', 'Code promo inconnu');
-                return $this->redirectToRoute("cart.index");
-            }
-        }
 
         $dataCart = [];
         $total = 0;
@@ -81,10 +65,34 @@ class CartController extends AbstractController
             $total += ($productData->getPriceHt() * 1.2) * $product['quantity'];
             $productTotal += $product['quantity'];
         }
+
+        // need to $total for the reduction
+        if ($reduceForm->isSubmitted() && $reduceForm->isValid()) {
+            $codeReduce = $reduceForm->getData();
+            $reduce = $reduceRepo->findOneby(['code' => $codeReduce['code']]);
+            if ($reduce) {
+                if (new \DateTime('now') < $reduce->getDateEnd() && $reduce->isActive() && $reduce->getMinPrice() < $total) {
+                    $dataReduce = [
+                        "code" => $codeReduce['code'],
+                        "type" => $reduce->getType(),
+                        "value" => $reduce->getValue(),
+                    ];
+                    $session->set('reduce', $dataReduce);
+                    $this->addFlash('success', 'Code promo ajouté');
+                } else {
+                    $this->addFlash('warning', 'Code promo expiré ou somme insuffisante');
+                }
+            } else {
+                $session->set('reduce', []);
+                $this->addFlash('danger', 'Code promo inconnu');
+                return $this->redirectToRoute("cart.index");
+            }
+        }
+
         $totalReduce = 0;
         if ($dataReduce) {
             if ($dataReduce['type'] == '€') {
-                $totalReduce = $total - $dataReduce['value'];
+                $totalReduce = $total - $dataReduce['value'] * 100;
             }
             if ($dataReduce['type'] == '%') {
                 $totalReduce = $total - ($total * ($dataReduce['value'] / 100));
@@ -98,8 +106,6 @@ class CartController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function delivery(SessionInterface $session, ProductRepository $productRepository, Request $request, ReduceRepository $reduceRepo, EntityManagerInterface $manager): Response
     {
-
-
         // Get cart from session
         $cart = $session->get('panier', []);
         $dataReduce = $session->get('reduce', []);
@@ -122,7 +128,7 @@ class CartController extends AbstractController
         $totalReduce = 0;
         if ($dataReduce) {
             if ($dataReduce['type'] == '€') {
-                $totalReduce = $total - $dataReduce['value'];
+                $totalReduce = $total - $dataReduce['value'] * 100;
             }
             if ($dataReduce['type'] == '%') {
                 $totalReduce = $total - ($total * ($dataReduce['value'] / 100));
@@ -143,7 +149,7 @@ class CartController extends AbstractController
 
     #[Route('/panier/paiement', name: 'cart.payment')]
     #[IsGranted('ROLE_USER')]
-    public function payment(SessionInterface $session, ProductRepository $productRepository, Request $request, ReduceRepository $reduceRepo, EntityManagerInterface $manager): Response
+    public function payment(SessionInterface $session, ProductRepository $productRepository, EntityManagerInterface $manager): Response
     {
         // Get cart from session
         $cart = $session->get('panier', []);
@@ -153,7 +159,8 @@ class CartController extends AbstractController
         }
 
         $stripeCart = [];
-
+        $order = new Order();
+        $total = 0;
         foreach ($cart as $product) {
             $productData = $productRepository->find($product['id']);
             $stripeCart[] = [
@@ -162,10 +169,20 @@ class CartController extends AbstractController
                     'product_data' => [
                         'name' => $productData->getBrand() . ' - ' . $productData->getModel() . ' - ' . $product['color'],
                     ],
-                    'unit_amount' => $productData->getPriceHt() * 1.2 * 100,
+                    'unit_amount' => $productData->getPriceHt() * 1.2,
                 ],
                 'quantity' => $product['quantity'],
             ];
+
+            $orderItem = new OrderItems;
+            $orderItem->setProduct($productData)
+                ->setOrder($order)
+                ->setQuantity($product['quantity'])
+                ->setTotal(($productData->getPriceHt() * 1.2) * $product['quantity'])
+                ->setColor($product['color']);
+
+            $manager->persist($orderItem);
+            $total += $orderItem->getTotal();
         }
 
         $stripe = new \Stripe\StripeClient('sk_test_51MtoxTH83TDU5LYyGV0f2MmiV6wILYSo7lqL68BYwkELL08yVIRCsUN5HlD3WGJLoxWVkJvoyXWHVwGIVapf6M7P00MQ04ZY2P');
@@ -177,52 +194,91 @@ class CartController extends AbstractController
                 $stripe->coupons->retrieve($dataReduce['code']);
             } catch (\Exception $e) {
                 if ($dataReduce['type'] == '€') {
-                    $stripe->coupons->create(['amount_off' => $dataReduce['value'], 'currency' => 'eur', 'duration' => 'forever', 'id' => $dataReduce['code'], 'name' => $dataReduce['code']]);
+                    $stripe->coupons->create(['amount_off' => $dataReduce['value'] * 100, 'currency' => 'eur', 'duration' => 'forever', 'id' => $dataReduce['code'], 'name' => $dataReduce['code']]);
                 }
                 if ($dataReduce['type'] == '%') {
                     $stripe->coupons->create(['percent_off' => $dataReduce['value'], 'duration' => 'forever', 'id' => $dataReduce['code'], 'name' => $dataReduce['code']]);
                 }
             }
-
+            if ($dataReduce['type'] == '€') {
+                $totalWithReduce = $total - $dataReduce['value'];
+                $totalReduce = $dataReduce['value'];
+            }
+            if ($dataReduce['type'] == '%') {
+                $totalWithReduce = $total - ($total * ($dataReduce['value'] / 100));
+                $totalReduce = $total * ($dataReduce['value'] / 100);
+            }
 
             $stripeReduce = [
                 'coupon' => $dataReduce['code']
             ];
         }
 
+        $totalWithReduce = $total;
+        $totalReduce = 0;
+        $order->setUser($this->getUser())
+            ->setStatus('Annulé')
+            ->setPayment('Non Payé')
+            ->setTotal($totalWithReduce)
+            ->setReduce($totalReduce);
+
+        $manager->persist($order);
+        $manager->flush();
+
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
 
         Stripe::setApiKey('sk_test_51MtoxTH83TDU5LYyGV0f2MmiV6wILYSo7lqL68BYwkELL08yVIRCsUN5HlD3WGJLoxWVkJvoyXWHVwGIVapf6M7P00MQ04ZY2P');
-
         $checkout_session = \Stripe\Checkout\Session::create([
             'customer_email' => $user->getEmail(),
             'line_items' => [$stripeCart],
             'discounts' => [$stripeReduce],
             'mode' => 'payment',
-            'success_url' => $this->generateUrl('cart.success', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'success_url' => $this->generateUrl('cart.success', ['id' => $order->getId()], UrlGeneratorInterface::ABSOLUTE_URL),
             'cancel_url' => $this->generateUrl('cart.failed', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
 
+        $order->setIdStripe($checkout_session->id);
+        $manager->persist($order);
+        $manager->flush();
 
         return $this->redirect($checkout_session->url, 303);
     }
 
 
-    #[Route('/panier/paiement/succes', name: 'cart.success')]
-    public function successUrl(SessionInterface $session)
+    #[Route('/panier/paiement/succes/{id}', name: 'cart.success')]
+    #[IsGranted('ROLE_USER')]
+    public function successUrl(Order $order, SessionInterface $session, EntityManagerInterface $manager)
     {
+        $cart = $session->get('panier', []);
+        if (empty($cart)) {
+            return $this->redirectToRoute('cart.index');
+        }
 
-        // delete cart and reduce
-        $session->set('panier', []);
-        $session->set('reduce', []);
-        $order = new Order;
 
+        $stripe = new \Stripe\StripeClient('sk_test_51MtoxTH83TDU5LYyGV0f2MmiV6wILYSo7lqL68BYwkELL08yVIRCsUN5HlD3WGJLoxWVkJvoyXWHVwGIVapf6M7P00MQ04ZY2P');
 
-        return $this->render('cart/success.html.twig');
+        if ($stripe->checkout->sessions->retrieve($order->getIdStripe())->payment_status == 'paid') {
+            $order->setStatus('En cours')
+                ->setPayment('Payé');
+            foreach ($order->getOrderItems() as $product) {
+                $product->getProduct()->setStock($product->getProduct()->getStock() - $product->getQuantity());
+            }
+
+            $manager->persist($order);
+            $manager->flush();
+
+            // delete cart and reduce
+            $session->set('panier', []);
+            $session->set('reduce', []);
+            return $this->render('cart/success.html.twig');
+        } else {
+            return $this->redirectToRoute('cart.index');
+        }
     }
 
     #[Route('/panier/paiement/echec', name: 'cart.failed')]
+    #[IsGranted('ROLE_USER')]
     public function failedUrl()
     {
         return $this->render('cart/failed.html.twig');
@@ -238,7 +294,7 @@ class CartController extends AbstractController
      * @return Response
      */
     #[Route('/cart/add/{id}', name: 'cart.add')]
-    public function add(Int $id, SessionInterface $session, Request $request): Response
+    public function add(Product $product, SessionInterface $session, Request $request): Response
     {
 
         // Get cart from session
@@ -247,31 +303,39 @@ class CartController extends AbstractController
         $handleAdd = 0;
 
         // if cart is empty = add product
-        if (empty($cart)) {
-            $cart[] = [
-                'id' => $id,
-                'color' => $color,
-                'quantity' => 1
-            ];
-            //if cart isn't empty
+        if ($product->getStock() < 1) {
+            $this->addFlash('warning', 'Le produit n\'est plus en stock');
         } else {
-            foreach ($cart as $index => $product) {
-                //if product already exist in cart
-                if ($product['id'] == $id && $product['color'] == $color) {
-                    $cart[$index]['quantity'] = $product['quantity'] + 1;
-                    $handleAdd = 1;
-                }
-            }
-            // if product doesn't exist in cart
-            if ($handleAdd == 0) {
+            if (empty($cart)) {
                 $cart[] = [
-                    'id' => $id,
+                    'id' => $product->getId(),
                     'color' => $color,
                     'quantity' => 1
                 ];
+                //if cart isn't empty
+            } else {
+                foreach ($cart as $index => $prod) {
+                    //if product already exist in cart
+                    if ($prod['id'] == $product->getId() && $product->getStock() < $prod['quantity'] + 1) {
+                        $this->addFlash('warning', 'Le produit n\'est plus en stock');
+                        $handleAdd = 1;
+                    } else {
+                        if ($prod['id'] == $product->getId() && $prod['color'] == $color) {
+                            $cart[$index]['quantity'] = $prod['quantity'] + 1;
+                            $handleAdd = 1;
+                        }
+                    }
+                }
+                // if product doesn't exist in cart
+                if ($handleAdd == 0) {
+                    $cart[] = [
+                        'id' => $product->getId(),
+                        'color' => $color,
+                        'quantity' => 1
+                    ];
+                }
             }
         }
-
         // Save cart on session
         $session->set('panier', $cart);
 
