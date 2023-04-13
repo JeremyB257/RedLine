@@ -17,10 +17,11 @@
 			<div class="main-picture-container d-flex flex-column align-items-center justify-content-center">
 				<img class="main-picture" src="{{ '/img/' ~ (product.imgUrl | split(',')[0]) }}" alt="{{( product.imgUrl | split(',')[0]) }}">
 			</div>
-			<div class="info d-flex flex-column gap-3 align-items-center align-items-md-start">
+			<div class="info d-flex flex-column gap-3 align-items-center align-items-md-start container-info-show">
 				<h1 class="fw-bold fs-1">{{ product.brand }}
 					{{ product.model }}</h1>
 				<h2 class="fw-bold primary">{{ (product.priceHt * 1.20) | format_currency('EUR') }}</h2>
+				{% include "fav/_fav.html.twig" %}
 				<div class="choice-color-container">
 					<p class="fw-bold mb-2">Colors</p>
 					<div class="d-flex gap-3">

@@ -1,9 +1,18 @@
-.heart-container {
-  width: fit-content;
-  height: fit-content;
-  position: absolute;
-  right: 25px;
-  top: 13px;
+.card-watch {
+  .heart-container {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    right: 25px;
+    top: 13px;
+  }
+}
+
+.container-info-show {
+  .heart-container {
+    padding-left: 10px;
+    font-size: 30px;
+  }
 }
 
 .hidden {
