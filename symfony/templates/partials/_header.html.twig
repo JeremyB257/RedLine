@@ -104,6 +104,9 @@
 					<a href=" {{ path('app_user', { id: app.user.id }) }}">
 						<i class="fa-regular fa-user"></i>
 					</a>
+					<a href=" {{ path('fav.list', { id: app.user.id }) }}">
+						<i class="fa-regular fa-heart"></i>
+					</a>
 				{% endif %}
 				<a class="position-relative cartIcon" href="{{path('cart.index')}}">
 					<i class="fa-regular fa-cart-shopping"></i>

@@ -11,6 +11,9 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
+// import fav feature
+import './controllers/fav_controller.js';
+
 //search navbar
 const searchBtn = document.querySelector('#searchBtn');
 const searchSubmit = document.querySelector('.searchSubmit');
@@ -71,6 +74,7 @@ if (starRatingStars) {
     select.value = e.target.dataset.value;
   });
 }
+
 // Scroll Reveal Plug-In
 
 // Home page
@@ -149,3 +153,5 @@ ScrollReveal().reveal(ArLaxar, {
   origin: 'right',
   distance: '50px',
 });
+
+// Fav feature
