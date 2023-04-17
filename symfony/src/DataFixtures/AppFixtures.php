@@ -77,7 +77,7 @@ class AppFixtures extends Fixture
                 <li>Confortable</li>
                 <li>Etanche jusqu&#39;a 100m</li>
             </ul>
-            <p><img alt='' src='https://www.rare-watches-co.com/wp-content/uploads/2021/11/IMG_7198.jpg' /></p>
+            <div class='d-flex justify-content-center'><img alt='' class='w-50' src='https://www.rare-watches-co.com/wp-content/uploads/2021/11/IMG_7198.jpg' /></div>
             ");
         $manager->persist($watch);
         $watches[] = $watch;
