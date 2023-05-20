@@ -92,7 +92,7 @@
 				<form action="{{path('app_product')}}" class="form-search d-flex align-items-center" role="search">
 					<input class="searchSubmit" type="submit" value="">
 					<input class="form-control me-2 search" type="search" name="search" placeholder="Recherche..." aria-label="Search"/>
-					<i type="submit" class="fa-regular fa-magnifying-glass" id="searchBtn"></i>
+					<i class="fa-solid fa-magnifying-glass"></i>
 				</form>
 
 				{% if app.user == null %}
@@ -109,7 +109,7 @@
 					</a>
 				{% endif %}
 				<a class="position-relative cartIcon" href="{{path('cart.index')}}">
-					<i class="fa-regular fa-cart-shopping"></i>
+					<i class="fa-sharp fa-solid fa-cart-shopping"></i>
 					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
 						{{app.session.get('panier') | length}}
 					</span>
