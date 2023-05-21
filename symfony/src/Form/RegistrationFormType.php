@@ -45,15 +45,18 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'autocomplete' => 'new-password',
                 ],
+                'validation_groups' => ['registration'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrez un mot de passe',
+                        'groups' => ['registration'],
                     ]),
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Votre mot de passe doit faire {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
+                        'groups' => ['registration'],
                     ]),
                 ],
             ])
@@ -61,9 +64,11 @@ class RegistrationFormType extends AbstractType
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => 'conditions générales',
                 'mapped' => false,
+                'validation_groups' => ['registration'],
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter les conditions',
+                        'groups' => ['registration'],
                     ]),
                 ],
             ]);
