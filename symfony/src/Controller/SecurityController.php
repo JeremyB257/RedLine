@@ -38,7 +38,7 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        // Importation du RegistrationController
+        // Importation du code RegistrationController
         $user = new User();
         $registerForm = $this->createForm(RegistrationFormType::class, $user, [
             'validation_groups' => ['registration'],
