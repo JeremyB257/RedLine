@@ -32,13 +32,6 @@
 								</div>
 							{% endfor %}
 						{% endfor %}
-						{% if app.user %}
-							<div class="mb-3">
-								Bonjour
-								{{ app.user.userIdentifier }},
-								<a href="{{ path('app_logout') }}">Logout</a>
-							</div>
-						{% endif %}
 
 						<div class="mb-5">
 							<label for="emailLogin" class="form-label">Email*</label>

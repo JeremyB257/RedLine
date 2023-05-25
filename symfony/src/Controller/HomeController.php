@@ -25,7 +25,7 @@ class HomeController extends AbstractController
         return $this->render('index.html.twig', [
             'watches' => $productRepo->findBy([], null, 5),
             'reviews' => $reviewRepo->findBy([], ['evaluation' => 'DESC'], 3),
-            'route' => true,
+            'scrollRevealIndex' => true,
         ]);
     }
 

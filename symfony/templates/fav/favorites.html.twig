@@ -15,7 +15,7 @@
 					<span class="brand-model">{{ product.brand }}
 						-
 						{{ product.model }}</span>
-					<span class="d-block price">{{ (product.priceHt * 1.20) | format_currency('EUR') }}</span>
+					<span class="d-block price">{{ ((product.priceHt * 1.20) / 100) | format_currency('EUR') }}</span>
 					{% if product.description > 110 %}
 						<p class="desc">{{ (product.description | slice(0, 110) ~ '...') |striptags|raw }}</p>
 					{% else %}
