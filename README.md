@@ -1,5 +1,6 @@
 ![This is an image](https://www.golfdusart.com/wp-content/uploads/2021/04/logo-Fil-Rouge.png)
 
+
 # Telecharger les dependances :
 
 > composer i
@@ -28,3 +29,5 @@ _(doc officiel + theme sandstone)_
 > https://getbootstrap.com/docs/5.2/getting-started/introduction/
 
 > https://bootswatch.com/sandstone/
+
+Commit body  Co-authored-by: Jeremy Berteloot <106591457+JeremyB257@users.noreply.github.com> Co-authored-by: Kowynx <115017415+KoWyNx@users.noreply.github.com>
