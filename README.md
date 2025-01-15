@@ -30,4 +30,3 @@ _(doc officiel + theme sandstone)_
 
 > https://bootswatch.com/sandstone/
 
-Commit body  Co-authored-by: Jeremy Berteloot <106591457+JeremyB257@users.noreply.github.com> Co-authored-by: Kowynx <115017415+KoWyNx@users.noreply.github.com>
